@@ -11,6 +11,7 @@ Description: E-statistics (energy) tests and statistics for comparing
         tests. Energy-statistics concept based on a generalization of
         Newton's potential energy is due to Gabor J. Szekely.
 Maintainer: Maria Rizzo <mrizzo@bgsu.edu>
+Modifier: Zhang Yet <xiangduxiuzy@gmail.com>
 Depends: boot, MASS
 License: GPL (>= 2)
 Packaged: 2013-03-09 17:53:09 UTC; Maria
