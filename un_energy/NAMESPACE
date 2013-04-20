@@ -2,9 +2,12 @@ useDynLib(energy)
 
 export(
   dcor, 
+  undcor,
   DCOR, 
   dcov, 
-  .dcov, 
+  undcov,
+  .dcov,
+  .undcov, 
   dcov.test, 
   .dCov.test,
   disco, 
