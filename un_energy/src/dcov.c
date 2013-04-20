@@ -64,7 +64,7 @@ extern void   index_distance(double **Dx, int n, double index);
 extern void   vector2matrix(double *x, double **y, int N, int d, int isroworder);
 
 void undCOV(double *x, double *y, int *byrow, int *dims,
-              double *index, int *idx, double *DCOV) {
+              double *index, double *idx, double *DCOV) {
     /*  computes dCov(x,y), dCor(x,y), dVar(x), dVar(y)
         V-statistic is n*dCov^2 where n*dCov^2 --> Q
         dims[0] = n (sample size)
