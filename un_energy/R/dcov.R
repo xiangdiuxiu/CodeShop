@@ -131,6 +131,37 @@ function(x, y, index=1.0) {
             PACKAGE = "energy")
     return(a$DCOV)
 }
+
+.undcov <- 
+function(x, y, index=1.0) {
+    # distance covariance statistic for independence
+    # dcov = [dCov,dCor,dVar(x),dVar(y)]   (vector)
+    # this function provides the fast method for computing dCov
+    # it is called by the dcov and dcor functions
+    if (!(class(x) == "dist")) x <- dist(x)
+    if (!(class(y) == "dist")) y <- dist(y)
+    x <- as.matrix(x)
+    y <- as.matrix(y)
+    dst <- TRUE  
+    n <- nrow(x)
+    m <- nrow(y)
+    if (n != m) stop("Sample sizes must agree")
+    if (! (all(is.finite(c(x, y))))) 
+        stop("Data contains missing or infinite values")
+    dims <- c(n, NCOL(x), NCOL(y), dst)
+    idx <- 1:dims[1]
+    DCOV <- numeric(4)
+    a <- .C("undCOV", 
+            x = as.double(t(x)),
+            y = as.double(t(y)),
+            byrow = as.integer(TRUE),
+            dims = as.integer(dims), 
+            index = as.double(index),
+            idx = as.double(idx),
+            DCOV = as.double(DCOV), 
+            PACKAGE = "energy")
+    return(a$DCOV)
+}
  
 
 dcov <- 
@@ -139,10 +170,20 @@ function(x, y, index=1.0) {
     return(.dcov(x, y, index)[1])
 } 
 
+undcov <- 
+function(x, y, index=1.0){
+    return(.undcov(x, y, index)[1])
+}
+
 dcor <- 
 function(x, y, index=1.0) {
     # distance correlation statistic for independence
     return(.dcov(x, y, index)[2])
+}
+
+undcor <-
+function(x, y, index=1.0) {
+    return(.undcov(x, y, index)[2])
 } 
 
             
