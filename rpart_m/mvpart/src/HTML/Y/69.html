@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dimx</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/32.html#L31'>dimx</a>               31 pred_rpart.c   void pred_rpart(Sint *dimx, Sint *nnode,    Sint *nsplit,   Sint *dimc, </span>
+<span class='curline'><a href='../S/32.html#L49'>dimx</a>               49 pred_rpart.c       n = dimx[0];</span>
+<span class='curline'><a href='../S/32.html#L59'>dimx</a>               59 pred_rpart.c       xmiss =  (Sint **)  ALLOC((int)dimx[1], sizeof(int*));</span>
+<span class='curline'><a href='../S/32.html#L60'>dimx</a>               60 pred_rpart.c       xdata = (double **) ALLOC((int)dimx[1], sizeof(double*));</span>
+<span class='curline'><a href='../S/32.html#L61'>dimx</a>               61 pred_rpart.c       for (i=0; i&lt;dimx[1]; i++) {</span>
+<span class='curline'><a href='../S/32.html#L62'>dimx</a>               62 pred_rpart.c       xmiss[i] = &amp;(xmiss2[i * dimx[0]]);</span>
+<span class='curline'><a href='../S/32.html#L63'>dimx</a>               63 pred_rpart.c       xdata[i] = &amp;(xdata2[i * dimx[0]]);</span>
+<span class='curline'><a href='../S/30.html#L39'>dimx</a>               39 rpartproto.h   void pred_rpart(Sint *dimx, Sint *nnode,    Sint *nsplit,   Sint *dimc, </span>
+</pre>
+</body>
+</html>

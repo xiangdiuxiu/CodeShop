@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ALLOC</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L21'>ALLOC</a>              21 anova.c            countn  = (int *)ALLOC(2*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/12.html#L23'>ALLOC</a>              23 anova.c            mean   = (double *)ALLOC(3*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/11.html#L21'>ALLOC</a>              21 dist.c             tsplit= (int *) ALLOC(maxcat*2, sizeof(int));   </span>
+<span class='curline'><a href='../S/11.html#L22'>ALLOC</a>              22 dist.c             count = (int *)ALLOC(maxcat, sizeof(int)); </span>
+<span class='curline'><a href='../S/11.html#L23'>ALLOC</a>              23 dist.c             countn = (int *)ALLOC(maxcat*maxcat, sizeof(int)); </span>
+<span class='curline'><a href='../S/11.html#L24'>ALLOC</a>              24 dist.c             dsts  = (double *)ALLOC(maxcat*maxcat, sizeof(double));  </span>
+<span class='curline'><a href='../S/19.html#L45'>ALLOC</a>              45 gini.c             left = (double *) ALLOC(numclass*2, sizeof(double));</span>
+<span class='curline'><a href='../S/19.html#L48'>ALLOC</a>              48 gini.c             tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/19.html#L51'>ALLOC</a>              51 gini.c             awt = (double *) ALLOC(maxcat*2, sizeof(double));</span>
+<span class='curline'><a href='../S/19.html#L56'>ALLOC</a>              56 gini.c                 ccnt    = (double **) ALLOC(numclass, sizeof(double *));</span>
+<span class='curline'><a href='../S/19.html#L58'>ALLOC</a>              58 gini.c                 ccnt[0] = (double *) ALLOC(numclass*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/19.html#L65'>ALLOC</a>              65 gini.c             prior = (double *) ALLOC(i, sizeof (double));</span>
+<span class='curline'><a href='../S/6.html#L21'>ALLOC</a>              21 graycode.c         gray = (int *) ALLOC(maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L19'>ALLOC</a>              19 mrt.c              grandmean  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L24'>ALLOC</a>              24 mrt.c              diffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L29'>ALLOC</a>              29 mrt.c              tdiffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L36'>ALLOC</a>              36 mrt.c              tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L37'>ALLOC</a>              37 mrt.c              countn = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L38'>ALLOC</a>              38 mrt.c              countwt = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L39'>ALLOC</a>              39 mrt.c              mean  = (double *)ALLOC(maxcat*rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/13.html#L29'>ALLOC</a>              29 poisson.c          death = (double *)ALLOC(3*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/13.html#L32'>ALLOC</a>              32 poisson.c          order = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/32.html#L56'>ALLOC</a>              56 pred_rpart.c       csplit = (Sint **)  ALLOC((int)dimc[1], sizeof(int*));</span>
+<span class='curline'><a href='../S/32.html#L59'>ALLOC</a>              59 pred_rpart.c       xmiss =  (Sint **)  ALLOC((int)dimx[1], sizeof(int*));</span>
+<span class='curline'><a href='../S/32.html#L60'>ALLOC</a>              60 pred_rpart.c       xdata = (double **) ALLOC((int)dimx[1], sizeof(double*));</span>
+<span class='curline'><a href='../S/38.html#L108'>ALLOC</a>             108 rpart.c            rp.xdata = (FLOAT **) ALLOC(nvarx, sizeof(FLOAT *));</span>
+<span class='curline'><a href='../S/38.html#L112'>ALLOC</a>             112 rpart.c            rp.ydata = (double **) ALLOC(nny, sizeof(double *));</span>
+<span class='curline'><a href='../S/38.html#L118'>ALLOC</a>             118 rpart.c            rp.tempvec = (int *)ALLOC(n, sizeof(int));</span>
+<span class='curline'><a href='../S/38.html#L119'>ALLOC</a>             119 rpart.c            rp.xtemp = (FLOAT *)ALLOC(n, sizeof(FLOAT));</span>
+<span class='curline'><a href='../S/38.html#L120'>ALLOC</a>             120 rpart.c            rp.ytemp = (double **)ALLOC(nny, sizeof(double *));</span>
+<span class='curline'><a href='../S/38.html#L121'>ALLOC</a>             121 rpart.c            rp.wtemp = (double *)ALLOC(nny, sizeof(double));</span>
+<span class='curline'><a href='../S/38.html#L129'>ALLOC</a>             129 rpart.c            rp.sorts  = (Sint**) ALLOC(nvarx, sizeof(Sint *));</span>
+<span class='curline'><a href='../S/38.html#L149'>ALLOC</a>             149 rpart.c            rp.csplit = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/38.html#L150'>ALLOC</a>             150 rpart.c            rp.lwt    = (double *) ALLOC(2*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/38.html#L155'>ALLOC</a>             155 rpart.c            else rp.csplit = (int *)ALLOC(1, sizeof(int));</span>
+<span class='curline'><a href='../S/5.html#L66'>ALLOC</a>              66 s_to_rp.c          ddnode = (double **) ALLOC(3+rp.num_resp, sizeof(double *));</span>
+<span class='curline'><a href='../S/29.html#L75'>ALLOC</a>              75 s_xpred.c          rp.xdata = (FLOAT **) ALLOC(nvar, sizeof(FLOAT *));</span>
+<span class='curline'><a href='../S/29.html#L79'>ALLOC</a>              79 s_xpred.c          rp.ydata = (double **) ALLOC(n, sizeof(double *));</span>
+<span class='curline'><a href='../S/29.html#L85'>ALLOC</a>              85 s_xpred.c          rp.tempvec = (int *)ALLOC(2*n, sizeof(int));</span>
+<span class='curline'><a href='../S/29.html#L87'>ALLOC</a>              87 s_xpred.c          rp.xtemp = (FLOAT *)ALLOC(n, sizeof(FLOAT));</span>
+<span class='curline'><a href='../S/29.html#L88'>ALLOC</a>              88 s_xpred.c          rp.ytemp = (double **)ALLOC(n, sizeof(double *));</span>
+<span class='curline'><a href='../S/29.html#L89'>ALLOC</a>              89 s_xpred.c          rp.wtemp = (double *)ALLOC(n, sizeof(double));</span>
+<span class='curline'><a href='../S/29.html#L97'>ALLOC</a>              97 s_xpred.c          rp.sorts  = (Sint**) ALLOC(nvar, sizeof(Sint *));</span>
+<span class='curline'><a href='../S/29.html#L117'>ALLOC</a>             117 s_xpred.c          rp.csplit = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/29.html#L120'>ALLOC</a>             120 s_xpred.c              rp.lwt    = (double *) ALLOC(2*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/29.html#L123'>ALLOC</a>             123 s_xpred.c          else rp.csplit = (int *)ALLOC(1, sizeof(int));</span>
+<span class='curline'><a href='../S/29.html#L131'>ALLOC</a>             131 s_xpred.c          xtree = (struct node *) ALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/14.html#L27'>ALLOC</a>              27 usersplit.c             uscratch = (double *) ALLOC(n_return +1, sizeof(double));</span>
+<span class='curline'><a href='../S/14.html#L28'>ALLOC</a>              28 usersplit.c        else uscratch = (double *) ALLOC(2*n, sizeof(double));</span>
+</pre>
+</body>
+</html>

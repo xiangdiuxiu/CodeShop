@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>prior</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L14'>prior</a>              14 gini.c         static double *prior,</span>
+<span class='curline'><a href='../S/19.html#L65'>prior</a>              65 gini.c             prior = (double *) ALLOC(i, sizeof (double));</span>
+<span class='curline'><a href='../S/19.html#L66'>prior</a>              66 gini.c             if (prior==0) {*error="Out of memory"; return(1);}</span>
+<span class='curline'><a href='../S/19.html#L67'>prior</a>              67 gini.c             aprior = prior + numclass;</span>
+<span class='curline'><a href='../S/19.html#L82'>prior</a>              82 gini.c                 prior[i] = parm[i];</span>
+<span class='curline'><a href='../S/19.html#L87'>prior</a>              87 gini.c                 temp += loss[k] * prior[i];</span>
+<span class='curline'><a href='../S/19.html#L88'>prior</a>              88 gini.c                 aprior[i] += loss[k] * prior[i];</span>
+<span class='curline'><a href='../S/19.html#L93'>prior</a>              93 gini.c                 prior[i] /= freq[i];            </span>
+<span class='curline'><a href='../S/19.html#L128'>prior</a>             128 gini.c                 temp += freq[j] * loss[j*numclass +i] *prior[j];</span>
+<span class='curline'><a href='../S/19.html#L151'>prior</a>             151 gini.c             temp = prior[i]*loss[i*numclass +j];</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>impurity</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L22'>impurity</a>           22 gini.c         static double (*impurity)();</span>
+<span class='curline'><a href='../S/19.html#L42'>impurity</a>           42 gini.c                 impurity = gini_impure2;</span>
+<span class='curline'><a href='../S/19.html#L43'>impurity</a>           43 gini.c             else    impurity = gini_impure1;</span>
+<span class='curline'><a href='../S/19.html#L189'>impurity</a>          189 gini.c             total_ss += rwt * (*impurity)(temp);    /* p(A) * I(A) */</span>
+<span class='curline'><a href='../S/19.html#L212'>impurity</a>          212 gini.c                 temp += lwt * (*impurity)(p);      /* p(left) * I(left) */</span>
+<span class='curline'><a href='../S/19.html#L215'>impurity</a>          215 gini.c                 temp += rwt * (*impurity)(p);      /*p(right) * I(right) */</span>
+<span class='curline'><a href='../S/19.html#L294'>impurity</a>          294 gini.c                 temp +=  lwt * (*impurity)(p);</span>
+<span class='curline'><a href='../S/19.html#L297'>impurity</a>          297 gini.c                 temp += rwt * (*impurity)(p);      /*p(right) * I(right) */</span>
+</pre>
+</body>
+</html>

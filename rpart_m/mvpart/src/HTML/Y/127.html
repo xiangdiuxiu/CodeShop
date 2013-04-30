@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>j</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L68'>j</a>                  68 anova.c            int i,j;</span>
+<span class='curline'><a href='../S/12.html#L141'>j</a>                 141 anova.c                j = (int)x[i] -1;</span>
+<span class='curline'><a href='../S/12.html#L142'>j</a>                 142 anova.c                countn[j]++;</span>
+<span class='curline'><a href='../S/12.html#L143'>j</a>                 143 anova.c                wts[j] += wt[i];</span>
+<span class='curline'><a href='../S/12.html#L144'>j</a>                 144 anova.c                sums[j] += (*y[i] - grandmean) * wt[i];</span>
+<span class='curline'><a href='../S/12.html#L163'>j</a>                 163 anova.c            while((j=graycode()) &lt; nclass) {</span>
+<span class='curline'><a href='../S/12.html#L164'>j</a>                 164 anova.c                tsplit[j] = LEFT;</span>
+<span class='curline'><a href='../S/12.html#L165'>j</a>                 165 anova.c                left_n += countn[j];</span>
+<span class='curline'><a href='../S/12.html#L166'>j</a>                 166 anova.c                right_n-= countn[j];</span>
+<span class='curline'><a href='../S/12.html#L167'>j</a>                 167 anova.c                left_wt += wts[j];</span>
+<span class='curline'><a href='../S/12.html#L168'>j</a>                 168 anova.c                right_wt-= wts[j];</span>
+<span class='curline'><a href='../S/12.html#L169'>j</a>                 169 anova.c                left_sum += sums[j];</span>
+<span class='curline'><a href='../S/12.html#L170'>j</a>                 170 anova.c                right_sum-= sums[j];</span>
+<span class='curline'><a href='../S/1.html#L14'>j</a>                  14 branch.c           int i, j, dir;</span>
+<span class='curline'><a href='../S/1.html#L29'>j</a>                  29 branch.c           j= tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/1.html#L30'>j</a>                  30 branch.c           if (rp.numcat[j]==0) { /* continuous */</span>
+<span class='curline'><a href='../S/1.html#L32'>j</a>                  32 branch.c               if (sorts[j][i] == obs) {  /* found the match */</span>
+<span class='curline'><a href='../S/1.html#L33'>j</a>                  33 branch.c               if (xdata[j][i] &lt; tsplit-&gt;spoint)</span>
+<span class='curline'><a href='../S/1.html#L41'>j</a>                  41 branch.c           dir = (tsplit-&gt;csplit)[(int)xdata[j][obs] -1];</span>
+<span class='curline'><a href='../S/1.html#L50'>j</a>                  50 branch.c           j = tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/1.html#L51'>j</a>                  51 branch.c           if (rp.numcat[j]==0) {</span>
+<span class='curline'><a href='../S/1.html#L53'>j</a>                  53 branch.c               if (sorts[j][i] == obs) {</span>
+<span class='curline'><a href='../S/1.html#L54'>j</a>                  54 branch.c                   if (xdata[j][i] &lt; tsplit-&gt;spoint)</span>
+<span class='curline'><a href='../S/1.html#L62'>j</a>                  62 branch.c               dir = (tsplit-&gt;csplit)[(int)xdata[j][obs] -1];</span>
+<span class='curline'><a href='../S/18.html#L19'>j</a>                  19 bsplit.c           int i, j, k, jj, kk, ij, ijj;</span>
+<span class='curline'><a href='../S/18.html#L46'>j</a>                  46 bsplit.c           for (j=0; j&lt;rp.n; j++)</span>
+<span class='curline'><a href='../S/18.html#L47'>j</a>                  47 bsplit.c               if (index[j] &gt;=0 &amp;&amp; which[index[j]]== nodenum) {</span>
+<span class='curline'><a href='../S/18.html#L48'>j</a>                  48 bsplit.c               xtemp[k] = rp.xdata[i][j];</span>
+<span class='curline'><a href='../S/18.html#L49'>j</a>                  49 bsplit.c               wtemp[k] = rp.wt[index[j]];</span>
+<span class='curline'><a href='../S/18.html#L50'>j</a>                  50 bsplit.c               if (rp.method!=5) ytemp[k] = rp.ydata[index[j]];</span>
+<span class='curline'><a href='../S/18.html#L55'>j</a>                  55 bsplit.c               for (j=1; j&lt;rp.n; j++)</span>
+<span class='curline'><a href='../S/18.html#L56'>j</a>                  56 bsplit.c               if (index[j] &gt;=0 &amp;&amp; which[index[j]]== nodenum) {</span>
+<span class='curline'><a href='../S/18.html#L58'>j</a>                  58 bsplit.c                   for (jj=0; jj&lt;j; jj++)</span>
+<span class='curline'><a href='../S/18.html#L60'>j</a>                  60 bsplit.c                   if (index[j]&gt;index[jj])  { ij=index[j]; ijj=index[jj];}</span>
+<span class='curline'><a href='../S/18.html#L61'>j</a>                  61 bsplit.c                   else { ij=index[jj]; ijj=index[j];}</span>
+<span class='curline'><a href='../S/24.html#L19'>j</a>                  19 choose_surg.c      int i,j;</span>
+<span class='curline'><a href='../S/24.html#L52'>j</a>                  52 choose_surg.c          j = order[i];</span>
+<span class='curline'><a href='../S/24.html#L53'>j</a>                  53 choose_surg.c          if (j&gt;=0 &amp;&amp;  which[j]==nodenum) {  </span>
+<span class='curline'><a href='../S/24.html#L55'>j</a>                  55 choose_surg.c          switch( y[j]) {</span>
+<span class='curline'><a href='../S/24.html#L57'>j</a>                  57 choose_surg.c                      llwt += rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L60'>j</a>                  60 choose_surg.c                      rlwt += rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L79'>j</a>                  79 choose_surg.c          j = order[i];</span>
+<span class='curline'><a href='../S/24.html#L80'>j</a>                  80 choose_surg.c          if (j &gt;=0 &amp;&amp;  which[j]==nodenum) {       /* obs is in this node */</span>
+<span class='curline'><a href='../S/24.html#L95'>j</a>                  95 choose_surg.c          switch (y[j]) {    /* update numbers */</span>
+<span class='curline'><a href='../S/24.html#L97'>j</a>                  97 choose_surg.c                      llwt -= rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L98'>j</a>                  98 choose_surg.c                  lrwt += rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L101'>j</a>                 101 choose_surg.c                      rlwt -= rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L102'>j</a>                 102 choose_surg.c                  rrwt += rp.wt[j];</span>
+<span class='curline'><a href='../S/24.html#L126'>j</a>                 126 choose_surg.c          j = (int)x[i] -1;</span>
+<span class='curline'><a href='../S/24.html#L128'>j</a>                 128 choose_surg.c              case LEFT : left[j]++;</span>
+<span class='curline'><a href='../S/24.html#L129'>j</a>                 129 choose_surg.c                      lwt[j] += rp.wt[i];</span>
+<span class='curline'><a href='../S/24.html#L131'>j</a>                 131 choose_surg.c              case RIGHT: right[j]++;</span>
+<span class='curline'><a href='../S/24.html#L132'>j</a>                 132 choose_surg.c                      rwt[j] += rp.wt[i];</span>
+<span class='curline'><a href='../S/11.html#L62'>j</a>                  62 dist.c             int i, j, k, kj;</span>
+<span class='curline'><a href='../S/11.html#L80'>j</a>                  80 dist.c             for (j=0; j&lt;k; j++) </span>
+<span class='curline'><a href='../S/11.html#L81'>j</a>                  81 dist.c             total += *y[rp.n*j-j*(j+1)/2+k-j-1];</span>
+<span class='curline'><a href='../S/11.html#L91'>j</a>                  91 dist.c         			for (j=0; j&lt;k; j++)  </span>
+<span class='curline'><a href='../S/11.html#L92'>j</a>                  92 dist.c         			left_sum += *y[rp.n*j-j*(j+1)/2+k-j-1];</span>
+<span class='curline'><a href='../S/11.html#L99'>j</a>                  99 dist.c         			for (j=i+1; j&lt;k; j++) </span>
+<span class='curline'><a href='../S/11.html#L100'>j</a>                 100 dist.c         			right_sum += *y[rp.n*j-j*(j+1)/2+k-j-1];</span>
+<span class='curline'><a href='../S/11.html#L132'>j</a>                 132 dist.c             for (j=0; j&lt;nclass; j++) {</span>
+<span class='curline'><a href='../S/11.html#L133'>j</a>                 133 dist.c                 countn[i+nclass*j] =0;</span>
+<span class='curline'><a href='../S/11.html#L134'>j</a>                 134 dist.c                 dsts[i+nclass*j] =0;</span>
+<span class='curline'><a href='../S/11.html#L144'>j</a>                 144 dist.c             for (j=0; j&lt;i; j++) {</span>
+<span class='curline'><a href='../S/11.html#L145'>j</a>                 145 dist.c                 kj = x[j]-1;    </span>
+<span class='curline'><a href='../S/11.html#L147'>j</a>                 147 dist.c                     dsts[k+nclass*kj] += *y[rp.n*j-j*(j+1)/2+i-j-1];       </span>
+<span class='curline'><a href='../S/11.html#L152'>j</a>                 152 dist.c             for (j=0; j&lt;=i; j++) {</span>
+<span class='curline'><a href='../S/11.html#L153'>j</a>                 153 dist.c             if (i!=j) {</span>
+<span class='curline'><a href='../S/11.html#L154'>j</a>                 154 dist.c                 countn[i+nclass*j]=countn[i+nclass*j]+countn[j+nclass*i];</span>
+<span class='curline'><a href='../S/11.html#L155'>j</a>                 155 dist.c                     dsts[i+nclass*j]=dsts[i+nclass*j]+dsts[j+nclass*i];    </span>
+<span class='curline'><a href='../S/11.html#L167'>j</a>                 167 dist.c                 for (j=0; j&lt;=k; j++) </span>
+<span class='curline'><a href='../S/11.html#L168'>j</a>                 168 dist.c                     if (tsplit[j]!=0) </span>
+<span class='curline'><a href='../S/11.html#L169'>j</a>                 169 dist.c                 total += dsts[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L201'>j</a>                 201 dist.c                 for (j=0; j&lt;=k; j++) </span>
+<span class='curline'><a href='../S/11.html#L202'>j</a>                 202 dist.c                     if (tsplit[j]==LEFT)   {        </span>
+<span class='curline'><a href='../S/11.html#L203'>j</a>                 203 dist.c                     left_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L204'>j</a>                 204 dist.c                     left_sum += dsts[k+nclass*j]; </span>
+<span class='curline'><a href='../S/11.html#L208'>j</a>                 208 dist.c                 for (j=0; j&lt;=k; j++) </span>
+<span class='curline'><a href='../S/11.html#L209'>j</a>                 209 dist.c                     if (tsplit[j]==RIGHT)   {       </span>
+<span class='curline'><a href='../S/11.html#L210'>j</a>                 210 dist.c                     right_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L211'>j</a>                 211 dist.c                     right_sum += dsts[k+nclass*j];   </span>
+<span class='curline'><a href='../S/11.html#L224'>j</a>                 224 dist.c                         for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/11.html#L226'>j</a>                 226 dist.c                         for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/19.html#L32'>j</a>                  32 gini.c             int i, j, k;</span>
+<span class='curline'><a href='../S/19.html#L74'>j</a>                  74 gini.c                 j = *y[i] -1;</span>
+<span class='curline'><a href='../S/19.html#L75'>j</a>                  75 gini.c                 freq[j] += wt[i];</span>
+<span class='curline'><a href='../S/19.html#L84'>j</a>                  84 gini.c                 for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L85'>j</a>                  85 gini.c                 k = numclass*i + j;</span>
+<span class='curline'><a href='../S/19.html#L109'>j</a>                 109 gini.c             int i, j, max = 0;</span>
+<span class='curline'><a href='../S/19.html#L118'>j</a>                 118 gini.c             j = y[i][0] -1;</span>
+<span class='curline'><a href='../S/19.html#L119'>j</a>                 119 gini.c             freq[j] += wt[i];</span>
+<span class='curline'><a href='../S/19.html#L127'>j</a>                 127 gini.c             for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L128'>j</a>                 128 gini.c                 temp += freq[j] * loss[j*numclass +i] *prior[j];</span>
+<span class='curline'><a href='../S/19.html#L147'>j</a>                 147 gini.c             int i, j;</span>
+<span class='curline'><a href='../S/19.html#L150'>j</a>                 150 gini.c             j = *pred -1;</span>
+<span class='curline'><a href='../S/19.html#L151'>j</a>                 151 gini.c             temp = prior[i]*loss[i*numclass +j];</span>
+<span class='curline'><a href='../S/19.html#L165'>j</a>                 165 gini.c             int i,j,k;</span>
+<span class='curline'><a href='../S/19.html#L181'>j</a>                 181 gini.c             j = *y[i] -1;</span>
+<span class='curline'><a href='../S/19.html#L182'>j</a>                 182 gini.c             rwt += aprior[j] * wt[i];    /*altered weight = prior * case_weight */</span>
+<span class='curline'><a href='../S/19.html#L183'>j</a>                 183 gini.c             right[j] += wt[i];</span>
+<span class='curline'><a href='../S/19.html#L199'>j</a>                 199 gini.c             j = *y[i] -1;</span>
+<span class='curline'><a href='../S/19.html#L200'>j</a>                 200 gini.c             rwt -= aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L201'>j</a>                 201 gini.c             lwt += aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L204'>j</a>                 204 gini.c             right[j] -= wt[i];</span>
+<span class='curline'><a href='../S/19.html#L205'>j</a>                 205 gini.c             left[j]  += wt[i];</span>
+<span class='curline'><a href='../S/19.html#L210'>j</a>                 210 gini.c                 for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L211'>j</a>                 211 gini.c                 p = aprior[j]*left[j]/lwt;    /* p(j | left) */</span>
+<span class='curline'><a href='../S/19.html#L213'>j</a>                 213 gini.c                 lmean += p*j;</span>
+<span class='curline'><a href='../S/19.html#L214'>j</a>                 214 gini.c                         p =  aprior[j]*right[j]/rwt;   /* p(j | right) */</span>
+<span class='curline'><a href='../S/19.html#L216'>j</a>                 216 gini.c                 rmean += p*j;</span>
+<span class='curline'><a href='../S/19.html#L239'>j</a>                 239 gini.c             for (j=0; j&lt;numcat; j++) {</span>
+<span class='curline'><a href='../S/19.html#L240'>j</a>                 240 gini.c             awt[j] =0;</span>
+<span class='curline'><a href='../S/19.html#L241'>j</a>                 241 gini.c             countn[j]=0;</span>
+<span class='curline'><a href='../S/19.html#L243'>j</a>                 243 gini.c                 ccnt[i][j] =0;</span>
+<span class='curline'><a href='../S/19.html#L246'>j</a>                 246 gini.c             j = *y[i] -1;</span>
+<span class='curline'><a href='../S/19.html#L248'>j</a>                 248 gini.c             awt[k] += aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L250'>j</a>                 250 gini.c             ccnt[j][k] += wt[i];</span>
+<span class='curline'><a href='../S/19.html#L272'>j</a>                 272 gini.c                 for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L273'>j</a>                 273 gini.c                 right[j] += ccnt[j][i];</span>
+<span class='curline'><a href='../S/19.html#L274'>j</a>                 274 gini.c                 left[j]  -= ccnt[j][i];</span>
+<span class='curline'><a href='../S/19.html#L283'>j</a>                 283 gini.c                 for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L284'>j</a>                 284 gini.c                 right[j] -= ccnt[j][i];</span>
+<span class='curline'><a href='../S/19.html#L285'>j</a>                 285 gini.c                 left[j]  += ccnt[j][i];</span>
+<span class='curline'><a href='../S/19.html#L292'>j</a>                 292 gini.c                 for (j=0; j&lt;numclass; j++) {</span>
+<span class='curline'><a href='../S/19.html#L293'>j</a>                 293 gini.c                 p = aprior[j]*left[j] /lwt;</span>
+<span class='curline'><a href='../S/19.html#L295'>j</a>                 295 gini.c                 lmean += p*j;</span>
+<span class='curline'><a href='../S/19.html#L296'>j</a>                 296 gini.c                         p =  aprior[j]*right[j]/rwt;       /* p(j | right) */</span>
+<span class='curline'><a href='../S/19.html#L298'>j</a>                 298 gini.c                 rmean += p*j;</span>
+<span class='curline'><a href='../S/19.html#L303'>j</a>                 303 gini.c                     for (j=0; j&lt;numcat; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/19.html#L305'>j</a>                 305 gini.c                     for (j=0; j&lt;numcat; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/6.html#L39'>j</a>                  39 graycode.c         int i,j,k;</span>
+<span class='curline'><a href='../S/6.html#L51'>j</a>                  51 graycode.c             for (j=i-1; j&gt;=k; j--) {</span>
+<span class='curline'><a href='../S/6.html#L52'>j</a>                  52 graycode.c             gray[j+1] = gray[j];</span>
+<span class='curline'><a href='../S/6.html#L53'>j</a>                  53 graycode.c             val[j+1] = val[j];</span>
+<span class='curline'><a href='../S/6.html#L59'>j</a>                  59 graycode.c             for (j=i-1; j&gt;=k &amp;&amp; val[j]&gt;temp; j--) {</span>
+<span class='curline'><a href='../S/6.html#L60'>j</a>                  60 graycode.c             gray[j+1] = gray[j];</span>
+<span class='curline'><a href='../S/6.html#L61'>j</a>                  61 graycode.c             val[j+1] = val[j];</span>
+<span class='curline'><a href='../S/6.html#L63'>j</a>                  63 graycode.c             val[j+1] = temp;</span>
+<span class='curline'><a href='../S/6.html#L64'>j</a>                  64 graycode.c             gray[j+1] =i;</span>
+<span class='curline'><a href='../S/8.html#L57'>j</a>                  57 mrt.c              int i,j;</span>
+<span class='curline'><a href='../S/8.html#L67'>j</a>                  67 mrt.c              for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L71'>j</a>                  71 mrt.c              for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L72'>j</a>                  72 mrt.c              grandmean[j] = temp/twt;</span>
+<span class='curline'><a href='../S/8.html#L75'>j</a>                  75 mrt.c              temp = y[i][j] - grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L79'>j</a>                  79 mrt.c              value[j] = grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L101'>j</a>                 101 mrt.c              int i,j,k;</span>
+<span class='curline'><a href='../S/8.html#L121'>j</a>                 121 mrt.c              for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L122'>j</a>                 122 mrt.c          	    grandmean[j] = 0; tdiffs[j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L123'>j</a>                 123 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L124'>j</a>                 124 mrt.c           	    grandmean[j] /= right_wt;</span>
+<span class='curline'><a href='../S/8.html#L136'>j</a>                 136 mrt.c                  for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L137'>j</a>                 137 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L138'>j</a>                 138 mrt.c                      temp += diffs[j];</span>
+<span class='curline'><a href='../S/8.html#L139'>j</a>                 139 mrt.c                      tdiffs[j] += diffs[j];</span>
+<span class='curline'><a href='../S/8.html#L140'>j</a>                 140 mrt.c                      if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L141'>j</a>                 141 mrt.c                      else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+<span class='curline'><a href='../S/8.html#L172'>j</a>                 172 mrt.c                          for (j=0; j&lt;rp.num_y; j++) mean[i+nclass*j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L179'>j</a>                 179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L183'>j</a>                 183 mrt.c              for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L184'>j</a>                 184 mrt.c                 if (countwt[i]&gt;0) mean[i+nclass*j] /= countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L223'>j</a>                 223 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L231'>j</a>                 231 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L236'>j</a>                 236 mrt.c                  for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L237'>j</a>                 237 mrt.c                      left_sum += tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L238'>j</a>                 238 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L239'>j</a>                 239 mrt.c                  if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L240'>j</a>                 240 mrt.c                  else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+<span class='curline'><a href='../S/8.html#L247'>j</a>                 247 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/8.html#L249'>j</a>                 249 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/8.html#L266'>j</a>                 266 mrt.c              int j;</span>
+<span class='curline'><a href='../S/8.html#L270'>j</a>                 270 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);</span>
+<span class='curline'><a href='../S/8.html#L273'>j</a>                 273 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += fabs((y[j] - yhat[j]));</span>
+<span class='curline'><a href='../S/26.html#L15'>j</a>                  15 mysort.c        int i, j, k;</span>
+<span class='curline'><a href='../S/26.html#L27'>j</a>                  27 mysort.c               j=i-1;</span>
+<span class='curline'><a href='../S/26.html#L29'>j</a>                  29 mysort.c               while (j&gt;=start &amp;&amp; (x[j]&gt;temp)) {</span>
+<span class='curline'><a href='../S/26.html#L30'>j</a>                  30 mysort.c               x[j+1] = x[j];</span>
+<span class='curline'><a href='../S/26.html#L31'>j</a>                  31 mysort.c               cvec[j+1] = cvec[j];</span>
+<span class='curline'><a href='../S/26.html#L32'>j</a>                  32 mysort.c               j--;</span>
+<span class='curline'><a href='../S/26.html#L34'>j</a>                  34 mysort.c               x[j+1] = temp;</span>
+<span class='curline'><a href='../S/26.html#L35'>j</a>                  35 mysort.c               cvec[j+1]  = tempd;</span>
+<span class='curline'><a href='../S/26.html#L45'>j</a>                  45 mysort.c           j=stop;</span>
+<span class='curline'><a href='../S/26.html#L50'>j</a>                  50 mysort.c           if (x[j] &gt; x[k]) {   /* k is smallest */</span>
+<span class='curline'><a href='../S/26.html#L51'>j</a>                  51 mysort.c               if (x[i] &gt; x[j])  median = x[j];</span>
+<span class='curline'><a href='../S/26.html#L56'>j</a>                  56 mysort.c           if (x[j] &lt; x[k]) {</span>
+<span class='curline'><a href='../S/26.html#L57'>j</a>                  57 mysort.c               if (x[i] &gt; x[j]) median = x[i];</span>
+<span class='curline'><a href='../S/26.html#L58'>j</a>                  58 mysort.c               else median = x[j];</span>
+<span class='curline'><a href='../S/26.html#L75'>j</a>                  75 mysort.c           while (i&lt;j) {</span>
+<span class='curline'><a href='../S/26.html#L84'>j</a>                  84 mysort.c           while(x[j] &gt; median) j--;</span>
+<span class='curline'><a href='../S/26.html#L86'>j</a>                  86 mysort.c           if (i&lt;j) {</span>
+<span class='curline'><a href='../S/26.html#L87'>j</a>                  87 mysort.c               if (x[i] &gt; x[j]) {  /* swap */</span>
+<span class='curline'><a href='../S/26.html#L89'>j</a>                  89 mysort.c               x[i] = x[j];</span>
+<span class='curline'><a href='../S/26.html#L90'>j</a>                  90 mysort.c               x[j] = temp;</span>
+<span class='curline'><a href='../S/26.html#L91'>j</a>                  91 mysort.c               tempd= cvec[i];   cvec[i] =cvec[j];  cvec[j] =tempd;</span>
+<span class='curline'><a href='../S/26.html#L93'>j</a>                  93 mysort.c               i++; j--;</span>
+<span class='curline'><a href='../S/26.html#L104'>j</a>                 104 mysort.c           while (x[j] &lt;= median &amp;&amp; j&lt;stop ) j++;</span>
+<span class='curline'><a href='../S/26.html#L111'>j</a>                 111 mysort.c           if ((i-start) &lt; (stop-j)) { /* top list is shorter */</span>
+<span class='curline'><a href='../S/26.html#L113'>j</a>                 113 mysort.c           start =j; </span>
+<span class='curline'><a href='../S/26.html#L117'>j</a>                 117 mysort.c           if ((stop -j)&gt;0) mysort(j,stop, x, cvec);</span>
+<span class='curline'><a href='../S/17.html#L12'>j</a>                  12 nodesplit.c        int i,j, k;</span>
+<span class='curline'><a href='../S/17.html#L49'>j</a>                  49 nodesplit.c            j = sorts[var][i];</span>
+<span class='curline'><a href='../S/17.html#L50'>j</a>                  50 nodesplit.c            if ( j &lt;0) {</span>
+<span class='curline'><a href='../S/17.html#L51'>j</a>                  51 nodesplit.c            if (which[-(j+1)]==nodenum) someleft++;</span>
+<span class='curline'><a href='../S/17.html#L53'>j</a>                  53 nodesplit.c            else if (which[j]==nodenum){</span>
+<span class='curline'><a href='../S/17.html#L56'>j</a>                  56 nodesplit.c            if (k==LEFT) which[j] = 2*nodenum;</span>
+<span class='curline'><a href='../S/17.html#L57'>j</a>                  57 nodesplit.c            else         which[j] = 2*nodenum +1;</span>
+<span class='curline'><a href='../S/17.html#L98'>j</a>                  98 nodesplit.c            j = sorts[var][i];</span>
+<span class='curline'><a href='../S/17.html#L99'>j</a>                  99 nodesplit.c            if (j&lt;0)  { /* missing */</span>
+<span class='curline'><a href='../S/17.html#L100'>j</a>                 100 nodesplit.c                if (which[-(j+1)]==nodenum) someleft++;</span>
+<span class='curline'><a href='../S/17.html#L102'>j</a>                 102 nodesplit.c            else if (which[j]==nodenum){</span>
+<span class='curline'><a href='../S/17.html#L106'>j</a>                 106 nodesplit.c                if (k==LEFT)  which[j] = 2*nodenum;</span>
+<span class='curline'><a href='../S/17.html#L107'>j</a>                 107 nodesplit.c                else          which[j] = 2*nodenum +1;</span>
+<span class='curline'><a href='../S/23.html#L21'>j</a>                  21 partition.c        int i,j,k,ii,kk,ind;</span>
+<span class='curline'><a href='../S/23.html#L31'>j</a>                  31 partition.c        j=0;</span>
+<span class='curline'><a href='../S/23.html#L36'>j</a>                  36 partition.c            rp.wtemp[j]   = rp.wt[i];</span>
+<span class='curline'><a href='../S/23.html#L37'>j</a>                  37 partition.c            rp.ytemp[j++] = rp.ydata[i];</span>
+<span class='curline'><a href='../S/23.html#L44'>j</a>                  44 partition.c        j++;</span>
+<span class='curline'><a href='../S/23.html#L62'>j</a>                  62 partition.c        (*rp_eval)(j, rp.ytemp, me-&gt;response_est, &amp;(me-&gt;risk), rp.wtemp);</span>
+<span class='curline'><a href='../S/23.html#L63'>j</a>                  63 partition.c        me -&gt; num_obs = j;</span>
+<span class='curline'><a href='../S/13.html#L163'>j</a>                 163 poisson.c          int i,j;</span>
+<span class='curline'><a href='../S/13.html#L240'>j</a>                 240 poisson.c          j = x[i] -1;</span>
+<span class='curline'><a href='../S/13.html#L241'>j</a>                 241 poisson.c          countn[j]++;                /* number per group */</span>
+<span class='curline'><a href='../S/13.html#L242'>j</a>                 242 poisson.c          death[j]+= y[i][1] * wt[i];</span>
+<span class='curline'><a href='../S/13.html#L243'>j</a>                 243 poisson.c          wtime[j] += y[i][0] * wt[i];     /*sum of time */</span>
+<span class='curline'><a href='../S/13.html#L256'>j</a>                 256 poisson.c              for (j=i-1; j&gt;=0; j--) {</span>
+<span class='curline'><a href='../S/13.html#L257'>j</a>                 257 poisson.c              if (countn[j] &gt;0) {</span>
+<span class='curline'><a href='../S/13.html#L258'>j</a>                 258 poisson.c                  if (rate[i]&gt;rate[j])  order[j]++;</span>
+<span class='curline'><a href='../S/13.html#L281'>j</a>                 281 poisson.c          j = order2[i];</span>
+<span class='curline'><a href='../S/13.html#L282'>j</a>                 282 poisson.c          left_n += countn[j];</span>
+<span class='curline'><a href='../S/13.html#L283'>j</a>                 283 poisson.c          right_n-= countn[j];</span>
+<span class='curline'><a href='../S/13.html#L284'>j</a>                 284 poisson.c          left_time += wtime[j];</span>
+<span class='curline'><a href='../S/13.html#L285'>j</a>                 285 poisson.c          right_time-= wtime[j];</span>
+<span class='curline'><a href='../S/13.html#L286'>j</a>                 286 poisson.c          left_d  += death[j];</span>
+<span class='curline'><a href='../S/13.html#L287'>j</a>                 287 poisson.c          right_d -= death[j];</span>
+<span class='curline'><a href='../S/32.html#L36'>j</a>                  36 pred_rpart.c       int i,j;</span>
+<span class='curline'><a href='../S/32.html#L87'>j</a>                  87 pred_rpart.c           for (j=0; j&lt;nodes[2][npos]; j++) {</span>
+<span class='curline'><a href='../S/32.html#L88'>j</a>                  88 pred_rpart.c               nspl = nodes[1][npos] + nodes[3][npos] + j;</span>
+<span class='curline'><a href='../S/32.html#L106'>j</a>                 106 pred_rpart.c           for (j=0; nnum[j]!= (2*node); j++);</span>
+<span class='curline'><a href='../S/32.html#L107'>j</a>                 107 pred_rpart.c               lcount = nodes[0][j];</span>
+<span class='curline'><a href='../S/32.html#L108'>j</a>                 108 pred_rpart.c           for (j=0; nnum[j]!= (1+ 2*node); j++);</span>
+<span class='curline'><a href='../S/32.html#L109'>j</a>                 109 pred_rpart.c               rcount = nodes[0][j];</span>
+<span class='curline'><a href='../S/22.html#L67'>j</a>                  67 rpart_callback.c     int i,j, k;</span>
+<span class='curline'><a href='../S/22.html#L74'>j</a>                  74 rpart_callback.c     for (j=0; j&lt;n; j++) {</span>
+<span class='curline'><a href='../S/22.html#L75'>j</a>                  75 rpart_callback.c         ydata[k] = y[j][i];</span>
+<span class='curline'><a href='../S/22.html#L108'>j</a>                 108 rpart_callback.c     int i, j, k;</span>
+<span class='curline'><a href='../S/22.html#L114'>j</a>                 114 rpart_callback.c     for (j=0; j&lt;n; j++) {</span>
+<span class='curline'><a href='../S/22.html#L115'>j</a>                 115 rpart_callback.c         ydata[k] = y[j][i];</span>
+<span class='curline'><a href='../S/22.html#L133'>j</a>                 133 rpart_callback.c     j = LENGTH(goodness);</span>
+<span class='curline'><a href='../S/22.html#L138'>j</a>                 138 rpart_callback.c     if (j != 2*(n-1)) </span>
+<span class='curline'><a href='../S/22.html#L141'>j</a>                 141 rpart_callback.c         j, 2*(n-1));</span>
+<span class='curline'><a href='../S/22.html#L144'>j</a>                 144 rpart_callback.c     for (i=0; i&lt;j; i++) good[i] = dptr[i];</span>
+<span class='curline'><a href='../S/22.html#L153'>j</a>                 153 rpart_callback.c     good[0] = (j+1)/2;</span>
+<span class='curline'><a href='../S/22.html#L154'>j</a>                 154 rpart_callback.c     for (i=0; i&lt;j; i++) good[i+1] = dptr[i];</span>
+<span class='curline'><a href='../S/3.html#L17'>j</a>                  17 rpartexp2.c        int i, j;</span>
+<span class='curline'><a href='../S/3.html#L25'>j</a>                  25 rpartexp2.c        j = (3*n)/4;</span>
+<span class='curline'><a href='../S/3.html#L26'>j</a>                  26 rpartexp2.c        delta = *eps * (y[j] - y[i]);</span>
+<span class='curline'><a href='../S/2.html#L16'>j</a>                  16 rpcountup.c        int   i,j, k;</span>
+<span class='curline'><a href='../S/2.html#L25'>j</a>                  25 rpcountup.c        i=0; j=0; k=0;</span>
+<span class='curline'><a href='../S/2.html#L31'>j</a>                  31 rpcountup.c            j++;</span>
+<span class='curline'><a href='../S/2.html#L38'>j</a>                  38 rpcountup.c        *nsplit += i + j + split2;</span>
+<span class='curline'><a href='../S/4.html#L35'>j</a>                  35 rpmatrix.c         int i,j, k;</span>
+<span class='curline'><a href='../S/4.html#L68'>j</a>                  68 rpmatrix.c             j = spl-&gt;var_num;</span>
+<span class='curline'><a href='../S/4.html#L70'>j</a>                  70 rpmatrix.c             if (numcat[j] ==0) {</span>
+<span class='curline'><a href='../S/4.html#L76'>j</a>                  76 rpmatrix.c             isplit[2][scnt] = numcat[j];</span>
+<span class='curline'><a href='../S/4.html#L77'>j</a>                  77 rpmatrix.c             for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/4.html#L80'>j</a>                  80 rpmatrix.c             isplit[0][scnt] = j +1;      /* use "1" based subscripts */</span>
+<span class='curline'><a href='../S/4.html#L89'>j</a>                  89 rpmatrix.c             j = spl-&gt;var_num;</span>
+<span class='curline'><a href='../S/4.html#L92'>j</a>                  92 rpmatrix.c             if (numcat[j] ==0) {</span>
+<span class='curline'><a href='../S/4.html#L98'>j</a>                  98 rpmatrix.c             isplit[2][scnt] = numcat[j];</span>
+<span class='curline'><a href='../S/4.html#L99'>j</a>                  99 rpmatrix.c             for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/4.html#L102'>j</a>                 102 rpmatrix.c             isplit[0][scnt] = j +1;</span>
+<span class='curline'><a href='../S/5.html#L55'>j</a>                  55 s_to_rp.c          int  nodenum, j;</span>
+<span class='curline'><a href='../S/5.html#L115'>j</a>                 115 s_to_rp.c              for (j=0; j&lt; *nnode; j++)</span>
+<span class='curline'><a href='../S/5.html#L116'>j</a>                 116 s_to_rp.c              if (iinode[0][j] == nodenum) {</span>
+<span class='curline'><a href='../S/5.html#L117'>j</a>                 117 s_to_rp.c                  which[i] = j+1;</span>
+<span class='curline'><a href='../S/5.html#L121'>j</a>                 121 s_to_rp.c              }  while (j &gt;= *nnode);</span>
+<span class='curline'><a href='../S/29.html#L18'>j</a>                  18 s_xpred.c          int i,j,k;</span>
+<span class='curline'><a href='../S/29.html#L148'>j</a>                 148 s_xpred.c          for (j=0; j&lt;rp.n; j++) {</span>
+<span class='curline'><a href='../S/29.html#L149'>j</a>                 149 s_xpred.c              if (x_grp[j]==(i+1)) {</span>
+<span class='curline'><a href='../S/29.html#L150'>j</a>                 150 s_xpred.c              rp.which[j] =0;</span>
+<span class='curline'><a href='../S/29.html#L153'>j</a>                 153 s_xpred.c              rp.which[j] =1;</span>
+<span class='curline'><a href='../S/29.html#L154'>j</a>                 154 s_xpred.c              rp.ytemp[k] = rp.ydata[j];</span>
+<span class='curline'><a href='../S/29.html#L155'>j</a>                 155 s_xpred.c              rp.wtemp[k] = rp.wt[j];</span>
+<span class='curline'><a href='../S/29.html#L157'>j</a>                 157 s_xpred.c              temp += rp.wt[j];</span>
+<span class='curline'><a href='../S/29.html#L162'>j</a>                 162 s_xpred.c          for (j=0; j&lt;rp.num_unique_cp; j++) cp[j] *= temp/old_wt;</span>
+<span class='curline'><a href='../S/29.html#L181'>j</a>                 181 s_xpred.c          for (j=0; j&lt;rp.n; j++) {</span>
+<span class='curline'><a href='../S/29.html#L182'>j</a>                 182 s_xpred.c              if (rp.which[j]==0) {</span>
+<span class='curline'><a href='../S/29.html#L183'>j</a>                 183 s_xpred.c              rundown2(xtree, j, cp, (predict+ j* *ncp));</span>
+<span class='curline'><a href='../S/37.html#L22'>j</a>                  22 surrogate.c        int i, j, k;</span>
+<span class='curline'><a href='../S/37.html#L52'>j</a>                  52 surrogate.c            j = sorts[var][i];</span>
+<span class='curline'><a href='../S/37.html#L53'>j</a>                  53 surrogate.c            if (j&lt;0) tempy[-(j+1)]=0;</span>
+<span class='curline'><a href='../S/37.html#L54'>j</a>                  54 surrogate.c            else if (which[j] == nodenum) {</span>
+<span class='curline'><a href='../S/37.html#L56'>j</a>                  56 surrogate.c                 tempy[j] = extra;</span>
+<span class='curline'><a href='../S/37.html#L58'>j</a>                  58 surrogate.c                 tempy[j] =  -extra;</span>
+<span class='curline'><a href='../S/14.html#L52'>j</a>                  52 usersplit.c        int i, j, k;</span>
+<span class='curline'><a href='../S/14.html#L126'>j</a>                 126 usersplit.c            for (j=0; j&lt;n; j++) if(x[j]==k) left_n++;</span>
+<span class='curline'><a href='../S/31.html#L34'>j</a>                  34 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L38'>j</a>                  38 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L58'>j</a>                  58 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L62'>j</a>                  62 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L77'>j</a>                  77 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L81'>j</a>                  81 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L97'>j</a>                  97 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L101'>j</a>                 101 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L126'>j</a>                 126 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L131'>j</a>                 131 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L148'>j</a>                 148 vgdist.c         int count, j;</span>
+<span class='curline'><a href='../S/31.html#L154'>j</a>                 154 vgdist.c         for (j=0; j&lt;nc; j++) {</span>
+<span class='curline'><a href='../S/31.html#L172'>j</a>                 172 vgdist.c           int count, j;</span>
+<span class='curline'><a href='../S/31.html#L176'>j</a>                 176 vgdist.c           for(j = 0 ; j &lt; nc ; j++) {</span>
+<span class='curline'><a href='../S/31.html#L193'>j</a>                 193 vgdist.c           int j;</span>
+<span class='curline'><a href='../S/31.html#L198'>j</a>                 198 vgdist.c           for(j = 0 ; j &lt; nc ; j++) {</span>
+<span class='curline'><a href='../S/31.html#L219'>j</a>                 219 vgdist.c         int dc, i, j, ij;</span>
+<span class='curline'><a href='../S/31.html#L248'>j</a>                 248 vgdist.c         for (j=0; j &lt;= *nr; j++)</span>
+<span class='curline'><a href='../S/31.html#L249'>j</a>                 249 vgdist.c           for (i=j+dc; i &lt; *nr; i++) {</span>
+<span class='curline'><a href='../S/31.html#L250'>j</a>                 250 vgdist.c             d[ij++] = distfun(x, *nr, *nc, i, j);</span>
+<span class='curline'><a href='../S/15.html#L6'>j</a>                   6 xdiss.c        	int i,j,k,ki,kj,pos,n=*nn,ndist,nbig,nbigold,nloop,count;</span>
+<span class='curline'><a href='../S/15.html#L26'>j</a>                  26 xdiss.c        	for (j=1;j&lt;n;j++)</span>
+<span class='curline'><a href='../S/15.html#L27'>j</a>                  27 xdiss.c        	for (i=0;i&lt;j;i++) {</span>
+<span class='curline'><a href='../S/15.html#L28'>j</a>                  28 xdiss.c        	pos = n*i-i*(i+1)/2+j-i-1;</span>
+<span class='curline'><a href='../S/15.html#L34'>j</a>                  34 xdiss.c        			if ((k!=i)&amp;(k!=j)) {</span>
+<span class='curline'><a href='../S/15.html#L39'>j</a>                  39 xdiss.c        			if (k&gt;j)</span>
+<span class='curline'><a href='../S/15.html#L40'>j</a>                  40 xdiss.c        			kj = n*j-j*(j+1)/2+k-j-1;</span>
+<span class='curline'><a href='../S/15.html#L42'>j</a>                  42 xdiss.c        			kj = n*k-k*(k+1)/2+j-k-1;</span>
+<span class='curline'><a href='../S/9.html#L40'>j</a>                  40 xval.c             int i,j,k, jj;</span>
+<span class='curline'><a href='../S/9.html#L85'>j</a>                  85 xval.c             for (j=0; j&lt;rp.n; j++) {</span>
+<span class='curline'><a href='../S/9.html#L86'>j</a>                  86 xval.c                 if (x_grp[j]==(i+1)) {</span>
+<span class='curline'><a href='../S/9.html#L87'>j</a>                  87 xval.c                 which[j] =0;</span>
+<span class='curline'><a href='../S/9.html#L90'>j</a>                  90 xval.c                 which[j] =1;</span>
+<span class='curline'><a href='../S/9.html#L91'>j</a>                  91 xval.c                 rp.ytemp[k] = rp.ydata[j];</span>
+<span class='curline'><a href='../S/9.html#L92'>j</a>                  92 xval.c                 rp.wtemp[k] = rp.wt[j];</span>
+<span class='curline'><a href='../S/9.html#L94'>j</a>                  94 xval.c                 temp += rp.wt[j];</span>
+<span class='curline'><a href='../S/9.html#L99'>j</a>                  99 xval.c             for (j=0; j&lt;rp.num_unique_cp; j++) cp[j] *= temp/old_wt;</span>
+<span class='curline'><a href='../S/9.html#L120'>j</a>                 120 xval.c             for (j=0; j&lt;rp.n; j++) {</span>
+<span class='curline'><a href='../S/9.html#L121'>j</a>                 121 xval.c                 if (which[j]==0) {</span>
+<span class='curline'><a href='../S/9.html#L122'>j</a>                 122 xval.c                 rundown(xtree, j, cp, xpred, xtemp);</span>
+<span class='curline'><a href='../S/9.html#L124'>j</a>                 124 xval.c                    jj = j+1;</span>
+<span class='curline'><a href='../S/9.html#L125'>j</a>                 125 xval.c                    printf("\nObs %d, y=%f \n", jj, rp.ydata[j][0]);</span>
+<span class='curline'><a href='../S/9.html#L130'>j</a>                 130 xval.c                     cplist-&gt;xrisk += xtemp[jj] * rp.wt[j];</span>
+<span class='curline'><a href='../S/9.html#L131'>j</a>                 131 xval.c                     cplist-&gt;xstd  += xtemp[jj]*xtemp[jj] * rp.wt[j];</span>
+</pre>
+</body>
+</html>

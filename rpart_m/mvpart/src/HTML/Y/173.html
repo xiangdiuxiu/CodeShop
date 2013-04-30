@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mean</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L11'>mean</a>               11 anova.c        static double *mean, *sums;</span>
+<span class='curline'><a href='../S/12.html#L23'>mean</a>               23 anova.c            mean   = (double *)ALLOC(3*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/12.html#L24'>mean</a>               24 anova.c            wts    = mean + maxcat;</span>
+<span class='curline'><a href='../S/12.html#L37'>mean</a>               37 anova.c            double mean, ss;</span>
+<span class='curline'><a href='../S/12.html#L45'>mean</a>               45 anova.c            mean = temp/twt;</span>
+<span class='curline'><a href='../S/12.html#L49'>mean</a>               49 anova.c            temp = *y[i] - mean;</span>
+<span class='curline'><a href='../S/12.html#L54'>mean</a>               54 anova.c            *value = mean;</span>
+<span class='curline'><a href='../S/12.html#L149'>mean</a>              149 anova.c                mean[i] = sums[i]/ wts[i];</span>
+<span class='curline'><a href='../S/12.html#L153'>mean</a>              153 anova.c            graycode_init2(nclass, countn, mean);</span>
+<span class='curline'><a href='../S/8.html#L12'>mean</a>               12 mrt.c          static double *mean, *grandmean, *wts, *diffs, *tdiffs;</span>
+<span class='curline'><a href='../S/8.html#L39'>mean</a>               39 mrt.c              mean  = (double *)ALLOC(maxcat*rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L40'>mean</a>               40 mrt.c                  if (countn==0 || mean==0 ) {</span>
+<span class='curline'><a href='../S/8.html#L44'>mean</a>               44 mrt.c              wts    = mean + maxcat;</span>
+<span class='curline'><a href='../S/8.html#L172'>mean</a>              172 mrt.c                          for (j=0; j&lt;rp.num_y; j++) mean[i+nclass*j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L179'>mean</a>              179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L184'>mean</a>              184 mrt.c                 if (countwt[i]&gt;0) mean[i+nclass*j] /= countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L223'>mean</a>              223 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L231'>mean</a>              231 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+</pre>
+</body>
+</html>

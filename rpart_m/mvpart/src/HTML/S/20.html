@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>node.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/node.h</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 node.h]</em> */</em>
+<hr />
+<h2 class='header'><a href='../J/17.html' title='Multiple included from 22 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS @(#)node.h  1.3 12/13/99 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** definition of a node in the tree</em>
+<a id='L4' name='L4' />   4 <em class='comment'>*/</em>
+<a id='L5' name='L5' />   5 <em class='sharp'>#ifndef</em> <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a>
+<a id='L6' name='L6' />   6 <em class='sharp'>#define</em> <a href='../R/8.html' title='Multiple refered from 59 places.'>FLOAT</a> <strong class='reserved'>float</strong>   <em class='comment'>/*see comments in rpart.h */</em>
+<a id='L7' name='L7' />   7 <em class='sharp'>#endif</em>
+<a id='L8' name='L8' />   8 
+<a id='L9' name='L9' />   9 <em class='sharp'>#ifdef</em> <a href='../S/38.html#L37' title='Defined at 37 in rpart.c.'>MAINRP</a>
+<a id='L10' name='L10' />  10 <em class='sharp'>#define</em> <a href='../R/7.html' title='Multiple refered from 7 places.'>EXTERN</a>
+<a id='L11' name='L11' />  11 <em class='sharp'>#else</em>
+<a id='L12' name='L12' />  12 <em class='sharp'>#define</em> <a href='../R/7.html' title='Multiple refered from 7 places.'>EXTERN</a> <strong class='reserved'>extern</strong>
+<a id='L13' name='L13' />  13 <em class='sharp'>#endif</em>
+<a id='L14' name='L14' />  14 
+<a id='L15' name='L15' />  15 <strong class='reserved'>struct</strong> <a href='../R/78.html' title='Multiple refered from 54 places.'>split</a> <em class='brace'>{</em>
+<a id='L16' name='L16' />  16     <strong class='reserved'>double</strong> <a href='../Y/115.html' title='Multiple used in 44 places.'>improve</a>;
+<a id='L17' name='L17' />  17     <strong class='reserved'>double</strong> <a href='../Y/17.html' title='Multiple used in 12 places.'>adj</a>;           <em class='comment'>/* for surrogates only, adjusted agreement */</em>
+<a id='L18' name='L18' />  18     <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a> <a href='../Y/297.html' title='Multiple used in 11 places.'>spoint</a>;    <em class='comment'>/*only used if it is continuous */</em>
+<a id='L19' name='L19' />  19     <strong class='reserved'>struct</strong> <a href='../S/20.html#L15' title='Defined at 15 in node.h.'>split</a> *<a href='../Y/197.html' title='Multiple used in 17 places.'>nextsplit</a>;
+<a id='L20' name='L20' />  20     <strong class='reserved'>int</strong> <a href='../Y/338.html' title='Multiple used in 12 places.'>var_num</a>;
+<a id='L21' name='L21' />  21     <strong class='reserved'>int</strong> <a href='../Y/39.html' title='Multiple used in 61 places.'>count</a>;
+<a id='L22' name='L22' />  22     <strong class='reserved'>int</strong> <a href='../Y/50.html' title='Multiple used in 82 places.'>csplit</a>[2];     <em class='comment'>/*the actual length will be longer for a categorical */</em>
+<a id='L23' name='L23' />  23     <em class='brace'>}</em>;                 <em class='comment'>/*   predictor with &gt;2 levels */</em>
+<a id='L24' name='L24' />  24 
+<a id='L25' name='L25' />  25 <strong class='reserved'>struct</strong> <a href='../R/59.html' title='Multiple refered from 67 places.'>node</a> <em class='brace'>{</em>
+<a id='L26' name='L26' />  26     <strong class='reserved'>double</strong>  <a href='../Y/262.html' title='Multiple used in 52 places.'>risk</a>;       <em class='comment'>/*risk for the node */</em>
+<a id='L27' name='L27' />  27     <strong class='reserved'>double</strong> <a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a>;  <em class='comment'>/* complexity at which it will collapse */</em>
+<a id='L28' name='L28' />  28     <strong class='reserved'>double</strong> <a href='../Y/307.html' title='Multiple used in 4 places.'>sum_wt</a>;      <em class='comment'>/* sum of the weights for the node  */</em>
+<a id='L29' name='L29' />  29     <strong class='reserved'>struct</strong> <a href='../S/20.html#L15' title='Defined at 15 in node.h.'>split</a> *<a href='../Y/243.html' title='Multiple used in 13 places.'>primary</a>;
+<a id='L30' name='L30' />  30     <strong class='reserved'>struct</strong> <a href='../S/20.html#L15' title='Defined at 15 in node.h.'>split</a> *<a href='../S/37.html#L20' title='Defined at 20 in surrogate.c.'>surrogate</a>;
+<a id='L31' name='L31' />  31     <strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../Y/261.html' title='Multiple used in 23 places.'>rightson</a>;
+<a id='L32' name='L32' />  32     <strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../Y/150.html' title='Multiple used in 28 places.'>leftson</a>;
+<a id='L33' name='L33' />  33     <strong class='reserved'>int</strong> <a href='../Y/214.html' title='Multiple used in 10 places.'>num_obs</a>;
+<a id='L34' name='L34' />  34     <strong class='reserved'>int</strong> <a href='../Y/138.html' title='Multiple used in 5 places.'>lastsurrogate</a>;
+<a id='L35' name='L35' />  35     <strong class='reserved'>double</strong> <a href='../Y/250.html' title='Multiple used in 13 places.'>response_est</a>[2];  <em class='comment'>/*actual length depends on splitting rule */</em>
+<a id='L36' name='L36' />  36                                <em class='comment'>/*-- changed form 2 to 400 GD ?? --temp */</em>
+<a id='L37' name='L37' />  37     <em class='brace'>}</em>;
+<a id='L38' name='L38' />  38 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>int</strong> <a href='../Y/209.html' title='Multiple used in 9 places.'>nodesize</a>;
+<a id='L39' name='L39' />  39 
+<a id='L40' name='L40' />  40 <strong class='reserved'>struct</strong> <a href='../R/25.html' title='Multiple refered from 32 places.'>cptable</a> <em class='brace'>{</em>
+<a id='L41' name='L41' />  41     <strong class='reserved'>double</strong> <a href='../Y/42.html' title='Multiple used in 34 places.'>cp</a>;
+<a id='L42' name='L42' />  42     <strong class='reserved'>double</strong> <a href='../Y/262.html' title='Multiple used in 52 places.'>risk</a>;
+<a id='L43' name='L43' />  43     <strong class='reserved'>double</strong> <a href='../Y/359.html' title='Multiple used in 6 places.'>xrisk</a>;
+<a id='L44' name='L44' />  44     <strong class='reserved'>double</strong> <a href='../Y/360.html' title='Multiple used in 6 places.'>xstd</a>;
+<a id='L45' name='L45' />  45     <strong class='reserved'>int</strong> <a href='../Y/213.html' title='Multiple used in 22 places.'>nsplit</a>;
+<a id='L46' name='L46' />  46     <strong class='reserved'>struct</strong> <a href='../S/20.html#L40' title='Defined at 40 in node.h.'>cptable</a> *<a href='../Y/96.html' title='Multiple used in 13 places.'>forward</a>;
+<a id='L47' name='L47' />  47     <strong class='reserved'>struct</strong> <a href='../S/20.html#L40' title='Defined at 40 in node.h.'>cptable</a> *<a href='../Y/27.html' title='Multiple used in 4 places.'>back</a>;
+<a id='L48' name='L48' />  48     <em class='brace'>}</em>  ;
+<a id='L49' name='L49' />  49 
+<a id='L50' name='L50' />  50 <em class='comment'>/**************************************************************************</em>
+<a id='L51' name='L51' />  51 <em class='comment'>**</em>
+<a id='L52' name='L52' />  52 <em class='comment'>**  Split:</em>
+<a id='L53' name='L53' />  53 <em class='comment'>**      variable number of the split; 0 = no more surrogates (or primaries)</em>
+<a id='L54' name='L54' />  54 <em class='comment'>**</em>
+<a id='L55' name='L55' />  55 <em class='comment'>**      split point: the actual split point for a continuous</em>
+<a id='L56' name='L56' />  56 <em class='comment'>**</em>
+<a id='L57' name='L57' />  57 <em class='comment'>**      improve:  For primary splits, the iprovement index returned by the</em>
+<a id='L58' name='L58' />  58 <em class='comment'>**                 bsplit routine.  This is the measure that determines the</em>
+<a id='L59' name='L59' />  59 <em class='comment'>**                 winning split.</em>
+<a id='L60' name='L60' />  60 <em class='comment'>**                For surrogate splits, this holds the error rate, i.e., the</em>
+<a id='L61' name='L61' />  61 <em class='comment'>**                 % incorrect guesses of the primary by using this surrogate.</em>
+<a id='L62' name='L62' />  62 <em class='comment'>**</em>
+<a id='L63' name='L63' />  63 <em class='comment'>**      count: The number of observations split using this variable.  For the</em>
+<a id='L64' name='L64' />  64 <em class='comment'>**             first primary, this will = the number of non-missing values.</em>
+<a id='L65' name='L65' />  65 <em class='comment'>**             For surrogates, it will be the number missing in the primary</em>
+<a id='L66' name='L66' />  66 <em class='comment'>**             and all earlier surrogates but not missing on this one.  (For</em>
+<a id='L67' name='L67' />  67 <em class='comment'>**             all primaries but the first, the number is theoretical).</em>
+<a id='L68' name='L68' />  68 <em class='comment'>**</em>
+<a id='L69' name='L69' />  69 <em class='comment'>**  adj:  Let "maj" be the %agreement for going with the majority,</em>
+<a id='L70' name='L70' />  70 <em class='comment'>**                and "agree" the %agreement for this surrogate.  The</em>
+<a id='L71' name='L71' />  71 <em class='comment'>**                adjusted value is (agree - maj)/(1-maj); the amount of</em>
+<a id='L72' name='L72' />  72 <em class='comment'>**                the potential improvement actually realized.  The denominator</em>
+<a id='L73' name='L73' />  73 <em class='comment'>**                for both percents depends on the sur_agree option.</em>
+<a id='L74' name='L74' />  74 <em class='comment'>**</em>
+<a id='L75' name='L75' />  75 <em class='comment'>**      csplit[0]:   For a continuous variable, we also need to know the</em>
+<a id='L76' name='L76' />  76 <em class='comment'>**                    direction of the split.  We use this "extra" variable</em>
+<a id='L77' name='L77' />  77 <em class='comment'>**                    as 1: &lt;x to the left, -1: &lt;x to the right.</em>
+<a id='L78' name='L78' />  78 <em class='comment'>**</em>
+<a id='L79' name='L79' />  79 <em class='comment'>**      csplit[]:    For a categorical, the labels are LEFT, RIGHT, and</em>
+<a id='L80' name='L80' />  80 <em class='comment'>**                    0=missing.  (Even if a particular category is not empty,</em>
+<a id='L81' name='L81' />  81 <em class='comment'>**                    there may be no subjects from that category present</em>
+<a id='L82' name='L82' />  82 <em class='comment'>**                    at a particular split further down the tree).</em>
+<a id='L83' name='L83' />  83 <em class='comment'>**</em>
+<a id='L84' name='L84' />  84 <em class='comment'>**</em>
+<a id='L85' name='L85' />  85 <em class='comment'>**  Node:</em>
+<a id='L86' name='L86' />  86 <em class='comment'>**      num_obs: Number of observations in the node.</em>
+<a id='L87' name='L87' />  87 <em class='comment'>**</em>
+<a id='L88' name='L88' />  88 <em class='comment'>**      response_est: From the eval routine.  Estimate of the response, if</em>
+<a id='L89' name='L89' />  89 <em class='comment'>**                      this node were terminal.</em>
+<a id='L90' name='L90' />  90 <em class='comment'>**</em>
+<a id='L91' name='L91' />  91 <em class='comment'>**      risk: From the eval routine. Estimate of risk, if this node were</em>
+<a id='L92' name='L92' />  92 <em class='comment'>**                      terminal.</em>
+<a id='L93' name='L93' />  93 <em class='comment'>**</em>
+<a id='L94' name='L94' />  94 <em class='comment'>**      complexity: On the way down, it holds equation 5.18.  On the way up</em>
+<a id='L95' name='L95' />  95 <em class='comment'>**              it holds a provisional C.P. (The actual C.P. for each node</em>
+<a id='L96' name='L96' />  96 <em class='comment'>**              will be the minimum of this number and the provisional C.P.</em>
+<a id='L97' name='L97' />  97 <em class='comment'>**              of all nodes above it.  One more pass downward can establish</em>
+<a id='L98' name='L98' />  98 <em class='comment'>**              the proper C.P.).</em>
+<a id='L99' name='L99' />  99 <em class='comment'>**</em>
+<a id='L100' name='L100' /> 100 <em class='comment'>**      lastsurrogate: Which direction to send obs for which the primary and</em>
+<a id='L101' name='L101' /> 101 <em class='comment'>**              all the surrogates are missing.  (The child with the greatest</em>
+<a id='L102' name='L102' /> 102 <em class='comment'>**      sum of weights).</em>
+<a id='L103' name='L103' /> 103 <em class='comment'>*/</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+103 node.h]</em> */</em>
+</body>
+</html>

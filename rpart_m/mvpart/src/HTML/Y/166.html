@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>maxcat</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L16'>maxcat</a>             16 anova.c        int anovainit(int n,        double *y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/12.html#L19'>maxcat</a>             19 anova.c            if (who==1 &amp;&amp; maxcat &gt;0) {</span>
+<span class='curline'><a href='../S/12.html#L20'>maxcat</a>             20 anova.c            graycode_init0(maxcat);</span>
+<span class='curline'><a href='../S/12.html#L21'>maxcat</a>             21 anova.c            countn  = (int *)ALLOC(2*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/12.html#L22'>maxcat</a>             22 anova.c            tsplit  = countn + maxcat;</span>
+<span class='curline'><a href='../S/12.html#L23'>maxcat</a>             23 anova.c            mean   = (double *)ALLOC(3*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/12.html#L24'>maxcat</a>             24 anova.c            wts    = mean + maxcat;</span>
+<span class='curline'><a href='../S/12.html#L25'>maxcat</a>             25 anova.c            sums   = wts + maxcat;</span>
+<span class='curline'><a href='../S/11.html#L16'>maxcat</a>             16 dist.c         int distinit(int n, double *y[], int maxcat, char **error, </span>
+<span class='curline'><a href='../S/11.html#L19'>maxcat</a>             19 dist.c             if (who==1 &amp;&amp; maxcat &gt;0) {</span>
+<span class='curline'><a href='../S/11.html#L20'>maxcat</a>             20 dist.c             graycode_init0(maxcat);        </span>
+<span class='curline'><a href='../S/11.html#L21'>maxcat</a>             21 dist.c             tsplit= (int *) ALLOC(maxcat*2, sizeof(int));   </span>
+<span class='curline'><a href='../S/11.html#L22'>maxcat</a>             22 dist.c             count = (int *)ALLOC(maxcat, sizeof(int)); </span>
+<span class='curline'><a href='../S/11.html#L23'>maxcat</a>             23 dist.c             countn = (int *)ALLOC(maxcat*maxcat, sizeof(int)); </span>
+<span class='curline'><a href='../S/11.html#L24'>maxcat</a>             24 dist.c             dsts  = (double *)ALLOC(maxcat*maxcat, sizeof(double));  </span>
+<span class='curline'><a href='../S/7.html#L17'>maxcat</a>             17 func_table.h   extern int anovainit( int n,        double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/7.html#L19'>maxcat</a>             19 func_table.h   extern int mrtinit( int n,      double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/7.html#L21'>maxcat</a>             21 func_table.h   extern int distinit( int n,     double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/7.html#L23'>maxcat</a>             23 func_table.h   extern int poissoninit(int n,        double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/7.html#L25'>maxcat</a>             25 func_table.h   extern int giniinit(int n,       double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/7.html#L27'>maxcat</a>             27 func_table.h   extern int usersplit_init(int n,     double*y[],  int maxcat, char **error, </span>
+<span class='curline'><a href='../S/19.html#L29'>maxcat</a>             29 gini.c         int giniinit(int n,        double **y, int maxcat, char **error, </span>
+<span class='curline'><a href='../S/19.html#L48'>maxcat</a>             48 gini.c             tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/19.html#L49'>maxcat</a>             49 gini.c             countn= tsplit + maxcat;</span>
+<span class='curline'><a href='../S/19.html#L51'>maxcat</a>             51 gini.c             awt = (double *) ALLOC(maxcat*2, sizeof(double));</span>
+<span class='curline'><a href='../S/19.html#L52'>maxcat</a>             52 gini.c             rate= awt +maxcat;</span>
+<span class='curline'><a href='../S/19.html#L54'>maxcat</a>             54 gini.c             if (maxcat&gt;0) {</span>
+<span class='curline'><a href='../S/19.html#L55'>maxcat</a>             55 gini.c                 graycode_init0(maxcat);</span>
+<span class='curline'><a href='../S/19.html#L58'>maxcat</a>             58 gini.c                 ccnt[0] = (double *) ALLOC(numclass*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/19.html#L61'>maxcat</a>             61 gini.c                 ccnt[i] = ccnt[i-1] + maxcat;</span>
+<span class='curline'><a href='../S/6.html#L19'>maxcat</a>             19 graycode.c     void graycode_init0( int maxcat)</span>
+<span class='curline'><a href='../S/6.html#L21'>maxcat</a>             21 graycode.c         gray = (int *) ALLOC(maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L16'>maxcat</a>             16 mrt.c          int mrtinit(int n, double *y[], int maxcat, char **error,</span>
+<span class='curline'><a href='../S/8.html#L34'>maxcat</a>             34 mrt.c              if (who==1 &amp;&amp; maxcat &gt;0) {</span>
+<span class='curline'><a href='../S/8.html#L35'>maxcat</a>             35 mrt.c              graycode_init0(maxcat);</span>
+<span class='curline'><a href='../S/8.html#L36'>maxcat</a>             36 mrt.c              tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L37'>maxcat</a>             37 mrt.c              countn = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L38'>maxcat</a>             38 mrt.c              countwt = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L39'>maxcat</a>             39 mrt.c              mean  = (double *)ALLOC(maxcat*rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L44'>maxcat</a>             44 mrt.c              wts    = mean + maxcat;</span>
+<span class='curline'><a href='../S/13.html#L21'>maxcat</a>             21 poisson.c      int poissoninit(int n,         double *y[], int maxcat, char **error, </span>
+<span class='curline'><a href='../S/13.html#L28'>maxcat</a>             28 poisson.c          if (who==1 &amp;&amp; maxcat&gt;0) {</span>
+<span class='curline'><a href='../S/13.html#L29'>maxcat</a>             29 poisson.c          death = (double *)ALLOC(3*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/13.html#L30'>maxcat</a>             30 poisson.c          rate  = death + maxcat;</span>
+<span class='curline'><a href='../S/13.html#L31'>maxcat</a>             31 poisson.c          wtime = rate + maxcat;</span>
+<span class='curline'><a href='../S/13.html#L32'>maxcat</a>             32 poisson.c          order = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/13.html#L33'>maxcat</a>             33 poisson.c          order2= order +maxcat;</span>
+<span class='curline'><a href='../S/13.html#L34'>maxcat</a>             34 poisson.c          countn= order2 + maxcat;</span>
+<span class='curline'><a href='../S/38.html#L54'>maxcat</a>             54 rpart.c            int maxcat;</span>
+<span class='curline'><a href='../S/38.html#L130'>maxcat</a>            130 rpart.c            maxcat=0;</span>
+<span class='curline'><a href='../S/38.html#L141'>maxcat</a>            141 rpart.c            else if (ncat[i] &gt; maxcat)  maxcat = ncat[i];</span>
+<span class='curline'><a href='../S/38.html#L148'>maxcat</a>            148 rpart.c            if (maxcat &gt;0) {</span>
+<span class='curline'><a href='../S/38.html#L149'>maxcat</a>            149 rpart.c            rp.csplit = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/38.html#L150'>maxcat</a>            150 rpart.c            rp.lwt    = (double *) ALLOC(2*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/38.html#L151'>maxcat</a>            151 rpart.c            rp.left = rp.csplit + maxcat;</span>
+<span class='curline'><a href='../S/38.html#L152'>maxcat</a>            152 rpart.c            rp.right= rp.left   + maxcat;</span>
+<span class='curline'><a href='../S/38.html#L153'>maxcat</a>            153 rpart.c            rp.rwt  = rp.lwt    + maxcat;</span>
+<span class='curline'><a href='../S/38.html#L166'>maxcat</a>            166 rpart.c            i = rp_init(n, rp.ydata, maxcat, error, parms, &amp;rp.num_resp, 1, wt);</span>
+<span class='curline'><a href='../S/38.html#L195'>maxcat</a>            195 rpart.c            xval(xvals, cptable, x_grp, maxcat, error, parms);</span>
+<span class='curline'><a href='../S/30.html#L20'>maxcat</a>             20 rpartproto.h   void graycode_init0( int maxcat);</span>
+<span class='curline'><a href='../S/30.html#L78'>maxcat</a>             78 rpartproto.h             Sint *numcat,    Sint *maxcat,    Sint *xvals,     Sint *which, </span>
+<span class='curline'><a href='../S/30.html#L91'>maxcat</a>             91 rpartproto.h         int maxcat,  char **error,                  double * parms);</span>
+<span class='curline'><a href='../S/5.html#L50'>maxcat</a>             50 s_to_rp.c                Sint *numcat,    Sint *maxcat,    Sint *xvals,     Sint *which, </span>
+<span class='curline'><a href='../S/5.html#L84'>maxcat</a>             84 s_to_rp.c          if (*maxcat==0) i=1; else i = *maxcat;</span>
+<span class='curline'><a href='../S/5.html#L86'>maxcat</a>             86 s_to_rp.c          for (i=0; i&lt;*maxcat; i++) {</span>
+<span class='curline'><a href='../S/29.html#L19'>maxcat</a>             19 s_xpred.c          int maxcat;</span>
+<span class='curline'><a href='../S/29.html#L98'>maxcat</a>             98 s_xpred.c          maxcat=0;</span>
+<span class='curline'><a href='../S/29.html#L109'>maxcat</a>            109 s_xpred.c          else if (ncat[i] &gt; maxcat)  maxcat = ncat[i];</span>
+<span class='curline'><a href='../S/29.html#L116'>maxcat</a>            116 s_xpred.c          if (maxcat &gt;0) {</span>
+<span class='curline'><a href='../S/29.html#L117'>maxcat</a>            117 s_xpred.c          rp.csplit = (int *) ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/29.html#L118'>maxcat</a>            118 s_xpred.c          rp.left = rp.csplit + maxcat;</span>
+<span class='curline'><a href='../S/29.html#L119'>maxcat</a>            119 s_xpred.c          rp.right= rp.left   + maxcat;</span>
+<span class='curline'><a href='../S/29.html#L120'>maxcat</a>            120 s_xpred.c              rp.lwt    = (double *) ALLOC(2*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/29.html#L121'>maxcat</a>            121 s_xpred.c              rp.rwt  = rp.lwt    + maxcat;</span>
+<span class='curline'><a href='../S/29.html#L125'>maxcat</a>            125 s_xpred.c          (*rp_init)(n, rp.ydata, maxcat, error, parms, &amp;rp.num_resp, 1, rp.wt);</span>
+<span class='curline'><a href='../S/29.html#L171'>maxcat</a>            171 s_xpred.c          (*rp_init)(k,rp.ytemp, maxcat, error, parms, &amp;temp, 2, rp.wtemp);</span>
+<span class='curline'><a href='../S/14.html#L15'>maxcat</a>             15 usersplit.c    int usersplit_init(int n,  double *y[],  int maxcat, char **error,</span>
+<span class='curline'><a href='../S/9.html#L38'>maxcat</a>             38 xval.c               int maxcat,  char **error,                  double * parms)</span>
+<span class='curline'><a href='../S/9.html#L108'>maxcat</a>            108 xval.c             (*rp_init)(k,rp.ytemp, maxcat, error, parms, &amp;temp, 2, rp.wtemp);</span>
+</pre>
+</body>
+</html>

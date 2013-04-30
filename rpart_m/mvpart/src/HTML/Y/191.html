@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>nclass</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L64'>nclass</a>             64 anova.c        void anova(int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/12.html#L96'>nclass</a>             96 anova.c            if (nclass==0) {   /* continuous predictor */</span>
+<span class='curline'><a href='../S/12.html#L133'>nclass</a>            133 anova.c            for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/12.html#L146'>nclass</a>            146 anova.c            for (i=0; i&lt;nclass; i++)  {</span>
+<span class='curline'><a href='../S/12.html#L153'>nclass</a>            153 anova.c            graycode_init2(nclass, countn, mean);</span>
+<span class='curline'><a href='../S/12.html#L163'>nclass</a>            163 anova.c            while((j=graycode()) &lt; nclass) {</span>
+<span class='curline'><a href='../S/12.html#L178'>nclass</a>            178 anova.c        			        for (i=0; i&lt;nclass; i++) csplit[i] = -tsplit[i];</span>
+<span class='curline'><a href='../S/12.html#L181'>nclass</a>            181 anova.c        			        for (i=0; i&lt;nclass; i++) csplit[i] = tsplit[i];</span>
+<span class='curline'><a href='../S/11.html#L59'>nclass</a>             59 dist.c         void dist(int n,    double *y[],  FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/11.html#L73'>nclass</a>             73 dist.c             if (nclass==0) {</span>
+<span class='curline'><a href='../S/11.html#L130'>nclass</a>            130 dist.c             for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/11.html#L132'>nclass</a>            132 dist.c             for (j=0; j&lt;nclass; j++) {</span>
+<span class='curline'><a href='../S/11.html#L133'>nclass</a>            133 dist.c                 countn[i+nclass*j] =0;</span>
+<span class='curline'><a href='../S/11.html#L134'>nclass</a>            134 dist.c                 dsts[i+nclass*j] =0;</span>
+<span class='curline'><a href='../S/11.html#L146'>nclass</a>            146 dist.c                 countn[k+nclass*kj]++;</span>
+<span class='curline'><a href='../S/11.html#L147'>nclass</a>            147 dist.c                     dsts[k+nclass*kj] += *y[rp.n*j-j*(j+1)/2+i-j-1];       </span>
+<span class='curline'><a href='../S/11.html#L151'>nclass</a>            151 dist.c             for (i=0; i&lt;nclass; i++) </span>
+<span class='curline'><a href='../S/11.html#L154'>nclass</a>            154 dist.c                 countn[i+nclass*j]=countn[i+nclass*j]+countn[j+nclass*i];</span>
+<span class='curline'><a href='../S/11.html#L155'>nclass</a>            155 dist.c                     dsts[i+nclass*j]=dsts[i+nclass*j]+dsts[j+nclass*i];    </span>
+<span class='curline'><a href='../S/11.html#L159'>nclass</a>            159 dist.c                 for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/11.html#L165'>nclass</a>            165 dist.c             for (k=0; k&lt;nclass; k++) </span>
+<span class='curline'><a href='../S/11.html#L169'>nclass</a>            169 dist.c                 total += dsts[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L187'>nclass</a>            187 dist.c             graycode_init1(nclass, count);</span>
+<span class='curline'><a href='../S/11.html#L189'>nclass</a>            189 dist.c             while((i=graycode()) &lt; nclass) {</span>
+<span class='curline'><a href='../S/11.html#L199'>nclass</a>            199 dist.c             for (k=0; k&lt;nclass; k++) </span>
+<span class='curline'><a href='../S/11.html#L203'>nclass</a>            203 dist.c                     left_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L204'>nclass</a>            204 dist.c                     left_sum += dsts[k+nclass*j]; </span>
+<span class='curline'><a href='../S/11.html#L210'>nclass</a>            210 dist.c                     right_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L211'>nclass</a>            211 dist.c                     right_sum += dsts[k+nclass*j];   </span>
+<span class='curline'><a href='../S/11.html#L224'>nclass</a>            224 dist.c                         for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/11.html#L226'>nclass</a>            226 dist.c                         for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/7.html#L43'>nclass</a>             43 func_table.h   extern void anova(    int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/7.html#L46'>nclass</a>             46 func_table.h   extern void mrt(    int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/7.html#L49'>nclass</a>             49 func_table.h   extern void dist(    int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/7.html#L52'>nclass</a>             52 func_table.h   extern void poisson(  int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/7.html#L55'>nclass</a>             55 func_table.h   extern void gini(     int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/7.html#L58'>nclass</a>             58 func_table.h   extern void usersplit(int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/8.html#L98'>nclass</a>             98 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
+<span class='curline'><a href='../S/8.html#L127'>nclass</a>            127 mrt.c              if (nclass==0) {</span>
+<span class='curline'><a href='../S/8.html#L170'>nclass</a>            170 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L172'>nclass</a>            172 mrt.c                          for (j=0; j&lt;rp.num_y; j++) mean[i+nclass*j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L179'>nclass</a>            179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L182'>nclass</a>            182 mrt.c                  for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L184'>nclass</a>            184 mrt.c                 if (countwt[i]&gt;0) mean[i+nclass*j] /= countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L188'>nclass</a>            188 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L211'>nclass</a>            211 mrt.c              graycode_init1(nclass, countn);</span>
+<span class='curline'><a href='../S/8.html#L213'>nclass</a>            213 mrt.c              while((i=graycode()) &lt; nclass) {</span>
+<span class='curline'><a href='../S/8.html#L223'>nclass</a>            223 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L231'>nclass</a>            231 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L247'>nclass</a>            247 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/8.html#L249'>nclass</a>            249 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/13.html#L159'>nclass</a>            159 poisson.c      void poisson(int n,       double **y,      FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/13.html#L198'>nclass</a>            198 poisson.c          if (nclass &gt;0) goto categorical;</span>
+<span class='curline'><a href='../S/13.html#L233'>nclass</a>            233 poisson.c          for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/13.html#L251'>nclass</a>            251 poisson.c          for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/13.html#L267'>nclass</a>            267 poisson.c          for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/13.html#L306'>nclass</a>            306 poisson.c          for (i=0; i&lt;nclass; i++)      csplit[i]=0;</span>
+<span class='curline'><a href='../S/14.html#L48'>nclass</a>             48 usersplit.c    void usersplit(int n,    double *y[],     FLOAT *x,     int nclass,</span>
+<span class='curline'><a href='../S/14.html#L65'>nclass</a>             65 usersplit.c        if (nclass&gt;0) {</span>
+<span class='curline'><a href='../S/14.html#L81'>nclass</a>             81 usersplit.c        rpart_callback2(n, nclass, y, wt, x, uscratch);</span>
+<span class='curline'><a href='../S/14.html#L83'>nclass</a>             83 usersplit.c        if (nclass==0) {</span>
+<span class='curline'><a href='../S/14.html#L117'>nclass</a>            117 usersplit.c        for (i=0; i&lt;nclass; i++) csplit[i] =0;</span>
+</pre>
+</body>
+</html>

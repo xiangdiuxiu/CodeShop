@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cptable</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/10.html#L35'>cptable</a>            35 make_cp_list.c void make_cp_list(struct node *me, double parent, struct cptable *cptable_head)</span>
+<span class='curline'><a href='../S/10.html#L38'>cptable</a>            38 make_cp_list.c     struct cptable *cplist, *cptemp = NULL;</span>
+<span class='curline'><a href='../S/10.html#L58'>cptable</a>            58 make_cp_list.c     cplist = (struct cptable *) CALLOC(1, sizeof(struct cptable));</span>
+<span class='curline'><a href='../S/25.html#L19'>cptable</a>            19 make_cp_table.c struct cptable *make_cp_table(struct node *me, double parent, int nsplit)</span>
+<span class='curline'><a href='../S/25.html#L21'>cptable</a>            21 make_cp_table.c     struct cptable *cplist;</span>
+<span class='curline'><a href='../S/20.html#L46'>cptable</a>            46 node.h             struct cptable *forward;</span>
+<span class='curline'><a href='../S/20.html#L47'>cptable</a>            47 node.h             struct cptable *back;</span>
+<span class='curline'><a href='../S/38.html#L48'>cptable</a>            48 rpart.c                  int  dissim,   Sint *missmat, struct cptable *cptable,</span>
+<span class='curline'><a href='../S/38.html#L182'>cptable</a>           182 rpart.c            cptable-&gt;cp = (*tree)-&gt;complexity;</span>
+<span class='curline'><a href='../S/38.html#L183'>cptable</a>           183 rpart.c            cptable-&gt;risk = (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/38.html#L184'>cptable</a>           184 rpart.c            cptable-&gt;nsplit = 0;</span>
+<span class='curline'><a href='../S/38.html#L185'>cptable</a>           185 rpart.c            cptable-&gt;forward =0;</span>
+<span class='curline'><a href='../S/38.html#L186'>cptable</a>           186 rpart.c            cptable-&gt;xrisk =0;</span>
+<span class='curline'><a href='../S/38.html#L187'>cptable</a>           187 rpart.c            cptable-&gt;xstd =0;</span>
+<span class='curline'><a href='../S/38.html#L191'>cptable</a>           191 rpart.c            make_cp_list((*tree), (*tree)-&gt;complexity, cptable);</span>
+<span class='curline'><a href='../S/38.html#L195'>cptable</a>           195 rpart.c            xval(xvals, cptable, x_grp, maxcat, error, parms);</span>
+<span class='curline'><a href='../S/28.html#L60'>cptable</a>            60 rpart.h        EXTERN struct cptable *cptable_tail;</span>
+<span class='curline'><a href='../S/30.html#L29'>cptable</a>            29 rpartproto.h             struct cptable *cptable_head);</span>
+<span class='curline'><a href='../S/30.html#L31'>cptable</a>            31 rpartproto.h   struct cptable *make_cp_table(struct node *me, double parent, int nsplit);</span>
+<span class='curline'><a href='../S/30.html#L46'>cptable</a>            46 rpartproto.h             int dissim, Sint *missmat, struct cptable *cptable,</span>
+<span class='curline'><a href='../S/30.html#L79'>cptable</a>            79 rpartproto.h             double *cptable, double *dsplit,  Sint *isplit,    Sint *csplit,</span>
+<span class='curline'><a href='../S/30.html#L90'>cptable</a>            90 rpartproto.h   void xval(int n_xval,  struct cptable *cptable_head,  Sint *x_grp, </span>
+<span class='curline'><a href='../S/5.html#L11'>cptable</a>            11 s_to_rp.c      static struct cptable cptab;</span>
+<span class='curline'><a href='../S/5.html#L51'>cptable</a>            51 s_to_rp.c                double *cptable, double *dsplit,  Sint *isplit,    Sint *csplit,</span>
+<span class='curline'><a href='../S/5.html#L56'>cptable</a>            56 s_to_rp.c          struct cptable *cp, *cp2;</span>
+<span class='curline'><a href='../S/5.html#L94'>cptable</a>            94 s_to_rp.c          cptable[i++] = cp-&gt;cp * scale;</span>
+<span class='curline'><a href='../S/5.html#L95'>cptable</a>            95 s_to_rp.c          cptable[i++] = cp-&gt;nsplit;</span>
+<span class='curline'><a href='../S/5.html#L96'>cptable</a>            96 s_to_rp.c          cptable[i++] = cp-&gt;risk * scale;</span>
+<span class='curline'><a href='../S/5.html#L98'>cptable</a>            98 s_to_rp.c              cptable[i++] = cp-&gt;xrisk*scale;</span>
+<span class='curline'><a href='../S/5.html#L99'>cptable</a>            99 s_to_rp.c              cptable[i++] = cp-&gt;xstd *scale;</span>
+<span class='curline'><a href='../S/9.html#L37'>cptable</a>            37 xval.c         void xval(int n_xval,  struct cptable *cptable_head,  Sint *x_grp, </span>
+<span class='curline'><a href='../S/9.html#L46'>cptable</a>            46 xval.c             struct cptable *cplist;</span>
+</pre>
+</body>
+</html>

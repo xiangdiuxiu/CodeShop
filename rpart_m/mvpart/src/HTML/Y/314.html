@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tdiffs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/8.html#L12'>tdiffs</a>             12 mrt.c          static double *mean, *grandmean, *wts, *diffs, *tdiffs;</span>
+<span class='curline'><a href='../S/8.html#L29'>tdiffs</a>             29 mrt.c              tdiffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L30'>tdiffs</a>             30 mrt.c              if (tdiffs == 0) {</span>
+<span class='curline'><a href='../S/8.html#L122'>tdiffs</a>            122 mrt.c          	    grandmean[j] = 0; tdiffs[j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L139'>tdiffs</a>            139 mrt.c                      tdiffs[j] += diffs[j];</span>
+<span class='curline'><a href='../S/8.html#L140'>tdiffs</a>            140 mrt.c                      if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L141'>tdiffs</a>            141 mrt.c                      else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+<span class='curline'><a href='../S/8.html#L223'>tdiffs</a>            223 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L231'>tdiffs</a>            231 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L237'>tdiffs</a>            237 mrt.c                      left_sum += tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L238'>tdiffs</a>            238 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L239'>tdiffs</a>            239 mrt.c                  if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L240'>tdiffs</a>            240 mrt.c                  else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+</pre>
+</body>
+</html>

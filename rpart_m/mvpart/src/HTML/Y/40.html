@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>countn</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/12.html#L13'>countn</a>             13 anova.c        static int *countn;</span>
+<span class='curline'><a href='../S/12.html#L21'>countn</a>             21 anova.c            countn  = (int *)ALLOC(2*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/12.html#L22'>countn</a>             22 anova.c            tsplit  = countn + maxcat;</span>
+<span class='curline'><a href='../S/12.html#L135'>countn</a>            135 anova.c                countn[i]=0;</span>
+<span class='curline'><a href='../S/12.html#L142'>countn</a>            142 anova.c                countn[j]++;</span>
+<span class='curline'><a href='../S/12.html#L147'>countn</a>            147 anova.c                if (countn[i] &gt;0) {</span>
+<span class='curline'><a href='../S/12.html#L153'>countn</a>            153 anova.c            graycode_init2(nclass, countn, mean);</span>
+<span class='curline'><a href='../S/12.html#L165'>countn</a>            165 anova.c                left_n += countn[j];</span>
+<span class='curline'><a href='../S/12.html#L166'>countn</a>            166 anova.c                right_n-= countn[j];</span>
+<span class='curline'><a href='../S/11.html#L14'>countn</a>             14 dist.c         static int *tsplit, *countn, *count;</span>
+<span class='curline'><a href='../S/11.html#L23'>countn</a>             23 dist.c             countn = (int *)ALLOC(maxcat*maxcat, sizeof(int)); </span>
+<span class='curline'><a href='../S/11.html#L25'>countn</a>             25 dist.c                 if (countn==0 || count==0 || dsts== 0) {</span>
+<span class='curline'><a href='../S/11.html#L133'>countn</a>            133 dist.c                 countn[i+nclass*j] =0;</span>
+<span class='curline'><a href='../S/11.html#L146'>countn</a>            146 dist.c                 countn[k+nclass*kj]++;</span>
+<span class='curline'><a href='../S/11.html#L154'>countn</a>            154 dist.c                 countn[i+nclass*j]=countn[i+nclass*j]+countn[j+nclass*i];</span>
+<span class='curline'><a href='../S/11.html#L203'>countn</a>            203 dist.c                     left_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/11.html#L210'>countn</a>            210 dist.c                     right_n += countn[k+nclass*j];</span>
+<span class='curline'><a href='../S/19.html#L19'>countn</a>             19 gini.c                   *countn;</span>
+<span class='curline'><a href='../S/19.html#L49'>countn</a>             49 gini.c             countn= tsplit + maxcat;</span>
+<span class='curline'><a href='../S/19.html#L241'>countn</a>            241 gini.c             countn[j]=0;</span>
+<span class='curline'><a href='../S/19.html#L249'>countn</a>            249 gini.c             countn[k]++;</span>
+<span class='curline'><a href='../S/19.html#L261'>countn</a>            261 gini.c             if (numclass==2) graycode_init2(numcat, countn, rate);</span>
+<span class='curline'><a href='../S/19.html#L262'>countn</a>            262 gini.c                         else graycode_init1(numcat, countn);</span>
+<span class='curline'><a href='../S/19.html#L270'>countn</a>            270 gini.c                 rtot += countn[i];</span>
+<span class='curline'><a href='../S/19.html#L271'>countn</a>            271 gini.c                 ltot -= countn[i];</span>
+<span class='curline'><a href='../S/19.html#L281'>countn</a>            281 gini.c                 rtot -= countn[i];</span>
+<span class='curline'><a href='../S/19.html#L282'>countn</a>            282 gini.c                 ltot += countn[i];</span>
+<span class='curline'><a href='../S/8.html#L14'>countn</a>             14 mrt.c          static int *tsplit, *countn, *countwt;</span>
+<span class='curline'><a href='../S/8.html#L37'>countn</a>             37 mrt.c              countn = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L40'>countn</a>             40 mrt.c                  if (countn==0 || mean==0 ) {</span>
+<span class='curline'><a href='../S/8.html#L171'>countn</a>            171 mrt.c                  countn[i] = 0; countwt[i] = 0;</span>
+<span class='curline'><a href='../S/8.html#L177'>countn</a>            177 mrt.c                  countn[k] ++;</span>
+<span class='curline'><a href='../S/8.html#L189'>countn</a>            189 mrt.c                  if (countn[i]==0) tsplit[i] = 0;</span>
+<span class='curline'><a href='../S/8.html#L211'>countn</a>            211 mrt.c              graycode_init1(nclass, countn);</span>
+<span class='curline'><a href='../S/8.html#L219'>countn</a>            219 mrt.c                  right_n += countn[i];</span>
+<span class='curline'><a href='../S/8.html#L220'>countn</a>            220 mrt.c                  left_n -= countn[i];</span>
+<span class='curline'><a href='../S/8.html#L227'>countn</a>            227 mrt.c                  right_n -= countn[i];</span>
+<span class='curline'><a href='../S/8.html#L228'>countn</a>            228 mrt.c                  left_n += countn[i];</span>
+<span class='curline'><a href='../S/13.html#L14'>countn</a>             14 poisson.c      static int    *countn,</span>
+<span class='curline'><a href='../S/13.html#L34'>countn</a>             34 poisson.c          countn= order2 + maxcat;</span>
+<span class='curline'><a href='../S/13.html#L236'>countn</a>            236 poisson.c          countn[i]=0;</span>
+<span class='curline'><a href='../S/13.html#L241'>countn</a>            241 poisson.c          countn[j]++;                /* number per group */</span>
+<span class='curline'><a href='../S/13.html#L253'>countn</a>            253 poisson.c          if (countn[i]&gt;0) {</span>
+<span class='curline'><a href='../S/13.html#L257'>countn</a>            257 poisson.c              if (countn[j] &gt;0) {</span>
+<span class='curline'><a href='../S/13.html#L268'>countn</a>            268 poisson.c          if (countn[i]&gt;0) order2[order[i]]=i;</span>
+<span class='curline'><a href='../S/13.html#L282'>countn</a>            282 poisson.c          left_n += countn[j];</span>
+<span class='curline'><a href='../S/13.html#L283'>countn</a>            283 poisson.c          right_n-= countn[j];</span>
+</pre>
+</body>
+</html>

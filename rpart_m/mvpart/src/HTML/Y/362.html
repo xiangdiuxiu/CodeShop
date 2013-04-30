@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>xtree</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/29.html#L23'>xtree</a>              23 s_xpred.c          struct node *xtree;</span>
+<span class='curline'><a href='../S/29.html#L131'>xtree</a>             131 s_xpred.c          xtree = (struct node *) ALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/29.html#L132'>xtree</a>             132 s_xpred.c          (*rp_eval)(n, rp.ydata, xtree-&gt;response_est, &amp;(xtree-&gt;risk), rp.wt);</span>
+<span class='curline'><a href='../S/29.html#L133'>xtree</a>             133 s_xpred.c          rp.alpha = rp.complexity * (xtree)-&gt;risk;</span>
+<span class='curline'><a href='../S/29.html#L169'>xtree</a>             169 s_xpred.c          xtree = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/29.html#L170'>xtree</a>             170 s_xpred.c          xtree-&gt;num_obs = k;</span>
+<span class='curline'><a href='../S/29.html#L172'>xtree</a>             172 s_xpred.c          (*rp_eval)(k, rp.ytemp, xtree-&gt;response_est, &amp;(xtree-&gt;risk),</span>
+<span class='curline'><a href='../S/29.html#L174'>xtree</a>             174 s_xpred.c          xtree-&gt;complexity = xtree-&gt;risk;</span>
+<span class='curline'><a href='../S/29.html#L175'>xtree</a>             175 s_xpred.c          partition(1, xtree, &amp;temp);</span>
+<span class='curline'><a href='../S/29.html#L176'>xtree</a>             176 s_xpred.c          fix_cp(xtree, xtree-&gt;complexity);</span>
+<span class='curline'><a href='../S/29.html#L183'>xtree</a>             183 s_xpred.c              rundown2(xtree, j, cp, (predict+ j* *ncp));</span>
+<span class='curline'><a href='../S/29.html#L186'>xtree</a>             186 s_xpred.c          free_tree(xtree, 1);</span>
+<span class='curline'><a href='../S/9.html#L45'>xtree</a>              45 xval.c             struct node *xtree;</span>
+<span class='curline'><a href='../S/9.html#L106'>xtree</a>             106 xval.c             xtree = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/9.html#L107'>xtree</a>             107 xval.c             xtree-&gt;num_obs = k;</span>
+<span class='curline'><a href='../S/9.html#L109'>xtree</a>             109 xval.c             (*rp_eval)(k, rp.ytemp, xtree-&gt;response_est, &amp;(xtree-&gt;risk),</span>
+<span class='curline'><a href='../S/9.html#L111'>xtree</a>             111 xval.c             xtree-&gt;complexity = xtree-&gt;risk;</span>
+<span class='curline'><a href='../S/9.html#L112'>xtree</a>             112 xval.c             partition(1, xtree, &amp;temp);</span>
+<span class='curline'><a href='../S/9.html#L113'>xtree</a>             113 xval.c             fix_cp(xtree, xtree-&gt;complexity);</span>
+<span class='curline'><a href='../S/9.html#L115'>xtree</a>             115 xval.c             if (debug%2 ==1) print_tree(xtree, 1, xname,0,0);</span>
+<span class='curline'><a href='../S/9.html#L122'>xtree</a>             122 xval.c                 rundown(xtree, j, cp, xpred, xtemp);</span>
+<span class='curline'><a href='../S/9.html#L138'>xtree</a>             138 xval.c             free_tree(xtree, 1);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>aprior</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L15'>aprior</a>             15 gini.c                   *aprior,   /*altered priors */</span>
+<span class='curline'><a href='../S/19.html#L67'>aprior</a>             67 gini.c             aprior = prior + numclass;</span>
+<span class='curline'><a href='../S/19.html#L68'>aprior</a>             68 gini.c             freq   = aprior+ numclass;</span>
+<span class='curline'><a href='../S/19.html#L83'>aprior</a>             83 gini.c                 aprior[i] =0;</span>
+<span class='curline'><a href='../S/19.html#L88'>aprior</a>             88 gini.c                 aprior[i] += loss[k] * prior[i];</span>
+<span class='curline'><a href='../S/19.html#L94'>aprior</a>             94 gini.c                 aprior[i] /= (temp * freq[i]);  /* pi_i / n_i */</span>
+<span class='curline'><a href='../S/19.html#L182'>aprior</a>            182 gini.c             rwt += aprior[j] * wt[i];    /*altered weight = prior * case_weight */</span>
+<span class='curline'><a href='../S/19.html#L188'>aprior</a>            188 gini.c             temp = aprior[i] * right[i]/ rwt;      /* p(class=i, given node A) */</span>
+<span class='curline'><a href='../S/19.html#L200'>aprior</a>            200 gini.c             rwt -= aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L201'>aprior</a>            201 gini.c             lwt += aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L211'>aprior</a>            211 gini.c                 p = aprior[j]*left[j]/lwt;    /* p(j | left) */</span>
+<span class='curline'><a href='../S/19.html#L214'>aprior</a>            214 gini.c                         p =  aprior[j]*right[j]/rwt;   /* p(j | right) */</span>
+<span class='curline'><a href='../S/19.html#L248'>aprior</a>            248 gini.c             awt[k] += aprior[j] * wt[i];</span>
+<span class='curline'><a href='../S/19.html#L293'>aprior</a>            293 gini.c                 p = aprior[j]*left[j] /lwt;</span>
+<span class='curline'><a href='../S/19.html#L296'>aprior</a>            296 gini.c                         p =  aprior[j]*right[j]/rwt;       /* p(j | right) */</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rundown.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/rundown.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L11'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 rundown.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L11' title='Defined at 11.'>rundown</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS @(#)rundown.c   1.5 06/03/01 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** Run an observation down the tree, and return the prediction error,</em>
+<a id='L4' name='L4' />   4 <em class='comment'>**    for several CP values at once.</em>
+<a id='L5' name='L5' />   5 <em class='comment'>*/</em>
+<a id='L6' name='L6' />   6 <em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L7' name='L7' />   7 <em class='sharp'>#include</em> "<a href='28.html'>rpart.h</a>"
+<a id='L8' name='L8' />   8 <em class='sharp'>#include</em> "<a href='20.html'>node.h</a>"
+<a id='L9' name='L9' />   9 <em class='sharp'>#include</em> "<a href='30.html'>rpartproto.h</a>"
+<a id='L10' name='L10' />  10 
+<a id='L11' name='L11' />  11 <strong class='reserved'>void</strong> <a href='../R/73.html' title='Multiple refered from 2 places.'>rundown</a>(<strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>,  <strong class='reserved'>int</strong> <a href='../Y/224.html' title='Multiple used in 14 places.'>obs</a>,     <strong class='reserved'>double</strong> *<a href='../Y/42.html' title='Multiple used in 34 places.'>cp</a>, 
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+11 rundown.c]</em> */</em>
+<a id='L12' name='L12' />  12          <strong class='reserved'>double</strong> *<a href='../Y/358.html' title='Multiple used in 13 places.'>xpred</a>,      <strong class='reserved'>double</strong> *<a href='../Y/361.html' title='Multiple used in 20 places.'>xtemp</a>)
+<a id='L13' name='L13' />  13     <em class='brace'>{</em>
+<a id='L14' name='L14' />  14     <strong class='reserved'>int</strong> <a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>;
+<a id='L15' name='L15' />  15     <strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../Y/231.html' title='Multiple used in 9 places.'>otree</a>;
+<a id='L16' name='L16' />  16 
+<a id='L17' name='L17' />  17     <em class='comment'>/*</em>
+<a id='L18' name='L18' />  18 <em class='comment'>    ** Now, repeat the following: for the cp of interest, run down the tree</em>
+<a id='L19' name='L19' />  19 <em class='comment'>    **   until I find a node with smaller complexity.  The parent node will</em>
+<a id='L20' name='L20' />  20 <em class='comment'>    **   not have collapsed, but this split will have, so this is my</em>
+<a id='L21' name='L21' />  21 <em class='comment'>    **   predictor.</em>
+<a id='L22' name='L22' />  22 <em class='comment'>    */</em>
+<a id='L23' name='L23' />  23     <a href='../Y/231.html' title='Multiple used in 9 places.'>otree</a> = <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>;
+<a id='L24' name='L24' />  24     <strong class='reserved'>for</strong> (<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>=0; <a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>&lt;<a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>.<a href='../Y/216.html' title='Multiple used in 16 places.'>num_unique_cp</a>; <a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L25' name='L25' />  25     <strong class='reserved'>while</strong> ( <a href='../Y/42.html' title='Multiple used in 34 places.'>cp</a>[<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>] &lt; <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>-&gt;<a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a>) <em class='brace'>{</em>
+<a id='L26' name='L26' />  26         <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a> = <a href='../S/1.html#L12' title='Defined at 12 in branch.c.'>branch</a>(<a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>, <a href='../Y/224.html' title='Multiple used in 14 places.'>obs</a>);
+<a id='L27' name='L27' />  27         <strong class='reserved'>if</strong> (<a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a> ==0) <strong class='reserved'>goto</strong> <a href='../Y/227.html' title='Multiple used in 4 places.'>oops</a>;
+<a id='L28' name='L28' />  28         <a href='../Y/231.html' title='Multiple used in 9 places.'>otree</a> = <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>;
+<a id='L29' name='L29' />  29         <em class='brace'>}</em>
+<a id='L30' name='L30' />  30     <a href='../Y/358.html' title='Multiple used in 13 places.'>xpred</a>[<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>] =  <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>-&gt;<a href='../Y/250.html' title='Multiple used in 13 places.'>response_est</a>[0];
+<a id='L31' name='L31' />  31     <a href='../Y/361.html' title='Multiple used in 20 places.'>xtemp</a>[<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>] = (*<a href='../Y/268.html' title='Multiple used in 5 places.'>rp_error</a>)(<a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>.<a href='../Y/365.html' title='Multiple used in 22 places.'>ydata</a>[<a href='../Y/224.html' title='Multiple used in 14 places.'>obs</a>], <a href='../Y/327.html' title='Multiple used in 42 places.'>tree</a>-&gt;<a href='../Y/250.html' title='Multiple used in 13 places.'>response_est</a>);
+<a id='L32' name='L32' />  32     <em class='brace'>}</em>
+<a id='L33' name='L33' />  33 
+<a id='L34' name='L34' />  34     <strong class='reserved'>return</strong>;
+<a id='L35' name='L35' />  35 
+<a id='L36' name='L36' />  36 <a href='../Y/227.html' title='Multiple used in 4 places.'>oops</a>:;
+<a id='L37' name='L37' />  37     <strong class='reserved'>if</strong> (<a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>.<a href='../Y/334.html' title='Multiple used in 9 places.'>usesurrogate</a> &lt;2) <em class='brace'>{</em> <em class='comment'>/*must have hit a missing value */</em>
+<a id='L38' name='L38' />  38     <strong class='reserved'>for</strong> (; <a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>&lt;<a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>.<a href='../Y/216.html' title='Multiple used in 16 places.'>num_unique_cp</a>; <a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>++)
+<a id='L39' name='L39' />  39         <a href='../Y/358.html' title='Multiple used in 13 places.'>xpred</a>[<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>] =  <a href='../Y/231.html' title='Multiple used in 9 places.'>otree</a>-&gt;<a href='../Y/250.html' title='Multiple used in 13 places.'>response_est</a>[0];
+<a id='L40' name='L40' />  40         <a href='../Y/361.html' title='Multiple used in 20 places.'>xtemp</a>[<a href='../Y/106.html' title='Multiple used in 562 places.'>i</a>] = (*<a href='../Y/268.html' title='Multiple used in 5 places.'>rp_error</a>)(<a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>.<a href='../Y/365.html' title='Multiple used in 22 places.'>ydata</a>[<a href='../Y/224.html' title='Multiple used in 14 places.'>obs</a>], <a href='../Y/231.html' title='Multiple used in 9 places.'>otree</a>-&gt;<a href='../Y/250.html' title='Multiple used in 13 places.'>response_est</a>);
+<a id='L41' name='L41' />  41     <strong class='reserved'>return</strong>;
+<a id='L42' name='L42' />  42     <em class='brace'>}</em>
+<a id='L43' name='L43' />  43     <em class='comment'>/*</em>
+<a id='L44' name='L44' />  44 <em class='comment'>    ** I never really expect to get to this code.  It can only happen if</em>
+<a id='L45' name='L45' />  45 <em class='comment'>    **  the last cp on my list is smaller than the terminal cp of the</em>
+<a id='L46' name='L46' />  46 <em class='comment'>    **  xval tree just built.  This is impossible (I think).  But just in</em>
+<a id='L47' name='L47' />  47 <em class='comment'>    **  case I put a message here.</em>
+<a id='L48' name='L48' />  48 <em class='comment'>    */</em>
+<a id='L49' name='L49' />  49     <a href='../Y/8.html' title='Multiple used in 2 places.'>REprintf</a>("Warning message--see rundown.c\n");
+<a id='L50' name='L50' />  50     <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L11'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+50 rundown.c]</em> */</em>
+</body>
+</html>

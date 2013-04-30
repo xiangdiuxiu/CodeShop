@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>free_tree.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/free_tree.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L10'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 free_tree.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L10' title='Defined at 10.'>free_tree</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS @(#)free_tree.c 1.2 02/08/98 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** free up all of the memory associated with a tree</em>
+<a id='L4' name='L4' />   4 <em class='comment'>*/</em>
+<a id='L5' name='L5' />   5 <em class='sharp'>#include</em> "<a href='28.html'>rpart.h</a>"
+<a id='L6' name='L6' />   6 <em class='sharp'>#include</em> "<a href='20.html'>node.h</a>"
+<a id='L7' name='L7' />   7 <em class='sharp'>#include</em> "<a href='27.html'>rpartS.h</a>"
+<a id='L8' name='L8' />   8 <em class='sharp'>#include</em> "<a href='30.html'>rpartproto.h</a>"
+<a id='L9' name='L9' />   9 
+<a id='L10' name='L10' />  10 <strong class='reserved'>void</strong> <a href='../R/32.html' title='Multiple refered from 8 places.'>free_tree</a>(<strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>,  <strong class='reserved'>int</strong> <a href='../Y/97.html' title='Multiple used in 3 places.'>freenode</a>)
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+10 free_tree.c]</em> */</em>
+<a id='L11' name='L11' />  11     <em class='brace'>{</em>
+<a id='L12' name='L12' />  12     <strong class='reserved'>struct</strong> <a href='../S/20.html#L15' title='Defined at 15 in node.h.'>split</a> *<a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>, *<a href='../Y/279.html' title='Multiple used in 13 places.'>s2</a>;
+<a id='L13' name='L13' />  13 
+<a id='L14' name='L14' />  14     <strong class='reserved'>if</strong> (<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../Y/261.html' title='Multiple used in 23 places.'>rightson</a> !=0) <a href='../S/21.html#L10' title='Defined at 10 in free_tree.c.'>free_tree</a>(<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../Y/261.html' title='Multiple used in 23 places.'>rightson</a>, 1);
+<a id='L15' name='L15' />  15     <strong class='reserved'>if</strong> (<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../Y/150.html' title='Multiple used in 28 places.'>leftson</a>  !=0) <a href='../S/21.html#L10' title='Defined at 10 in free_tree.c.'>free_tree</a>(<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../Y/150.html' title='Multiple used in 28 places.'>leftson</a>,  1);
+<a id='L16' name='L16' />  16 
+<a id='L17' name='L17' />  17     <strong class='reserved'>for</strong> (<a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>=<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../S/37.html#L20' title='Defined at 20 in surrogate.c.'>surrogate</a>; <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>!=0; )<em class='brace'>{</em>
+<a id='L18' name='L18' />  18     <a href='../Y/279.html' title='Multiple used in 13 places.'>s2</a> = <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>;
+<a id='L19' name='L19' />  19     <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a> = <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>-&gt;<a href='../Y/197.html' title='Multiple used in 17 places.'>nextsplit</a>;
+<a id='L20' name='L20' />  20     <a href='../Y/1.html' title='Multiple used in 10 places.'>Free</a>(<a href='../Y/279.html' title='Multiple used in 13 places.'>s2</a>);
+<a id='L21' name='L21' />  21     <em class='brace'>}</em>
+<a id='L22' name='L22' />  22     <strong class='reserved'>for</strong> (<a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>=<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>-&gt;<a href='../Y/243.html' title='Multiple used in 13 places.'>primary</a>; <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>!=0; )<em class='brace'>{</em>
+<a id='L23' name='L23' />  23     <a href='../Y/279.html' title='Multiple used in 13 places.'>s2</a> = <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>;
+<a id='L24' name='L24' />  24     <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a> = <a href='../Y/278.html' title='Multiple used in 12 places.'>s1</a>-&gt;<a href='../Y/197.html' title='Multiple used in 17 places.'>nextsplit</a>;
+<a id='L25' name='L25' />  25     <a href='../Y/1.html' title='Multiple used in 10 places.'>Free</a>(<a href='../Y/279.html' title='Multiple used in 13 places.'>s2</a>);
+<a id='L26' name='L26' />  26     <em class='brace'>}</em>
+<a id='L27' name='L27' />  27     <strong class='reserved'>if</strong> (<a href='../Y/97.html' title='Multiple used in 3 places.'>freenode</a>==1) <a href='../Y/1.html' title='Multiple used in 10 places.'>Free</a>(<a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a>);
+<a id='L28' name='L28' />  28     <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L10'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+28 free_tree.c]</em> */</em>
+</body>
+</html>

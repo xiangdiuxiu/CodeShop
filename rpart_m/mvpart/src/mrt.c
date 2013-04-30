@@ -7,11 +7,14 @@
 #include "rpart.h"
 #include "rpartS.h"
 #include "node.h"
+#include <math.h>
 #include "rpartproto.h"
 
 static double *mean, *grandmean, *wts, *diffs, *tdiffs;
 
 static int *tsplit, *countn, *countwt;
+
+double alpha = 0.3; /*this is the alpha we need to determint, I will find way to pass value to assign it.*/
 
 int mrtinit(int n, double *y[], int maxcat, char **error,
           double *parm, int *size,    int who, double *wt)
@@ -59,32 +62,50 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
     double ss, ssj;
     ss = 0;
     twt = 0;
+    int k;
+    
 /*
 ** move ss = 0 to total over all y vars -- gd.
 */
     for (i=0; i<n; i++) twt += wt[i];
+    
+    if(rp.dissim==3){
+      for(j=0; j<rp.num_y; j++){
+	ssj = 0;
+	for(i=0; i<rp.num_y; i++){
+	  temp = 0; 
+	  for(k=0; k<n; k++){
+	    temp += (y[k][i] - y[k][j]) *  (y[k][i] - y[k][j]);
+	  }/*end for k*/
+	  ssj += pow(sqrt(temp), alpha);
+	}/*end for i*/
+      ss += ssj; 
+      }/*end for j*/
+    ss /= (2*twt);
+    }else{
+      for (j=0; j<rp.num_y; j++) {
+	ssj = 0;
+	temp =0;
 
-    for (j=0; j<rp.num_y; j++) {
-    ssj = 0;
-    temp =0;
+	for (i=0; i<n; i++) temp += y[i][j] * wt[i];
+	grandmean[j] = temp/twt;
 
-    for (i=0; i<n; i++) temp += y[i][j] * wt[i];
-    grandmean[j] = temp/twt;
-
-    for (i=0; i<n; i++) {
-    temp = y[i][j] - grandmean[j];
-    if (rp.dissim==1) ssj += temp * temp * wt[i];
-    else if (rp.dissim==2) ssj += fabs(temp) * wt[i];
-    }
-    value[j] = grandmean[j];
+	for (i=0; i<n; i++) {
+	  temp = y[i][j] - grandmean[j];
+	  if (rp.dissim==1) ssj += temp * temp * wt[i];
+	  else if (rp.dissim==2) ssj += fabs(temp) * wt[i];
+	}/*end for i*/
+	value[j] = grandmean[j];
 /*
 ** drop out individual SS for now GD
 **
 **    value[j+rp.num_y] = ssj;
 **
 */
-    ss += ssj;
+	ss += ssj;
+      }/*end for j*/
     }
+    
     *risk = ss;
     }
 

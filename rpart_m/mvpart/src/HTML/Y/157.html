@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>loss</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L17'>loss</a>               17 gini.c                       *loss;      /* loss matrix */</span>
+<span class='curline'><a href='../S/19.html#L69'>loss</a>               69 gini.c             loss   = freq  + numclass;</span>
+<span class='curline'><a href='../S/19.html#L86'>loss</a>               86 gini.c                 loss[k] = parm[numclass+k];</span>
+<span class='curline'><a href='../S/19.html#L87'>loss</a>               87 gini.c                 temp += loss[k] * prior[i];</span>
+<span class='curline'><a href='../S/19.html#L88'>loss</a>               88 gini.c                 aprior[i] += loss[k] * prior[i];</span>
+<span class='curline'><a href='../S/19.html#L128'>loss</a>              128 gini.c                 temp += freq[j] * loss[j*numclass +i] *prior[j];</span>
+<span class='curline'><a href='../S/19.html#L151'>loss</a>              151 gini.c             temp = prior[i]*loss[i*numclass +j];</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>fix_cp.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/fix_cp.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L11'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 fix_cp.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L11' title='Defined at 11.'>fix_cp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS @(#)fix_cp.c    1.2 02/08/98 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** When partition is done, each node is labeled with the complexity</em>
+<a id='L4' name='L4' />   4 <em class='comment'>**  appropriate if it were the top of the tree.  Actually, the complexity</em>
+<a id='L5' name='L5' />   5 <em class='comment'>**  should be min(me, any-node-above-me).  This routine fixes that.</em>
+<a id='L6' name='L6' />   6 <em class='comment'>*/</em>
+<a id='L7' name='L7' />   7 <em class='sharp'>#include</em> "<a href='28.html'>rpart.h</a>"
+<a id='L8' name='L8' />   8 <em class='sharp'>#include</em> "<a href='20.html'>node.h</a>"
+<a id='L9' name='L9' />   9 <em class='sharp'>#include</em> "<a href='30.html'>rpartproto.h</a>"
+<a id='L10' name='L10' />  10 
+<a id='L11' name='L11' />  11 <strong class='reserved'>void</strong> <a href='../R/31.html' title='Multiple refered from 5 places.'>fix_cp</a>(<strong class='reserved'>struct</strong> <a href='../S/20.html#L25' title='Defined at 25 in node.h.'>node</a> *<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>, <strong class='reserved'>double</strong> <a href='../Y/236.html' title='Multiple used in 3 places.'>parent_cp</a>)
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+11 fix_cp.c]</em> */</em>
+<a id='L12' name='L12' />  12     <em class='brace'>{</em>
+<a id='L13' name='L13' />  13     <strong class='reserved'>if</strong> (<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a> &gt; <a href='../Y/236.html' title='Multiple used in 3 places.'>parent_cp</a>)  <a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a> = <a href='../Y/236.html' title='Multiple used in 3 places.'>parent_cp</a>;
+<a id='L14' name='L14' />  14 
+<a id='L15' name='L15' />  15     <strong class='reserved'>if</strong> (<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/150.html' title='Multiple used in 28 places.'>leftson</a> != 0) <em class='brace'>{</em>
+<a id='L16' name='L16' />  16     <a href='../S/33.html#L11' title='Defined at 11 in fix_cp.c.'>fix_cp</a>(<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/150.html' title='Multiple used in 28 places.'>leftson</a>, <a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a>);
+<a id='L17' name='L17' />  17     <a href='../S/33.html#L11' title='Defined at 11 in fix_cp.c.'>fix_cp</a>(<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/261.html' title='Multiple used in 23 places.'>rightson</a>,<a href='../Y/171.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a>);
+<a id='L18' name='L18' />  18     <em class='brace'>}</em>
+<a id='L19' name='L19' />  19     <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L11'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+19 fix_cp.c]</em> */</em>
+</body>
+</html>
