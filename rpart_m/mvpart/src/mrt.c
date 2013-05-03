@@ -11,7 +11,7 @@
 #include "rpartproto.h"
 
 static double *mean, *grandmean, *wts, *diffs, *tdiffs;
-
+static **distMatrix; /*here, we use a matrix to store distance between y's*/
 static int *tsplit, *countn, *countwt;
 
 double alpha = 0.3; /*this is the alpha we need to determint, I will find way to pass value to assign it.*/

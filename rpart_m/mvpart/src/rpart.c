@@ -169,7 +169,7 @@ int rpart(int n,         int nvarx,      Sint *ncat,     int method,
     (*tree)->num_obs = n;
     (*tree)->sum_wt  = temp;
     if (i>0) return(i);
-    
+    rp.alpha2 = 0.3; /*use for myDist.--ZhangYet*/    
     (*rp_eval)(n, rp.ydata, (*tree)->response_est, &((*tree)->risk), wt);
     (*tree)->complexity = (*tree)->risk;
     rp.alpha = rp.complexity * (*tree)->risk;

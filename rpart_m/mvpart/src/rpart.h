@@ -24,6 +24,7 @@
 EXTERN struct {
     double complexity;
     double alpha;
+	double alpha2;         /*This parameter is used for myDist*/
     double iscale;         /* used to check improvement==0, with error */
     double **ydata;
     FLOAT  **xdata;

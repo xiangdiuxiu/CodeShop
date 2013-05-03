@@ -65,10 +65,10 @@ function (formula, data = NULL, weights, subset, na.action = na.rpart,
      }
 
     if(missing(dissim) || is.null(dissim))  dissim <- "euclidean"
-    dissim.int <- pmatch(dissim, c("euclidean", "manhattan"))
+    dissim.int <- pmatch(dissim, c("euclidean", "manhattan", "myDist"))
     if(is.na(dissim.int))
         stop("Invalid dissimilarity")
-    dissim <- c("euclidean", "manhattan")[dissim.int]
+    dissim <- c("euclidean", "manhattan", "myDist")[dissim.int]
     Y <- init$y
     if (method == "dist") {
         Y <- Y[row(Y) > col(Y)]
