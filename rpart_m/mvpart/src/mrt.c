@@ -19,6 +19,9 @@ double alpha = 0.3; /*this is the alpha we need to determint, I will find way to
 int mrtinit(int n, double *y[], int maxcat, char **error,
           double *parm, int *size,    int who, double *wt)
     {
+      int i,j;/*These two variable are used to init distance matrix.--ZhangYet*/
+      double temp;
+      int k;
     grandmean  = (double *)ALLOC(rp.num_y, sizeof(double));
     if (grandmean == 0) {
         *error = "Could not allocate memory in mrtinit";
@@ -34,6 +37,22 @@ int mrtinit(int n, double *y[], int maxcat, char **error,
         *error = "Could not allocate memory in mrtinit";
         return(1);
         }
+    if (rp.dissim==3) {
+      distMatrix = (double **)ALLOC(rp.num_y, sizeof(double *)); /*init the distance Matrix--ZhangYet*/
+      if (distMatrix == 0) {
+	*error = "Could not allocate memory in mrtinit while initing the distance matrix";
+	return(1);
+      }
+      for (i=0; i<rp.num_y; i++) {
+	temp = 0.0;
+	for(j=0; j<rp.num_y; j++) {  
+	  for (k=0; k<n; k++) {
+	    temp += (y[k][i] - y[k][j]) *  (y[k][i] - y[k][j]); /*Here, we need to consider if it is need to multipy wt[i]. Anyway, do it later.*/
+	  }/*end of for k=0*/
+	  distMatrix[i][j] = sqrt(temp); /*compute the norm of two y variables.--ZhangYet*/
+	} /*end of for j=0*/
+      }/*end of for i=0*/
+    }/*end of if 'rp.dissim == 3'*/
     if (who==1 && maxcat >0) {
     graycode_init0(maxcat);
     tsplit= (int *) ALLOC(maxcat*2, sizeof(int));
@@ -63,6 +82,7 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
     ss = 0;
     twt = 0;
     int k;
+    double inx = rp.alpha2; /*the alpha2 we use to compute the impurity.--ZhangYet*/
     
 /*
 ** move ss = 0 to total over all y vars -- gd.
@@ -70,18 +90,12 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
     for (i=0; i<n; i++) twt += wt[i];
     
     if(rp.dissim==3){
-      for(j=0; j<rp.num_y; j++){
-	ssj = 0;
-	for(i=0; i<rp.num_y; i++){
-	  temp = 0; 
-	  for(k=0; k<n; k++){
-	    temp += (y[k][i] - y[k][j]) *  (y[k][i] - y[k][j]);
-	  }/*end for k*/
-	  ssj += pow(sqrt(temp), alpha);
-	}/*end for i*/
-      ss += ssj; 
-      }/*end for j*/
-    ss /= (2*twt);
+      /*The iteration beneatch computes sum_i sum_j ||y_i-y_j||^alpha --ZhangYet*/
+      for(i=0; i<rp.num_y; i++) {
+	for (j=0; j<rp.num_y; j++){
+	  ss += pow(distMatrix[i][j], inx);
+	} /*end for j=0*/
+      } /*end for i=0*/
     }else{
       for (j=0; j<rp.num_y; j++) {
 	ssj = 0;
