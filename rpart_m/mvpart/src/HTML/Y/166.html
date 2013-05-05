@@ -41,14 +41,14 @@
 <span class='curline'><a href='../S/19.html#L61'>maxcat</a>             61 gini.c                 ccnt[i] = ccnt[i-1] + maxcat;</span>
 <span class='curline'><a href='../S/6.html#L19'>maxcat</a>             19 graycode.c     void graycode_init0( int maxcat)</span>
 <span class='curline'><a href='../S/6.html#L21'>maxcat</a>             21 graycode.c         gray = (int *) ALLOC(maxcat, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L16'>maxcat</a>             16 mrt.c          int mrtinit(int n, double *y[], int maxcat, char **error,</span>
-<span class='curline'><a href='../S/8.html#L34'>maxcat</a>             34 mrt.c              if (who==1 &amp;&amp; maxcat &gt;0) {</span>
-<span class='curline'><a href='../S/8.html#L35'>maxcat</a>             35 mrt.c              graycode_init0(maxcat);</span>
-<span class='curline'><a href='../S/8.html#L36'>maxcat</a>             36 mrt.c              tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L37'>maxcat</a>             37 mrt.c              countn = (int *)ALLOC(3*maxcat, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L38'>maxcat</a>             38 mrt.c              countwt = (int *)ALLOC(3*maxcat, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L39'>maxcat</a>             39 mrt.c              mean  = (double *)ALLOC(maxcat*rp.num_y, sizeof(double));</span>
-<span class='curline'><a href='../S/8.html#L44'>maxcat</a>             44 mrt.c              wts    = mean + maxcat;</span>
+<span class='curline'><a href='../S/8.html#L16'>maxcat</a>             16 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L34'>maxcat</a>             34 mrt.c                  }</span>
+<span class='curline'><a href='../S/8.html#L35'>maxcat</a>             35 mrt.c              tdiffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/8.html#L36'>maxcat</a>             36 mrt.c              if (tdiffs == 0) {</span>
+<span class='curline'><a href='../S/8.html#L37'>maxcat</a>             37 mrt.c                  *error = "Could not allocate memory in mrtinit";</span>
+<span class='curline'><a href='../S/8.html#L38'>maxcat</a>             38 mrt.c                  return(1);</span>
+<span class='curline'><a href='../S/8.html#L39'>maxcat</a>             39 mrt.c                  }</span>
+<span class='curline'><a href='../S/8.html#L44'>maxcat</a>             44 mrt.c          	return(1);</span>
 <span class='curline'><a href='../S/13.html#L21'>maxcat</a>             21 poisson.c      int poissoninit(int n,         double *y[], int maxcat, char **error, </span>
 <span class='curline'><a href='../S/13.html#L28'>maxcat</a>             28 poisson.c          if (who==1 &amp;&amp; maxcat&gt;0) {</span>
 <span class='curline'><a href='../S/13.html#L29'>maxcat</a>             29 poisson.c          death = (double *)ALLOC(3*maxcat, sizeof(double));</span>

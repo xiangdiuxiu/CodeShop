@@ -13,17 +13,17 @@
 <span class='curline'><a href='../S/12.html#L94'>grandmean</a>          94 anova.c            grandmean = right_sum/right_wt;</span>
 <span class='curline'><a href='../S/12.html#L106'>grandmean</a>         106 anova.c                temp = (*y[i] - grandmean) * wt[i];</span>
 <span class='curline'><a href='../S/12.html#L144'>grandmean</a>         144 anova.c                sums[j] += (*y[i] - grandmean) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L12'>grandmean</a>          12 mrt.c          static double *mean, *grandmean, *wts, *diffs, *tdiffs;</span>
-<span class='curline'><a href='../S/8.html#L19'>grandmean</a>          19 mrt.c              grandmean  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
-<span class='curline'><a href='../S/8.html#L20'>grandmean</a>          20 mrt.c              if (grandmean == 0) {</span>
-<span class='curline'><a href='../S/8.html#L72'>grandmean</a>          72 mrt.c              grandmean[j] = temp/twt;</span>
-<span class='curline'><a href='../S/8.html#L75'>grandmean</a>          75 mrt.c              temp = y[i][j] - grandmean[j];</span>
-<span class='curline'><a href='../S/8.html#L79'>grandmean</a>          79 mrt.c              value[j] = grandmean[j];</span>
-<span class='curline'><a href='../S/8.html#L122'>grandmean</a>         122 mrt.c          	    grandmean[j] = 0; tdiffs[j] = 0;</span>
-<span class='curline'><a href='../S/8.html#L123'>grandmean</a>         123 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L124'>grandmean</a>         124 mrt.c           	    grandmean[j] /= right_wt;</span>
-<span class='curline'><a href='../S/8.html#L137'>grandmean</a>         137 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>grandmean</a>         179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L12'>grandmean</a>          12 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L19'>grandmean</a>          19 mrt.c          int mrtinit(int n, double *y[], int maxcat, char **error,</span>
+<span class='curline'><a href='../S/8.html#L20'>grandmean</a>          20 mrt.c                    double *parm, int *size,    int who, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L72'>grandmean</a>          72 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L75'>grandmean</a>          75 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L79'>grandmean</a>          79 mrt.c              int i,j;</span>
+<span class='curline'><a href='../S/8.html#L122'>grandmean</a>         122 mrt.c              </span>
+<span class='curline'><a href='../S/8.html#L123'>grandmean</a>         123 mrt.c              *risk = ss;</span>
+<span class='curline'><a href='../S/8.html#L124'>grandmean</a>         124 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L137'>grandmean</a>         137 mrt.c              double sumdiffs_sq;</span>
+<span class='curline'><a href='../S/8.html#L179'>grandmean</a>         179 mrt.c                 left_sum  +=temp;</span>
 </pre>
 </body>
 </html>

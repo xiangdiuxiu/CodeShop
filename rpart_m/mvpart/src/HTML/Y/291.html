@@ -24,7 +24,7 @@
 <span class='curline'><a href='../S/38.html#L132'>sorts</a>             132 rpart.c            rp.sorts[i] = &amp;(missmat[i*n]);</span>
 <span class='curline'><a href='../S/38.html#L134'>sorts</a>             134 rpart.c                if (rp.sorts[i][k]==1) {</span>
 <span class='curline'><a href='../S/38.html#L142'>sorts</a>             142 rpart.c            for (k=0; k&lt;n; k++) rp.sorts[i][k] = rp.tempvec[k];</span>
-<span class='curline'><a href='../S/28.html#L38'>sorts</a>              38 rpart.h            Sint   **sorts;             /* allocated on the fly */</span>
+<span class='curline'><a href='../S/28.html#L38'>sorts</a>              38 rpart.h            Sint   *numcat;        /* variable type: 0=cont, 1+  =#categories */</span>
 <span class='curline'><a href='../S/29.html#L97'>sorts</a>              97 s_xpred.c          rp.sorts  = (Sint**) ALLOC(nvar, sizeof(Sint *));</span>
 <span class='curline'><a href='../S/29.html#L100'>sorts</a>             100 s_xpred.c          rp.sorts[i] = &amp;(missmat[i*n]); </span>
 <span class='curline'><a href='../S/29.html#L102'>sorts</a>             102 s_xpred.c              if (rp.sorts[i][k]==1) {</span>

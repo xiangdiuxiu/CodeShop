@@ -68,17 +68,17 @@
 <span class='curline'><a href='../S/19.html#L181'>y</a>                 181 gini.c             j = *y[i] -1;</span>
 <span class='curline'><a href='../S/19.html#L199'>y</a>                 199 gini.c             j = *y[i] -1;</span>
 <span class='curline'><a href='../S/19.html#L246'>y</a>                 246 gini.c             j = *y[i] -1;</span>
-<span class='curline'><a href='../S/8.html#L16'>y</a>                  16 mrt.c          int mrtinit(int n, double *y[], int maxcat, char **error,</span>
-<span class='curline'><a href='../S/8.html#L55'>y</a>                  55 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L71'>y</a>                  71 mrt.c              for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L75'>y</a>                  75 mrt.c              temp = y[i][j] - grandmean[j];</span>
-<span class='curline'><a href='../S/8.html#L98'>y</a>                  98 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
-<span class='curline'><a href='../S/8.html#L123'>y</a>                 123 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L137'>y</a>                 137 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>y</a>                 179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L264'>y</a>                 264 mrt.c          double mrtpred(double *y, double *yhat)</span>
-<span class='curline'><a href='../S/8.html#L270'>y</a>                 270 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);</span>
-<span class='curline'><a href='../S/8.html#L273'>y</a>                 273 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += fabs((y[j] - yhat[j]));</span>
+<span class='curline'><a href='../S/8.html#L16'>y</a>                  16 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L55'>y</a>                  55 mrt.c              }/*end of if 'rp.dissim == 3'*/</span>
+<span class='curline'><a href='../S/8.html#L71'>y</a>                  71 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L75'>y</a>                  75 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L98'>y</a>                  98 mrt.c                } /*end for i=0*/</span>
+<span class='curline'><a href='../S/8.html#L123'>y</a>                 123 mrt.c              *risk = ss;</span>
+<span class='curline'><a href='../S/8.html#L137'>y</a>                 137 mrt.c              double sumdiffs_sq;</span>
+<span class='curline'><a href='../S/8.html#L179'>y</a>                 179 mrt.c                 left_sum  +=temp;</span>
+<span class='curline'><a href='../S/8.html#L264'>y</a>                 264 mrt.c                      right_wt -= countwt[i];</span>
+<span class='curline'><a href='../S/8.html#L270'>y</a>                 270 mrt.c                  left_sum = 0; right_sum = 0; sumdiffs_sq = 0;</span>
+<span class='curline'><a href='../S/8.html#L273'>y</a>                 273 mrt.c                      right_sum -= tdiffs[j];</span>
 <span class='curline'><a href='../S/13.html#L21'>y</a>                  21 poisson.c      int poissoninit(int n,         double *y[], int maxcat, char **error, </span>
 <span class='curline'><a href='../S/13.html#L40'>y</a>                  40 poisson.c              if (y[i][0] &lt;=0) {</span>
 <span class='curline'><a href='../S/13.html#L44'>y</a>                  44 poisson.c              if (y[i][1] &lt; 0) {</span>

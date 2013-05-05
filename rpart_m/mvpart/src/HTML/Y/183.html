@@ -71,18 +71,18 @@
 <span class='curline'><a href='../S/19.html#L161'>n</a>                 161 gini.c         void gini(int n,    double *y[],     FLOAT *x,     int numcat,</span>
 <span class='curline'><a href='../S/19.html#L180'>n</a>                 180 gini.c             for (i=0; i&lt;n; i++) {</span>
 <span class='curline'><a href='../S/19.html#L245'>n</a>                 245 gini.c             for (i=0; i&lt;n; i++) {</span>
-<span class='curline'><a href='../S/8.html#L16'>n</a>                  16 mrt.c          int mrtinit(int n, double *y[], int maxcat, char **error,</span>
-<span class='curline'><a href='../S/8.html#L55'>n</a>                  55 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L65'>n</a>                  65 mrt.c              for (i=0; i&lt;n; i++) twt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L71'>n</a>                  71 mrt.c              for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L74'>n</a>                  74 mrt.c              for (i=0; i&lt;n; i++) {</span>
-<span class='curline'><a href='../S/8.html#L98'>n</a>                  98 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
-<span class='curline'><a href='../S/8.html#L118'>n</a>                 118 mrt.c              right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L120'>n</a>                 120 mrt.c              for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L123'>n</a>                 123 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L175'>n</a>                 175 mrt.c              for (i=0; i&lt;n; i++) {</span>
-<span class='curline'><a href='../S/8.html#L196'>n</a>                 196 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L199'>n</a>                 199 mrt.c                  for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L16'>n</a>                  16 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L55'>n</a>                  55 mrt.c              }/*end of if 'rp.dissim == 3'*/</span>
+<span class='curline'><a href='../S/8.html#L65'>n</a>                  65 mrt.c                  }</span>
+<span class='curline'><a href='../S/8.html#L71'>n</a>                  71 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L74'>n</a>                  74 mrt.c          ** The mrt evaluation function.  Return the mean and the ss.</span>
+<span class='curline'><a href='../S/8.html#L98'>n</a>                  98 mrt.c                } /*end for i=0*/</span>
+<span class='curline'><a href='../S/8.html#L118'>n</a>                 118 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L120'>n</a>                 120 mrt.c                }/*end for j*/</span>
+<span class='curline'><a href='../S/8.html#L123'>n</a>                 123 mrt.c              *risk = ss;</span>
+<span class='curline'><a href='../S/8.html#L175'>n</a>                 175 mrt.c                      if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L196'>n</a>                 196 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L199'>n</a>                 199 mrt.c                  csplit[0] = direction;</span>
 <span class='curline'><a href='../S/17.html#L36'>n</a>                  36 nodesplit.c        for (i=0; i&lt;rp.n; i++) {</span>
 <span class='curline'><a href='../S/17.html#L48'>n</a>                  48 nodesplit.c        for (i=0; i&lt;rp.n; i++) {</span>
 <span class='curline'><a href='../S/17.html#L70'>n</a>                  70 nodesplit.c            for (i=0; i&lt;rp.n; i++) {</span>
@@ -123,7 +123,7 @@
 <span class='curline'><a href='../S/38.html#L166'>n</a>                 166 rpart.c            i = rp_init(n, rp.ydata, maxcat, error, parms, &amp;rp.num_resp, 1, wt);</span>
 <span class='curline'><a href='../S/38.html#L169'>n</a>                 169 rpart.c            (*tree)-&gt;num_obs = n;</span>
 <span class='curline'><a href='../S/38.html#L173'>n</a>                 173 rpart.c            (*rp_eval)(n, rp.ydata, (*tree)-&gt;response_est, &amp;((*tree)-&gt;risk), wt);</span>
-<span class='curline'><a href='../S/28.html#L39'>n</a>                  39 rpart.h            int    n;              /* total number of subjects  */</span>
+<span class='curline'><a href='../S/28.html#L39'>n</a>                  39 rpart.h            Sint   **sorts;             /* allocated on the fly */</span>
 <span class='curline'><a href='../S/22.html#L66'>n</a>                  66 rpart_callback.c void rpart_callback1(int n, double *y[], double *wt, double *z) {</span>
 <span class='curline'><a href='../S/22.html#L74'>n</a>                  74 rpart_callback.c     for (j=0; j&lt;n; j++) {</span>
 <span class='curline'><a href='../S/22.html#L80'>n</a>                  80 rpart_callback.c     for (i=0; i&lt;n; i++) {</span>

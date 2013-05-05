@@ -63,15 +63,15 @@
 <span class='curline'><a href='../S/19.html#L278'>tsplit</a>            278 gini.c                 tsplit[i]=LEFT;</span>
 <span class='curline'><a href='../S/19.html#L303'>tsplit</a>            303 gini.c                     for (j=0; j&lt;numcat; j++) csplit[j] = tsplit[j];</span>
 <span class='curline'><a href='../S/19.html#L305'>tsplit</a>            305 gini.c                     for (j=0; j&lt;numcat; j++) csplit[j] = -tsplit[j];</span>
-<span class='curline'><a href='../S/8.html#L14'>tsplit</a>             14 mrt.c          static int *tsplit, *countn, *countwt;</span>
-<span class='curline'><a href='../S/8.html#L36'>tsplit</a>             36 mrt.c              tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L189'>tsplit</a>            189 mrt.c                  if (countn[i]==0) tsplit[i] = 0;</span>
-<span class='curline'><a href='../S/8.html#L190'>tsplit</a>            190 mrt.c                  else tsplit[i] = RIGHT;</span>
-<span class='curline'><a href='../S/8.html#L217'>tsplit</a>            217 mrt.c              if (tsplit[i]==LEFT) {</span>
-<span class='curline'><a href='../S/8.html#L218'>tsplit</a>            218 mrt.c                  tsplit[i]=RIGHT;</span>
-<span class='curline'><a href='../S/8.html#L226'>tsplit</a>            226 mrt.c                  tsplit[i]=LEFT;</span>
-<span class='curline'><a href='../S/8.html#L247'>tsplit</a>            247 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
-<span class='curline'><a href='../S/8.html#L249'>tsplit</a>            249 mrt.c                          for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/8.html#L14'>tsplit</a>             14 mrt.c          static **distMatrix; /*here, we use a matrix to store distance between y's*/</span>
+<span class='curline'><a href='../S/8.html#L36'>tsplit</a>             36 mrt.c              if (tdiffs == 0) {</span>
+<span class='curline'><a href='../S/8.html#L189'>tsplit</a>            189 mrt.c                  if (left_sum &lt; right_sum) direction = LEFT;</span>
+<span class='curline'><a href='../S/8.html#L190'>tsplit</a>            190 mrt.c                            else    direction = RIGHT;</span>
+<span class='curline'><a href='../S/8.html#L217'>tsplit</a>            217 mrt.c                  for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L218'>tsplit</a>            218 mrt.c          	  for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L226'>tsplit</a>            226 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L247'>tsplit</a>            247 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L249'>tsplit</a>            249 mrt.c          </span>
 <span class='curline'><a href='../S/17.html#L13'>tsplit</a>             13 nodesplit.c        struct split *tsplit;</span>
 <span class='curline'><a href='../S/17.html#L31'>tsplit</a>             31 nodesplit.c        tsplit = me-&gt;primary;</span>
 <span class='curline'><a href='../S/17.html#L32'>tsplit</a>             32 nodesplit.c        var = tsplit-&gt;var_num;</span>

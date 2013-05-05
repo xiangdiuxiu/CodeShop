@@ -157,7 +157,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
 	    grandmean[j] = 0; tdiffs[j] = 0;
 	    for (i=0; i<n; i++) grandmean[j] += y[i][j] * wt[i];
  	    grandmean[j] /= right_wt;
-    }
+    } /*end of for j=0. this loop is used to calculate grandmean, which is the mean of a variable.*/
 
     if (nclass==0) {
     right_sum = 0; left_sum = 0;
@@ -174,7 +174,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
             tdiffs[j] += diffs[j];
             if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];
             else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);
-       }
+	} /*end of j=0*/
 
        left_sum  +=temp;
        right_sum -=temp;
@@ -188,9 +188,9 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
         where = i;
         if (left_sum < right_sum) direction = LEFT;
                   else    direction = RIGHT;
-       }
+	   }
 
-      }
+       } /*end of if x[i+1] != x[i]*/
 
     }
 
@@ -199,26 +199,26 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
         csplit[0] = direction;
         *split = (x[where] + x[where+1]) /2;
         }
-    }
-    else {
+    } /*end of if nclass == 0*/
+    else { /*this else is for if nclass == 0.*/
 
     for (i=0; i<nclass; i++) {
         countn[i] = 0; countwt[i] = 0;
                 for (j=0; j<rp.num_y; j++) mean[i+nclass*j] = 0;
-        }
+    } /*end for i=0 i<nclass*/
 
     for (i=0; i<n; i++) {
             k = x[i] -1;
         countn[k] ++;
                 countwt[k] += wt[i];
             for (j=0; j<rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];
-        }
+    }
 
         for (i=0; i<nclass; i++) {
-    for (j=0; j<rp.num_y; j++) {
-       if (countwt[i]>0) mean[i+nclass*j] /= countwt[i];
-     }
-    }
+	  for (j=0; j<rp.num_y; j++) {
+	    if (countwt[i]>0) mean[i+nclass*j] /= countwt[i];
+	  } /*end of for j=0*/
+	} /*end of for i=0*/
 
     for (i=0; i<nclass; i++) {
         if (countn[i]==0) tsplit[i] = 0;
@@ -285,7 +285,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
                 }
         }
         }
-    }
+    }/*end of else （nclass !=　0）*/
     *improve = best / myrisk;      /* % improvement */
 
   }
@@ -299,6 +299,8 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
 double mrtpred(double *y, double *yhat)
     {
     int j;
+    int i; /*This is used for myDist.*/
+    double inx = rp.alpha2;
     double temp;
     temp = 0;
     if (rp.dissim==1) {
@@ -306,6 +308,13 @@ double mrtpred(double *y, double *yhat)
     }
     else if (rp.dissim==2) {
     for (j=0; j<rp.num_y; j++) temp += fabs((y[j] - yhat[j]));
+    }
+    else { /*add this for myDist*/
+      for (j=0; j<rp.num_y; j++) {
+	for (i=0; i<rp.num_y; i++) {
+	  temp += pow(distMatrix[i][j], inx);
+	}
+      }
     }
     return(temp);
     }

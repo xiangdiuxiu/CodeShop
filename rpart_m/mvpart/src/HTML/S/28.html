@@ -40,59 +40,60 @@
 <a id='L24' name='L24' />  24 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>struct</strong> <em class='brace'>{</em>
 <a id='L25' name='L25' />  25     <strong class='reserved'>double</strong> <a href='../Y/37.html' title='Multiple used in 39 places.'>complexity</a>;
 <a id='L26' name='L26' />  26     <strong class='reserved'>double</strong> <a href='../Y/21.html' title='Multiple used in 16 places.'>alpha</a>;
-<a id='L27' name='L27' />  27     <strong class='reserved'>double</strong> <a href='../Y/123.html' title='Multiple used in 4 places.'>iscale</a>;         <em class='comment'>/* used to check improvement==0, with error */</em>
-<a id='L28' name='L28' />  28     <strong class='reserved'>double</strong> **<a href='../Y/365.html' title='Multiple used in 22 places.'>ydata</a>;
-<a id='L29' name='L29' />  29     <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a>  **<a href='../Y/352.html' title='Multiple used in 37 places.'>xdata</a>;
-<a id='L30' name='L30' />  30     <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a>  *<a href='../Y/361.html' title='Multiple used in 20 places.'>xtemp</a>;
-<a id='L31' name='L31' />  31     <strong class='reserved'>double</strong> *<a href='../Y/346.html' title='Multiple used in 128 places.'>wt</a>;
-<a id='L32' name='L32' />  32     <strong class='reserved'>double</strong> **<a href='../Y/369.html' title='Multiple used in 17 places.'>ytemp</a>;
-<a id='L33' name='L33' />  33     <strong class='reserved'>double</strong> *<a href='../Y/347.html' title='Multiple used in 15 places.'>wtemp</a>;          <em class='comment'>/* temp vector of weights */</em>
-<a id='L34' name='L34' />  34     <strong class='reserved'>double</strong> *<a href='../Y/161.html' title='Multiple used in 21 places.'>lwt</a>;
-<a id='L35' name='L35' />  35     <strong class='reserved'>double</strong> *<a href='../Y/277.html' title='Multiple used in 22 places.'>rwt</a>;            <em class='comment'>/*scratch double vectors, of length ncat */</em>
-<a id='L36' name='L36' />  36     <strong class='reserved'>double</strong> *<a href='../Y/339.html' title='Multiple used in 4 places.'>vcost</a>;          <em class='comment'>/* variable costs */</em>
-<a id='L37' name='L37' />  37     <a href='../S/27.html#L34' title='Defined at 34 in rpartS.h.'>Sint</a>   *<a href='../Y/218.html' title='Multiple used in 42 places.'>numcat</a>;        <em class='comment'>/* variable type: 0=cont, 1+  =#categories */</em>
-<a id='L38' name='L38' />  38     <a href='../S/27.html#L34' title='Defined at 34 in rpartS.h.'>Sint</a>   **<a href='../Y/291.html' title='Multiple used in 25 places.'>sorts</a>;             <em class='comment'>/* allocated on the fly */</em>
-<a id='L39' name='L39' />  39     <strong class='reserved'>int</strong>    <a href='../Y/183.html' title='Multiple used in 195 places.'>n</a>;              <em class='comment'>/* total number of subjects  */</em>
-<a id='L40' name='L40' />  40     <strong class='reserved'>int</strong>    <a href='../Y/217.html' title='Multiple used in 21 places.'>num_y</a>;          <em class='comment'>/* number of y variables */</em>
-<a id='L41' name='L41' />  41     <strong class='reserved'>int</strong>    <a href='../Y/221.html' title='Multiple used in 11 places.'>nvar</a>;           <em class='comment'>/* number of predictors */</em>
-<a id='L42' name='L42' />  42     <strong class='reserved'>int</strong>    <a href='../Y/175.html' title='Multiple used in 20 places.'>method</a>;           <em class='comment'>/* method -- needed for dists -- GD 11/03 */</em>
-<a id='L43' name='L43' />  43     <strong class='reserved'>int</strong>    <a href='../Y/169.html' title='Multiple used in 13 places.'>maxpri</a>;
-<a id='L44' name='L44' />  44     <strong class='reserved'>int</strong>    <a href='../Y/170.html' title='Multiple used in 5 places.'>maxsur</a>;   <em class='comment'>/* max # of primary or surrogate splits to use */</em>
-<a id='L45' name='L45' />  45     <strong class='reserved'>int</strong>    <a href='../Y/334.html' title='Multiple used in 9 places.'>usesurrogate</a>;
-<a id='L46' name='L46' />  46     <strong class='reserved'>int</strong>    <a href='../Y/216.html' title='Multiple used in 16 places.'>num_unique_cp</a>;
-<a id='L47' name='L47' />  47     <strong class='reserved'>int</strong>    <a href='../Y/176.html' title='Multiple used in 4 places.'>min_node</a>;       <em class='comment'>/* minimum size for any terminal node */</em>
-<a id='L48' name='L48' />  48     <strong class='reserved'>int</strong>    <a href='../Y/177.html' title='Multiple used in 4 places.'>min_split</a>;      <em class='comment'>/*minimum size before we attempt a split */</em>
-<a id='L49' name='L49' />  49     <strong class='reserved'>int</strong>    <a href='../Y/215.html' title='Multiple used in 8 places.'>num_resp</a>;       <em class='comment'>/*length of the response vector */</em>
-<a id='L50' name='L50' />  50     <strong class='reserved'>int</strong>    <a href='../Y/311.html' title='Multiple used in 4 places.'>sur_agree</a>;      <em class='comment'>/*0 =  my style, 1=CART style */</em>
-<a id='L51' name='L51' />  51     <strong class='reserved'>int</strong>    <a href='../Y/168.html' title='Multiple used in 4 places.'>maxnode</a>;        <em class='comment'>/*controls the maximum depth of the tree */</em>
-<a id='L52' name='L52' />  52     <strong class='reserved'>int</strong>    *<a href='../Y/319.html' title='Multiple used in 13 places.'>tempvec</a>;       <em class='comment'>/*to be allocated by the mainline, of length n */</em>
-<a id='L53' name='L53' />  53     <strong class='reserved'>int</strong>    *<a href='../Y/343.html' title='Multiple used in 56 places.'>which</a>;
-<a id='L54' name='L54' />  54     <strong class='reserved'>int</strong>    *<a href='../Y/50.html' title='Multiple used in 82 places.'>csplit</a>;
-<a id='L55' name='L55' />  55     <strong class='reserved'>int</strong>    *<a href='../Y/142.html' title='Multiple used in 20 places.'>left</a>;
-<a id='L56' name='L56' />  56     <strong class='reserved'>int</strong>    *<a href='../Y/253.html' title='Multiple used in 19 places.'>right</a>;
-<a id='L57' name='L57' />  57     <strong class='reserved'>int</strong>    <a href='../Y/72.html' title='Multiple used in 27 places.'>dissim</a>;
-<a id='L58' name='L58' />  58     <em class='brace'>}</em>  <a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>;
-<a id='L59' name='L59' />  59 
-<a id='L60' name='L60' />  60 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>struct</strong> <a href='../S/20.html#L40' title='Defined at 40 in node.h.'>cptable</a> *<a href='../Y/48.html' title='Multiple used in 3 places.'>cptable_tail</a>;
-<a id='L61' name='L61' />  61 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>int</strong>  (*<a href='../Y/270.html' title='Multiple used in 7 places.'>rp_init</a>)();    <em class='comment'>/*called to initialize a splitting function */</em>
-<a id='L62' name='L62' />  62 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>void</strong> (*<a href='../Y/267.html' title='Multiple used in 4 places.'>rp_choose</a>)();  <em class='comment'>/*set to the splitting function */</em>
-<a id='L63' name='L63' />  63 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>void</strong> (*<a href='../Y/269.html' title='Multiple used in 8 places.'>rp_eval</a>)() ;   <em class='comment'>/*set to the evaluation routine */</em>
-<a id='L64' name='L64' />  64 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>double</strong> (*<a href='../Y/268.html' title='Multiple used in 5 places.'>rp_error</a>)();     <em class='comment'>/*set to the prediction error routine */</em>
-<a id='L65' name='L65' />  65 
-<a id='L66' name='L66' />  66 <em class='comment'>/*</em>
-<a id='L67' name='L67' />  67 <em class='comment'>** The user inputs his complexity parameter as a percentage. and the</em>
-<a id='L68' name='L68' />  68 <em class='comment'>**   printout is also scaled in this way.  The book and the computations all</em>
-<a id='L69' name='L69' />  69 <em class='comment'>**   have an easier time with absolute cp.  So complex = what the user</em>
-<a id='L70' name='L70' />  70 <em class='comment'>**   typed and alpha = complex * (risk of top node) = what is used</em>
-<a id='L71' name='L71' />  71 <em class='comment'>**   internally.</em>
-<a id='L72' name='L72' />  72 <em class='comment'>** The variable 'complex' in node.h is also on the internal scale.</em>
-<a id='L73' name='L73' />  73 <em class='comment'>**</em>
-<a id='L74' name='L74' />  74 <em class='comment'>** Categorical variables must be coded as 1,2,3, ..., and there may be</em>
-<a id='L75' name='L75' />  75 <em class='comment'>**  missing categories.  The upper limit is determined on the fly.</em>
-<a id='L76' name='L76' />  76 <em class='comment'>*/</em>
+<a id='L27' name='L27' />  27         <strong class='reserved'>double</strong> alpha2;         <em class='comment'>/*This parameter is used for myDist*/</em>
+<a id='L28' name='L28' />  28     <strong class='reserved'>double</strong> <a href='../Y/123.html' title='Multiple used in 4 places.'>iscale</a>;         <em class='comment'>/* used to check improvement==0, with error */</em>
+<a id='L29' name='L29' />  29     <strong class='reserved'>double</strong> **<a href='../Y/365.html' title='Multiple used in 22 places.'>ydata</a>;
+<a id='L30' name='L30' />  30     <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a>  **<a href='../Y/352.html' title='Multiple used in 37 places.'>xdata</a>;
+<a id='L31' name='L31' />  31     <a href='../D/8.html' title='Multiple defined in 5 places.'>FLOAT</a>  *<a href='../Y/361.html' title='Multiple used in 20 places.'>xtemp</a>;
+<a id='L32' name='L32' />  32     <strong class='reserved'>double</strong> *<a href='../Y/346.html' title='Multiple used in 128 places.'>wt</a>;
+<a id='L33' name='L33' />  33     <strong class='reserved'>double</strong> **<a href='../Y/369.html' title='Multiple used in 17 places.'>ytemp</a>;
+<a id='L34' name='L34' />  34     <strong class='reserved'>double</strong> *<a href='../Y/347.html' title='Multiple used in 15 places.'>wtemp</a>;          <em class='comment'>/* temp vector of weights */</em>
+<a id='L35' name='L35' />  35     <strong class='reserved'>double</strong> *<a href='../Y/161.html' title='Multiple used in 21 places.'>lwt</a>;
+<a id='L36' name='L36' />  36     <strong class='reserved'>double</strong> *<a href='../Y/277.html' title='Multiple used in 22 places.'>rwt</a>;            <em class='comment'>/*scratch double vectors, of length ncat */</em>
+<a id='L37' name='L37' />  37     <strong class='reserved'>double</strong> *<a href='../Y/339.html' title='Multiple used in 4 places.'>vcost</a>;          <em class='comment'>/* variable costs */</em>
+<a id='L38' name='L38' />  38     <a href='../S/27.html#L34' title='Defined at 34 in rpartS.h.'>Sint</a>   *<a href='../Y/218.html' title='Multiple used in 42 places.'>numcat</a>;        <em class='comment'>/* variable type: 0=cont, 1+  =#categories */</em>
+<a id='L39' name='L39' />  39     <a href='../S/27.html#L34' title='Defined at 34 in rpartS.h.'>Sint</a>   **<a href='../Y/291.html' title='Multiple used in 25 places.'>sorts</a>;             <em class='comment'>/* allocated on the fly */</em>
+<a id='L40' name='L40' />  40     <strong class='reserved'>int</strong>    <a href='../Y/183.html' title='Multiple used in 195 places.'>n</a>;              <em class='comment'>/* total number of subjects  */</em>
+<a id='L41' name='L41' />  41     <strong class='reserved'>int</strong>    <a href='../Y/217.html' title='Multiple used in 21 places.'>num_y</a>;          <em class='comment'>/* number of y variables */</em>
+<a id='L42' name='L42' />  42     <strong class='reserved'>int</strong>    <a href='../Y/221.html' title='Multiple used in 11 places.'>nvar</a>;           <em class='comment'>/* number of predictors */</em>
+<a id='L43' name='L43' />  43     <strong class='reserved'>int</strong>    <a href='../Y/175.html' title='Multiple used in 20 places.'>method</a>;           <em class='comment'>/* method -- needed for dists -- GD 11/03 */</em>
+<a id='L44' name='L44' />  44     <strong class='reserved'>int</strong>    <a href='../Y/169.html' title='Multiple used in 13 places.'>maxpri</a>;
+<a id='L45' name='L45' />  45     <strong class='reserved'>int</strong>    <a href='../Y/170.html' title='Multiple used in 5 places.'>maxsur</a>;   <em class='comment'>/* max # of primary or surrogate splits to use */</em>
+<a id='L46' name='L46' />  46     <strong class='reserved'>int</strong>    <a href='../Y/334.html' title='Multiple used in 9 places.'>usesurrogate</a>;
+<a id='L47' name='L47' />  47     <strong class='reserved'>int</strong>    <a href='../Y/216.html' title='Multiple used in 16 places.'>num_unique_cp</a>;
+<a id='L48' name='L48' />  48     <strong class='reserved'>int</strong>    <a href='../Y/176.html' title='Multiple used in 4 places.'>min_node</a>;       <em class='comment'>/* minimum size for any terminal node */</em>
+<a id='L49' name='L49' />  49     <strong class='reserved'>int</strong>    <a href='../Y/177.html' title='Multiple used in 4 places.'>min_split</a>;      <em class='comment'>/*minimum size before we attempt a split */</em>
+<a id='L50' name='L50' />  50     <strong class='reserved'>int</strong>    <a href='../Y/215.html' title='Multiple used in 8 places.'>num_resp</a>;       <em class='comment'>/*length of the response vector */</em>
+<a id='L51' name='L51' />  51     <strong class='reserved'>int</strong>    <a href='../Y/311.html' title='Multiple used in 4 places.'>sur_agree</a>;      <em class='comment'>/*0 =  my style, 1=CART style */</em>
+<a id='L52' name='L52' />  52     <strong class='reserved'>int</strong>    <a href='../Y/168.html' title='Multiple used in 4 places.'>maxnode</a>;        <em class='comment'>/*controls the maximum depth of the tree */</em>
+<a id='L53' name='L53' />  53     <strong class='reserved'>int</strong>    *<a href='../Y/319.html' title='Multiple used in 13 places.'>tempvec</a>;       <em class='comment'>/*to be allocated by the mainline, of length n */</em>
+<a id='L54' name='L54' />  54     <strong class='reserved'>int</strong>    *<a href='../Y/343.html' title='Multiple used in 56 places.'>which</a>;
+<a id='L55' name='L55' />  55     <strong class='reserved'>int</strong>    *<a href='../Y/50.html' title='Multiple used in 82 places.'>csplit</a>;
+<a id='L56' name='L56' />  56     <strong class='reserved'>int</strong>    *<a href='../Y/142.html' title='Multiple used in 20 places.'>left</a>;
+<a id='L57' name='L57' />  57     <strong class='reserved'>int</strong>    *<a href='../Y/253.html' title='Multiple used in 19 places.'>right</a>;
+<a id='L58' name='L58' />  58     <strong class='reserved'>int</strong>    <a href='../Y/72.html' title='Multiple used in 27 places.'>dissim</a>;
+<a id='L59' name='L59' />  59     <em class='brace'>}</em>  <a href='../Y/266.html' title='Multiple used in 290 places.'>rp</a>;
+<a id='L60' name='L60' />  60 
+<a id='L61' name='L61' />  61 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>struct</strong> <a href='../S/20.html#L40' title='Defined at 40 in node.h.'>cptable</a> *<a href='../Y/48.html' title='Multiple used in 3 places.'>cptable_tail</a>;
+<a id='L62' name='L62' />  62 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>int</strong>  (*<a href='../Y/270.html' title='Multiple used in 7 places.'>rp_init</a>)();    <em class='comment'>/*called to initialize a splitting function */</em>
+<a id='L63' name='L63' />  63 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>void</strong> (*<a href='../Y/267.html' title='Multiple used in 4 places.'>rp_choose</a>)();  <em class='comment'>/*set to the splitting function */</em>
+<a id='L64' name='L64' />  64 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>void</strong> (*<a href='../Y/269.html' title='Multiple used in 8 places.'>rp_eval</a>)() ;   <em class='comment'>/*set to the evaluation routine */</em>
+<a id='L65' name='L65' />  65 <a href='../D/7.html' title='Multiple defined in 4 places.'>EXTERN</a> <strong class='reserved'>double</strong> (*<a href='../Y/268.html' title='Multiple used in 5 places.'>rp_error</a>)();     <em class='comment'>/*set to the prediction error routine */</em>
+<a id='L66' name='L66' />  66 
+<a id='L67' name='L67' />  67 <em class='comment'>/*</em>
+<a id='L68' name='L68' />  68 <em class='comment'>** The user inputs his complexity parameter as a percentage. and the</em>
+<a id='L69' name='L69' />  69 <em class='comment'>**   printout is also scaled in this way.  The book and the computations all</em>
+<a id='L70' name='L70' />  70 <em class='comment'>**   have an easier time with absolute cp.  So complex = what the user</em>
+<a id='L71' name='L71' />  71 <em class='comment'>**   typed and alpha = complex * (risk of top node) = what is used</em>
+<a id='L72' name='L72' />  72 <em class='comment'>**   internally.</em>
+<a id='L73' name='L73' />  73 <em class='comment'>** The variable 'complex' in node.h is also on the internal scale.</em>
+<a id='L74' name='L74' />  74 <em class='comment'>**</em>
+<a id='L75' name='L75' />  75 <em class='comment'>** Categorical variables must be coded as 1,2,3, ..., and there may be</em>
+<a id='L76' name='L76' />  76 <em class='comment'>**  missing categories.  The upper limit is determined on the fly.</em>
+<a id='L77' name='L77' />  77 <em class='comment'>*/</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM' />
-<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+76 rpart.h]</em> */</em>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+77 rpart.h]</em> */</em>
 </body>
 </html>

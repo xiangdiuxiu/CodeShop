@@ -84,31 +84,31 @@
 <span class='curline'><a href='../S/6.html#L58'>temp</a>               58 graycode.c             temp = val[i];</span>
 <span class='curline'><a href='../S/6.html#L59'>temp</a>               59 graycode.c             for (j=i-1; j&gt;=k &amp;&amp; val[j]&gt;temp; j--) {</span>
 <span class='curline'><a href='../S/6.html#L63'>temp</a>               63 graycode.c             val[j+1] = temp;</span>
-<span class='curline'><a href='../S/8.html#L58'>temp</a>               58 mrt.c              double temp, twt;</span>
-<span class='curline'><a href='../S/8.html#L69'>temp</a>               69 mrt.c              temp =0;</span>
-<span class='curline'><a href='../S/8.html#L71'>temp</a>               71 mrt.c              for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L72'>temp</a>               72 mrt.c              grandmean[j] = temp/twt;</span>
-<span class='curline'><a href='../S/8.html#L75'>temp</a>               75 mrt.c              temp = y[i][j] - grandmean[j];</span>
-<span class='curline'><a href='../S/8.html#L76'>temp</a>               76 mrt.c              if (rp.dissim==1) ssj += temp * temp * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L77'>temp</a>               77 mrt.c              else if (rp.dissim==2) ssj += fabs(temp) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L107'>temp</a>              107 mrt.c              double temp = 0;</span>
-<span class='curline'><a href='../S/8.html#L133'>temp</a>              133 mrt.c                  temp = 0; sumdiffs_sq = 0; left_n++;  right_n--;</span>
-<span class='curline'><a href='../S/8.html#L138'>temp</a>              138 mrt.c                      temp += diffs[j];</span>
-<span class='curline'><a href='../S/8.html#L144'>temp</a>              144 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L145'>temp</a>              145 mrt.c                 right_sum -=temp;</span>
-<span class='curline'><a href='../S/8.html#L148'>temp</a>              148 mrt.c                 if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L149'>temp</a>              149 mrt.c                 else if (rp.dissim==2) temp = 2.0*sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L151'>temp</a>              151 mrt.c          	   if (temp &gt; best) {</span>
-<span class='curline'><a href='../S/8.html#L152'>temp</a>              152 mrt.c                  best = temp;</span>
-<span class='curline'><a href='../S/8.html#L242'>temp</a>              242 mrt.c                  if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L243'>temp</a>              243 mrt.c                  else if (rp.dissim==2) temp = 2.0*sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L244'>temp</a>              244 mrt.c                  if (temp &gt; best) {</span>
-<span class='curline'><a href='../S/8.html#L245'>temp</a>              245 mrt.c                          best = temp;</span>
-<span class='curline'><a href='../S/8.html#L267'>temp</a>              267 mrt.c              double temp;</span>
-<span class='curline'><a href='../S/8.html#L268'>temp</a>              268 mrt.c              temp = 0;</span>
-<span class='curline'><a href='../S/8.html#L270'>temp</a>              270 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);</span>
-<span class='curline'><a href='../S/8.html#L273'>temp</a>              273 mrt.c              for (j=0; j&lt;rp.num_y; j++) temp += fabs((y[j] - yhat[j]));</span>
-<span class='curline'><a href='../S/8.html#L275'>temp</a>              275 mrt.c              return(temp);</span>
+<span class='curline'><a href='../S/8.html#L58'>temp</a>               58 mrt.c              tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/8.html#L69'>temp</a>               69 mrt.c              *size = rp.num_y;</span>
+<span class='curline'><a href='../S/8.html#L71'>temp</a>               71 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L72'>temp</a>               72 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L75'>temp</a>               75 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L76'>temp</a>               76 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L77'>temp</a>               77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L107'>temp</a>              107 mrt.c          	for (i=0; i&lt;n; i++) {</span>
+<span class='curline'><a href='../S/8.html#L133'>temp</a>              133 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
+<span class='curline'><a href='../S/8.html#L138'>temp</a>              138 mrt.c              double left_sum, right_sum;</span>
+<span class='curline'><a href='../S/8.html#L144'>temp</a>              144 mrt.c              int where = 0;</span>
+<span class='curline'><a href='../S/8.html#L145'>temp</a>              145 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L148'>temp</a>              148 mrt.c              **  data elements "on the fly".  This makes the hand calculator formula</span>
+<span class='curline'><a href='../S/8.html#L149'>temp</a>              149 mrt.c              **  numerically stable.</span>
+<span class='curline'><a href='../S/8.html#L151'>temp</a>              151 mrt.c              */</span>
+<span class='curline'><a href='../S/8.html#L152'>temp</a>              152 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L242'>temp</a>              242 mrt.c          **</span>
+<span class='curline'><a href='../S/8.html#L243'>temp</a>              243 mrt.c          **     Just use graycode_init1 here -- gd</span>
+<span class='curline'><a href='../S/8.html#L244'>temp</a>              244 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L245'>temp</a>              245 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L267'>temp</a>              267 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L268'>temp</a>              268 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L270'>temp</a>              270 mrt.c                  left_sum = 0; right_sum = 0; sumdiffs_sq = 0;</span>
+<span class='curline'><a href='../S/8.html#L273'>temp</a>              273 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L275'>temp</a>              275 mrt.c                  else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
 <span class='curline'><a href='../S/26.html#L16'>temp</a>               16 mysort.c        FLOAT temp, median;</span>
 <span class='curline'><a href='../S/26.html#L25'>temp</a>               25 mysort.c               temp = x[i];</span>
 <span class='curline'><a href='../S/26.html#L29'>temp</a>               29 mysort.c               while (j&gt;=start &amp;&amp; (x[j]&gt;temp)) {</span>

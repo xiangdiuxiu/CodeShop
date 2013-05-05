@@ -18,17 +18,17 @@
 <span class='curline'><a href='../S/12.html#L168'>right_wt</a>          168 anova.c                right_wt-= wts[j];</span>
 <span class='curline'><a href='../S/12.html#L173'>right_wt</a>          173 anova.c                        right_sum*right_sum/right_wt;</span>
 <span class='curline'><a href='../S/12.html#L177'>right_wt</a>          177 anova.c        		        if ((left_sum/left_wt) &gt; (right_sum/right_wt)) {</span>
-<span class='curline'><a href='../S/8.html#L104'>right_wt</a>          104 mrt.c              double left_wt, right_wt;</span>
-<span class='curline'><a href='../S/8.html#L119'>right_wt</a>          119 mrt.c              right_wt = 0;</span>
-<span class='curline'><a href='../S/8.html#L120'>right_wt</a>          120 mrt.c              for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L124'>right_wt</a>          124 mrt.c           	    grandmean[j] /= right_wt;</span>
-<span class='curline'><a href='../S/8.html#L134'>right_wt</a>          134 mrt.c                  left_wt += wt[i]; right_wt -= wt[i];</span>
-<span class='curline'><a href='../S/8.html#L148'>right_wt</a>          148 mrt.c                 if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L198'>right_wt</a>          198 mrt.c                  right_wt = 0;</span>
-<span class='curline'><a href='../S/8.html#L199'>right_wt</a>          199 mrt.c                  for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L221'>right_wt</a>          221 mrt.c                  right_wt += countwt[i];</span>
-<span class='curline'><a href='../S/8.html#L229'>right_wt</a>          229 mrt.c                      right_wt -= countwt[i];</span>
-<span class='curline'><a href='../S/8.html#L242'>right_wt</a>          242 mrt.c                  if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
+<span class='curline'><a href='../S/8.html#L104'>right_wt</a>          104 mrt.c          	for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L119'>right_wt</a>          119 mrt.c          	ss += ssj;</span>
+<span class='curline'><a href='../S/8.html#L120'>right_wt</a>          120 mrt.c                }/*end for j*/</span>
+<span class='curline'><a href='../S/8.html#L124'>right_wt</a>          124 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L134'>right_wt</a>          134 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L148'>right_wt</a>          148 mrt.c              **  data elements "on the fly".  This makes the hand calculator formula</span>
+<span class='curline'><a href='../S/8.html#L198'>right_wt</a>          198 mrt.c              if (best&gt;0) {   /* found something */</span>
+<span class='curline'><a href='../S/8.html#L199'>right_wt</a>          199 mrt.c                  csplit[0] = direction;</span>
+<span class='curline'><a href='../S/8.html#L221'>right_wt</a>          221 mrt.c          	} /*end of for i=0*/</span>
+<span class='curline'><a href='../S/8.html#L229'>right_wt</a>          229 mrt.c              ** Now find the split that we want</span>
+<span class='curline'><a href='../S/8.html#L242'>right_wt</a>          242 mrt.c          **</span>
 </pre>
 </body>
 </html>

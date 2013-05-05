@@ -67,20 +67,20 @@
 <span class='curline'><a href='../S/19.html#L205'>wt</a>                205 gini.c             left[j]  += wt[i];</span>
 <span class='curline'><a href='../S/19.html#L248'>wt</a>                248 gini.c             awt[k] += aprior[j] * wt[i];</span>
 <span class='curline'><a href='../S/19.html#L250'>wt</a>                250 gini.c             ccnt[j][k] += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L17'>wt</a>                 17 mrt.c                    double *parm, int *size,    int who, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L55'>wt</a>                 55 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L65'>wt</a>                 65 mrt.c              for (i=0; i&lt;n; i++) twt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L71'>wt</a>                 71 mrt.c              for (i=0; i&lt;n; i++) temp += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L76'>wt</a>                 76 mrt.c              if (rp.dissim==1) ssj += temp * temp * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L77'>wt</a>                 77 mrt.c              else if (rp.dissim==2) ssj += fabs(temp) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L99'>wt</a>                 99 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L120'>wt</a>                120 mrt.c              for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L123'>wt</a>                123 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L134'>wt</a>                134 mrt.c                  left_wt += wt[i]; right_wt -= wt[i];</span>
-<span class='curline'><a href='../S/8.html#L137'>wt</a>                137 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L178'>wt</a>                178 mrt.c                          countwt[k] += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>wt</a>                179 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L199'>wt</a>                199 mrt.c                  for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L17'>wt</a>                 17 mrt.c          double alpha = 0.3; /*this is the alpha we need to determint, I will find way to pass value to assign it.*/</span>
+<span class='curline'><a href='../S/8.html#L55'>wt</a>                 55 mrt.c              }/*end of if 'rp.dissim == 3'*/</span>
+<span class='curline'><a href='../S/8.html#L65'>wt</a>                 65 mrt.c                  }</span>
+<span class='curline'><a href='../S/8.html#L71'>wt</a>                 71 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L76'>wt</a>                 76 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L77'>wt</a>                 77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L99'>wt</a>                 99 mrt.c              }else{</span>
+<span class='curline'><a href='../S/8.html#L120'>wt</a>                120 mrt.c                }/*end for j*/</span>
+<span class='curline'><a href='../S/8.html#L123'>wt</a>                123 mrt.c              *risk = ss;</span>
+<span class='curline'><a href='../S/8.html#L134'>wt</a>                134 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L137'>wt</a>                137 mrt.c              double sumdiffs_sq;</span>
+<span class='curline'><a href='../S/8.html#L178'>wt</a>                178 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L179'>wt</a>                179 mrt.c                 left_sum  +=temp;</span>
+<span class='curline'><a href='../S/8.html#L199'>wt</a>                199 mrt.c                  csplit[0] = direction;</span>
 <span class='curline'><a href='../S/23.html#L36'>wt</a>                 36 partition.c            rp.wtemp[j]   = rp.wt[i];</span>
 <span class='curline'><a href='../S/23.html#L38'>wt</a>                 38 partition.c            twt += rp.wt[i];</span>
 <span class='curline'><a href='../S/23.html#L45'>wt</a>                 45 partition.c        twt += rp.wt[i];</span>
@@ -106,7 +106,7 @@
 <span class='curline'><a href='../S/38.html#L163'>wt</a>                163 rpart.c            temp += wt[i];</span>
 <span class='curline'><a href='../S/38.html#L166'>wt</a>                166 rpart.c            i = rp_init(n, rp.ydata, maxcat, error, parms, &amp;rp.num_resp, 1, wt);</span>
 <span class='curline'><a href='../S/38.html#L173'>wt</a>                173 rpart.c            (*rp_eval)(n, rp.ydata, (*tree)-&gt;response_est, &amp;((*tree)-&gt;risk), wt);</span>
-<span class='curline'><a href='../S/28.html#L31'>wt</a>                 31 rpart.h            double *wt;</span>
+<span class='curline'><a href='../S/28.html#L31'>wt</a>                 31 rpart.h            FLOAT  *xtemp;</span>
 <span class='curline'><a href='../S/22.html#L66'>wt</a>                 66 rpart_callback.c void rpart_callback1(int n, double *y[], double *wt, double *z) {</span>
 <span class='curline'><a href='../S/22.html#L81'>wt</a>                 81 rpart_callback.c     wdata[i] = wt[i];</span>
 <span class='curline'><a href='../S/22.html#L106'>wt</a>                106 rpart_callback.c void rpart_callback2(int n, int ncat, double *y[], double *wt, </span>

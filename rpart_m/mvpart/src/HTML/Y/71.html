@@ -21,10 +21,10 @@
 <span class='curline'><a href='../S/19.html#L221'>direction</a>         221 gini.c                 if (lmean &lt; rmean) direction = LEFT;</span>
 <span class='curline'><a href='../S/19.html#L222'>direction</a>         222 gini.c                     else           direction = RIGHT;</span>
 <span class='curline'><a href='../S/19.html#L229'>direction</a>         229 gini.c             csplit[0] = direction;</span>
-<span class='curline'><a href='../S/8.html#L108'>direction</a>         108 mrt.c              int direction = LEFT;</span>
-<span class='curline'><a href='../S/8.html#L154'>direction</a>         154 mrt.c                  if (left_sum &lt; right_sum) direction = LEFT;</span>
-<span class='curline'><a href='../S/8.html#L155'>direction</a>         155 mrt.c                            else    direction = RIGHT;</span>
-<span class='curline'><a href='../S/8.html#L164'>direction</a>         164 mrt.c                  csplit[0] = direction;</span>
+<span class='curline'><a href='../S/8.html#L108'>direction</a>         108 mrt.c          	  temp = y[i][j] - grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L154'>direction</a>         154 mrt.c              right_wt = 0;</span>
+<span class='curline'><a href='../S/8.html#L155'>direction</a>         155 mrt.c              for (i=0; i&lt;n; i++) right_wt += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L164'>direction</a>         164 mrt.c              left_n = 0; left_wt = 0;</span>
 <span class='curline'><a href='../S/13.html#L170'>direction</a>         170 poisson.c          int direction = LEFT;</span>
 <span class='curline'><a href='../S/13.html#L219'>direction</a>         219 poisson.c              if (lambda1  &lt; lambda2) direction = LEFT;</span>
 <span class='curline'><a href='../S/13.html#L220'>direction</a>         220 poisson.c                      else    direction = RIGHT;</span>
