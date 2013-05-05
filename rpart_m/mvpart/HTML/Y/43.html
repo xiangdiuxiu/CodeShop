@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/64.html#L51'>cp</a>                 51 src/make_cp_list.c         if (me_cp == cplist-&gt;cp) return;  /* exact ties */</span>
+<span class='curline'><a href='../S/64.html#L53'>cp</a>                 53 src/make_cp_list.c         if (me_cp &gt; cplist-&gt;cp) break;</span>
+<span class='curline'><a href='../S/64.html#L59'>cp</a>                 59 src/make_cp_list.c     cplist-&gt;cp = me_cp;</span>
+<span class='curline'><a href='../S/79.html#L36'>cp</a>                 36 src/make_cp_table.c     while (cplist-&gt;cp &lt; parent) {</span>
+<span class='curline'><a href='../S/74.html#L41'>cp</a>                 41 src/node.h         double cp;</span>
+<span class='curline'><a href='../S/92.html#L182'>cp</a>                182 src/rpart.c        cptable-&gt;cp = (*tree)-&gt;complexity;</span>
+<span class='curline'><a href='../S/84.html#L67'>cp</a>                 67 src/rpartproto.h void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/84.html#L70'>cp</a>                 70 src/rpartproto.h void rundown2(struct node *tree, int obs, double *cp, double *xpred);</span>
+<span class='curline'><a href='../S/84.html#L85'>cp</a>                 85 src/rpartproto.h          Sint *ncp,    double *cp,    char **error,  double *wt,</span>
+<span class='curline'><a href='../S/89.html#L11'>cp</a>                 11 src/rundown.c  void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/89.html#L25'>cp</a>                 25 src/rundown.c      while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/88.html#L12'>cp</a>                 12 src/rundown2.c void rundown2(struct node *tree, int obs, double *cp, double *xpred)</span>
+<span class='curline'><a href='../S/88.html#L25'>cp</a>                 25 src/rundown2.c     while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/59.html#L56'>cp</a>                 56 src/s_to_rp.c      struct cptable *cp, *cp2;</span>
+<span class='curline'><a href='../S/59.html#L93'>cp</a>                 93 src/s_to_rp.c      for (cp = &amp;cptab; cp !=0; cp= cp-&gt;forward) {</span>
+<span class='curline'><a href='../S/59.html#L94'>cp</a>                 94 src/s_to_rp.c      cptable[i++] = cp-&gt;cp * scale;</span>
+<span class='curline'><a href='../S/59.html#L95'>cp</a>                 95 src/s_to_rp.c      cptable[i++] = cp-&gt;nsplit;</span>
+<span class='curline'><a href='../S/59.html#L96'>cp</a>                 96 src/s_to_rp.c      cptable[i++] = cp-&gt;risk * scale;</span>
+<span class='curline'><a href='../S/59.html#L98'>cp</a>                 98 src/s_to_rp.c          cptable[i++] = cp-&gt;xrisk*scale;</span>
+<span class='curline'><a href='../S/59.html#L99'>cp</a>                 99 src/s_to_rp.c          cptable[i++] = cp-&gt;xstd *scale;</span>
+<span class='curline'><a href='../S/59.html#L130'>cp</a>                130 src/s_to_rp.c      for (cp=cptab.forward; cp!=0; ) {</span>
+<span class='curline'><a href='../S/59.html#L131'>cp</a>                131 src/s_to_rp.c      cp2 = cp-&gt;forward;</span>
+<span class='curline'><a href='../S/59.html#L132'>cp</a>                132 src/s_to_rp.c      Free(cp);</span>
+<span class='curline'><a href='../S/59.html#L133'>cp</a>                133 src/s_to_rp.c      cp = cp2;</span>
+<span class='curline'><a href='../S/83.html#L15'>cp</a>                 15 src/s_xpred.c           Sint *ncp,    double *cp,    char **error,  double *wt,</span>
+<span class='curline'><a href='../S/83.html#L162'>cp</a>                162 src/s_xpred.c      for (j=0; j&lt;rp.num_unique_cp; j++) cp[j] *= temp/old_wt;</span>
+<span class='curline'><a href='../S/83.html#L183'>cp</a>                183 src/s_xpred.c          rundown2(xtree, j, cp, (predict+ j* *ncp));</span>
+<span class='curline'><a href='../S/63.html#L43'>cp</a>                 43 src/xval.c         double *cp;</span>
+<span class='curline'><a href='../S/63.html#L58'>cp</a>                 58 src/xval.c         cp    = xpred + rp.num_unique_cp;</span>
+<span class='curline'><a href='../S/63.html#L65'>cp</a>                 65 src/xval.c         cp[0] = 10* cptable_head-&gt;cp;    /*close enough to infinity */</span>
+<span class='curline'><a href='../S/63.html#L68'>cp</a>                 68 src/xval.c         cp[i] = sqrt(cplist-&gt;cp * (cplist-&gt;forward)-&gt;cp);</span>
+<span class='curline'><a href='../S/63.html#L99'>cp</a>                 99 src/xval.c         for (j=0; j&lt;rp.num_unique_cp; j++) cp[j] *= temp/old_wt;</span>
+<span class='curline'><a href='../S/63.html#L122'>cp</a>                122 src/xval.c             rundown(xtree, j, cp, xpred, xtemp);</span>
+<span class='curline'><a href='../S/63.html#L133'>cp</a>                133 src/xval.c                           cp[jj]/old_wt, xpred[jj], xtemp[jj]);</span>
+</pre>
+</body>
+</html>

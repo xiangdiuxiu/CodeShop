@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart" &lt;-
+<a id='L2' name='L2' />function (formula, data = NULL, weights, subset, na.action = na.rpart,
+<a id='L3' name='L3' />    method, dissim, model = FALSE, x = FALSE, y = TRUE, parms, control,
+<a id='L4' name='L4' />    cost, ...)
+<a id='L5' name='L5' />{
+<a id='L6' name='L6' />    call &lt;- match.call()
+<a id='L7' name='L7' />    if (is.data.frame(model)) {
+<a id='L8' name='L8' />        m &lt;- model
+<a id='L9' name='L9' />        model &lt;- FALSE
+<a id='L10' name='L10' />    }
+<a id='L11' name='L11' />    else {
+<a id='L12' name='L12' />        m &lt;- match.call(expand.dots = FALSE)
+<a id='L13' name='L13' />        m$model &lt;- m$method &lt;- m$control &lt;- NULL
+<a id='L14' name='L14' />        m$x &lt;- m$y &lt;- m$parms &lt;- m$... &lt;- NULL
+<a id='L15' name='L15' />        m$cost &lt;- m$dissim &lt;- NULL
+<a id='L16' name='L16' />        m$na.action &lt;- na.action
+<a id='L17' name='L17' />        m[[1]] &lt;- as.name("model.frame.default")
+<a id='L18' name='L18' />        m &lt;- eval(m, parent.frame())
+<a id='L19' name='L19' />    }
+<a id='L20' name='L20' />    Terms &lt;- attr(m, "terms")
+<a id='L21' name='L21' />    if (any(attr(Terms, "order") &gt; 1))
+<a id='L22' name='L22' />        stop("Trees cannot handle interaction terms")
+<a id='L23' name='L23' />    Y &lt;- model.extract(m, "response")
+<a id='L24' name='L24' />    wt &lt;- model.extract(m, "weights")
+<a id='L25' name='L25' />    if (length(wt) == 0)
+<a id='L26' name='L26' />        wt &lt;- rep(1, nrow(m))
+<a id='L27' name='L27' />    offset &lt;- attr(Terms, "offset")
+<a id='L28' name='L28' />    X &lt;- rpart.matrix(m)
+<a id='L29' name='L29' />    nobs &lt;- nrow(X)
+<a id='L30' name='L30' />    nvar &lt;- ncol(X)
+<a id='L31' name='L31' />    if (missing(method)) {
+<a id='L32' name='L32' />        if (is.factor(Y) || is.character(Y))
+<a id='L33' name='L33' />            method &lt;- "class"
+<a id='L34' name='L34' />        else if (inherits(Y, "Surv"))
+<a id='L35' name='L35' />            method &lt;- "exp"
+<a id='L36' name='L36' />        else if (is.matrix(Y))
+<a id='L37' name='L37' />            method &lt;- "mrt"
+<a id='L38' name='L38' />        else method &lt;- "anova"
+<a id='L39' name='L39' />    }
+<a id='L40' name='L40' />    if (is.list(method)) {
+<a id='L41' name='L41' />        mlist &lt;- method
+<a id='L42' name='L42' />        method &lt;- "user"
+<a id='L43' name='L43' />        if (missing(parms))
+<a id='L44' name='L44' />            init &lt;- mlist$init(Y, offset, wt = wt)
+<a id='L45' name='L45' />        else init &lt;- mlist$init(Y, offset, parms, wt)
+<a id='L46' name='L46' />        method.int &lt;- 6
+<a id='L47' name='L47' />        keep &lt;- rpartcallback(mlist, nobs, init)
+<a id='L48' name='L48' />### added 15/04/13
+<a id='L49' name='L49' />        parms &lt;- init$parms
+<a id='L50' name='L50' />    }
+<a id='L51' name='L51' />    else {
+<a id='L52' name='L52' />        method.int &lt;- pmatch(method, c("anova", "mrt", "poisson",
+<a id='L53' name='L53' />            "class", "dist", "exp"))
+<a id='L54' name='L54' />        if (is.na(method.int))
+<a id='L55' name='L55' />            stop("Invalid method")
+<a id='L56' name='L56' />        method &lt;- c("anova", "mrt", "poisson", "class", "dist",
+<a id='L57' name='L57' />            "exp")[method.int]
+<a id='L58' name='L58' />        if (method.int == 6)
+<a id='L59' name='L59' />            method.int &lt;- 3
+<a id='L60' name='L60' />        if (missing(parms))
+<a id='L61' name='L61' />            init &lt;- (get(paste("rpart", method, sep = ".")))(Y,
+<a id='L62' name='L62' />                offset, , wt)
+<a id='L63' name='L63' />        else init &lt;- (get(paste("rpart", method, sep = ".")))(Y,
+<a id='L64' name='L64' />            offset, parms, wt)
+<a id='L65' name='L65' />     }
+<a id='L66' name='L66' />
+<a id='L67' name='L67' />    if(missing(dissim) || is.null(dissim))  dissim &lt;- "euclidean"
+<a id='L68' name='L68' />    dissim.int &lt;- pmatch(dissim, c("euclidean", "manhattan", "myDist"))
+<a id='L69' name='L69' />    if(is.na(dissim.int))
+<a id='L70' name='L70' />        stop("Invalid dissimilarity")
+<a id='L71' name='L71' />    dissim &lt;- c("euclidean", "manhattan", "myDist")[dissim.int]
+<a id='L72' name='L72' />    Y &lt;- init$y
+<a id='L73' name='L73' />    if (method == "dist") {
+<a id='L74' name='L74' />        Y &lt;- Y[row(Y) &gt; col(Y)]
+<a id='L75' name='L75' />        init$y &lt;- init$y[row(init$y) &gt; col(init$y)]
+<a id='L76' name='L76' />    }
+<a id='L77' name='L77' />    xlevels &lt;- attr(X, "column.levels")
+<a id='L78' name='L78' />    cats &lt;- rep(0, ncol(X))
+<a id='L79' name='L79' />    if (!is.null(xlevels)) {
+<a id='L80' name='L80' />        cats[match(names(xlevels), dimnames(X)[[2]])] &lt;- unlist(lapply(xlevels,
+<a id='L81' name='L81' />            length))
+<a id='L82' name='L82' />    }
+<a id='L83' name='L83' />    extraArgs &lt;- list(...)
+<a id='L84' name='L84' />    if (length(extraArgs)) {
+<a id='L85' name='L85' />        controlargs &lt;- names(formals(rpart.control))
+<a id='L86' name='L86' />        indx &lt;- match(names(extraArgs), controlargs, nomatch = 0)
+<a id='L87' name='L87' />        if (any(indx == 0))
+<a id='L88' name='L88' />            stop(paste("Argument", names(extraArgs)[indx == 0],
+<a id='L89' name='L89' />                "not matched"))
+<a id='L90' name='L90' />    }
+<a id='L91' name='L91' />    controls &lt;- rpart.control(...)
+<a id='L92' name='L92' />    if (!missing(control))
+<a id='L93' name='L93' />        controls[names(control)] &lt;- control
+<a id='L94' name='L94' />    xval &lt;- controls$xval
+<a id='L95' name='L95' />    if (is.null(xval) || (length(xval) == 1 &amp;&amp; xval == 0) ||
+<a id='L96' name='L96' />        method == "user" || method == "dist") {
+<a id='L97' name='L97' />        xgroups &lt;- 0
+<a id='L98' name='L98' />#   Set xval to 0 for dist splitting and reset controls$xval -- GD 12/03
+<a id='L99' name='L99' />        xval &lt;- 0
+<a id='L100' name='L100' />        controls$xval &lt;- xval
+<a id='L101' name='L101' />           }
+<a id='L102' name='L102' />    else if (length(xval) == 1) {
+<a id='L103' name='L103' />        xgroups &lt;- sample(rep(1:xval, length = nobs), nobs, replace = FALSE)
+<a id='L104' name='L104' />    }
+<a id='L105' name='L105' />    else if (length(xval) == nobs) {
+<a id='L106' name='L106' />        xgroups &lt;- xval
+<a id='L107' name='L107' />        xval &lt;- length(unique(xgroups))
+<a id='L108' name='L108' />    }
+<a id='L109' name='L109' />    else {
+<a id='L110' name='L110' />        if (!is.null(attr(m, "na.action"))) {
+<a id='L111' name='L111' />            temp &lt;- as.integer(attr(m, "na.action"))
+<a id='L112' name='L112' />            xval &lt;- xval[-temp]
+<a id='L113' name='L113' />            if (length(xval) == nobs) {
+<a id='L114' name='L114' />                xgroups &lt;- xval
+<a id='L115' name='L115' />                xval &lt;- length(unique(xgroups))
+<a id='L116' name='L116' />            }
+<a id='L117' name='L117' />            else stop("Wrong length for xval")
+<a id='L118' name='L118' />        }
+<a id='L119' name='L119' />        else stop("Wrong length for xval")
+<a id='L120' name='L120' />    }
+<a id='L121' name='L121' />    if (missing(cost))
+<a id='L122' name='L122' />        cost &lt;- rep(1, nvar)
+<a id='L123' name='L123' />    else {
+<a id='L124' name='L124' />        if (length(cost) != nvar)
+<a id='L125' name='L125' />            stop("Cost vector is the wrong length")
+<a id='L126' name='L126' />        if (any(cost &lt;= 0))
+<a id='L127' name='L127' />            stop("Cost vector must be positive")
+<a id='L128' name='L128' />    }
+<a id='L129' name='L129' />    tfun &lt;- function(x) {
+<a id='L130' name='L130' />        if (is.matrix(x))
+<a id='L131' name='L131' />            rep(is.ordered(x), ncol(x))
+<a id='L132' name='L132' />        else is.ordered(x)
+<a id='L133' name='L133' />    }
+<a id='L134' name='L134' />    isord &lt;- unlist(lapply(m[attr(Terms, "term.labels")], tfun))
+<a id='L135' name='L135' />    myAlpha &lt;- 0.3 #the alpha we determinte --ZhangYet
+<a id='L136' name='L136' />    rpfit &lt;- .C("s_to_rp", n = as.integer(nobs), nvarx = as.integer(nvar),
+<a id='L137' name='L137' />        ncat = as.integer(cats * (!isord)), method = as.integer(method.int),
+<a id='L138' name='L138' />        as.double(unlist(controls)), parms = as.double(unlist(init$parms)),
+<a id='L139' name='L139' />        as.integer(xval), as.integer(xgroups), as.double(t(init$y)),
+<a id='L140' name='L140' />        as.double(X), as.integer(dissim.int), as.integer(!is.finite(X)),
+<a id='L141' name='L141' />        error = character(1), wt = as.double(wt), as.integer(init$numy), as.double(cost),
+<a id='L142' name='L142' />        NAOK = TRUE, as.double(myAlpha), PACKAGE = "mvpart")
+<a id='L143' name='L143' />    if (rpfit$n == -1)
+<a id='L144' name='L144' />        stop(rpfit$error)
+<a id='L145' name='L145' />    nodes &lt;- rpfit$n
+<a id='L146' name='L146' />    nsplit &lt;- rpfit$nvarx
+<a id='L147' name='L147' />    numcp &lt;- rpfit$method
+<a id='L148' name='L148' />    ncat &lt;- rpfit$ncat[1]
+<a id='L149' name='L149' />    numresp &lt;- init$numresp
+<a id='L150' name='L150' />    if (nsplit == 0)
+<a id='L151' name='L151' />        xval &lt;- 0
+<a id='L152' name='L152' />    cpcol &lt;- if (xval &gt; 0 &amp;&amp; nsplit &gt; 0)
+<a id='L153' name='L153' />        5
+<a id='L154' name='L154' />    else 3
+<a id='L155' name='L155' />    if (ncat == 0)
+<a id='L156' name='L156' />        catmat &lt;- 0
+<a id='L157' name='L157' />    else catmat &lt;- matrix(integer(1), ncat, max(cats))
+<a id='L158' name='L158' />    rp &lt;- .C("s_to_rp2", as.integer(nobs), as.integer(nsplit),
+<a id='L159' name='L159' />        as.integer(nodes), as.integer(ncat), as.integer(cats *
+<a id='L160' name='L160' />            (!isord)), as.integer(max(cats)), as.integer(xval),
+<a id='L161' name='L161' />        which = integer(nobs), cptable = matrix(double(numcp *
+<a id='L162' name='L162' />            cpcol), nrow = cpcol), dsplit = matrix(double(1),
+<a id='L163' name='L163' />            nsplit, 3), isplit = matrix(integer(1), nsplit, 3),
+<a id='L164' name='L164' />        csplit = catmat, dnode = matrix(double(1), nodes, 3 +
+<a id='L165' name='L165' />            numresp), inode = matrix(integer(1), nodes, 6), PACKAGE = "mvpart")
+<a id='L166' name='L166' />    tname &lt;- c("&lt;leaf&gt;", dimnames(X)[[2]])
+<a id='L167' name='L167' />    if (cpcol == 3)
+<a id='L168' name='L168' />        temp &lt;- c("CP", "nsplit", "rel error")
+<a id='L169' name='L169' />    else temp &lt;- c("CP", "nsplit", "rel error", "xerror", "xstd")
+<a id='L170' name='L170' />    dimnames(rp$cptable) &lt;- list(temp, 1:numcp)
+<a id='L171' name='L171' />    dn1 &lt;- if (nsplit == 0)
+<a id='L172' name='L172' />        character(0)
+<a id='L173' name='L173' />    else tname[rp$isplit[, 1] + 1]
+<a id='L174' name='L174' />    splits &lt;- matrix(c(rp$isplit[, 2:3], rp$dsplit), ncol = 5,
+<a id='L175' name='L175' />        dimnames = list(dn1, c("count", "ncat", "improve", "index",
+<a id='L176' name='L176' />            "adj")))
+<a id='L177' name='L177' />    index &lt;- rp$inode[, 2]
+<a id='L178' name='L178' />    nadd &lt;- sum(isord[rp$isplit[, 1]])
+<a id='L179' name='L179' />    if (nadd &gt; 0) {
+<a id='L180' name='L180' />        newc &lt;- matrix(integer(1), nadd, max(cats))
+<a id='L181' name='L181' />        cvar &lt;- rp$isplit[, 1]
+<a id='L182' name='L182' />        indx &lt;- isord[cvar]
+<a id='L183' name='L183' />        cdir &lt;- splits[indx, 2]
+<a id='L184' name='L184' />        ccut &lt;- floor(splits[indx, 4])
+<a id='L185' name='L185' />        splits[indx, 2] &lt;- cats[cvar[indx]]
+<a id='L186' name='L186' />        splits[indx, 4] &lt;- ncat + 1:nadd
+<a id='L187' name='L187' />        for (i in 1:nadd) {
+<a id='L188' name='L188' />            newc[i, 1:(cats[(cvar[indx])[i]])] &lt;- -1 * as.integer(cdir[i])
+<a id='L189' name='L189' />            newc[i, 1:ccut[i]] &lt;- as.integer(cdir[i])
+<a id='L190' name='L190' />        }
+<a id='L191' name='L191' />        if (ncat == 0)
+<a id='L192' name='L192' />            catmat &lt;- newc
+<a id='L193' name='L193' />        else catmat &lt;- rbind(rp$csplit, newc)
+<a id='L194' name='L194' />        ncat &lt;- ncat + nadd
+<a id='L195' name='L195' />    }
+<a id='L196' name='L196' />    else catmat &lt;- rp$csplit
+<a id='L197' name='L197' />    if (nsplit == 0) {
+<a id='L198' name='L198' />        frame &lt;- data.frame(row.names = 1, var = "&lt;leaf&gt;", n = rp$inode[,
+<a id='L199' name='L199' />            5], wt = rp$dnode[, 3], dev = rp$dnode[, 1], yval = rp$dnode[,
+<a id='L200' name='L200' />            4], complexity = rp$dnode[, 2], ncompete = pmax(0,
+<a id='L201' name='L201' />            rp$inode[, 3] - 1), nsurrogate = rp$inode[, 4])
+<a id='L202' name='L202' />    }
+<a id='L203' name='L203' />    else {
+<a id='L204' name='L204' />        temp &lt;- ifelse(index == 0, 1, index)
+<a id='L205' name='L205' />        svar &lt;- ifelse(index == 0, 0, rp$isplit[temp, 1])
+<a id='L206' name='L206' />        frame &lt;- data.frame(row.names = rp$inode[, 1], var = factor(svar,
+<a id='L207' name='L207' />            0:ncol(X), tname), n = rp$inode[, 5], wt = rp$dnode[,
+<a id='L208' name='L208' />            3], dev = rp$dnode[, 1], yval = rp$dnode[, 4], complexity = rp$dnode[,
+<a id='L209' name='L209' />            2], ncompete = pmax(0, rp$inode[, 3] - 1), nsurrogate = rp$inode[, 4])
+<a id='L210' name='L210' />    }
+<a id='L211' name='L211' />    if (method == "class") {
+<a id='L212' name='L212' />        numclass &lt;- init$numresp - 1
+<a id='L213' name='L213' />        temp &lt;- rp$dnode[, -(1:4), drop = FALSE] %*% diag(init$parms$prior *
+<a id='L214' name='L214' />            sum(init$counts)/pmax(1, init$counts))
+<a id='L215' name='L215' />        yprob &lt;- temp/rowSums(temp)
+<a id='L216' name='L216' />        yval2 &lt;- matrix(rp$dnode[, -(1:3), drop = FALSE], ncol = numclass +
+<a id='L217' name='L217' />            1)
+<a id='L218' name='L218' />        frame$yval2 &lt;- cbind(yval2, yprob)
+<a id='L219' name='L219' />    }
+<a id='L220' name='L220' />    else if (method == "mrt") {
+<a id='L221' name='L221' />        frame$yval &lt;- apply(rp$dnode[, -c(1:3), drop = FALSE], 1, mean)
+<a id='L222' name='L222' />        frame$yval2 &lt;- rp$dnode[, -(1:3), drop = FALSE]
+<a id='L223' name='L223' />    }
+<a id='L224' name='L224' />    if (is.null(init$summary))
+<a id='L225' name='L225' />        stop("Initialization routine is missing the summary function")
+<a id='L226' name='L226' />    if (is.null(init$print))
+<a id='L227' name='L227' />        functions &lt;- list(summary = init$summary)
+<a id='L228' name='L228' />    else functions &lt;- list(summary = init$summary, print = init$print)
+<a id='L229' name='L229' />    if (!is.null(init$text))
+<a id='L230' name='L230' />        functions &lt;- c(functions, list(text = init$text))
+<a id='L231' name='L231' />    if (!is.null(init$bar))
+<a id='L232' name='L232' />        functions &lt;- c(functions, list(bar = init$bar))
+<a id='L233' name='L233' />    if (method == "user")
+<a id='L234' name='L234' />        functions &lt;- c(functions, mlist)
+<a id='L235' name='L235' />    where &lt;- rp$which
+<a id='L236' name='L236' />    names(where) &lt;- row.names(m)
+<a id='L237' name='L237' />    if (nsplit == 0) {
+<a id='L238' name='L238' />        ans &lt;- list(frame = frame, where = where, call = call,
+<a id='L239' name='L239' />            terms = Terms, cptable = t(rp$cptable), method = method, dissim = dissim,
+<a id='L240' name='L240' />            parms = init$parms, control = controls, functions = functions)
+<a id='L241' name='L241' />    }
+<a id='L242' name='L242' />    else {
+<a id='L243' name='L243' />        ans &lt;- list(frame = frame, where = where, call = call,
+<a id='L244' name='L244' />            terms = Terms, cptable = t(rp$cptable), splits = splits,
+<a id='L245' name='L245' />            method = method, dissim = dissim, parms = init$parms, control = controls,
+<a id='L246' name='L246' />            functions = functions)
+<a id='L247' name='L247' />    }
+<a id='L248' name='L248' />    if (ncat &gt; 0)
+<a id='L249' name='L249' />        ans$csplit &lt;- catmat + 2
+<a id='L250' name='L250' />    if (model) {
+<a id='L251' name='L251' />        ans$model &lt;- m
+<a id='L252' name='L252' />        if (missing(y))
+<a id='L253' name='L253' />            y &lt;- FALSE
+<a id='L254' name='L254' />    }
+<a id='L255' name='L255' />    if (y)
+<a id='L256' name='L256' />        ans$y &lt;- Y
+<a id='L257' name='L257' />    if (x) {
+<a id='L258' name='L258' />        ans$x &lt;- X
+<a id='L259' name='L259' />        ans$wt &lt;- wt
+<a id='L260' name='L260' />    }
+<a id='L261' name='L261' />    ans$ordered &lt;- isord
+<a id='L262' name='L262' />    if (!is.null(attr(m, "na.action")))
+<a id='L263' name='L263' />        ans$na.action &lt;- attr(m, "na.action")
+<a id='L264' name='L264' />    if (!is.null(xlevels))
+<a id='L265' name='L265' />        attr(ans, "xlevels") &lt;- xlevels
+<a id='L266' name='L266' />    if (method == "class")
+<a id='L267' name='L267' />        attr(ans, "ylevels") &lt;- init$ylevels
+<a id='L268' name='L268' />    class(ans) &lt;- "rpart"
+<a id='L269' name='L269' />    ans
+<a id='L270' name='L270' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+270 R/rpart.R]</em> */</em>
+</body>
+</html>

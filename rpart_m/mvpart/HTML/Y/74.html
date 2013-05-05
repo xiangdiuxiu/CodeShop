@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>distMatrix</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/62.html#L14'>distMatrix</a>         14 src/mrt.c      static **distMatrix; /*here, we use a matrix to store distance between y's*/</span>
+<span class='curline'><a href='../S/62.html#L41'>distMatrix</a>         41 src/mrt.c            distMatrix = (double **)ALLOC(rp.num_y, sizeof(double *)); /*init the distance Matrix--ZhangYet*/</span>
+<span class='curline'><a href='../S/62.html#L42'>distMatrix</a>         42 src/mrt.c            if (distMatrix == 0) {</span>
+<span class='curline'><a href='../S/62.html#L52'>distMatrix</a>         52 src/mrt.c      	  distMatrix[i][j] = sqrt(temp); /*compute the norm of two y variables.--ZhangYet*/</span>
+<span class='curline'><a href='../S/62.html#L96'>distMatrix</a>         96 src/mrt.c      	  ss += pow(distMatrix[i][j], inx);</span>
+<span class='curline'><a href='../S/62.html#L315'>distMatrix</a>        315 src/mrt.c      	  temp += pow(distMatrix[i][j], inx);</span>
+</pre>
+</body>
+</html>

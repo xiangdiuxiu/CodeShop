@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/scaler.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/scaler.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/scaler.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"scaler" &lt;-
+<a id='L2' name='L2' />function(x, col = c("mean1", "max1", "min0", "ssq1", "range01", "zsc", "pa", "rank")[2],
+<a id='L3' name='L3' />    row = c("mean1", "max1", "min0", "ssq1", "range01", "zsc", "pa", "rank")[1])
+<a id='L4' name='L4' />{
+<a id='L5' name='L5' />fun = function (x, method, MARGIN) 
+<a id='L6' name='L6' />    {
+<a id='L7' name='L7' />    x &lt;- as.matrix(x)
+<a id='L8' name='L8' />    switch(method, mean1 = {
+<a id='L9' name='L9' />       tmp &lt;- apply(x, MARGIN, mean, na.rm = TRUE)
+<a id='L10' name='L10' />        x &lt;- sweep(x, MARGIN, tmp, "/")
+<a id='L11' name='L11' />    }, max1 = {
+<a id='L12' name='L12' />        tmp &lt;- apply(x, MARGIN, max, na.rm = TRUE)
+<a id='L13' name='L13' />        x &lt;- sweep(x, MARGIN, tmp, "/")
+<a id='L14' name='L14' />    }, min0 = {
+<a id='L15' name='L15' />        tmp &lt;- apply(x, MARGIN, min, na.rm = TRUE)
+<a id='L16' name='L16' />        x &lt;- sweep(x, MARGIN, tmp, "-")
+<a id='L17' name='L17' />    }, ssq1 = {
+<a id='L18' name='L18' />        tmp &lt;- apply(x^2, MARGIN, sum, na.rm = TRUE)
+<a id='L19' name='L19' />        tmp &lt;- sqrt(tmp)
+<a id='L20' name='L20' />        x &lt;- sweep(x, MARGIN, tmp, "/")
+<a id='L21' name='L21' />    }, range01 = {
+<a id='L22' name='L22' />        tmp &lt;- apply(x, MARGIN, min, na.rm = TRUE)
+<a id='L23' name='L23' />        ran &lt;- apply(x, MARGIN, max, na.rm = TRUE)
+<a id='L24' name='L24' />        ran &lt;- ran - tmp
+<a id='L25' name='L25' />        x &lt;- sweep(x, MARGIN, tmp, "-")
+<a id='L26' name='L26' />        x &lt;- sweep(x, MARGIN, ran, "/")
+<a id='L27' name='L27' />    }, zsc = {
+<a id='L28' name='L28' />        if (MARGIN == 1) 
+<a id='L29' name='L29' />            x &lt;- t(scale(t(x)))
+<a id='L30' name='L30' />        else x &lt;- scale(x)
+<a id='L31' name='L31' />    }, pa = {
+<a id='L32' name='L32' />        tmp &lt;- dim(x)
+<a id='L33' name='L33' />        nam &lt;- dimnames(x)
+<a id='L34' name='L34' />        x &lt;- as.numeric(x &gt; 0)
+<a id='L35' name='L35' />        dim(x) &lt;- tmp
+<a id='L36' name='L36' />        dimnames(x) &lt;- nam
+<a id='L37' name='L37' />    }, rank = {
+<a id='L38' name='L38' />       x &lt;- apply(x, MARGIN, rank)
+<a id='L39' name='L39' />       if (MARGIN == 1) 
+<a id='L40' name='L40' />       x &lt;- t(x)
+<a id='L41' name='L41' />    })
+<a id='L42' name='L42' />    x
+<a id='L43' name='L43' />}
+<a id='L44' name='L44' />    METHODS &lt;- c("mean1", "max1", "min0", "ssq1", "range01", "zsc", "pa", "rank")
+<a id='L45' name='L45' />    if (is.null(col) &amp; is.null(row)) 
+<a id='L46' name='L46' />        cat("Scalings are",METHODS,"\n")
+<a id='L47' name='L47' />    if (!is.null(col)) {
+<a id='L48' name='L48' />    for (i in 1:length(col)){
+<a id='L49' name='L49' />        method &lt;- match.arg(col[i], METHODS)
+<a id='L50' name='L50' />        x &lt;- fun(x, method = method, MARGIN = 2)
+<a id='L51' name='L51' />    }
+<a id='L52' name='L52' />    }
+<a id='L53' name='L53' />    if (!is.null(row)) {
+<a id='L54' name='L54' />        for (i in 1:length(row)){
+<a id='L55' name='L55' />        method &lt;- match.arg(row[i], METHODS)
+<a id='L56' name='L56' />        x &lt;- fun(x, method = method, MARGIN = 1)
+<a id='L57' name='L57' />    }
+<a id='L58' name='L58' />}
+<a id='L59' name='L59' />x
+<a id='L60' name='L60' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+60 R/scaler.R]</em> */</em>
+</body>
+</html>

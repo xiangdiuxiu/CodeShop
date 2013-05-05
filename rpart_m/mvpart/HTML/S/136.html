@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/residuals.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/residuals.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/residuals.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"residuals.rpart" &lt;-
+<a id='L2' name='L2' />function(object, type = c("usual", "pearson", "deviance"), ...)
+<a id='L3' name='L3' />    {
+<a id='L4' name='L4' />    if(!inherits(object, "rpart"))
+<a id='L5' name='L5' />        stop("Not legitimate rpart object")
+<a id='L6' name='L6' />
+<a id='L7' name='L7' />    y &lt;- object$y
+<a id='L8' name='L8' />    if (is.null(y)) y &lt;- model.extract(model.frame(object), "response")
+<a id='L9' name='L9' />    frame &lt;- object$frame
+<a id='L10' name='L10' />    type &lt;- match.arg(type)
+<a id='L11' name='L11' />    if(is.na(match(type, c("usual", "pearson", "deviance"))))
+<a id='L12' name='L12' />                stop("Don't know about this type of residual")
+<a id='L13' name='L13' />
+<a id='L14' name='L14' />    if (object$method=='class') {
+<a id='L15' name='L15' />    ylevels &lt;- attr(object, "ylevels")
+<a id='L16' name='L16' />    nclass &lt;- length(ylevels)
+<a id='L17' name='L17' />
+<a id='L18' name='L18' />        if(type == "usual") {
+<a id='L19' name='L19' />                yhat &lt;- frame$yval[object$where]
+<a id='L20' name='L20' />        loss &lt;- object$parms$loss
+<a id='L21' name='L21' />        }
+<a id='L22' name='L22' />        else {
+<a id='L23' name='L23' />        yprob &lt;- frame$yval2[object$where, 1 + nclass + 1:nclass]
+<a id='L24' name='L24' />        yhat &lt;- yprob[cbind(seq(y), unclass(y))]
+<a id='L25' name='L25' />        }
+<a id='L26' name='L26' />        resid  &lt;- switch(type,
+<a id='L27' name='L27' />                usual = loss[cbind(y, yhat)],
+<a id='L28' name='L28' />                pearson = (1 - yhat)/yhat,
+<a id='L29' name='L29' />                deviance = -2 * log(yhat))
+<a id='L30' name='L30' />       }
+<a id='L31' name='L31' />
+<a id='L32' name='L32' />    else if (object$method=='poisson' || object$method=='exp') {
+<a id='L33' name='L33' />    lambda &lt;- (object$frame$yval)[object$where]
+<a id='L34' name='L34' />    time   &lt;- y[,1]  # observation time in new data
+<a id='L35' name='L35' />    events &lt;- y[,2]  # number of events, in new data
+<a id='L36' name='L36' />    expect &lt;- lambda * time #expected number of events
+<a id='L37' name='L37' />    temp &lt;- ifelse(expect==0, .0001, 0)  #failsafe for log(0)
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />    resid &lt;- switch(type,
+<a id='L40' name='L40' />            usual = events - expect,
+<a id='L41' name='L41' />            pearson = (events - expect)/sqrt(temp),
+<a id='L42' name='L42' />            deviance= sign(events- expect) *
+<a id='L43' name='L43' />               sqrt(2*(events*log(events/temp) - (events-expect)))
+<a id='L44' name='L44' />            )
+<a id='L45' name='L45' />    }
+<a id='L46' name='L46' />
+<a id='L47' name='L47' />    else  resid &lt;- y - frame$yval[object$where]
+<a id='L48' name='L48' />
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />    names(resid) &lt;- names(y)
+<a id='L51' name='L51' />    #Expand out the missing values in the result
+<a id='L52' name='L52' />    if (!is.null(object$na.action))
+<a id='L53' name='L53' />    resid &lt;- naresid(object$na.action, resid)
+<a id='L54' name='L54' />
+<a id='L55' name='L55' />    resid
+<a id='L56' name='L56' />    }
+<a id='L57' name='L57' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+57 R/residuals.rpart.R]</em> */</em>
+</body>
+</html>

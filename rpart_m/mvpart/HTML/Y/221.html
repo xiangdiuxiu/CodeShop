@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>num_y</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/62.html#L25'>num_y</a>              25 src/mrt.c          grandmean  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L30'>num_y</a>              30 src/mrt.c          diffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L35'>num_y</a>              35 src/mrt.c          tdiffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L41'>num_y</a>              41 src/mrt.c            distMatrix = (double **)ALLOC(rp.num_y, sizeof(double *)); /*init the distance Matrix--ZhangYet*/</span>
+<span class='curline'><a href='../S/62.html#L46'>num_y</a>              46 src/mrt.c            for (i=0; i&lt;rp.num_y; i++) {</span>
+<span class='curline'><a href='../S/62.html#L48'>num_y</a>              48 src/mrt.c      	for(j=0; j&lt;rp.num_y; j++) {  </span>
+<span class='curline'><a href='../S/62.html#L61'>num_y</a>              61 src/mrt.c          mean  = (double *)ALLOC(maxcat*rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L69'>num_y</a>              69 src/mrt.c          *size = rp.num_y;</span>
+<span class='curline'><a href='../S/62.html#L94'>num_y</a>              94 src/mrt.c            for(i=0; i&lt;rp.num_y; i++) {</span>
+<span class='curline'><a href='../S/62.html#L95'>num_y</a>              95 src/mrt.c      	for (j=0; j&lt;rp.num_y; j++){</span>
+<span class='curline'><a href='../S/62.html#L100'>num_y</a>             100 src/mrt.c            for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L156'>num_y</a>             156 src/mrt.c          for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L171'>num_y</a>             171 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L207'>num_y</a>             207 src/mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[i+nclass*j] = 0;</span>
+<span class='curline'><a href='../S/62.html#L214'>num_y</a>             214 src/mrt.c                  for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/62.html#L218'>num_y</a>             218 src/mrt.c      	  for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L258'>num_y</a>             258 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L266'>num_y</a>             266 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L271'>num_y</a>             271 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L307'>num_y</a>             307 src/mrt.c          for (j=0; j&lt;rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);</span>
+<span class='curline'><a href='../S/62.html#L310'>num_y</a>             310 src/mrt.c          for (j=0; j&lt;rp.num_y; j++) temp += fabs((y[j] - yhat[j]));</span>
+<span class='curline'><a href='../S/62.html#L313'>num_y</a>             313 src/mrt.c            for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/62.html#L314'>num_y</a>             314 src/mrt.c      	for (i=0; i&lt;rp.num_y; i++) {</span>
+<span class='curline'><a href='../S/92.html#L94'>num_y</a>              94 src/rpart.c        rp.num_y  = ny;</span>
+<span class='curline'><a href='../S/92.html#L113'>num_y</a>             113 src/rpart.c        for (i=0; i&lt;nny; i++)  rp.ydata[i] = &amp;(ymat[i*rp.num_y]);</span>
+<span class='curline'><a href='../S/82.html#L41'>num_y</a>              41 src/rpart.h        int    num_y;          /* number of y variables */</span>
+<span class='curline'><a href='../S/83.html#L35'>num_y</a>              35 src/s_xpred.c      rp.num_y  = *ny;</span>
+<span class='curline'><a href='../S/83.html#L80'>num_y</a>              80 src/s_xpred.c      for (i=0; i&lt;n; i++)  rp.ydata[i] = &amp;(ymat[i*rp.num_y]);</span>
+</pre>
+</body>
+</html>

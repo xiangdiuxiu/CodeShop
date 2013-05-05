@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tree</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/55.html#L12'>tree</a>               12 src/branch.c   struct node *branch(struct node *tree, int obs)</span>
+<span class='curline'><a href='../S/55.html#L19'>tree</a>               19 src/branch.c       if (tree-&gt;leftson ==0) return(0);</span>
+<span class='curline'><a href='../S/55.html#L21'>tree</a>               21 src/branch.c       me = tree;</span>
+<span class='curline'><a href='../S/92.html#L49'>tree</a>               49 src/rpart.c              struct node **tree,            char **error,   int *which,</span>
+<span class='curline'><a href='../S/92.html#L168'>tree</a>              168 src/rpart.c        *tree = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/92.html#L169'>tree</a>              169 src/rpart.c        (*tree)-&gt;num_obs = n;</span>
+<span class='curline'><a href='../S/92.html#L170'>tree</a>              170 src/rpart.c        (*tree)-&gt;sum_wt  = temp;</span>
+<span class='curline'><a href='../S/92.html#L173'>tree</a>              173 src/rpart.c        (*rp_eval)(n, rp.ydata, (*tree)-&gt;response_est, &amp;((*tree)-&gt;risk), wt);</span>
+<span class='curline'><a href='../S/92.html#L174'>tree</a>              174 src/rpart.c        (*tree)-&gt;complexity = (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/92.html#L175'>tree</a>              175 src/rpart.c        rp.alpha = rp.complexity * (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/92.html#L181'>tree</a>              181 src/rpart.c        partition(1, (*tree), &amp;temp);</span>
+<span class='curline'><a href='../S/92.html#L182'>tree</a>              182 src/rpart.c        cptable-&gt;cp = (*tree)-&gt;complexity;</span>
+<span class='curline'><a href='../S/92.html#L183'>tree</a>              183 src/rpart.c        cptable-&gt;risk = (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/92.html#L190'>tree</a>              190 src/rpart.c        if ((*tree)-&gt;rightson ==0) return(0); /* Nothing more needs to be done */</span>
+<span class='curline'><a href='../S/92.html#L191'>tree</a>              191 src/rpart.c        make_cp_list((*tree), (*tree)-&gt;complexity, cptable);</span>
+<span class='curline'><a href='../S/92.html#L192'>tree</a>              192 src/rpart.c        make_cp_table((*tree), (*tree)-&gt;complexity, 0);</span>
+<span class='curline'><a href='../S/92.html#L194'>tree</a>              194 src/rpart.c        if (xvals &gt;1 &amp;&amp; (*tree)-&gt;rightson !=0) </span>
+<span class='curline'><a href='../S/84.html#L8'>tree</a>                8 src/rpartproto.h struct node *branch(struct node *tree, int obs);</span>
+<span class='curline'><a href='../S/84.html#L47'>tree</a>               47 src/rpartproto.h       struct node **tree,            char **error,   int *which,</span>
+<span class='curline'><a href='../S/84.html#L67'>tree</a>               67 src/rpartproto.h void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/84.html#L70'>tree</a>               70 src/rpartproto.h void rundown2(struct node *tree, int obs, double *cp, double *xpred);</span>
+<span class='curline'><a href='../S/89.html#L11'>tree</a>               11 src/rundown.c  void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/89.html#L23'>tree</a>               23 src/rundown.c      otree = tree;</span>
+<span class='curline'><a href='../S/89.html#L25'>tree</a>               25 src/rundown.c      while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/89.html#L26'>tree</a>               26 src/rundown.c          tree = branch(tree, obs);</span>
+<span class='curline'><a href='../S/89.html#L27'>tree</a>               27 src/rundown.c          if (tree ==0) goto oops;</span>
+<span class='curline'><a href='../S/89.html#L28'>tree</a>               28 src/rundown.c          otree = tree;</span>
+<span class='curline'><a href='../S/89.html#L30'>tree</a>               30 src/rundown.c      xpred[i] =  tree-&gt;response_est[0];</span>
+<span class='curline'><a href='../S/89.html#L31'>tree</a>               31 src/rundown.c      xtemp[i] = (*rp_error)(rp.ydata[obs], tree-&gt;response_est);</span>
+<span class='curline'><a href='../S/88.html#L12'>tree</a>               12 src/rundown2.c void rundown2(struct node *tree, int obs, double *cp, double *xpred)</span>
+<span class='curline'><a href='../S/88.html#L23'>tree</a>               23 src/rundown2.c     otree = tree;</span>
+<span class='curline'><a href='../S/88.html#L25'>tree</a>               25 src/rundown2.c     while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/88.html#L26'>tree</a>               26 src/rundown2.c         tree = branch(tree, obs);</span>
+<span class='curline'><a href='../S/88.html#L27'>tree</a>               27 src/rundown2.c         if (tree ==0) goto oops;</span>
+<span class='curline'><a href='../S/88.html#L28'>tree</a>               28 src/rundown2.c         otree = tree;</span>
+<span class='curline'><a href='../S/88.html#L30'>tree</a>               30 src/rundown2.c     xpred[i] =  tree-&gt;response_est[0];</span>
+<span class='curline'><a href='../S/59.html#L12'>tree</a>               12 src/s_to_rp.c  static struct node *tree;</span>
+<span class='curline'><a href='../S/59.html#L32'>tree</a>               32 src/s_to_rp.c            missmat,     &amp;cptab,  &amp;tree,    &amp;(error[0]), </span>
+<span class='curline'><a href='../S/59.html#L38'>tree</a>               38 src/s_to_rp.c      rpcountup(tree, n, nvarx, &amp;itemp);</span>
+<span class='curline'><a href='../S/59.html#L91'>tree</a>               91 src/s_to_rp.c      scale = 1/tree-&gt;risk;</span>
+<span class='curline'><a href='../S/59.html#L105'>tree</a>              105 src/s_to_rp.c      rpmatrix(tree, nnode, nsplit, ncat, numcat,</span>
+<span class='curline'><a href='../S/59.html#L129'>tree</a>              129 src/s_to_rp.c      free_tree(tree, 0);</span>
+</pre>
+</body>
+</html>

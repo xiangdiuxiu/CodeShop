@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/node.match.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/node.match.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/node.match.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"node.match" &lt;-
+<a id='L2' name='L2' />function(nodes, nodelist, leaves, print.it = TRUE)
+<a id='L3' name='L3' />{
+<a id='L4' name='L4' />    node.index &lt;- match(nodes, nodelist, nomatch = 0)
+<a id='L5' name='L5' />    bad &lt;- nodes[node.index == 0]
+<a id='L6' name='L6' />    if(length(bad) &gt; 0 &amp; print.it)
+<a id='L7' name='L7' />        warning(paste("supplied nodes", paste(bad, collapse = ","),
+<a id='L8' name='L8' />                      "are not in this tree"))
+<a id='L9' name='L9' />    good &lt;- nodes[node.index &gt; 0]
+<a id='L10' name='L10' />    if(!missing(leaves) &amp;&amp; any(leaves &lt;- leaves[node.index])) {
+<a id='L11' name='L11' />        warning(paste("supplied nodes",
+<a id='L12' name='L12' />                      paste(good[leaves], collapse = ","), "are leaves"))
+<a id='L13' name='L13' />        node.index[node.index &gt; 0][!leaves]
+<a id='L14' name='L14' />    }
+<a id='L15' name='L15' />    else node.index[node.index &gt; 0]
+<a id='L16' name='L16' />}
+<a id='L17' name='L17' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+17 R/node.match.R]</em> */</em>
+</body>
+</html>

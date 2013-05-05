@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>node</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/55.html#L12'>node</a>               12 src/branch.c   struct node *branch(struct node *tree, int obs)</span>
+<span class='curline'><a href='../S/55.html#L15'>node</a>               15 src/branch.c       struct node *me;</span>
+<span class='curline'><a href='../S/72.html#L17'>node</a>               17 src/bsplit.c   void bsplit(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/87.html#L11'>node</a>               11 src/fix_cp.c   void fix_cp(struct node *me, double parent_cp)</span>
+<span class='curline'><a href='../S/75.html#L10'>node</a>               10 src/free_tree.c void free_tree(struct node *node,  int freenode)</span>
+<span class='curline'><a href='../S/75.html#L14'>node</a>               14 src/free_tree.c     if (node-&gt;rightson !=0) free_tree(node-&gt;rightson, 1);</span>
+<span class='curline'><a href='../S/75.html#L15'>node</a>               15 src/free_tree.c     if (node-&gt;leftson  !=0) free_tree(node-&gt;leftson,  1);</span>
+<span class='curline'><a href='../S/75.html#L17'>node</a>               17 src/free_tree.c     for (s1=node-&gt;surrogate; s1!=0; ){</span>
+<span class='curline'><a href='../S/75.html#L22'>node</a>               22 src/free_tree.c     for (s1=node-&gt;primary; s1!=0; ){</span>
+<span class='curline'><a href='../S/75.html#L27'>node</a>               27 src/free_tree.c     if (freenode==1) Free(node);</span>
+<span class='curline'><a href='../S/64.html#L35'>node</a>               35 src/make_cp_list.c void make_cp_list(struct node *me, double parent, struct cptable *cptable_head)</span>
+<span class='curline'><a href='../S/79.html#L19'>node</a>               19 src/make_cp_table.c struct cptable *make_cp_table(struct node *me, double parent, int nsplit)</span>
+<span class='curline'><a href='../S/74.html#L31'>node</a>               31 src/node.h         struct node *rightson;</span>
+<span class='curline'><a href='../S/74.html#L32'>node</a>               32 src/node.h         struct node *leftson;</span>
+<span class='curline'><a href='../S/71.html#L10'>node</a>               10 src/nodesplit.c void nodesplit(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/77.html#L17'>node</a>               17 src/partition.c int partition(int nodenum, struct node *splitnode, double *sumrisk)</span>
+<span class='curline'><a href='../S/77.html#L19'>node</a>               19 src/partition.c     struct node *me;</span>
+<span class='curline'><a href='../S/77.html#L78'>node</a>               78 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L79'>node</a>               79 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L93'>node</a>               93 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L94'>node</a>               94 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L106'>node</a>              106 src/partition.c     me-&gt;leftson = (struct node *)CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/77.html#L118'>node</a>              118 src/partition.c     me-&gt;rightson = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/77.html#L171'>node</a>              171 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L172'>node</a>              172 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/86.html#L39'>node</a>               39 src/pred_rpart.c     int node, nspl, var, dir;</span>
+<span class='curline'><a href='../S/86.html#L67'>node</a>               67 src/pred_rpart.c     node =1;   /*current node of the tree */</span>
+<span class='curline'><a href='../S/86.html#L68'>node</a>               68 src/pred_rpart.c next:   for (npos=0; nnum[npos]!=node; npos++);  /*position of the node */</span>
+<span class='curline'><a href='../S/86.html#L80'>node</a>               80 src/pred_rpart.c             if (dir== -1) node = 2*node;</span>
+<span class='curline'><a href='../S/86.html#L81'>node</a>               81 src/pred_rpart.c             else          node = 2*node +1;</span>
+<span class='curline'><a href='../S/86.html#L97'>node</a>               97 src/pred_rpart.c                 if (dir== -1) node = 2*node;</span>
+<span class='curline'><a href='../S/86.html#L98'>node</a>               98 src/pred_rpart.c                 else          node = 2*node +1;</span>
+<span class='curline'><a href='../S/86.html#L106'>node</a>              106 src/pred_rpart.c         for (j=0; nnum[j]!= (2*node); j++);</span>
+<span class='curline'><a href='../S/86.html#L108'>node</a>              108 src/pred_rpart.c         for (j=0; nnum[j]!= (1+ 2*node); j++);</span>
+<span class='curline'><a href='../S/86.html#L111'>node</a>              111 src/pred_rpart.c             if (lcount &gt; rcount) node = 2*node;</span>
+<span class='curline'><a href='../S/86.html#L112'>node</a>              112 src/pred_rpart.c             else                 node = 2*node +1;</span>
+<span class='curline'><a href='../S/92.html#L49'>node</a>               49 src/rpart.c              struct node **tree,            char **error,   int *which,</span>
+<span class='curline'><a href='../S/92.html#L167'>node</a>              167 src/rpart.c        nodesize = sizeof(struct node) + (rp.num_resp-2)*sizeof(double);</span>
+<span class='curline'><a href='../S/92.html#L168'>node</a>              168 src/rpart.c        *tree = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/84.html#L8'>node</a>                8 src/rpartproto.h struct node *branch(struct node *tree, int obs);</span>
+<span class='curline'><a href='../S/84.html#L10'>node</a>               10 src/rpartproto.h void bsplit(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/84.html#L16'>node</a>               16 src/rpartproto.h void fix_cp(struct node *me, double parent_cp);</span>
+<span class='curline'><a href='../S/84.html#L18'>node</a>               18 src/rpartproto.h void free_tree(struct node *node,  int freenode);</span>
+<span class='curline'><a href='../S/84.html#L28'>node</a>               28 src/rpartproto.h void make_cp_list(struct node *me, double parent, </span>
+<span class='curline'><a href='../S/84.html#L31'>node</a>               31 src/rpartproto.h struct cptable *make_cp_table(struct node *me, double parent, int nsplit);</span>
+<span class='curline'><a href='../S/84.html#L35'>node</a>               35 src/rpartproto.h void nodesplit(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/84.html#L37'>node</a>               37 src/rpartproto.h int partition(int nodenum, struct node *splitnode, double *sumrisk);</span>
+<span class='curline'><a href='../S/84.html#L47'>node</a>               47 src/rpartproto.h       struct node **tree,            char **error,   int *which,</span>
+<span class='curline'><a href='../S/84.html#L57'>node</a>               57 src/rpartproto.h void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat);</span>
+<span class='curline'><a href='../S/84.html#L62'>node</a>               62 src/rpartproto.h void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/84.html#L67'>node</a>               67 src/rpartproto.h void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/84.html#L70'>node</a>               70 src/rpartproto.h void rundown2(struct node *tree, int obs, double *cp, double *xpred);</span>
+<span class='curline'><a href='../S/84.html#L88'>node</a>               88 src/rpartproto.h void surrogate(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/56.html#L12'>node</a>               12 src/rpcountup.c void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat)</span>
+<span class='curline'><a href='../S/58.html#L9'>node</a>                9 src/rpmatrix.c void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/89.html#L11'>node</a>               11 src/rundown.c  void rundown(struct node *tree,  int obs,     double *cp, </span>
+<span class='curline'><a href='../S/89.html#L15'>node</a>               15 src/rundown.c      struct node *otree;</span>
+<span class='curline'><a href='../S/88.html#L12'>node</a>               12 src/rundown2.c void rundown2(struct node *tree, int obs, double *cp, double *xpred)</span>
+<span class='curline'><a href='../S/88.html#L15'>node</a>               15 src/rundown2.c     struct node *otree;</span>
+<span class='curline'><a href='../S/59.html#L12'>node</a>               12 src/s_to_rp.c  static struct node *tree;</span>
+<span class='curline'><a href='../S/83.html#L23'>node</a>               23 src/s_xpred.c      struct node *xtree;</span>
+<span class='curline'><a href='../S/83.html#L126'>node</a>              126 src/s_xpred.c      nodesize = sizeof(struct node) + (rp.num_resp-2)*sizeof(double);</span>
+<span class='curline'><a href='../S/83.html#L131'>node</a>              131 src/s_xpred.c      xtree = (struct node *) ALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/83.html#L169'>node</a>              169 src/s_xpred.c      xtree = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/91.html#L20'>node</a>               20 src/surrogate.c void surrogate(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/63.html#L45'>node</a>               45 src/xval.c         struct node *xtree;</span>
+<span class='curline'><a href='../S/63.html#L106'>node</a>              106 src/xval.c         xtree = (struct node *) CALLOC(1, nodesize);</span>
+</pre>
+</body>
+</html>

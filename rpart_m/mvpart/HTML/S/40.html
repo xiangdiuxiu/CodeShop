@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/prune.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/prune.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/prune.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{prune.rpart}
+<a id='L2' name='L2' />\alias{prune.rpart}
+<a id='L3' name='L3' />\alias{prune}
+<a id='L4' name='L4' />\title{
+<a id='L5' name='L5' />  Cost-complexity Pruning of an Rpart Object 
+<a id='L6' name='L6' />}
+<a id='L7' name='L7' />\description{
+<a id='L8' name='L8' />Determines a nested sequence of subtrees of the supplied \code{rpart} object 
+<a id='L9' name='L9' />by recursively \code{snipping} off the least important splits, based on the 
+<a id='L10' name='L10' />complexity parameter (\code{cp}). 
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />\usage{
+<a id='L13' name='L13' />\method{prune}{rpart}(tree, cp, ...)
+<a id='L14' name='L14' />}
+<a id='L15' name='L15' />\arguments{
+<a id='L16' name='L16' />\item{tree}{
+<a id='L17' name='L17' />fitted model object of class \code{rpart}.  This is assumed to be the result 
+<a id='L18' name='L18' />of some function that produces an object with the same named 
+<a id='L19' name='L19' />components as that returned by the \code{rpart} function. 
+<a id='L20' name='L20' />}
+<a id='L21' name='L21' />\item{cp}{
+<a id='L22' name='L22' />  Complexity parameter to which the \code{rpart} object will be trimmed.
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\item{\dots}{further arguments passed to or from other methods.}
+<a id='L25' name='L25' />}
+<a id='L26' name='L26' />\value{
+<a id='L27' name='L27' />A new \code{rpart} object that is trimmed to the value \code{cp}. 
+<a id='L28' name='L28' />}
+<a id='L29' name='L29' />\seealso{
+<a id='L30' name='L30' />\code{\link{rpart}} 
+<a id='L31' name='L31' />}
+<a id='L32' name='L32' />\examples{
+<a id='L33' name='L33' />data(car.test.frame)
+<a id='L34' name='L34' />z.auto &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L35' name='L35' />zp &lt;- prune(z.auto, cp=0.1)
+<a id='L36' name='L36' />plot(zp) #plot smaller rpart object
+<a id='L37' name='L37' />}
+<a id='L38' name='L38' />\keyword{tree}
+<a id='L39' name='L39' />% docclass is function
+<a id='L40' name='L40' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+40 man/prune.rpart.Rd]</em> */</em>
+</body>
+</html>

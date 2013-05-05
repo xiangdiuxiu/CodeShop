@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/makeform.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/makeform.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/makeform.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{makeform}
+<a id='L2' name='L2' />\alias{makeform}
+<a id='L3' name='L3' />\title{Formula Constructor}
+<a id='L4' name='L4' />\description{
+<a id='L5' name='L5' />  This function constructs a formula from a data frame given the locations of the
+<a id='L6' name='L6' />  response and other variables. It is useful for long or repetitive formulas.
+<a id='L7' name='L7' />}
+<a id='L8' name='L8' />
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />makeform(data, ycol, xcol, zcol, FUN, maxy = 20, extra)
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />
+<a id='L13' name='L13' />\arguments{
+<a id='L14' name='L14' />  \item{data}{ The data frame or matrix for which the formula is to be contructed, }
+<a id='L15' name='L15' />  \item{ycol}{ The locations (or names) of the response variables in \code{data}. }
+<a id='L16' name='L16' />  \item{xcol}{ The locations (or names) of the explanatory variables in \code{data}. }
+<a id='L17' name='L17' />  \item{zcol}{ The locations (or names) of the conditioning variables in \code{data};
+<a id='L18' name='L18' />   for use in the \code{vegan} package. }
+<a id='L19' name='L19' />  \item{FUN}{ A function to apply to the response.}
+<a id='L20' name='L20' />  \item{maxy}{ The number of multivariate responses before abbreviated notation is used.
+<a id='L21' name='L21' />   see examples below.}
+<a id='L22' name='L22' />  \item{extra}{ Extra term(s) for the RHS of the formula.}
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />
+<a id='L25' name='L25' />\details{
+<a id='L26' name='L26' />makeform constructs a formula and is useful for long and/or repetitive formulae.
+<a id='L27' name='L27' />See examples below.
+<a id='L28' name='L28' />}
+<a id='L29' name='L29' />
+<a id='L30' name='L30' />\value{
+<a id='L31' name='L31' />  Returns a formula.
+<a id='L32' name='L32' />}
+<a id='L33' name='L33' />
+<a id='L34' name='L34' />  
+<a id='L35' name='L35' />\examples{
+<a id='L36' name='L36' />data(spider)
+<a id='L37' name='L37' />makeform(spider,1,13:18)
+<a id='L38' name='L38' /># arct.lute ~ water + sand + moss + reft + twigs + herbs
+<a id='L39' name='L39' />
+<a id='L40' name='L40' />makeform(spider,1:12,13:18)
+<a id='L41' name='L41' /># cbind(arct.lute, pard.lugu, zora.spin, pard.nigr, pard.pull, 
+<a id='L42' name='L42' /># aulo.albi, troc.terr, alop.cune, pard.mont, alop.acce, alop.fabr, 
+<a id='L43' name='L43' /># arct.peri) ~ water + sand + moss + reft + twigs + herbs
+<a id='L44' name='L44' />
+<a id='L45' name='L45' />makeform(spider,1:12,13:15,16:18)
+<a id='L46' name='L46' /># cbind(arct.lute, pard.lugu, zora.spin, pard.nigr, pard.pull, 
+<a id='L47' name='L47' /># aulo.albi, troc.terr, alop.cune, pard.mont, alop.acce, alop.fabr, 
+<a id='L48' name='L48' /># arct.peri) ~ water + sand + moss + Condition(reft + twigs + herbs)
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />makeform(spider,1:12,13:15,maxy=6)
+<a id='L51' name='L51' /># as.matrix(spider[, 1:12]) ~ water + sand + moss
+<a id='L52' name='L52' />
+<a id='L53' name='L53' />makeform(spider,1:3,13:15,FUN=sqrt)
+<a id='L54' name='L54' /># sqrt(cbind(arct.lute, pard.lugu, zora.spin)) ~ water + sand + moss
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />makeform(spider,1:3,13:15,FUN=sqrt,extra="I(water^2)+")
+<a id='L57' name='L57' /># sqrt(cbind(arct.lute, pard.lugu, zora.spin)) ~ I(water^2) + water + 
+<a id='L58' name='L58' /># sand + moss
+<a id='L59' name='L59' />
+<a id='L60' name='L60' />}
+<a id='L61' name='L61' />\keyword{models}
+<a id='L62' name='L62' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+62 man/makeform.Rd]</em> */</em>
+</body>
+</html>

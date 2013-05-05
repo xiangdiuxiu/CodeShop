@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpartcallback.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpartcallback.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpartcallback.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpartcallback" &lt;-
+<a id='L2' name='L2' />function(mlist, nobs, init)
+<a id='L3' name='L3' />{
+<a id='L4' name='L4' />    if (length(mlist) &lt; 3)
+<a id='L5' name='L5' />        stop("User written methods must have 3 functions")
+<a id='L6' name='L6' />    if (is.null(mlist$init) || typeof(mlist$init) != 'closure')
+<a id='L7' name='L7' />        stop("User written method does not contain an init function")
+<a id='L8' name='L8' />    if (is.null(mlist$split) || typeof(mlist$split) != 'closure')
+<a id='L9' name='L9' />        stop("User written method does not contain a split function")
+<a id='L10' name='L10' />    if (is.null(mlist$eval) || typeof(mlist$eval) != 'closure')
+<a id='L11' name='L11' />        stop("User written method does not contain an eval function")
+<a id='L12' name='L12' />
+<a id='L13' name='L13' />    user.eval &lt;- mlist$eval
+<a id='L14' name='L14' />    user.split &lt;- mlist$split
+<a id='L15' name='L15' />
+<a id='L16' name='L16' />    numresp &lt;- init$numresp
+<a id='L17' name='L17' />    numy &lt;-  init$numy
+<a id='L18' name='L18' />    parms &lt;- init$parms
+<a id='L19' name='L19' />
+<a id='L20' name='L20' />    #
+<a id='L21' name='L21' />    # expr2 is an expression that will call the user "evaluation"
+<a id='L22' name='L22' />    #   function, and check that what comes back is valid
+<a id='L23' name='L23' />    # expr1 does the same for the user "split" function
+<a id='L24' name='L24' />    #
+<a id='L25' name='L25' />    # For speed in the C interface, yback, xback, and wback are
+<a id='L26' name='L26' />    #  fixed S vectors of a fixed size, and nback tells us how
+<a id='L27' name='L27' />    #  much of the vector is actually being used on this particular
+<a id='L28' name='L28' />    #  callback.
+<a id='L29' name='L29' />    #
+<a id='L30' name='L30' />    if (numy==1) {
+<a id='L31' name='L31' />        expr2 &lt;- quote({
+<a id='L32' name='L32' />            temp &lt;- user.eval(yback[1:nback], wback[1:nback], parms)
+<a id='L33' name='L33' />            if (length(temp$label) != numresp)
+<a id='L34' name='L34' />                stop("User eval function returned invalid label")
+<a id='L35' name='L35' />            if (length(temp$deviance) !=1)
+<a id='L36' name='L36' />                stop("User eval function returned invalid deviance")
+<a id='L37' name='L37' />            as.numeric(as.vector(c(temp$deviance, temp$label)))
+<a id='L38' name='L38' />        })
+<a id='L39' name='L39' />        expr1 &lt;- quote({
+<a id='L40' name='L40' />            if (nback &lt;0) { #categorical variable
+<a id='L41' name='L41' />                n2 &lt;- -1*nback
+<a id='L42' name='L42' />                temp  &lt;- user.split(yback[1:n2], wback[1:n2],
+<a id='L43' name='L43' />                                    xback[1:n2], parms, FALSE)
+<a id='L44' name='L44' />                ncat &lt;- length(unique(xback[1:n2]))
+<a id='L45' name='L45' />                if (length(temp$goodness) != ncat-1 ||
+<a id='L46' name='L46' />                    length(temp$direction) != ncat)
+<a id='L47' name='L47' />                    stop("Invalid return from categorical split fcn")
+<a id='L48' name='L48' />            }
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />            else {
+<a id='L51' name='L51' />                temp &lt;- user.split(yback[1:nback], wback[1:nback],
+<a id='L52' name='L52' />                                   xback[1:nback], parms, TRUE)
+<a id='L53' name='L53' />                if (length(temp$goodness) != (nback-1))
+<a id='L54' name='L54' />                    stop("User split function returned invalid goodness")
+<a id='L55' name='L55' />                if (length(temp$direction) != (nback-1))
+<a id='L56' name='L56' />                    stop("User split function returned invalid direction")
+<a id='L57' name='L57' />            }
+<a id='L58' name='L58' />            as.numeric(as.vector(c(temp$goodness, temp$direction)))
+<a id='L59' name='L59' />        })
+<a id='L60' name='L60' />    }
+<a id='L61' name='L61' />    else {
+<a id='L62' name='L62' />        expr2 &lt;- quote({
+<a id='L63' name='L63' />            tempy &lt;- matrix(yback[1:(nback*numy)], ncol=numy)
+<a id='L64' name='L64' />            temp &lt;- user.eval(tempy, wback[1:nback], parms)
+<a id='L65' name='L65' />            if (length(temp$label) != numresp)
+<a id='L66' name='L66' />                stop("User eval function returned invalid label")
+<a id='L67' name='L67' />            if (length(temp$deviance) != 1)
+<a id='L68' name='L68' />                stop("User eval function returned invalid deviance")
+<a id='L69' name='L69' />            as.numeric(as.vector(c(temp$deviance, temp$label)))
+<a id='L70' name='L70' />        })
+<a id='L71' name='L71' />        expr1 &lt;- quote({
+<a id='L72' name='L72' />            if (nback &lt;0) { #categorical variable
+<a id='L73' name='L73' />                n2 &lt;- -1*nback
+<a id='L74' name='L74' />                tempy &lt;- matrix(yback[1:(n2*numy)], ncol=numy)
+<a id='L75' name='L75' />                temp  &lt;- user.split(tempy, wback[1:n2], xback[1:n2],
+<a id='L76' name='L76' />                                    parms, FALSE)
+<a id='L77' name='L77' />                ncat &lt;- length(unique(xback[1:n2]))
+<a id='L78' name='L78' />                if (length(temp$goodness) != ncat-1 ||
+<a id='L79' name='L79' />                    length(temp$direction) != ncat)
+<a id='L80' name='L80' />                    stop("Invalid return from categorical split fcn")
+<a id='L81' name='L81' />            }
+<a id='L82' name='L82' />            else {
+<a id='L83' name='L83' />                tempy &lt;- matrix(yback[1:(nback*numy)], ncol=numy)
+<a id='L84' name='L84' />                temp &lt;- user.split(tempy, wback[1:nback],xback[1:nback],
+<a id='L85' name='L85' />                                   parms, TRUE)
+<a id='L86' name='L86' />                if (length(temp$goodness) != (nback-1))
+<a id='L87' name='L87' />                    stop("User split function returned invalid goodness")
+<a id='L88' name='L88' />                if (length(temp$direction) != (nback-1))
+<a id='L89' name='L89' />                    stop("User split function returned invalid direction")
+<a id='L90' name='L90' />            }
+<a id='L91' name='L91' />            as.numeric(as.vector(c(temp$goodness, temp$direction)))
+<a id='L92' name='L92' />        })
+<a id='L93' name='L93' />    }
+<a id='L94' name='L94' />    #
+<a id='L95' name='L95' />    #  The vectors nback, wback, xback and yback will have their
+<a id='L96' name='L96' />    #  contents constantly re-inserted by C code.  It's one way to make
+<a id='L97' name='L97' />    #  things very fast.  It is dangerous to do this, so they
+<a id='L98' name='L98' />    #  are tossed into a separate frame to isolate them.  Evaluations of
+<a id='L99' name='L99' />    #  the above expressions occur in that frame.
+<a id='L100' name='L100' />    #
+<a id='L101' name='L101' />    rho &lt;- new.env()
+<a id='L102' name='L102' />    assign("nback", integer(1), envir = rho)
+<a id='L103' name='L103' />    assign("wback", double(nobs), envir = rho)
+<a id='L104' name='L104' />    assign("xback", double(nobs), envir = rho)
+<a id='L105' name='L105' />    assign("yback", double(nobs*numy), envir = rho)
+<a id='L106' name='L106' />    assign("user.eval", user.eval, envir = rho)
+<a id='L107' name='L107' />    assign("user.split", user.split, envir = rho)
+<a id='L108' name='L108' />    assign("numy", numy, envir = rho)
+<a id='L109' name='L109' />    assign("numresp", numresp, envir = rho)
+<a id='L110' name='L110' />    assign("parms", parms, envir = rho)
+<a id='L111' name='L111' />    .Call("init_rpcallback", rho, as.integer(numy), as.integer(numresp),
+<a id='L112' name='L112' />          expr1, expr2, PACKAGE = "mvpart")
+<a id='L113' name='L113' />    list(expr1 = expr1, expr2 = expr2, rho = rho)
+<a id='L114' name='L114' />}
+<a id='L115' name='L115' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+115 R/rpartcallback.R]</em> */</em>
+</body>
+</html>

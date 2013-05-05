@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>len</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/70.html#L14'>len</a>                14 src/formatg.c      int len;</span>
+<span class='curline'><a href='../S/70.html#L23'>len</a>                23 src/formatg.c      len = strlen(p);</span>
+<span class='curline'><a href='../S/70.html#L24'>len</a>                24 src/formatg.c      if (tolower(p[len-5]) == 'e' &amp;&amp;</span>
+<span class='curline'><a href='../S/70.html#L25'>len</a>                25 src/formatg.c          (p[len-4] == '+' || p[len-4] == '-') &amp;&amp;</span>
+<span class='curline'><a href='../S/70.html#L26'>len</a>                26 src/formatg.c          p[len-3] == '0' &amp;&amp;</span>
+<span class='curline'><a href='../S/70.html#L27'>len</a>                27 src/formatg.c          isdigit(p[len-2]) &amp;&amp; isdigit(p[len-1])) {</span>
+<span class='curline'><a href='../S/70.html#L28'>len</a>                28 src/formatg.c          p[len-3] = p[len-2];</span>
+<span class='curline'><a href='../S/70.html#L29'>len</a>                29 src/formatg.c          p[len-2] = p[len-1];</span>
+<span class='curline'><a href='../S/70.html#L30'>len</a>                30 src/formatg.c          p[len-1] = '\0';</span>
+</pre>
+</body>
+</html>

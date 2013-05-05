@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>s4</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/90.html#L18'>s4</a>                 18 src/insert_split.c     struct split *s1, *s2, *s3=NULL, *s4;</span>
+<span class='curline'><a href='../S/90.html#L46'>s4</a>                 46 src/insert_split.c     for (s4= *listhead; s4-&gt;nextsplit!=0; s4=s4-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/90.html#L47'>s4</a>                 47 src/insert_split.c     s3 = s4;</span>
+<span class='curline'><a href='../S/90.html#L61'>s4</a>                 61 src/insert_split.c         Free(s4);         /*get new memory-- this chunk may be too small */</span>
+<span class='curline'><a href='../S/90.html#L62'>s4</a>                 62 src/insert_split.c         s4 = (struct split *)CALLOC(1, sizeof(struct split) +</span>
+<span class='curline'><a href='../S/90.html#L65'>s4</a>                 65 src/insert_split.c     if (s1==s3)   s4-&gt;nextsplit =0;</span>
+<span class='curline'><a href='../S/90.html#L66'>s4</a>                 66 src/insert_split.c     else         {s3-&gt;nextsplit =0;  s4-&gt;nextsplit =s2;}</span>
+<span class='curline'><a href='../S/90.html#L69'>s4</a>                 69 src/insert_split.c     s4 = (struct split *)CALLOC(1, sizeof(struct split) +</span>
+<span class='curline'><a href='../S/90.html#L71'>s4</a>                 71 src/insert_split.c     s4-&gt;nextsplit = s2;</span>
+<span class='curline'><a href='../S/90.html#L73'>s4</a>                 73 src/insert_split.c     if (s2== *listhead) *listhead     = s4;</span>
+<span class='curline'><a href='../S/90.html#L74'>s4</a>                 74 src/insert_split.c     else                s1-&gt;nextsplit = s4;</span>
+<span class='curline'><a href='../S/90.html#L75'>s4</a>                 75 src/insert_split.c     return(s4);</span>
+</pre>
+</body>
+</html>

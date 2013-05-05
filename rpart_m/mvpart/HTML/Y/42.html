@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>countwt</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/62.html#L15'>countwt</a>            15 src/mrt.c      static int *tsplit, *countn, *countwt;</span>
+<span class='curline'><a href='../S/62.html#L60'>countwt</a>            60 src/mrt.c          countwt = (int *)ALLOC(3*maxcat, sizeof(int));</span>
+<span class='curline'><a href='../S/62.html#L206'>countwt</a>           206 src/mrt.c              countn[i] = 0; countwt[i] = 0;</span>
+<span class='curline'><a href='../S/62.html#L213'>countwt</a>           213 src/mrt.c                      countwt[k] += wt[i];</span>
+<span class='curline'><a href='../S/62.html#L219'>countwt</a>           219 src/mrt.c      	    if (countwt[i]&gt;0) mean[i+nclass*j] /= countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L256'>countwt</a>           256 src/mrt.c              right_wt += countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L257'>countwt</a>           257 src/mrt.c              left_wt -= countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L258'>countwt</a>           258 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L264'>countwt</a>           264 src/mrt.c                  right_wt -= countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L265'>countwt</a>           265 src/mrt.c              left_wt += countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L266'>countwt</a>           266 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+</pre>
+</body>
+</html>

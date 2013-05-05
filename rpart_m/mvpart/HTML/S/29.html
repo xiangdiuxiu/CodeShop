@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/xpred.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/xpred.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/xpred.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{xpred.rpart}
+<a id='L2' name='L2' />\alias{xpred.rpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Return Cross-Validated Predictions 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />  Gives the predicted values for an \code{rpart} fit, under
+<a id='L8' name='L8' />  cross validation, for a set of complexity parameter values.
+<a id='L9' name='L9' />}
+<a id='L10' name='L10' />\usage{
+<a id='L11' name='L11' />xpred.rpart(fit, xval=10, cp)
+<a id='L12' name='L12' />}
+<a id='L13' name='L13' />\arguments{
+<a id='L14' name='L14' />\item{fit}{
+<a id='L15' name='L15' />a \code{rpart} object. 
+<a id='L16' name='L16' />}
+<a id='L17' name='L17' />\item{xval}{
+<a id='L18' name='L18' />  number of cross-validation groups.  This may also be an explicit list of
+<a id='L19' name='L19' />  integers that define the cross-validation groups.
+<a id='L20' name='L20' />}
+<a id='L21' name='L21' />\item{cp}{
+<a id='L22' name='L22' />  the desired list of complexity values.  By default it is taken from the
+<a id='L23' name='L23' />  \code{cptable} component of the fit.
+<a id='L24' name='L24' />}}
+<a id='L25' name='L25' />\value{
+<a id='L26' name='L26' />  a matrix with one row for each observation and one column for each complexity
+<a id='L27' name='L27' />  value.
+<a id='L28' name='L28' />}
+<a id='L29' name='L29' />\details{
+<a id='L30' name='L30' />  Complexity penalties are actually ranges, not values.  If the
+<a id='L31' name='L31' />  \code{cp} values found in the table were \eqn{.36}, \eqn{.28},
+<a id='L32' name='L32' />  and \eqn{.13}, for instance, this means that the first row of the
+<a id='L33' name='L33' />  table holds for all complexity penalties in the range \eqn{[.36, 1]},
+<a id='L34' name='L34' />  the second row for \code{cp} in the range \eqn{[.28, .36)} and
+<a id='L35' name='L35' />  the third row for \eqn{[.13,.28)}.  By default, the geometric mean
+<a id='L36' name='L36' />  of each interval is used for cross validation.
+<a id='L37' name='L37' />}
+<a id='L38' name='L38' />\seealso{
+<a id='L39' name='L39' />\code{\link{rpart}} 
+<a id='L40' name='L40' />}
+<a id='L41' name='L41' />\examples{
+<a id='L42' name='L42' />data(car.test.frame)
+<a id='L43' name='L43' />fit &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L44' name='L44' />xmat &lt;- xpred.rpart(fit)
+<a id='L45' name='L45' />xerr &lt;- (xmat - car.test.frame$Mileage)^2
+<a id='L46' name='L46' />apply(xerr, 2, sum)   # cross-validated error estimate
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /># approx same result as rel. error from printcp(fit)
+<a id='L49' name='L49' />apply(xerr, 2, sum)/var(car.test.frame$Mileage) 
+<a id='L50' name='L50' />printcp(fit)
+<a id='L51' name='L51' />}
+<a id='L52' name='L52' />\keyword{tree}
+<a id='L53' name='L53' />% docclass is function
+<a id='L54' name='L54' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+54 man/xpred.rpart.Rd]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/print.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/print.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/print.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{print.rpart}
+<a id='L2' name='L2' />\alias{print.rpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Print an Rpart Object 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />This function prints an \code{rpart} object.  It is a method for the generic 
+<a id='L8' name='L8' />function \code{print} of class \code{rpart}. 
+<a id='L9' name='L9' />}
+<a id='L10' name='L10' />\usage{
+<a id='L11' name='L11' />\method{print}{rpart}(x, minlength=0, spaces=2, cp, digits= getOption("digits"), \dots)
+<a id='L12' name='L12' />}
+<a id='L13' name='L13' />\arguments{
+<a id='L14' name='L14' />\item{x}{
+<a id='L15' name='L15' />fitted model object of class \code{rpart}.  This is assumed to be the result 
+<a id='L16' name='L16' />of some function that produces an object with the same named 
+<a id='L17' name='L17' />components as that returned by the \code{rpart} function. 
+<a id='L18' name='L18' />}
+<a id='L19' name='L19' />\item{minlength}{
+<a id='L20' name='L20' />Controls the abbreviation of labels: see \code{\link{labels.rpart}}.
+<a id='L21' name='L21' />}
+<a id='L22' name='L22' />\item{spaces}{
+<a id='L23' name='L23' />the number of spaces to indent nodes of increasing depth. 
+<a id='L24' name='L24' />}
+<a id='L25' name='L25' />\item{digits}{
+<a id='L26' name='L26' />the number of digits of numbers to print. 
+<a id='L27' name='L27' />}
+<a id='L28' name='L28' />\item{cp}{
+<a id='L29' name='L29' />  prune all nodes with a complexity less than \code{cp} from the
+<a id='L30' name='L30' />  printout. Ignored if unspecified.
+<a id='L31' name='L31' />}
+<a id='L32' name='L32' />\item{\dots}{
+<a id='L33' name='L33' />  arguments to be passed to or from other methods.
+<a id='L34' name='L34' />}}
+<a id='L35' name='L35' />\section{Side Effects}{
+<a id='L36' name='L36' />  A semi-graphical layout of the contents of \code{x$frame} is
+<a id='L37' name='L37' />  printed.  Indentation is used to convey the tree topology.
+<a id='L38' name='L38' />  Information for each node includes the node number, split, size,
+<a id='L39' name='L39' />  deviance, and fitted value.  For the \code{"class"} method, the
+<a id='L40' name='L40' />  class probabilties are also printed. 
+<a id='L41' name='L41' />}
+<a id='L42' name='L42' />\details{
+<a id='L43' name='L43' />  This function is a method for the generic function \code{print} for class 
+<a id='L44' name='L44' />  \code{"rpart"}.  It can be invoked by calling print for an object of the 
+<a id='L45' name='L45' />  appropriate class, or directly by calling \code{print.rpart} regardless of 
+<a id='L46' name='L46' />  the class of the object. 
+<a id='L47' name='L47' />}
+<a id='L48' name='L48' />\seealso{
+<a id='L49' name='L49' />  \code{\link{print}},  \code{\link{rpart.object}},
+<a id='L50' name='L50' />  \code{\link{summary.rpart}},  \code{\link{printcp}}   
+<a id='L51' name='L51' />}
+<a id='L52' name='L52' />\examples{
+<a id='L53' name='L53' />data(car.test.frame)
+<a id='L54' name='L54' />z.auto &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L55' name='L55' />z.auto
+<a id='L56' name='L56' />\dontrun{node), split, n, deviance, yval
+<a id='L57' name='L57' />      * denotes terminal node
+<a id='L58' name='L58' />
+<a id='L59' name='L59' /> 1) root 60 1354.58300 24.58333  
+<a id='L60' name='L60' />   2) Weight&gt;=2567.5 45  361.20000 22.46667  
+<a id='L61' name='L61' />     4) Weight&gt;=3087.5 22   61.31818 20.40909 *
+<a id='L62' name='L62' />     5) Weight&lt;3087.5 23  117.65220 24.43478  
+<a id='L63' name='L63' />      10) Weight&gt;=2747.5 15   60.40000 23.80000 *
+<a id='L64' name='L64' />      11) Weight&lt;2747.5 8   39.87500 25.62500 *
+<a id='L65' name='L65' />   3) Weight&lt;2567.5 15  186.93330 30.93333 *
+<a id='L66' name='L66' />}}
+<a id='L67' name='L67' />\keyword{tree}
+<a id='L68' name='L68' />% docclass is function
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+68 man/print.rpart.Rd]</em> */</em>
+</body>
+</html>

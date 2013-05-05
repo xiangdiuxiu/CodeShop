@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.pca.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.pca.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.pca.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart.pca" &lt;-
+<a id='L2' name='L2' />function (tree, pts = TRUE, plt.allx = TRUE, speclabs = TRUE, 
+<a id='L3' name='L3' />    specvecs = TRUE, wgt.ave = FALSE, add.tree = TRUE, cv1 = 1, 
+<a id='L4' name='L4' />    cv2 = 2, chulls = TRUE, interact = FALSE, ...) 
+<a id='L5' name='L5' />{
+<a id='L6' name='L6' />    if (tree$method != "mrt") 
+<a id='L7' name='L7' />        stop("Only for multivariate trees !! \n")
+<a id='L8' name='L8' />    if (nrow(tree$frame) &lt; 4) 
+<a id='L9' name='L9' />        stop("Only 2 terminal nodes -- PCA not done !! \n")
+<a id='L10' name='L10' />    old.par &lt;- par(mar = rep(2, 4), xpd = TRUE)
+<a id='L11' name='L11' />    on.exit(par(old.par))
+<a id='L12' name='L12' />    frame &lt;- tree$frame
+<a id='L13' name='L13' />    ncf &lt;- ncol(frame)
+<a id='L14' name='L14' />    data &lt;- tree$y
+<a id='L15' name='L15' />    ny &lt;- ncol(data)
+<a id='L16' name='L16' />    treegrps &lt;- tree$where
+<a id='L17' name='L17' />    specs &lt;- dimnames(data)[[2]]
+<a id='L18' name='L18' />    leaves &lt;- frame$var == "&lt;leaf&gt;"
+<a id='L19' name='L19' />    n &lt;- length(leaves)
+<a id='L20' name='L20' />    ln &lt;- sum(leaves)
+<a id='L21' name='L21' />    lnot &lt;- sum(!leaves)
+<a id='L22' name='L22' />    key &lt;- dimnames(frame)[[1]]
+<a id='L23' name='L23' />    node &lt;- as.numeric(key)
+<a id='L24' name='L24' />    even.node &lt;- node[even &lt;- node%%2 == 0]
+<a id='L25' name='L25' />    num &lt;- length(specs)
+<a id='L26' name='L26' />    node.means &lt;- as.matrix(frame[, ncf])
+<a id='L27' name='L27' />    tnode.means &lt;- node.means[leaves, ]
+<a id='L28' name='L28' />    dimnames(node.means) &lt;- list(key, specs)
+<a id='L29' name='L29' />    mat &lt;- amat &lt;- node.means - node.means[rep(1, n), ]
+<a id='L30' name='L30' />    mat &lt;- mat[leaves, ]
+<a id='L31' name='L31' />    temp &lt;- mat[rep(1:ln, frame[leaves, 2]), ]
+<a id='L32' name='L32' />    z &lt;- svd(temp)
+<a id='L33' name='L33' />    maxd &lt;- sum(z$d &gt; 1e-06)
+<a id='L34' name='L34' />    d &lt;- diag(z$d[1:maxd])
+<a id='L35' name='L35' />    xall &lt;- z$u[, 1:maxd, drop = FALSE] %*% d
+<a id='L36' name='L36' />    x &lt;- amat %*% (z$v)[, 1:maxd, drop = FALSE]
+<a id='L37' name='L37' />    xlv &lt;- x[leaves, ]
+<a id='L38' name='L38' />    if (!wgt.ave) 
+<a id='L39' name='L39' />        y &lt;- z$v[, 1:maxd, drop = FALSE]
+<a id='L40' name='L40' />    else {
+<a id='L41' name='L41' />        specvecs &lt;- FALSE
+<a id='L42' name='L42' />        rc &lt;- apply(tnode.means * frame$n[leaves], 2, sum)
+<a id='L43' name='L43' />        wgt &lt;- diag(1/rc) %*% t(tnode.means * frame$n[leaves])
+<a id='L44' name='L44' />        y &lt;- wgt %*% xlv
+<a id='L45' name='L45' />    }
+<a id='L46' name='L46' />    label &lt;- 4:(3 + num)
+<a id='L47' name='L47' />    dstat &lt;- signif(frame[leaves, "yval2"], digits = options()$digits)
+<a id='L48' name='L48' />    ln &lt;- dim(dstat)[1]
+<a id='L49' name='L49' />    stat &lt;- vector("character", length = ln)
+<a id='L50' name='L50' />    for (i in 1:ln) stat[i] &lt;- paste(dstat[i, ], collapse = ", ")
+<a id='L51' name='L51' />    ymax &lt;- max(dstat)
+<a id='L52' name='L52' />    ymin &lt;- min(0, min(dstat))
+<a id='L53' name='L53' />    treegrps &lt;- as.numeric(factor(treegrps))
+<a id='L54' name='L54' />    xx &lt;- (scale(as.matrix(data), center = TRUE, scale = FALSE) %*% 
+<a id='L55' name='L55' />        z$v)[, 1:maxd, drop = FALSE]
+<a id='L56' name='L56' />    xrb &lt;- rbind(x, xx)
+<a id='L57' name='L57' />    if (plt.allx) {
+<a id='L58' name='L58' />        mxx &lt;- sqrt(apply(xrb[, c(cv1, cv2)]^2, 1, sum))
+<a id='L59' name='L59' />    }
+<a id='L60' name='L60' />    else mxx &lt;- sqrt(apply(x[, c(cv1, cv2)]^2, 1, sum))
+<a id='L61' name='L61' />    cvar &lt;- round((100 * z$d[1:maxd]^2)/sum(z$d[1:maxd]^2), digits = 2)
+<a id='L62' name='L62' />    cvar2 &lt;- round(diag(cor(xall, xx[order(tree$where), ]))[1:maxd], 
+<a id='L63' name='L63' />        3)
+<a id='L64' name='L64' />    dlabs &lt;- paste("   Dim ", c(1:maxd), " ", cvar, "% : [", 
+<a id='L65' name='L65' />        cvar2, "]")
+<a id='L66' name='L66' />    myy &lt;- sqrt(apply(y[, c(cv1, cv2)]^2, 1, sum))
+<a id='L67' name='L67' />    sc &lt;- ifelse(wgt.ave, 1, max(mxx)/max(myy))
+<a id='L68' name='L68' />    repeat {
+<a id='L69' name='L69' />        plot(c(sc * y[, cv1], xx[, cv1]), c(sc * y[, cv2], xx[, 
+<a id='L70' name='L70' />            cv2]), axes = FALSE, xlab = "", ylab = "", type = "n", 
+<a id='L71' name='L71' />            asp = 1)
+<a id='L72' name='L72' />        cxy &lt;- par("cxy")
+<a id='L73' name='L73' />        sze &lt;- par()$fin/par()$din
+<a id='L74' name='L74' />        adj &lt;- ifelse(pts, cxy[2] * sze[2], 0)
+<a id='L75' name='L75' />        if (specvecs) 
+<a id='L76' name='L76' />            segments(sc * y[, cv1], sc * y[, cv2], rep(0, nrow(y)), 
+<a id='L77' name='L77' />                rep(0, nrow(y)), col = "gray", lty = 1)
+<a id='L78' name='L78' />        mtext(dlabs[cv1], side = 1, las = 0, adj = 0, line = 0, 
+<a id='L79' name='L79' />            cex = 0.85 * par()$cex)
+<a id='L80' name='L80' />        mtext(dlabs[cv2], side = 2, las = 0, adj = 0, line = 0, 
+<a id='L81' name='L81' />            cex = 0.85 * par()$cex)
+<a id='L82' name='L82' />        if (add.tree) {
+<a id='L83' name='L83' />            pp &lt;- match(c(even.node, even.node + 1), node)
+<a id='L84' name='L84' />            nn &lt;- length(even.node)
+<a id='L85' name='L85' />            from &lt;- pp[1:nn]
+<a id='L86' name='L86' />            to &lt;- pp[(nn + 1):(2 * nn)]
+<a id='L87' name='L87' />            segments(x[from, cv1], x[from, cv2], x[to, cv1], 
+<a id='L88' name='L88' />                x[to, cv2])
+<a id='L89' name='L89' />        }
+<a id='L90' name='L90' />        if (chulls) {
+<a id='L91' name='L91' />            unitg &lt;- sort(unique(treegrps))
+<a id='L92' name='L92' />            for (i in 1:length(unitg)) {
+<a id='L93' name='L93' />                hpts &lt;- chull(xx[unitg[i] == treegrps,c(cv1,cv2)])
+<a id='L94' name='L94' />                hpts &lt;- c(hpts,hpts[1])
+<a id='L95' name='L95' />                lines(xx[unitg[i] == treegrps, c(cv1,cv2)][hpts,], col = i + 1)        
+<a id='L96' name='L96' />                }
+<a id='L97' name='L97' />        }
+<a id='L98' name='L98' />        if (plt.allx) {
+<a id='L99' name='L99' />            unitg &lt;- sort(unique(treegrps))
+<a id='L100' name='L100' />            for (i in 1:length(unitg)) 
+<a id='L101' name='L101' />                points(xx[unitg[i] == treegrps, cv1], xx[unitg[i] == treegrps, cv2], 
+<a id='L102' name='L102' />                pch = 21, col = 1, bg = i + 1, cex = 1.2*par()$cex)
+<a id='L103' name='L103' />        }
+<a id='L104' name='L104' />        if (pts) {
+<a id='L105' name='L105' />            lvnode &lt;- sort(node[leaves])
+<a id='L106' name='L106' />            for (i in 1:length(lvnode)) 
+<a id='L107' name='L107' />                points(xlv[, cv1][lvnode[i] == lvnode], xlv[, cv2][lvnode[i] == lvnode],
+<a id='L108' name='L108' />                pch = 21, cex = 2 * par()$cex, col = 1, bg = i + 1)
+<a id='L109' name='L109' />        }
+<a id='L110' name='L110' />
+<a id='L111' name='L111' />        if (speclabs) 
+<a id='L112' name='L112' />            text(sc * y[, cv1], sc * y[, cv2] + 0.5 * adj * specvecs * 
+<a id='L113' name='L113' />                (y[, cv2] &gt; 0), specs, col = "black", cex = par()$cex)
+<a id='L114' name='L114' />        points(0, 0, pch = 3, cex = par()$cex * 2.5, col = 1)
+<a id='L115' name='L115' />        if (interact) {
+<a id='L116' name='L116' />            z &lt;- locator(1)
+<a id='L117' name='L117' />            if (length(z$x)) {
+<a id='L118' name='L118' />                if (z$x &gt; 0 &amp; z$y &lt; 0) 
+<a id='L119' name='L119' />                  if (cv1 &lt; maxd) 
+<a id='L120' name='L120' />                    cv1 &lt;- cv1 + 1
+<a id='L121' name='L121' />                  else cv1 &lt;- 1
+<a id='L122' name='L122' />                else if (z$x &lt; 0 &amp; z$y &gt; 0) 
+<a id='L123' name='L123' />                  if (cv2 &lt; maxd) 
+<a id='L124' name='L124' />                    cv2 &lt;- cv2 + 1
+<a id='L125' name='L125' />                  else cv2 &lt;- 2
+<a id='L126' name='L126' />                else if (z$x &lt; 0 &amp; z$y &lt; 0) {
+<a id='L127' name='L127' />                  cv1 &lt;- 1
+<a id='L128' name='L128' />                  cv2 &lt;- 2
+<a id='L129' name='L129' />                }
+<a id='L130' name='L130' />            }
+<a id='L131' name='L131' />            else (break)
+<a id='L132' name='L132' />        }
+<a id='L133' name='L133' />        else (break)
+<a id='L134' name='L134' />    }
+<a id='L135' name='L135' />    invisible(list(y = sc * y, xlv = xlv, xx = xx))
+<a id='L136' name='L136' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+136 R/rpart.pca.R]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>freq</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/73.html#L16'>freq</a>               16 src/gini.c               *freq,</span>
+<span class='curline'><a href='../S/73.html#L68'>freq</a>               68 src/gini.c         freq   = aprior+ numclass;</span>
+<span class='curline'><a href='../S/73.html#L69'>freq</a>               69 src/gini.c         loss   = freq  + numclass;</span>
+<span class='curline'><a href='../S/73.html#L71'>freq</a>               71 src/gini.c         for (i=0; i&lt;numclass; i++)  freq[i] =0;</span>
+<span class='curline'><a href='../S/73.html#L75'>freq</a>               75 src/gini.c             freq[j] += wt[i];</span>
+<span class='curline'><a href='../S/73.html#L78'>freq</a>               78 src/gini.c         for (i=0; i&lt;numclass; i++)  freq[i] /=temp;   /*relative frequency */</span>
+<span class='curline'><a href='../S/73.html#L92'>freq</a>               92 src/gini.c             if (freq[i]&gt;0) {  /* watch out for a missing class */</span>
+<span class='curline'><a href='../S/73.html#L93'>freq</a>               93 src/gini.c             prior[i] /= freq[i];            </span>
+<span class='curline'><a href='../S/73.html#L94'>freq</a>               94 src/gini.c             aprior[i] /= (temp * freq[i]);  /* pi_i / n_i */</span>
+<span class='curline'><a href='../S/73.html#L116'>freq</a>              116 src/gini.c         for (i=0; i&lt;numclass; i++)  freq[i]=0;</span>
+<span class='curline'><a href='../S/73.html#L119'>freq</a>              119 src/gini.c         freq[j] += wt[i];</span>
+<span class='curline'><a href='../S/73.html#L128'>freq</a>              128 src/gini.c             temp += freq[j] * loss[j*numclass +i] *prior[j];</span>
+<span class='curline'><a href='../S/73.html#L137'>freq</a>              137 src/gini.c         for (i=0; i&lt;numclass; i++) value[i+1] = freq[i];</span>
+</pre>
+</body>
+</html>

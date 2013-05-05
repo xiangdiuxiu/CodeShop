@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/printcp.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/printcp.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/printcp.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{printcp}
+<a id='L2' name='L2' />\alias{printcp}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Displays CP table for Fitted Rpart Object 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />  Displays the \code{cp} table for fitted \code{rpart} object.
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />printcp(x, digits=getOption("digits") - 2)
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />\arguments{
+<a id='L13' name='L13' />\item{x}{
+<a id='L14' name='L14' />fitted model object of class \code{rpart}.  This is assumed to be the result 
+<a id='L15' name='L15' />of some function that produces an object with the same named 
+<a id='L16' name='L16' />components as that returned by the \code{rpart} function. 
+<a id='L17' name='L17' />}
+<a id='L18' name='L18' />\item{digits}{
+<a id='L19' name='L19' />  the number of digits of numbers to print.
+<a id='L20' name='L20' />}}
+<a id='L21' name='L21' />\details{
+<a id='L22' name='L22' />Prints a table of optimal prunings based on a complexity parameter. 
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\seealso{
+<a id='L25' name='L25' />\code{\link{summary.rpart}},  \code{\link{rpart.object}}   
+<a id='L26' name='L26' />}
+<a id='L27' name='L27' />\examples{
+<a id='L28' name='L28' />data(car.test.frame)
+<a id='L29' name='L29' />z.auto &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L30' name='L30' />printcp(z.auto)
+<a id='L31' name='L31' />\dontrun{
+<a id='L32' name='L32' />Regression tree:
+<a id='L33' name='L33' />rpart(formula = Mileage ~ Weight, data = car.test.frame)
+<a id='L34' name='L34' />
+<a id='L35' name='L35' />Variables actually used in tree construction:
+<a id='L36' name='L36' />[1] Weight
+<a id='L37' name='L37' />
+<a id='L38' name='L38' />Root node error: 1354.6/60 = 22.576
+<a id='L39' name='L39' />
+<a id='L40' name='L40' />        CP nsplit rel error  xerror     xstd 
+<a id='L41' name='L41' />1 0.595349      0   1.00000 1.03436 0.178526
+<a id='L42' name='L42' />2 0.134528      1   0.40465 0.60508 0.105217
+<a id='L43' name='L43' />3 0.012828      2   0.27012 0.45153 0.083330
+<a id='L44' name='L44' />4 0.010000      3   0.25729 0.44826 0.076998
+<a id='L45' name='L45' />}}
+<a id='L46' name='L46' />\keyword{tree}
+<a id='L47' name='L47' />% docclass is function
+<a id='L48' name='L48' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+48 man/printcp.Rd]</em> */</em>
+</body>
+</html>

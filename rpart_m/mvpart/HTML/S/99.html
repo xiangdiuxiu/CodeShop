@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpartco.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpartco.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpartco.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpartco" &lt;- function(tree, parms)
+<a id='L2' name='L2' />    {
+<a id='L3' name='L3' />     uniform &lt;- parms$uniform
+<a id='L4' name='L4' />     nspace &lt;- parms$nspace
+<a id='L5' name='L5' />     nbranch &lt;- parms$nbranch
+<a id='L6' name='L6' />     minbranch &lt;- parms$minbranch
+<a id='L7' name='L7' />
+<a id='L8' name='L8' />    frame &lt;- tree$frame
+<a id='L9' name='L9' />    method &lt;- tree$method
+<a id='L10' name='L10' />    node &lt;- as.numeric(row.names(frame))
+<a id='L11' name='L11' />    depth &lt;- tree.depth(node)
+<a id='L12' name='L12' />    is.leaf &lt;- (frame$var == '&lt;leaf&gt;')
+<a id='L13' name='L13' />
+<a id='L14' name='L14' />    if(uniform) y &lt;- (1 + max(depth) -depth) / max(depth,4)
+<a id='L15' name='L15' />    else {                    #make y- (parent y) = change in deviance
+<a id='L16' name='L16' />    y &lt;- dev &lt;- frame$dev
+<a id='L17' name='L17' />        temp &lt;- split(seq(node), depth)     #depth 0 nodes, then 1, then ...
+<a id='L18' name='L18' />        parent &lt;- match(floor(node/2), node)
+<a id='L19' name='L19' />        sibling &lt;- match(ifelse(node %% 2, node - 1, node + 1), node)
+<a id='L20' name='L20' />
+<a id='L21' name='L21' />    # assign the depths
+<a id='L22' name='L22' />        for(i in temp[-1]) {
+<a id='L23' name='L23' />        temp2 &lt;- dev[parent[i]] - (dev[i] + dev[sibling[i]])
+<a id='L24' name='L24' />            y[i] &lt;- y[parent[i]] - temp2
+<a id='L25' name='L25' />        }
+<a id='L26' name='L26' />    #
+<a id='L27' name='L27' />    # For some problems, classification &amp; loss matrices in particular
+<a id='L28' name='L28' />    #   the gain from a split may be 0.  This is ugly on the plot.
+<a id='L29' name='L29' />    # Hence the "fudge" factor of  .3* the average step
+<a id='L30' name='L30' />    #
+<a id='L31' name='L31' />    fudge &lt;-  minbranch * diff(range(y)) / max(depth)
+<a id='L32' name='L32' />        for(i in temp[-1]) {
+<a id='L33' name='L33' />        temp2 &lt;- dev[parent[i]] - (dev[i] + dev[sibling[i]])
+<a id='L34' name='L34' />        haskids &lt;- !(is.leaf[i] &amp; is.leaf[sibling[i]])
+<a id='L35' name='L35' />        y[i] &lt;- y[parent[i]] - ifelse(temp2&lt;=fudge &amp; haskids, fudge, temp2)
+<a id='L36' name='L36' />        }
+<a id='L37' name='L37' />    y &lt;- y / (max(y))
+<a id='L38' name='L38' />        }
+<a id='L39' name='L39' />
+<a id='L40' name='L40' />    # Now compute the x coordinates, by spacing out the leaves and then
+<a id='L41' name='L41' />    #   filling in
+<a id='L42' name='L42' />    x   &lt;-  double(length(node))         #allocate, then fill it in below
+<a id='L43' name='L43' />    x[is.leaf] &lt;- seq(sum(is.leaf))      # leaves at 1, 2, 3, ....
+<a id='L44' name='L44' />    left.child &lt;- match(node * 2, node)
+<a id='L45' name='L45' />    right.child &lt;- match(node * 2 + 1, node)
+<a id='L46' name='L46' />
+<a id='L47' name='L47' />    # temp is a list of non-is.leaf, by depth
+<a id='L48' name='L48' />    temp &lt;- split(seq(node)[!is.leaf], depth[!is.leaf])
+<a id='L49' name='L49' />    for(i in rev(temp))
+<a id='L50' name='L50' />            x[i] &lt;- 0.5 * (x[left.child[i]] + x[right.child[i]])
+<a id='L51' name='L51' />
+<a id='L52' name='L52' />    if (nspace &lt; 0) return(list(x=x, y=y))
+<a id='L53' name='L53' />
+<a id='L54' name='L54' />    #
+<a id='L55' name='L55' />    # Now we get fancy, and try to do overlapping
+<a id='L56' name='L56' />    #
+<a id='L57' name='L57' />    #  The basic algorithm is, at each node:
+<a id='L58' name='L58' />    #      1: get the left &amp; right edges, by depth, for the left and
+<a id='L59' name='L59' />    #           right sons, of the x-coordinate spacing.
+<a id='L60' name='L60' />    #      2: find the minimal free spacing.  If this is &gt;0, slide the
+<a id='L61' name='L61' />    #           right hand son over to the left
+<a id='L62' name='L62' />    #      3: report the left &amp; right extents of the new tree up to the
+<a id='L63' name='L63' />    #           parent
+<a id='L64' name='L64' />    #   A way to visualize steps 1 and 2 is to imagine, for a given node,
+<a id='L65' name='L65' />    #      that the left son, with all its descendants, is drawn on a
+<a id='L66' name='L66' />    #      slab of wood.  The left &amp; right edges, per level, give the
+<a id='L67' name='L67' />    #      width of this board.  (The board is not a rectangle, it has
+<a id='L68' name='L68' />    #      'stair step' edges). Do the same for the right son.  Now
+<a id='L69' name='L69' />    #      insert some spacers, one per level, and slide right hand
+<a id='L70' name='L70' />    #      board over until they touch.  Glue the boards and spacer
+<a id='L71' name='L71' />    #      together at that point.
+<a id='L72' name='L72' />    #
+<a id='L73' name='L73' />    #  If a node has children, its 'space' is considered to extend left
+<a id='L74' name='L74' />    #    and right by the amount "nspace", which accounts for space
+<a id='L75' name='L75' />    #    used by the arcs from this node to its children.  For
+<a id='L76' name='L76' />    #    horseshoe connections nspace usually is 1.
+<a id='L77' name='L77' />    #
+<a id='L78' name='L78' />    #  To make it global for a recursive function, the x coordinate list
+<a id='L79' name='L79' />    #    is written into frame 0.
+<a id='L80' name='L80' />    #
+<a id='L81' name='L81' />    compress &lt;- function(me, depth) {
+<a id='L82' name='L82' />        lson &lt;- me +1
+<a id='L83' name='L83' />    x &lt;- x
+<a id='L84' name='L84' />    if (is.leaf[lson]) left &lt;- list(left=x[lson], right=x[lson],
+<a id='L85' name='L85' />                        depth=depth+1, sons=lson)
+<a id='L86' name='L86' />        else               left &lt;- compress(me+1, depth+1)
+<a id='L87' name='L87' />
+<a id='L88' name='L88' />        rson &lt;- me + 1 + length(left$sons)        #index of right son
+<a id='L89' name='L89' />    if (is.leaf[rson]) right&lt;- list(left=x[rson], right=x[rson],
+<a id='L90' name='L90' />                        depth=depth+1, sons=rson)
+<a id='L91' name='L91' />    else               right&lt;- compress(rson, depth+1)
+<a id='L92' name='L92' />
+<a id='L93' name='L93' />    maxd &lt;- max(left$depth, right$depth) - depth
+<a id='L94' name='L94' />        mind &lt;- min(left$depth, right$depth) - depth
+<a id='L95' name='L95' />
+<a id='L96' name='L96' />    # Find the smallest distance between the two subtrees
+<a id='L97' name='L97' />    #   But only over depths that they have in common
+<a id='L98' name='L98' />    # 1 is a minimum distance allowed
+<a id='L99' name='L99' />    slide &lt;- min(right$left[1:mind] - left$right[1:mind]) -1
+<a id='L100' name='L100' />    if (slide &gt;0) { # slide the right hand node to the left
+<a id='L101' name='L101' />        x[right$sons] &lt;- x[right$sons] - slide;
+<a id='L102' name='L102' />        x[me] &lt;- (x[right$sons[1]] + x[left$sons[1]])/2
+<a id='L103' name='L103' />#       assign("x", x)
+<a id='L104' name='L104' />            x &lt;&lt;- x
+<a id='L105' name='L105' />        }
+<a id='L106' name='L106' />    else slide &lt;- 0
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />    # report back
+<a id='L109' name='L109' />        if (left$depth &gt; right$depth) {
+<a id='L110' name='L110' />        templ &lt;- left$left
+<a id='L111' name='L111' />            tempr &lt;- left$right
+<a id='L112' name='L112' />            tempr[1:mind] &lt;- pmax(tempr[1:mind], right$right -slide)
+<a id='L113' name='L113' />        }
+<a id='L114' name='L114' />        else {
+<a id='L115' name='L115' />        templ &lt;- right$left  - slide
+<a id='L116' name='L116' />        tempr &lt;- right$right - slide
+<a id='L117' name='L117' />        templ[1:mind] &lt;- pmin(templ[1:mind], left$left)
+<a id='L118' name='L118' />        }
+<a id='L119' name='L119' />
+<a id='L120' name='L120' />    list(left = c(x[me]- nspace*(x[me] -x[lson]), templ),
+<a id='L121' name='L121' />         right= c(x[me]- nspace*(x[me] -x[rson]), tempr),
+<a id='L122' name='L122' />         depth= maxd+ depth, sons=c(me, left$sons, right$sons))
+<a id='L123' name='L123' />    }
+<a id='L124' name='L124' />    compress(1, 1)
+<a id='L125' name='L125' />    list(x = x, y = y)
+<a id='L126' name='L126' />}
+<a id='L127' name='L127' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+127 R/rpartco.R]</em> */</em>
+</body>
+</html>

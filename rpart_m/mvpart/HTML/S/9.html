@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/cmds.diss.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/cmds.diss.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/cmds.diss.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{cmds.diss}
+<a id='L2' name='L2' />\alias{cmds.diss}
+<a id='L3' name='L3' />\title{Classical Scaling of Dissimilarity Measures}
+<a id='L4' name='L4' />\description{
+<a id='L5' name='L5' />  The function first computes the dissimilarity matrix according to the specified method --
+<a id='L6' name='L6' />  see \code{\link[mvpart]{gdist}} or \code{\link[mvpart]{xdiss}}. The dissimilarities are then
+<a id='L7' name='L7' />  scaled using classical scaling -- see \code{\link[stats]{cmdscale}}. The returned matrix can be input into
+<a id='L8' name='L8' />  \code{\link[mvpart]{rpart}} or \code{\link[mvpart]{mvpart}} for multivariate regression tree splitting.
+<a id='L9' name='L9' />
+<a id='L10' name='L10' />}
+<a id='L11' name='L11' />\usage{
+<a id='L12' name='L12' />cmds.diss(data, k = ncol(data), x.use = FALSE, zero.chk = TRUE,
+<a id='L13' name='L13' />            plt = FALSE, plot.subset = FALSE, plot.subn = 5, ...)
+<a id='L14' name='L14' />}
+<a id='L15' name='L15' />
+<a id='L16' name='L16' />\arguments{
+<a id='L17' name='L17' />  \item{data}{ Data matrix}
+<a id='L18' name='L18' />  \item{k}{ Number of vectors to be returned}
+<a id='L19' name='L19' />  \item{x.use}{ Use extended dissimilarity?}
+<a id='L20' name='L20' />  \item{zero.chk}{ Check for zero row sums -- if zero ignore these rows according to method}
+<a id='L21' name='L21' />  \item{plt}{ Plot the relationship between the dissimilarities and the distances calculated
+<a id='L22' name='L22' />  from the scaled output vectors. }
+<a id='L23' name='L23' />  \item{plot.subset}{ Plot a subset of the points -- useful for large data sets. }
+<a id='L24' name='L24' />  \item{plot.subn}{ Controls how many points are plotted when \code{plot.subset}=TRUE.
+<a id='L25' name='L25' />  The number of points plotted is 750 + N * plot.subn where N = number of rows in \code{data}.}
+<a id='L26' name='L26' />  \item{\dots}{ arguments passed to either \code{xdiss} or \code{gdist}}
+<a id='L27' name='L27' />}
+<a id='L28' name='L28' />
+<a id='L29' name='L29' />\details{
+<a id='L30' name='L30' />  The function knows the same dissimilarity indices as \code{\link[mvpart]{gdist}}.
+<a id='L31' name='L31' />  Plotting the relationship between the dissimilarities and the distances calculated
+<a id='L32' name='L32' />  from the scaled output vectors is useful in assessing potential loss of information.
+<a id='L33' name='L33' />  If the loss is high then the results from partitioning directly from the dissimilarity
+<a id='L34' name='L34' />  matrix using distance-base partitioning (see \code{dist} in \code{\link[mvpart]{rpart}}),and those
+<a id='L35' name='L35' />  obtained from partitioning the output of cmds.diss using multivariate regression trees
+<a id='L36' name='L36' />  (see \code{mrt} in \code{\link[mvpart]{rpart}}) can be substantial.
+<a id='L37' name='L37' />
+<a id='L38' name='L38' />}
+<a id='L39' name='L39' />
+<a id='L40' name='L40' />\author{ Glenn De'ath }
+<a id='L41' name='L41' />
+<a id='L42' name='L42' />\examples{
+<a id='L43' name='L43' />data(spider)
+<a id='L44' name='L44' />dist.vecs &lt;- cmds.diss(spider)
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /># comparing splitting using "dist" and "mrt" methods
+<a id='L47' name='L47' /># for euclidean distance the answers are indentical :
+<a id='L48' name='L48' /># first using "mrt" on the data directly
+<a id='L49' name='L49' />mvpart(data.matrix(spider[,1:12])~water+twigs+reft+herbs+moss+sand,
+<a id='L50' name='L50' />spider,method="mrt",size=5)
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /># now using "dist" -- note we need the full distance matrix squared
+<a id='L53' name='L53' />mvpart(gdist(spider[,1:12],meth="euc",full=TRUE,sq=TRUE)~water+twigs
+<a id='L54' name='L54' />+reft+herbs+moss+sand,spider,method="dist",size=5)
+<a id='L55' name='L55' />
+<a id='L56' name='L56' /># finally using "mrt" from the scaled dissimilarities.
+<a id='L57' name='L57' />mvpart(cmds.diss(spider[,1:12],meth="euc")~water+twigs+reft
+<a id='L58' name='L58' />+herbs+moss+sand,spider,method="mrt",size=5)
+<a id='L59' name='L59' />
+<a id='L60' name='L60' /># try with some other measure of dissimilarity eg extended bray-curtis -- the result will differ
+<a id='L61' name='L61' /># between methods
+<a id='L62' name='L62' />
+<a id='L63' name='L63' />}
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />\keyword{ multivariate }%-- one or more ...
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+65 man/cmds.diss.Rd]</em> */</em>
+</body>
+</html>

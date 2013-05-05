@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/pred.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/pred.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/pred.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"pred.rpart" &lt;-
+<a id='L2' name='L2' />function(fit, x) {
+<a id='L3' name='L3' />
+<a id='L4' name='L4' />    frame &lt;- fit$frame
+<a id='L5' name='L5' />    if(nrow(frame) == 1) { # handle root-only tree separately
+<a id='L6' name='L6' />        temp &lt;- rep(1, nrow(x))
+<a id='L7' name='L7' />    } else {
+<a id='L8' name='L8' />        nc &lt;- frame[, c('ncompete', 'nsurrogate')]
+<a id='L9' name='L9' />        frame$index &lt;- 1 + c(0, cumsum((frame$var != "&lt;leaf&gt;") +
+<a id='L10' name='L10' />                                       nc[[1]] + nc[[2]]))[-(nrow(frame)+1)]
+<a id='L11' name='L11' />        frame$index[frame$var == "&lt;leaf&gt;"] &lt;- 0
+<a id='L12' name='L12' />        vnum &lt;- match(dimnames(fit$split)[[1]], dimnames(x)[[2]])
+<a id='L13' name='L13' />        if (any(is.na(vnum)))
+<a id='L14' name='L14' />            stop("Tree has variables not found in new data")
+<a id='L15' name='L15' />        temp &lt;- .C("pred_rpart",
+<a id='L16' name='L16' />                        as.integer(dim(x)),
+<a id='L17' name='L17' />                        as.integer(dim(frame)[1]),
+<a id='L18' name='L18' />                        as.integer(dim(fit$splits)),
+<a id='L19' name='L19' />                        as.integer(if(is.null(fit$csplit)) rep(0,2)
+<a id='L20' name='L20' />                                   else dim(fit$csplit)),
+<a id='L21' name='L21' />                        as.integer(row.names(frame)),
+<a id='L22' name='L22' />                        as.integer(unlist(frame[,
+<a id='L23' name='L23' />                               c('n', 'ncompete', 'nsurrogate', 'index')])),
+<a id='L24' name='L24' />                        as.integer(vnum),
+<a id='L25' name='L25' />                        as.double(fit$splits),
+<a id='L26' name='L26' />                        as.integer(fit$csplit -2),
+<a id='L27' name='L27' />                        as.integer((fit$control)$usesurrogate),
+<a id='L28' name='L28' />                        as.double(x),
+<a id='L29' name='L29' />                        as.integer(is.na(x)),
+<a id='L30' name='L30' />                        where = integer(dim(x)[1]),
+<a id='L31' name='L31' />                        NAOK = TRUE, PACKAGE = "mvpart")
+<a id='L32' name='L32' />        temp &lt;- temp$where
+<a id='L33' name='L33' />    }
+<a id='L34' name='L34' />    names(temp) &lt;- rownames(x)
+<a id='L35' name='L35' />    temp
+<a id='L36' name='L36' />}
+<a id='L37' name='L37' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+37 R/pred.rpart.R]</em> */</em>
+</body>
+</html>

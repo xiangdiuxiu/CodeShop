@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ccnt</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/73.html#L13'>ccnt</a>               13 src/gini.c               **ccnt;</span>
+<span class='curline'><a href='../S/73.html#L56'>ccnt</a>               56 src/gini.c             ccnt    = (double **) ALLOC(numclass, sizeof(double *));</span>
+<span class='curline'><a href='../S/73.html#L57'>ccnt</a>               57 src/gini.c             if (ccnt==0) {*error="Out of memory"; return(1);}</span>
+<span class='curline'><a href='../S/73.html#L58'>ccnt</a>               58 src/gini.c             ccnt[0] = (double *) ALLOC(numclass*maxcat, sizeof(double));</span>
+<span class='curline'><a href='../S/73.html#L59'>ccnt</a>               59 src/gini.c             if (ccnt[0]==0) {*error="Out of memory"; return(1);}</span>
+<span class='curline'><a href='../S/73.html#L61'>ccnt</a>               61 src/gini.c             ccnt[i] = ccnt[i-1] + maxcat;</span>
+<span class='curline'><a href='../S/73.html#L243'>ccnt</a>              243 src/gini.c             ccnt[i][j] =0;</span>
+<span class='curline'><a href='../S/73.html#L250'>ccnt</a>              250 src/gini.c         ccnt[j][k] += wt[i];</span>
+<span class='curline'><a href='../S/73.html#L256'>ccnt</a>              256 src/gini.c             rate[i] = ccnt[0][i] / awt[i];   /* a scratch array */</span>
+<span class='curline'><a href='../S/73.html#L273'>ccnt</a>              273 src/gini.c             right[j] += ccnt[j][i];</span>
+<span class='curline'><a href='../S/73.html#L274'>ccnt</a>              274 src/gini.c             left[j]  -= ccnt[j][i];</span>
+<span class='curline'><a href='../S/73.html#L284'>ccnt</a>              284 src/gini.c             right[j] -= ccnt[j][i];</span>
+<span class='curline'><a href='../S/73.html#L285'>ccnt</a>              285 src/gini.c             left[j]  += ccnt[j][i];</span>
+<span class='curline'><a href='../S/58.html#L37'>ccnt</a>               37 src/rpmatrix.c     static int scnt, ncnt, ccnt;</span>
+<span class='curline'><a href='../S/58.html#L45'>ccnt</a>               45 src/rpmatrix.c     ccnt = *catcount;</span>
+<span class='curline'><a href='../S/58.html#L75'>ccnt</a>               75 src/rpmatrix.c         dsplit[1][scnt] = ccnt+1;</span>
+<span class='curline'><a href='../S/58.html#L77'>ccnt</a>               77 src/rpmatrix.c         for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/58.html#L78'>ccnt</a>               78 src/rpmatrix.c         ccnt++;</span>
+<span class='curline'><a href='../S/58.html#L97'>ccnt</a>               97 src/rpmatrix.c         dsplit[1][scnt] = ccnt+1;</span>
+<span class='curline'><a href='../S/58.html#L99'>ccnt</a>               99 src/rpmatrix.c         for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/58.html#L100'>ccnt</a>              100 src/rpmatrix.c         ccnt++;</span>
+<span class='curline'><a href='../S/58.html#L113'>ccnt</a>              113 src/rpmatrix.c     *catcount  = ccnt;</span>
+</pre>
+</body>
+</html>

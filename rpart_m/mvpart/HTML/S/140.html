@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.control.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.control.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.control.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart.control" &lt;-
+<a id='L2' name='L2' />function (minsplit = 5, minbucket = round(minsplit/3), cp = 0.01, 
+<a id='L3' name='L3' />    maxcompete = 4, maxsurrogate = 0, usesurrogate = 2, xval = 10, 
+<a id='L4' name='L4' />    surrogatestyle = 0, maxdepth = 30, ...) 
+<a id='L5' name='L5' />{
+<a id='L6' name='L6' />    if (maxcompete &lt; 0) {
+<a id='L7' name='L7' />        warning("The value of maxcompete supplied is &lt;0; the value 0 was used instead")
+<a id='L8' name='L8' />        maxcompete &lt;- 0
+<a id='L9' name='L9' />    }
+<a id='L10' name='L10' />    if (any(xval &lt; 0)) {
+<a id='L11' name='L11' />        warning("The value of xval supplied is &lt;0; the value 0 was used instead")
+<a id='L12' name='L12' />        xval &lt;- 0
+<a id='L13' name='L13' />    }
+<a id='L14' name='L14' />    if (maxdepth &gt; 30) 
+<a id='L15' name='L15' />        stop("Maximum depth is 30")
+<a id='L16' name='L16' />    if (maxdepth &lt; 1) 
+<a id='L17' name='L17' />        stop("Maximum depth must be at least 1")
+<a id='L18' name='L18' />    if (missing(minsplit) &amp;&amp; !missing(minbucket)) 
+<a id='L19' name='L19' />        minsplit &lt;- minbucket * 3
+<a id='L20' name='L20' />    if ((usesurrogate &lt; 0) || (usesurrogate &gt; 2)) {
+<a id='L21' name='L21' />        warning("The value of usesurrogate supplied was out of range,", 
+<a id='L22' name='L22' />            "the default value of 2 is used instead.")
+<a id='L23' name='L23' />        usesurrogate &lt;- 2
+<a id='L24' name='L24' />    }
+<a id='L25' name='L25' />    if ((surrogatestyle &lt; 0) || (surrogatestyle &gt; 1)) {
+<a id='L26' name='L26' />        warning("The value of surrogatestyle supplied was out of range,", 
+<a id='L27' name='L27' />            "the default value of 0 is used instead.")
+<a id='L28' name='L28' />        surrogatestyle &lt;- 0
+<a id='L29' name='L29' />    }
+<a id='L30' name='L30' />    list(minsplit = minsplit, minbucket = minbucket, cp = cp, 
+<a id='L31' name='L31' />        maxcompete = maxcompete, maxsurrogate = maxsurrogate, 
+<a id='L32' name='L32' />        usesurrogate = usesurrogate, surrogatestyle = surrogatestyle, 
+<a id='L33' name='L33' />        maxdepth = maxdepth, xval = xval)
+<a id='L34' name='L34' />}
+<a id='L35' name='L35' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+35 R/rpart.control.R]</em> */</em>
+</body>
+</html>

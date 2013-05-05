@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/plot.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/plot.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/plot.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{plot.rpart}
+<a id='L2' name='L2' />\alias{plot.rpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />Plot an Rpart Object
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />Plots an rpart object on the current graphics device.
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />\method{plot}{rpart}(x, uniform=FALSE, branch=1, compress=FALSE, nspace,
+<a id='L11' name='L11' />     margin=0, minbranch=.3, bar,\dots)
+<a id='L12' name='L12' />}
+<a id='L13' name='L13' />\arguments{
+<a id='L14' name='L14' />\item{x}{
+<a id='L15' name='L15' />  a fitted object of class \code{rpart}, containing a classification,
+<a id='L16' name='L16' />  regression, or rate tree.
+<a id='L17' name='L17' />}
+<a id='L18' name='L18' />\item{uniform}{
+<a id='L19' name='L19' />if \code{TRUE}, uniform vertical spacing of the nodes is used; this may be
+<a id='L20' name='L20' />less cluttered when fitting a large plot onto a page.
+<a id='L21' name='L21' />The default is to use a non-uniform spacing proportional to the 
+<a id='L22' name='L22' />error in the fit.
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\item{branch}{
+<a id='L25' name='L25' />controls the shape of the branches from parent to child node.
+<a id='L26' name='L26' />Any number from 0 to 1 is allowed.  A value of 1 gives square
+<a id='L27' name='L27' />shouldered branches, a value of 0 give V shaped branches, 
+<a id='L28' name='L28' />with other values being intermediate.
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />\item{compress}{
+<a id='L31' name='L31' />If \code{FALSE}, the leaf nodes will be at the horzontal plot coordinates of
+<a id='L32' name='L32' />\code{1:nleaves}.  
+<a id='L33' name='L33' />If \code{TRUE}, the routine attempts a more compact arrangement of
+<a id='L34' name='L34' />the tree.
+<a id='L35' name='L35' />The compaction algorithm assumes \code{uniform=TRUE}; surprisingly, the result
+<a id='L36' name='L36' />is usually an improvement even when that is not the case.
+<a id='L37' name='L37' />}
+<a id='L38' name='L38' />\item{nspace}{
+<a id='L39' name='L39' />the amount of extra space between a node with children and
+<a id='L40' name='L40' />a leaf, as compared to the minimal space between leaves.  
+<a id='L41' name='L41' />Applies to compressed trees only.  The default is the value of
+<a id='L42' name='L42' />\code{branch}.
+<a id='L43' name='L43' />}
+<a id='L44' name='L44' />\item{margin}{
+<a id='L45' name='L45' />an extra percentage of white space to leave around the borders of the tree.
+<a id='L46' name='L46' />(Long labels sometimes get cut off by the default computation).
+<a id='L47' name='L47' />}
+<a id='L48' name='L48' />\item{minbranch}{
+<a id='L49' name='L49' />set the minimum length for a branch to \code{minbranch} times the average
+<a id='L50' name='L50' />branch length.  This parameter is ignored if \code{uniform=TRUE}.
+<a id='L51' name='L51' />Sometimes a split will give very little improvement, or even (in
+<a id='L52' name='L52' />the classification case) no improvement at all.  
+<a id='L53' name='L53' />A tree with branch lengths strictly proportional to improvement
+<a id='L54' name='L54' />leaves no room to squeeze in node labels.
+<a id='L55' name='L55' />}
+<a id='L56' name='L56' />\item{bar}{
+<a id='L57' name='L57' /> length of bar at root (default = 0.03) -- used instead of char "|"
+<a id='L58' name='L58' />}
+<a id='L59' name='L59' />\item{\dots}{
+<a id='L60' name='L60' />  arguments to be passed to or from other methods.
+<a id='L61' name='L61' />}}
+<a id='L62' name='L62' />\value{
+<a id='L63' name='L63' />the coordinates of the nodes are returned as a list, with
+<a id='L64' name='L64' />components \code{x} and \code{y}.
+<a id='L65' name='L65' />}
+<a id='L66' name='L66' />\section{Side Effects}{
+<a id='L67' name='L67' />an unlabeled plot is produced on the current graphics device.
+<a id='L68' name='L68' />}
+<a id='L69' name='L69' />\details{
+<a id='L70' name='L70' />This function is a method for the generic function \code{plot}, for objects
+<a id='L71' name='L71' />of class \code{rpart}.
+<a id='L72' name='L72' />The y-coordinate of the top node of the tree will always be 1.
+<a id='L73' name='L73' />}
+<a id='L74' name='L74' />\seealso{
+<a id='L75' name='L75' />\code{\link{rpart}}, \code{\link{text.rpart}}
+<a id='L76' name='L76' />}
+<a id='L77' name='L77' />\examples{
+<a id='L78' name='L78' />data(car.test.frame)
+<a id='L79' name='L79' />fit &lt;- rpart(Price ~ Mileage + Type + Country, car.test.frame)
+<a id='L80' name='L80' />plot(fit, compress=TRUE)
+<a id='L81' name='L81' />text(fit, use.n=TRUE)
+<a id='L82' name='L82' />}
+<a id='L83' name='L83' />\keyword{tree}
+<a id='L84' name='L84' />% docclass is function
+<a id='L85' name='L85' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+85 man/plot.rpart.Rd]</em> */</em>
+</body>
+</html>

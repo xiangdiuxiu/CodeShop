@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/summary.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/summary.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/summary.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"summary.rpart" &lt;-
+<a id='L2' name='L2' />function(object, cp=0, digits=getOption("digits"), file,  ...)
+<a id='L3' name='L3' />{
+<a id='L4' name='L4' />    if(!inherits(object, "rpart")) stop("Not legitimate rpart object")
+<a id='L5' name='L5' />
+<a id='L6' name='L6' />    # If this is an older-style rpart object, convert it
+<a id='L7' name='L7' />    #  either way, rename it to "x" to save typing
+<a id='L8' name='L8' />    if (!is.null(object$frame$splits)) x &lt;- rpconvert(object)
+<a id='L9' name='L9' />    else  x &lt;- object
+<a id='L10' name='L10' />
+<a id='L11' name='L11' />    if (!missing(file)) {
+<a id='L12' name='L12' />      sink(file)
+<a id='L13' name='L13' />      on.exit(sink())
+<a id='L14' name='L14' />      }
+<a id='L15' name='L15' />
+<a id='L16' name='L16' />    if(!is.null(x$call)) {
+<a id='L17' name='L17' />        cat("Call:\n")
+<a id='L18' name='L18' />        dput(x$call)
+<a id='L19' name='L19' />        }
+<a id='L20' name='L20' />
+<a id='L21' name='L21' />    omit &lt;- x$na.action
+<a id='L22' name='L22' />    n &lt;- x$frame$n
+<a id='L23' name='L23' />    if (length(omit))
+<a id='L24' name='L24' />          cat("  n=", n[1], " (", naprint(omit), ")\n\n", sep="")
+<a id='L25' name='L25' />    else cat("  n=", n[1], "\n\n")
+<a id='L26' name='L26' />
+<a id='L27' name='L27' />    print(x$cptable, digits=digits)
+<a id='L28' name='L28' />    ff &lt;- x$frame
+<a id='L29' name='L29' />    ylevel &lt;- attr(x,'ylevels')
+<a id='L30' name='L30' />    id &lt;- as.integer(row.names(ff))
+<a id='L31' name='L31' />    parent.id &lt;- ifelse(id==1,1, floor(id/2))
+<a id='L32' name='L32' />    parent.cp &lt;- ff$complexity[match(parent.id, id)]
+<a id='L33' name='L33' />    rows &lt;- (1:length(id))[parent.cp &gt; cp]
+<a id='L34' name='L34' />    if (length(rows)&gt;0) rows &lt;- rows[order(id[rows])]
+<a id='L35' name='L35' />    else rows &lt;- 1
+<a id='L36' name='L36' />    is.leaf &lt;- (ff$var=='&lt;leaf&gt;')
+<a id='L37' name='L37' />    index &lt;- cumsum(c(1, ff$ncompete + ff$nsurrogate + 1*(!is.leaf)))
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />    if(!all(is.leaf)) {  #skip these lines for a "no splits" tree
+<a id='L40' name='L40' />        sname &lt;- dimnames(x$splits)[[1]]
+<a id='L41' name='L41' />        cuts &lt;- vector(mode='character', length=nrow(x$splits))
+<a id='L42' name='L42' />        temp &lt;- x$splits[ ,2]
+<a id='L43' name='L43' />        for (i in 1:length(cuts)) {
+<a id='L44' name='L44' />            if (temp[i] == -1)
+<a id='L45' name='L45' />                cuts[i] &lt;-paste("&lt;", format(signif(x$splits[i,4], digits=digits)))
+<a id='L46' name='L46' />            else if (temp[i] ==1)
+<a id='L47' name='L47' />                cuts[i] &lt;-paste("&lt;", format(signif(x$splits[i,4], digits=digits)))
+<a id='L48' name='L48' />            else cuts[i]&lt;- paste("splits as ",
+<a id='L49' name='L49' />                                 paste(c("L", "-", "R")[x$csplit[x$splits[i,4], 1:temp[i]]],
+<a id='L50' name='L50' />                                       collapse='', sep=''), collapse='')
+<a id='L51' name='L51' />        }
+<a id='L52' name='L52' />    # S-PLUS 4.0 can't handle null vectors here
+<a id='L53' name='L53' />        if(any(temp&lt;2)) cuts[temp&lt;2 ] &lt;- format(cuts[temp&lt;2],justify="left")
+<a id='L54' name='L54' />        cuts &lt;- paste(cuts, ifelse(temp &gt;=2, ",",
+<a id='L55' name='L55' />                                   ifelse(temp==1, " to the right,", " to the left, ")),
+<a id='L56' name='L56' />                      sep = '')
+<a id='L57' name='L57' />    }
+<a id='L58' name='L58' />
+<a id='L59' name='L59' />    if (is.null(ff$yval2))
+<a id='L60' name='L60' />        tprint &lt;- x$functions$summary(ff$yval[rows], ff$dev[rows],
+<a id='L61' name='L61' />                                      ff$wt[rows], ylevel, digits)
+<a id='L62' name='L62' />    else
+<a id='L63' name='L63' />        tprint &lt;- x$functions$summary(ff$yval2[rows,], ff$dev[rows],
+<a id='L64' name='L64' />                                      ff$wt[rows], ylevel, digits)
+<a id='L65' name='L65' />
+<a id='L66' name='L66' />    for (ii in 1:length(rows)) {
+<a id='L67' name='L67' />    i &lt;- rows[ii]
+<a id='L68' name='L68' />    nn &lt;- ff$n[i]
+<a id='L69' name='L69' />    twt &lt;- ff$wt[i]
+<a id='L70' name='L70' />    cat("\nNode number ", id[i], ": ", nn, " observations", sep='')
+<a id='L71' name='L71' />    if (ff$complexity[i] &lt; cp || is.leaf[i]) cat("\n")
+<a id='L72' name='L72' />    else cat(",    complexity param=",
+<a id='L73' name='L73' />                 format(signif(ff$complexity[i], digits)), "\n", sep="")
+<a id='L74' name='L74' />
+<a id='L75' name='L75' />    cat(tprint[ii], "\n")
+<a id='L76' name='L76' />    if (ff$complexity[i] &gt; cp &amp;&amp; !is.leaf[i] ){
+<a id='L77' name='L77' />        sons &lt;- 2*id[i] + c(0,1)
+<a id='L78' name='L78' />        sons.n &lt;- ff$n[match(sons, id)]
+<a id='L79' name='L79' />        cat("  left son=", sons[1], " (", sons.n[1], " obs)",
+<a id='L80' name='L80' />        " right son=", sons[2], " (", sons.n[2], " obs)", sep='')
+<a id='L81' name='L81' />        j &lt;- nn - (sons.n[1] + sons.n[2])
+<a id='L82' name='L82' />        if (j&gt;1) cat(", ", j, " observations remain\n", sep='')
+<a id='L83' name='L83' />        else if (j==1) cat(", 1 observation remains\n")
+<a id='L84' name='L84' />        else     cat("\n")
+<a id='L85' name='L85' />        cat("  Primary splits:\n")
+<a id='L86' name='L86' />        j &lt;- seq(index[i], length=1+ff$ncompete[i])
+<a id='L87' name='L87' />        if (all(nchar(cuts[j]) &lt; 25))
+<a id='L88' name='L88' />                temp &lt;- format(cuts[j], justify="left")
+<a id='L89' name='L89' />        else  temp &lt;- cuts[j]
+<a id='L90' name='L90' />        cat(paste("      ", format(sname[j], justify="left"), " ", temp,
+<a id='L91' name='L91' />              " improve=", format(signif(x$splits[j,3], digits)),
+<a id='L92' name='L92' />              ", (", nn - x$splits[j,1], " missing)", sep=''),
+<a id='L93' name='L93' />                sep="\n")
+<a id='L94' name='L94' />        if (ff$nsurrogate[i] &gt;0) {
+<a id='L95' name='L95' />        cat("  Surrogate splits:\n")
+<a id='L96' name='L96' />        j &lt;- seq(1 +index[i] + ff$ncompete[i], length=ff$nsurrogate[i])
+<a id='L97' name='L97' />        agree &lt;- x$splits[j,3]
+<a id='L98' name='L98' />        if (all(nchar(cuts[j]) &lt; 25))
+<a id='L99' name='L99' />                    temp &lt;- format(cuts[j], justify="left")
+<a id='L100' name='L100' />        else  temp &lt;- cuts[j]
+<a id='L101' name='L101' />        if (ncol(x$splits)==5) {
+<a id='L102' name='L102' />            adj   &lt;- x$splits[j,5]
+<a id='L103' name='L103' />            cat(paste("      ", format(sname[j], justify="left"), " ",
+<a id='L104' name='L104' />                  temp,
+<a id='L105' name='L105' />                  " agree=", format(round(agree, 3)),
+<a id='L106' name='L106' />                  ", adj=" , format(round(adj, 3)),
+<a id='L107' name='L107' />                  ", (", x$splits[j,1], " split)", sep=''),
+<a id='L108' name='L108' />            sep="\n")
+<a id='L109' name='L109' />                }
+<a id='L110' name='L110' />        else {                  #an older style rpart object -- no adj value present
+<a id='L111' name='L111' />            cat(paste("      ", format(sname[j], justify="left"), " ",
+<a id='L112' name='L112' />                  temp,
+<a id='L113' name='L113' />                  " agree=", format(round(agree, 3)),
+<a id='L114' name='L114' />                  ", (", x$splits[j,1], " split)", sep=''),
+<a id='L115' name='L115' />            sep="\n")
+<a id='L116' name='L116' />                }
+<a id='L117' name='L117' />            }
+<a id='L118' name='L118' />        }
+<a id='L119' name='L119' />    }
+<a id='L120' name='L120' />    cat("\n")
+<a id='L121' name='L121' />    invisible(x)
+<a id='L122' name='L122' />}
+<a id='L123' name='L123' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+123 R/summary.rpart.R]</em> */</em>
+</body>
+</html>

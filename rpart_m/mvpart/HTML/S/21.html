@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/path.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/path.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/path.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{path.rpart}
+<a id='L2' name='L2' />\alias{path.rpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Follow Paths to Selected Nodes of an Rpart Object
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />  Returns a names list where each element contains the splits on the
+<a id='L8' name='L8' />  path from the root to the selected nodes.
+<a id='L9' name='L9' />}
+<a id='L10' name='L10' />\usage{
+<a id='L11' name='L11' />path.rpart(tree, nodes, pretty=0, print.it=TRUE)
+<a id='L12' name='L12' />}
+<a id='L13' name='L13' />\arguments{
+<a id='L14' name='L14' />\item{tree}{
+<a id='L15' name='L15' />  fitted model object of class \code{rpart}.  This is assumed to be the
+<a id='L16' name='L16' />  result of some function that produces an object with the same named
+<a id='L17' name='L17' />  components as that returned by the \code{rpart} function.
+<a id='L18' name='L18' />}
+<a id='L19' name='L19' />\item{nodes}{
+<a id='L20' name='L20' />  an integer vector containing indices (node numbers) of all nodes for
+<a id='L21' name='L21' />  which paths are desired.  If missing, user selects nodes as described
+<a id='L22' name='L22' />  below. 
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\item{pretty}{
+<a id='L25' name='L25' />  an integer denoting the extent to which factor levels in split labels
+<a id='L26' name='L26' />  will be abbreviated.  A value of (0) signifies no abbreviation.  A
+<a id='L27' name='L27' />  \code{NULL}, the default, signifies using elements of letters to represent
+<a id='L28' name='L28' />  the different factor levels.
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />\item{print.it}{
+<a id='L31' name='L31' />  Logical. Denotes whether paths will be printed out as
+<a id='L32' name='L32' />  nodes are interactively selected.   Irrelevant if \code{nodes}
+<a id='L33' name='L33' />  argument is supplied.
+<a id='L34' name='L34' />}}
+<a id='L35' name='L35' />\value{
+<a id='L36' name='L36' />  A named (by node) list, each element of which contains all
+<a id='L37' name='L37' />  the  splits  on the path from the root to the specified or
+<a id='L38' name='L38' />  selected nodes.
+<a id='L39' name='L39' />}
+<a id='L40' name='L40' />\section{Graphical Interaction}{
+<a id='L41' name='L41' />  A dendrogram of the \code{rpart} object is expected to be visible 
+<a id='L42' name='L42' />  on the graphics  device, and a graphics input device (eg a mouse)
+<a id='L43' name='L43' />  is required.  Clicking (the selection button)  on  a  node
+<a id='L44' name='L44' />  selects  that  node.   This  process  may  be repeated any
+<a id='L45' name='L45' />  number of times.  Clicking the exit button will  stop  the
+<a id='L46' name='L46' />  selection process and return the list of paths.
+<a id='L47' name='L47' />}
+<a id='L48' name='L48' />\details{
+<a id='L49' name='L49' />  The function has a required argument as an \code{rpart} object  and
+<a id='L50' name='L50' />  a list of nodes as optional arguments.  Omitting a list of
+<a id='L51' name='L51' />  nodes will cause the function to  wait  for  the  user  to
+<a id='L52' name='L52' />  select  nodes  from the dendogram.  It will return a list,
+<a id='L53' name='L53' />  with one component for each node  specified  or  selected.
+<a id='L54' name='L54' />  The  component  contains the sequence of splits leading to
+<a id='L55' name='L55' />  that node.  In the graphical  interation,  the  individual
+<a id='L56' name='L56' />  paths are printed out as nodes are selected.
+<a id='L57' name='L57' />}
+<a id='L58' name='L58' />\references{
+<a id='L59' name='L59' />  This function was modified from \code{path.tree} in S. 
+<a id='L60' name='L60' />}
+<a id='L61' name='L61' />\seealso{
+<a id='L62' name='L62' />  \code{\link{rpart}}
+<a id='L63' name='L63' />}
+<a id='L64' name='L64' />\examples{
+<a id='L65' name='L65' />data(kyphosis)
+<a id='L66' name='L66' />fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data=kyphosis)
+<a id='L67' name='L67' />summary(fit)
+<a id='L68' name='L68' />path.rpart(fit, node=c(11, 22))
+<a id='L69' name='L69' />}
+<a id='L70' name='L70' />\keyword{tree}
+<a id='L71' name='L71' />% docclass is function
+<a id='L72' name='L72' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+72 man/path.rpart.Rd]</em> */</em>
+</body>
+</html>

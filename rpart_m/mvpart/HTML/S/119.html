@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/predict.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/predict.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/predict.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"predict.rpart" &lt;-
+<a id='L2' name='L2' />function (object, newdata = list(), type = c("vector", "prob", 
+<a id='L3' name='L3' />    "class", "matrix","where"), ...) 
+<a id='L4' name='L4' />{
+<a id='L5' name='L5' />    if (!inherits(object, "rpart")) 
+<a id='L6' name='L6' />        stop("Not legitimate tree")
+<a id='L7' name='L7' />    mtype &lt;- missing(type)
+<a id='L8' name='L8' />    type &lt;- match.arg(type)
+<a id='L9' name='L9' />    if (missing(newdata)) 
+<a id='L10' name='L10' />        where &lt;- object$where
+<a id='L11' name='L11' />    else {
+<a id='L12' name='L12' />        if (is.null(attr(newdata, "terms"))) {
+<a id='L13' name='L13' />            Terms &lt;- delete.response(object$terms)
+<a id='L14' name='L14' />            act &lt;- (object$call)$na.action
+<a id='L15' name='L15' />            if (is.null(act)) 
+<a id='L16' name='L16' />                act &lt;- na.rpart
+<a id='L17' name='L17' />            newdata &lt;- model.frame(Terms, newdata, na.action = act, 
+<a id='L18' name='L18' />                xlev = attr(object, "xlevels"))
+<a id='L19' name='L19' />        }
+<a id='L20' name='L20' />        where &lt;- pred.rpart(object, rpart.matrix(newdata))
+<a id='L21' name='L21' />    }
+<a id='L22' name='L22' />    if (type=="where") return(where)
+<a id='L23' name='L23' />    else {
+<a id='L24' name='L24' />    frame &lt;- object$frame
+<a id='L25' name='L25' />    method &lt;- object$method
+<a id='L26' name='L26' />    ylevels &lt;- attr(object, "ylevels")
+<a id='L27' name='L27' />    nclass &lt;- length(ylevels)
+<a id='L28' name='L28' />    if (mtype &amp;&amp; nclass &gt; 0) 
+<a id='L29' name='L29' />        type &lt;- "prob"
+<a id='L30' name='L30' />    if (mtype &amp;&amp; method == "mrt") 
+<a id='L31' name='L31' />        type &lt;- "matrix"
+<a id='L32' name='L32' />    if (type == "vector" || (type == "matrix" &amp;&amp; is.null(frame$yval2))) {
+<a id='L33' name='L33' />        pred &lt;- frame$yval[where]
+<a id='L34' name='L34' />        names(pred) &lt;- names(where)
+<a id='L35' name='L35' />    }
+<a id='L36' name='L36' />    else if (type == "matrix") {
+<a id='L37' name='L37' />        pred &lt;- frame$yval2[where, ]
+<a id='L38' name='L38' />        dimnames(pred) &lt;- list(names(where), NULL)
+<a id='L39' name='L39' />    }
+<a id='L40' name='L40' />    else if (type == "class" &amp;&amp; nclass &gt; 0) {
+<a id='L41' name='L41' />        pred &lt;- factor(ylevels[frame$yval[where]], levels = ylevels)
+<a id='L42' name='L42' />        names(pred) &lt;- names(where)
+<a id='L43' name='L43' />    }
+<a id='L44' name='L44' />    else if (type == "prob" &amp;&amp; nclass &gt; 0) {
+<a id='L45' name='L45' />        pred &lt;- frame$yval2[where, 1 + nclass + 1:nclass]
+<a id='L46' name='L46' />        dimnames(pred) &lt;- list(names(where), ylevels)
+<a id='L47' name='L47' />    }
+<a id='L48' name='L48' />    else stop("Invalid prediction for rpart object")
+<a id='L49' name='L49' />    if (missing(newdata) &amp;&amp; !is.null(object$na.action)) 
+<a id='L50' name='L50' />        pred &lt;- naresid(object$na.action, pred)
+<a id='L51' name='L51' />    pred
+<a id='L52' name='L52' />    }
+<a id='L53' name='L53' />}
+<a id='L54' name='L54' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+54 R/predict.rpart.R]</em> */</em>
+</body>
+</html>

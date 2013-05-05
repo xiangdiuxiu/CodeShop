@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/residuals.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/residuals.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/residuals.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{residuals.rpart}
+<a id='L2' name='L2' />\alias{residuals.rpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Residuals From a Fitted Rpart Object 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\usage{
+<a id='L7' name='L7' />\method{residuals}{rpart}(object, type = c("usual", "pearson", "deviance"), ...)
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\description{
+<a id='L10' name='L10' />  Method for \code{residuals} for an \code{rpart} object.
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />\arguments{
+<a id='L13' name='L13' />\item{object}{
+<a id='L14' name='L14' />  fitted model object of class \code{"rpart"}.
+<a id='L15' name='L15' />}
+<a id='L16' name='L16' />\item{type}{
+<a id='L17' name='L17' />  Indicates the type of residual desired.
+<a id='L18' name='L18' />
+<a id='L19' name='L19' />  For regression or \code{anova} trees all three residual
+<a id='L20' name='L20' />  definitions reduce to \code{y - fitted}.  This is the residual returned for
+<a id='L21' name='L21' />  \code{user} method trees as well.
+<a id='L22' name='L22' />
+<a id='L23' name='L23' />  For classification trees the \code{usual} residuals
+<a id='L24' name='L24' />  are the missclassification losses L(actual, predicted) where L is the
+<a id='L25' name='L25' />  loss matrix.  With default losses this residual is
+<a id='L26' name='L26' />  0/1 for correct/incorrect classification.
+<a id='L27' name='L27' />  The \code{pearson} residual is 
+<a id='L28' name='L28' />  (1-fitted)/sqrt(fitted(1-fitted)) and the \code{deviance} residual is 
+<a id='L29' name='L29' />  sqrt(minus twice logarithm of fitted).
+<a id='L30' name='L30' />
+<a id='L31' name='L31' />  For \code{poisson} and \code{exp}
+<a id='L32' name='L32' />  (or survival) trees, the \code{usual} residual
+<a id='L33' name='L33' />  is the observed - expected number of events.
+<a id='L34' name='L34' />  The \code{pearson} and \code{deviance} residuals are as defined in
+<a id='L35' name='L35' />  McCullagh and Nelder.
+<a id='L36' name='L36' />}
+<a id='L37' name='L37' />\item{\dots}{further arguments passed to or from other methods.}
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />}
+<a id='L40' name='L40' />\value{
+<a id='L41' name='L41' />vector of residuals of type \code{type} from a fitted \code{rpart} object. 
+<a id='L42' name='L42' />}
+<a id='L43' name='L43' />\references{
+<a id='L44' name='L44' />  McCullagh P. and Nelder, J. A. (1989)
+<a id='L45' name='L45' />  \emph{Generalized Linear Models}.
+<a id='L46' name='L46' />  London: Chapman and Hall.
+<a id='L47' name='L47' />}
+<a id='L48' name='L48' />\examples{
+<a id='L49' name='L49' />data(solder)
+<a id='L50' name='L50' />fit &lt;- rpart(skips ~ Opening + Solder + Mask + PadType + Panel,
+<a id='L51' name='L51' />       data=solder, method='anova')
+<a id='L52' name='L52' />summary(residuals(fit))
+<a id='L53' name='L53' />plot(predict(fit),residuals(fit))
+<a id='L54' name='L54' />}
+<a id='L55' name='L55' />\keyword{tree}
+<a id='L56' name='L56' />% docclass is function
+<a id='L57' name='L57' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+57 man/residuals.rpart.Rd]</em> */</em>
+</body>
+</html>

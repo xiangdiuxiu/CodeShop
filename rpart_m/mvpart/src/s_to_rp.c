@@ -11,11 +11,11 @@
 static struct cptable cptab;
 static struct node *tree;
 static int *savewhich;
-
+/*We add an parameter myAlpha. --ZhangYet*/
 void s_to_rp(Sint *n,     Sint *nvarx,   Sint *ncat,    Sint *method, 
          double *opt, double *parms, Sint *xvals,   Sint *x_grp,
          double *y,   FLOAT *xmat,   Sint *dissim, Sint *missmat, char **error,
-         double *wt,  Sint  *ny,     double *cost)
+	     double *wt,  Sint  *ny,     double *cost, double *myAlpha)
     {
     int itemp;
     int maxpri;
@@ -31,7 +31,7 @@ void s_to_rp(Sint *n,     Sint *nvarx,   Sint *ncat,    Sint *method,
           maxpri,  parms,    y,  xmat,  (int)*dissim,      
           missmat,     &cptab,  &tree,    &(error[0]), 
           savewhich,  (int)*xvals,  x_grp,     wt,         
-          opt,        (int)ny[0],   cost);
+		  opt,        (int)ny[0],   cost, myAlpha); /*We add a parameter myAlpha here. --ZhangYet*/
     /*
     ** count up the number of nodes, splits, categorical splits, and cp's
     */

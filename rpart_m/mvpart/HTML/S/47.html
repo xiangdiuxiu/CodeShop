@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/meanvar.rpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/meanvar.rpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/meanvar.rpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{meanvar.rpart}
+<a id='L2' name='L2' />\alias{meanvar}
+<a id='L3' name='L3' />\alias{meanvar.rpart}
+<a id='L4' name='L4' />\title{
+<a id='L5' name='L5' />  Mean-Variance Plot for an Rpart Object 
+<a id='L6' name='L6' />}
+<a id='L7' name='L7' />\description{
+<a id='L8' name='L8' />Creates a plot on the current graphics device of the deviance of the 
+<a id='L9' name='L9' />node divided by the number of observations at the node.  Also returns 
+<a id='L10' name='L10' />the node number. 
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />\usage{
+<a id='L13' name='L13' />\method{meanvar}{rpart}(tree, xlab="ave(y)", ylab="ave(deviance)", \dots)
+<a id='L14' name='L14' />}
+<a id='L15' name='L15' />\arguments{
+<a id='L16' name='L16' />\item{tree}{
+<a id='L17' name='L17' />fitted model object of class \code{rpart}.  This is asumed to be the result 
+<a id='L18' name='L18' />of some function that produces an object with the same named 
+<a id='L19' name='L19' />components as that returned by the \code{rpart} function. 
+<a id='L20' name='L20' />}
+<a id='L21' name='L21' />\item{xlab}{
+<a id='L22' name='L22' />x-axis label for the plot. 
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\item{ylab}{
+<a id='L25' name='L25' />y-axis label for the plot. 
+<a id='L26' name='L26' />}
+<a id='L27' name='L27' />\item{\dots}{
+<a id='L28' name='L28' />additional graphical parameters may be supplied as arguments to this function. 
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />}
+<a id='L31' name='L31' />\value{
+<a id='L32' name='L32' />an invisible list containing the following vectors is returned. 
+<a id='L33' name='L33' />
+<a id='L34' name='L34' />\item{x}{
+<a id='L35' name='L35' />fitted value at terminal nodes (\code{yval}). 
+<a id='L36' name='L36' />}
+<a id='L37' name='L37' />\item{y}{
+<a id='L38' name='L38' />deviance of node divided by number of observations at node. 
+<a id='L39' name='L39' />}
+<a id='L40' name='L40' />\item{label}{
+<a id='L41' name='L41' />node number. 
+<a id='L42' name='L42' />}
+<a id='L43' name='L43' />}
+<a id='L44' name='L44' />\section{Side Effects}{
+<a id='L45' name='L45' />a plot is put on the current graphics device. 
+<a id='L46' name='L46' />}
+<a id='L47' name='L47' />\seealso{
+<a id='L48' name='L48' /> \code{\link{plot.rpart}}.   
+<a id='L49' name='L49' />}
+<a id='L50' name='L50' />\examples{
+<a id='L51' name='L51' />data(car.test.frame)
+<a id='L52' name='L52' />z.auto &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L53' name='L53' />meanvar(z.auto, log='xy')
+<a id='L54' name='L54' />}
+<a id='L55' name='L55' />\keyword{tree}
+<a id='L56' name='L56' />% docclass is function
+<a id='L57' name='L57' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+57 man/meanvar.rpart.Rd]</em> */</em>
+</body>
+</html>

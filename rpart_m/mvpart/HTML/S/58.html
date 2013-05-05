@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/rpmatrix.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/152.html'>src</a>/rpmatrix.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L9'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 src/rpmatrix.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L9' title='Defined at 9.'>rpmatrix</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS @(#)rpmatrix.c  1.7 06/06/01 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>**  For S's usage, convert the linked list data into matrix form</em>
+<a id='L4' name='L4' />   4 <em class='comment'>*/</em>
+<a id='L5' name='L5' />   5 <em class='sharp'>#include</em> "<a href='82.html'>rpart.h</a>"
+<a id='L6' name='L6' />   6 <em class='sharp'>#include</em> "<a href='74.html'>node.h</a>"
+<a id='L7' name='L7' />   7 <em class='sharp'>#include</em> "<a href='84.html'>rpartproto.h</a>"
+<a id='L8' name='L8' />   8 
+<a id='L9' name='L9' />   9 <strong class='reserved'>void</strong> <a href='../R/72.html' title='Multiple refered from 4 places.'>rpmatrix</a>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L25' title='Defined at 25 in src/node.h.'>node</a> *<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>,  <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> *<a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a>,   <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> *<a href='../Y/298.html' title='Multiple used in 6 places.'>splitcount</a>, 
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+9 src/rpmatrix.c]</em> */</em>
+<a id='L10' name='L10' />  10           <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> *<a href='../Y/33.html' title='Multiple used in 6 places.'>catcount</a>,   <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> *<a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>,      <strong class='reserved'>double</strong> **<a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>,
+<a id='L11' name='L11' />  11           <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> **<a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>,    <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> **<a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>,     <strong class='reserved'>double</strong> **<a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>, 
+<a id='L12' name='L12' />  12           <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> **<a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>,     <strong class='reserved'>int</strong> <a href='../Y/111.html' title='Multiple used in 6 places.'>id</a>)
+<a id='L13' name='L13' />  13     <em class='brace'>{</em>
+<a id='L14' name='L14' />  14     <em class='comment'>/*</em>
+<a id='L15' name='L15' />  15 <em class='comment'>    ** dsplit  0: improvement</em>
+<a id='L16' name='L16' />  16 <em class='comment'>    **         1: split point if continuous; index into csplit if not</em>
+<a id='L17' name='L17' />  17 <em class='comment'>    **         2: surrogate: adjusted agreement,  primary: nothing</em>
+<a id='L18' name='L18' />  18 <em class='comment'>    ** isplit  0: variable #</em>
+<a id='L19' name='L19' />  19 <em class='comment'>    **         1: count</em>
+<a id='L20' name='L20' />  20 <em class='comment'>    **         2: if continuous: direction -1=left, 1=right</em>
+<a id='L21' name='L21' />  21 <em class='comment'>    **            if categorical: # of categories</em>
+<a id='L22' name='L22' />  22 <em class='comment'>    ** csplit[i]: -1=left, 0=missing category, 1=right</em>
+<a id='L23' name='L23' />  23 <em class='comment'>    ** dnode   0: risk</em>
+<a id='L24' name='L24' />  24 <em class='comment'>    **         1: complexity threshold</em>
+<a id='L25' name='L25' />  25 <em class='comment'>    **         2: sum of weights</em>
+<a id='L26' name='L26' />  26 <em class='comment'>    **         3, ...: response estimate</em>
+<a id='L27' name='L27' />  27 <em class='comment'>    ** inode   0: node number</em>
+<a id='L28' name='L28' />  28 <em class='comment'>    **         1: index of the first primary, in the split list</em>
+<a id='L29' name='L29' />  29 <em class='comment'>    **         2: #primary    ==0 if this is a terminal node</em>
+<a id='L30' name='L30' />  30 <em class='comment'>    **         3: #surrogates</em>
+<a id='L31' name='L31' />  31 <em class='comment'>    **         4: # observations</em>
+<a id='L32' name='L32' />  32 <em class='comment'>    **         5: # obs for which this is the final resting place</em>
+<a id='L33' name='L33' />  33 <em class='comment'>    */</em>
+<a id='L34' name='L34' />  34 
+<a id='L35' name='L35' />  35     <strong class='reserved'>int</strong> <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>,<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>, <a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>;
+<a id='L36' name='L36' />  36     <strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *<a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>;
+<a id='L37' name='L37' />  37     <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>, <a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>, <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>;
+<a id='L38' name='L38' />  38     <strong class='reserved'>static</strong> <strong class='reserved'>double</strong> <a href='../Y/45.html' title='Multiple used in 3 places.'>cp_scale</a>;
+<a id='L39' name='L39' />  39 
+<a id='L40' name='L40' />  40     <strong class='reserved'>if</strong> (<a href='../Y/111.html' title='Multiple used in 6 places.'>id</a>==1) <em class='brace'>{</em>
+<a id='L41' name='L41' />  41     <a href='../Y/45.html' title='Multiple used in 3 places.'>cp_scale</a> = 1/ <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/266.html' title='Multiple used in 52 places.'>risk</a>;
+<a id='L42' name='L42' />  42     <em class='brace'>}</em>
+<a id='L43' name='L43' />  43     <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a> = *<a href='../Y/298.html' title='Multiple used in 6 places.'>splitcount</a>;
+<a id='L44' name='L44' />  44     <a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a> = *<a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a>;
+<a id='L45' name='L45' />  45     <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a> = *<a href='../Y/33.html' title='Multiple used in 6 places.'>catcount</a>;
+<a id='L46' name='L46' />  46     <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>[0][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/266.html' title='Multiple used in 52 places.'>risk</a>;
+<a id='L47' name='L47' />  47     <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>[1][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/38.html' title='Multiple used in 39 places.'>complexity</a> * <a href='../Y/45.html' title='Multiple used in 3 places.'>cp_scale</a>;
+<a id='L48' name='L48' />  48     <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>[2][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/311.html' title='Multiple used in 4 places.'>sum_wt</a>;
+<a id='L49' name='L49' />  49 
+<a id='L50' name='L50' />  50     <strong class='reserved'>for</strong> (<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>=0; <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>&lt;(<a href='../Y/270.html' title='Multiple used in 303 places.'>rp</a>.<a href='../Y/219.html' title='Multiple used in 8 places.'>num_resp</a>); <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>++) <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>[3+<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/254.html' title='Multiple used in 13 places.'>response_est</a>[<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>];
+<a id='L51' name='L51' />  51    
+<a id='L52' name='L52' />  52     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[0][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/111.html' title='Multiple used in 6 places.'>id</a>;
+<a id='L53' name='L53' />  53     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[4][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/218.html' title='Multiple used in 10 places.'>num_obs</a>;
+<a id='L54' name='L54' />  54 
+<a id='L55' name='L55' />  55     <strong class='reserved'>if</strong> (<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/38.html' title='Multiple used in 39 places.'>complexity</a> &lt;=<a href='../Y/270.html' title='Multiple used in 303 places.'>rp</a>.<a href='../Y/21.html' title='Multiple used in 16 places.'>alpha</a> || <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/153.html' title='Multiple used in 28 places.'>leftson</a>==0) <em class='brace'>{</em> <em class='comment'>/*no kids */</em>
+<a id='L56' name='L56' />  56     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[1][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = 0;
+<a id='L57' name='L57' />  57     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[2][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = 0;
+<a id='L58' name='L58' />  58     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[3][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = 0;
+<a id='L59' name='L59' />  59     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[5][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/218.html' title='Multiple used in 10 places.'>num_obs</a>;
+<a id='L60' name='L60' />  60     *<a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a> = <a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>+1;
+<a id='L61' name='L61' />  61     <em class='brace'>}</em>
+<a id='L62' name='L62' />  62     <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L63' name='L63' />  63     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[1][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a> +1;    <em class='comment'>/*S has 1 based, not 0 based subscripts */</em>
+<a id='L64' name='L64' />  64 
+<a id='L65' name='L65' />  65     <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>=0;
+<a id='L66' name='L66' />  66     <strong class='reserved'>for</strong> (<a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a> = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/247.html' title='Multiple used in 13 places.'>primary</a>; <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>!=0; <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a> = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a>) <em class='brace'>{</em>
+<a id='L67' name='L67' />  67         <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>++;
+<a id='L68' name='L68' />  68         <a href='../Y/130.html' title='Multiple used in 347 places.'>j</a> = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/342.html' title='Multiple used in 12 places.'>var_num</a>;
+<a id='L69' name='L69' />  69         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[0][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a>;
+<a id='L70' name='L70' />  70         <strong class='reserved'>if</strong> (<a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>] ==0) <em class='brace'>{</em>
+<a id='L71' name='L71' />  71         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/301.html' title='Multiple used in 11 places.'>spoint</a>;
+<a id='L72' name='L72' />  72         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[2][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[0];
+<a id='L73' name='L73' />  73         <em class='brace'>}</em>
+<a id='L74' name='L74' />  74         <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L75' name='L75' />  75         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>+1;
+<a id='L76' name='L76' />  76         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[2][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>];
+<a id='L77' name='L77' />  77         <strong class='reserved'>for</strong> (<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>=0; <a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>&lt;<a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>]; <a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>++) <a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>][<a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>];
+<a id='L78' name='L78' />  78         <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>++;
+<a id='L79' name='L79' />  79         <em class='brace'>}</em>
+<a id='L80' name='L80' />  80         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[0][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/130.html' title='Multiple used in 347 places.'>j</a> +1;      <em class='comment'>/* use "1" based subscripts */</em>
+<a id='L81' name='L81' />  81         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/40.html' title='Multiple used in 61 places.'>count</a>;
+<a id='L82' name='L82' />  82         <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>++;
+<a id='L83' name='L83' />  83         <em class='brace'>}</em>
+<a id='L84' name='L84' />  84     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[2][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>;
+<a id='L85' name='L85' />  85 
+<a id='L86' name='L86' />  86     <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>=0;
+<a id='L87' name='L87' />  87     <strong class='reserved'>for</strong> (<a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>=<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../S/91.html#L20' title='Defined at 20 in src/surrogate.c.'>surrogate</a>; <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>!=0; <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a> = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a>) <em class='brace'>{</em>
+<a id='L88' name='L88' />  88         <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>++;
+<a id='L89' name='L89' />  89         <a href='../Y/130.html' title='Multiple used in 347 places.'>j</a> = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/342.html' title='Multiple used in 12 places.'>var_num</a>;
+<a id='L90' name='L90' />  90         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[0][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a>;
+<a id='L91' name='L91' />  91         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[2][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/17.html' title='Multiple used in 12 places.'>adj</a>;
+<a id='L92' name='L92' />  92         <strong class='reserved'>if</strong> (<a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>] ==0) <em class='brace'>{</em>
+<a id='L93' name='L93' />  93         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/301.html' title='Multiple used in 11 places.'>spoint</a>;
+<a id='L94' name='L94' />  94         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[2][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[0];
+<a id='L95' name='L95' />  95         <em class='brace'>}</em>
+<a id='L96' name='L96' />  96         <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L97' name='L97' />  97         <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>+1;
+<a id='L98' name='L98' />  98         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[2][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>];
+<a id='L99' name='L99' />  99         <strong class='reserved'>for</strong> (<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>=0; <a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>&lt;<a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>[<a href='../Y/130.html' title='Multiple used in 347 places.'>j</a>]; <a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>++) <a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>][<a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>[<a href='../Y/132.html' title='Multiple used in 153 places.'>k</a>];
+<a id='L100' name='L100' /> 100         <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>++;
+<a id='L101' name='L101' /> 101         <em class='brace'>}</em>
+<a id='L102' name='L102' /> 102         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[0][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/130.html' title='Multiple used in 347 places.'>j</a> +1;
+<a id='L103' name='L103' /> 103         <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>[1][<a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>] = <a href='../Y/296.html' title='Multiple used in 16 places.'>spl</a>-&gt;<a href='../Y/40.html' title='Multiple used in 61 places.'>count</a>;
+<a id='L104' name='L104' /> 104         <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>++;
+<a id='L105' name='L105' /> 105         <em class='brace'>}</em>
+<a id='L106' name='L106' /> 106     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[3][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>;
+<a id='L107' name='L107' /> 107     <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>[5][<a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>] = <a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/218.html' title='Multiple used in 10 places.'>num_obs</a> -
+<a id='L108' name='L108' /> 108                ((<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/153.html' title='Multiple used in 28 places.'>leftson</a>)-&gt;<a href='../Y/218.html' title='Multiple used in 10 places.'>num_obs</a> + (<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/265.html' title='Multiple used in 23 places.'>rightson</a>)-&gt;<a href='../Y/218.html' title='Multiple used in 10 places.'>num_obs</a>);
+<a id='L109' name='L109' /> 109 
+<a id='L110' name='L110' /> 110     <a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>++;
+<a id='L111' name='L111' /> 111     *<a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a> = <a href='../Y/196.html' title='Multiple used in 19 places.'>ncnt</a>;
+<a id='L112' name='L112' /> 112     *<a href='../Y/298.html' title='Multiple used in 6 places.'>splitcount</a>= <a href='../Y/289.html' title='Multiple used in 21 places.'>scnt</a>;
+<a id='L113' name='L113' /> 113     *<a href='../Y/33.html' title='Multiple used in 6 places.'>catcount</a>  = <a href='../Y/35.html' title='Multiple used in 22 places.'>ccnt</a>;
+<a id='L114' name='L114' /> 114 
+<a id='L115' name='L115' /> 115     <a href='../S/58.html#L9' title='Defined at 9 in src/rpmatrix.c.'>rpmatrix</a>(<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/153.html' title='Multiple used in 28 places.'>leftson</a>, <a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a>, <a href='../Y/298.html' title='Multiple used in 6 places.'>splitcount</a>, <a href='../Y/33.html' title='Multiple used in 6 places.'>catcount</a>, <a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>,
+<a id='L116' name='L116' /> 116             <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>, <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>, <a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>, <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>, <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>, 2*<a href='../Y/111.html' title='Multiple used in 6 places.'>id</a>);
+<a id='L117' name='L117' /> 117     <a href='../S/58.html#L9' title='Defined at 9 in src/rpmatrix.c.'>rpmatrix</a>(<a href='../Y/174.html' title='Multiple used in 119 places.'>me</a>-&gt;<a href='../Y/265.html' title='Multiple used in 23 places.'>rightson</a>,<a href='../Y/209.html' title='Multiple used in 7 places.'>nodecount</a>, <a href='../Y/298.html' title='Multiple used in 6 places.'>splitcount</a>, <a href='../Y/33.html' title='Multiple used in 6 places.'>catcount</a>, <a href='../Y/222.html' title='Multiple used in 42 places.'>numcat</a>,
+<a id='L118' name='L118' /> 118             <a href='../Y/82.html' title='Multiple used in 14 places.'>dsplit</a>, <a href='../Y/128.html' title='Multiple used in 15 places.'>isplit</a>, <a href='../Y/51.html' title='Multiple used in 82 places.'>csplit</a>, <a href='../Y/78.html' title='Multiple used in 11 places.'>dnode</a>, <a href='../Y/122.html' title='Multiple used in 17 places.'>inode</a>, 2*<a href='../Y/111.html' title='Multiple used in 6 places.'>id</a> +1);
+<a id='L119' name='L119' /> 119     <em class='brace'>}</em>
+<a id='L120' name='L120' /> 120     <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L9'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+120 src/rpmatrix.c]</em> */</em>
+</body>
+</html>

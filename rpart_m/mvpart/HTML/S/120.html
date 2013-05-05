@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.poisson.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.poisson.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.poisson.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart.poisson" &lt;-
+<a id='L2' name='L2' />function(y, offset, parms, wt) {
+<a id='L3' name='L3' />    if (is.matrix(y)) {
+<a id='L4' name='L4' />    if (ncol(y)!=2) stop("response must be a 2 column matrix or a vector")
+<a id='L5' name='L5' />    if (!is.null(offset)) y[,1] &lt;- y[,1] * exp(offset)
+<a id='L6' name='L6' />    }
+<a id='L7' name='L7' />    else {
+<a id='L8' name='L8' />    if (is.null(offset)) y &lt;- cbind(1,y)
+<a id='L9' name='L9' />    else  y &lt;- cbind( exp(offset), y)
+<a id='L10' name='L10' />    }
+<a id='L11' name='L11' />    if (any(y[,1] &lt;=0)) stop("Observation time must be &gt;0")
+<a id='L12' name='L12' />    if (any(y[,2] &lt;0))  stop("Number of events must be &gt;=0")
+<a id='L13' name='L13' />
+<a id='L14' name='L14' />    if (missing(parms)) parms &lt;- c(shrink=1, method=1)
+<a id='L15' name='L15' />    else {
+<a id='L16' name='L16' />    parms &lt;- as.list(parms)
+<a id='L17' name='L17' />    if(is.null(names(parms))) stop("You must input a named list for parms")
+<a id='L18' name='L18' />    parmsNames &lt;- c("method", "shrink")
+<a id='L19' name='L19' />    indx &lt;- pmatch(names(parms), parmsNames, nomatch= 0)
+<a id='L20' name='L20' />    if (any(indx==0))
+<a id='L21' name='L21' />               stop(paste("parms component not matched: ",
+<a id='L22' name='L22' />              names(parms)[indx==0]))
+<a id='L23' name='L23' />    else names(parms) &lt;- parmsNames[indx]
+<a id='L24' name='L24' />
+<a id='L25' name='L25' />    if (is.null(parms$method)) method &lt;- 1
+<a id='L26' name='L26' />    else method &lt;- pmatch(parms$method, c("deviance", "sqrt"))
+<a id='L27' name='L27' />    if (is.null(method)) stop("Invalid error method for Poisson")
+<a id='L28' name='L28' />
+<a id='L29' name='L29' />    if (is.null(parms$shrink)) shrink &lt;- 2- method
+<a id='L30' name='L30' />    else shrink &lt;- parms$shrink
+<a id='L31' name='L31' />
+<a id='L32' name='L32' />    if (!is.numeric(shrink) || shrink &lt;0)
+<a id='L33' name='L33' />        stop("Invalid shrinkage value")
+<a id='L34' name='L34' />    parms &lt;- c(shrink=shrink, method=method)
+<a id='L35' name='L35' />    }
+<a id='L36' name='L36' />
+<a id='L37' name='L37' />    list(y=y, parms=parms, numresp=2, numy=2,
+<a id='L38' name='L38' />     summary= function(yval, dev, wt, ylevel, digits) {
+<a id='L39' name='L39' />         paste("  events=", formatg(yval[,2]),
+<a id='L40' name='L40' />        ",  estimated rate=" , formatg(yval[,1], digits),
+<a id='L41' name='L41' />        " , mean deviance=",formatg(dev/wt, digits),
+<a id='L42' name='L42' />        sep = "")
+<a id='L43' name='L43' />         },
+<a id='L44' name='L44' />     text= function(yval, dev, wt, ylevel, digits, n, use.n) {
+<a id='L45' name='L45' />         if(use.n) {paste(formatg(yval[,1],digits),"\n",
+<a id='L46' name='L46' />                formatg(yval[,2]),"/",n,sep="")} else
+<a id='L47' name='L47' />            {paste(formatg(yval[,1],digits))}}
+<a id='L48' name='L48' />     )
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />    }
+<a id='L51' name='L51' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+51 R/rpart.poisson.R]</em> */</em>
+</body>
+</html>

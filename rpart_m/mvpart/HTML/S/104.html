@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/xdiss.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/xdiss.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/xdiss.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"xdiss" &lt;-
+<a id='L2' name='L2' />function(data, dcrit = 1, dauto = TRUE , dinf = 0.5, method = "man", use.min = TRUE, 
+<a id='L3' name='L3' />        eps = 0.0001, replace.neg = TRUE, big = 10000, sumry = TRUE, full = FALSE, sq = FALSE)
+<a id='L4' name='L4' />{ 
+<a id='L5' name='L5' />        scale.row &lt;- function(data, p = 1)      {
+<a id='L6' name='L6' />        tmp &lt;- apply(data, 1, sum, na.rm = TRUE )
+<a id='L7' name='L7' />        if(any(t0 &lt;- (tmp == 0)))
+<a id='L8' name='L8' />        cat(sum(t0), " rows with sum = 0 !!  -- these rows untransformed\n")
+<a id='L9' name='L9' />        if(p == 1)
+<a id='L10' name='L10' />            data[!t0,  ] &lt;- data[!t0,  ]/apply(data[!t0,  ], 1, sum, na.rm = TRUE )
+<a id='L11' name='L11' />        else if(p == 2)
+<a id='L12' name='L12' />            data[!t0,  ] &lt;- data[!t0,  ]/(apply(data[!t0,  ]^2, 1, sum, na.rm = TRUE ))^0.5
+<a id='L13' name='L13' />        data
+<a id='L14' name='L14' />        }   
+<a id='L15' name='L15' />
+<a id='L16' name='L16' />        METHODS &lt;- c("manhattan", "euclidean", "canberra", "bray", "kulczynski", "gower", 
+<a id='L17' name='L17' />        "maximum", "binary", "chisq", "chord")
+<a id='L18' name='L18' />        method &lt;- METHODS[pmatch(method, METHODS)]
+<a id='L19' name='L19' />        if(is.na(method))
+<a id='L20' name='L20' />        stop("invalid distance method")
+<a id='L21' name='L21' />        if(any(data &lt; 0))
+<a id='L22' name='L22' />                data &lt;- apply(data, 2, function(x)
+<a id='L23' name='L23' />                x - min(x))
+<a id='L24' name='L24' />        n &lt;- dim(data)[1]
+<a id='L25' name='L25' />        if(method == "chisq" | method == "gower" | method == "maximum") {
+<a id='L26' name='L26' />                method &lt;- "manhattan"
+<a id='L27' name='L27' />                cat("This dissimilarity is not suitable -- switching to Manhattan\n")
+<a id='L28' name='L28' />        }
+<a id='L29' name='L29' />        if(method == "manhattan") {
+<a id='L30' name='L30' />                cat("Using Extended Dissimilarity : Manhattan (Site Standardised by Mean)\n")
+<a id='L31' name='L31' />                data &lt;- scale.row(as.matrix(data), p = 1)/2
+<a id='L32' name='L32' />                d &lt;- gdist(data, method = "man")
+<a id='L33' name='L33' />        }
+<a id='L34' name='L34' />        else if(method == "chord") {
+<a id='L35' name='L35' />                cat("Using Extended Dissimilarity : Chord \n")
+<a id='L36' name='L36' />                data &lt;- scale.row(as.matrix(data), p = 2)/sqrt(2)
+<a id='L37' name='L37' />                d &lt;- gdist(data, method = "euc")
+<a id='L38' name='L38' />        }
+<a id='L39' name='L39' />        else if(method == "euclidean") {
+<a id='L40' name='L40' />                cat("Using Extended Dissimilarity : Euc (Site Standardised by SS) \n")
+<a id='L41' name='L41' />                data &lt;- scale.row(as.matrix(data), p = 2)/sqrt(2)
+<a id='L42' name='L42' />                d &lt;- gdist(data, method = "euc")
+<a id='L43' name='L43' />        }
+<a id='L44' name='L44' />        else if(method == "bray") {
+<a id='L45' name='L45' />                cat("Using Extended Dissimilarity : Bray \n")
+<a id='L46' name='L46' />                d &lt;- gdist(data, method = "bra")
+<a id='L47' name='L47' />        }
+<a id='L48' name='L48' />        else if(method == "canberra") {
+<a id='L49' name='L49' />                cat("Using Extended Dissimilarity : Canberra \n")
+<a id='L50' name='L50' />                d &lt;- gdist(data, method = "can")
+<a id='L51' name='L51' />        }
+<a id='L52' name='L52' />        else if(method == "binary") {
+<a id='L53' name='L53' />                cat("Using Extended Dissimilarity : Binary \n")
+<a id='L54' name='L54' />                d &lt;- gdist(data, method = "bin")
+<a id='L55' name='L55' />        }
+<a id='L56' name='L56' />        else if(method == "kulczynski") {
+<a id='L57' name='L57' />                cat("Using Extended Dissimilarity : Kulczynski \n")
+<a id='L58' name='L58' />                d &lt;- gdist(data, method = "kul")
+<a id='L59' name='L59' />        }
+<a id='L60' name='L60' />        cat("Maximum distance = ", round(max(d), 4), "\n")
+<a id='L61' name='L61' />        if(dauto) {
+<a id='L62' name='L62' />                dcrit &lt;- max(apply(distfull(d) + diag(1, n), 1, min))
+<a id='L63' name='L63' />                dcrit &lt;- dcrit * (1 - dinf) + dinf
+<a id='L64' name='L64' />                cat("Critical distance = ", signif(dcrit, 4), "\n")
+<a id='L65' name='L65' />        }
+<a id='L66' name='L66' />        cat("% Distances &gt; Crit Dist = ", round(100 * mean(d &gt; dcrit), 2), "\n")
+<a id='L67' name='L67' />        use.min &lt;- ifelse(use.min, 1, 0)
+<a id='L68' name='L68' />        storage.mode(d) &lt;- "double"
+<a id='L69' name='L69' />        storage.mode(n) &lt;- "integer"
+<a id='L70' name='L70' />        storage.mode(dcrit) &lt;- "double"
+<a id='L71' name='L71' />        storage.mode(use.min) &lt;- "integer"
+<a id='L72' name='L72' />        storage.mode(eps) &lt;- "double"
+<a id='L73' name='L73' />        storage.mode(big) &lt;- "double"
+<a id='L74' name='L74' />        dnew &lt;- .C("xdists",
+<a id='L75' name='L75' />                d = d,
+<a id='L76' name='L76' />                n,
+<a id='L77' name='L77' />                dcrit,
+<a id='L78' name='L78' />                use.min,
+<a id='L79' name='L79' />                eps,
+<a id='L80' name='L80' />                big,
+<a id='L81' name='L81' />                PACKAGE="mvpart")$d
+<a id='L82' name='L82' />        if(any(dnew == -1, na.rm = TRUE ))
+<a id='L83' name='L83' />                attr(dnew, "ok") &lt;- FALSE
+<a id='L84' name='L84' />        else attr(dnew, "ok") &lt;- TRUE 
+<a id='L85' name='L85' />        if(any(dnew == -1))
+<a id='L86' name='L86' />                cat("WARNING : Data disconnected\n")
+<a id='L87' name='L87' />        if(replace.neg)
+<a id='L88' name='L88' />                dnew[dnew == -1] &lt;- max(dnew)
+<a id='L89' name='L89' />        if(sumry) {
+<a id='L90' name='L90' />                cat("Summary of Extended Dissimilarities\n")
+<a id='L91' name='L91' />                print(summary(dnew))
+<a id='L92' name='L92' />        }
+<a id='L93' name='L93' />        attr(dnew, "Size") &lt;- n
+<a id='L94' name='L94' />        class(dnew) &lt;- "dist"
+<a id='L95' name='L95' />        if (full) dnew &lt;- distfull(dnew)
+<a id='L96' name='L96' />        if (sq) dnew &lt;- dnew^2
+<a id='L97' name='L97' />        dnew
+<a id='L98' name='L98' />}
+<a id='L99' name='L99' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+99 R/xdiss.R]</em> */</em>
+</body>
+</html>

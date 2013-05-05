@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/text.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/text.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/text.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"text.rpart" &lt;-
+<a id='L2' name='L2' />function (x, splits = TRUE, which = 4, label = "yval", FUN = text, 
+<a id='L3' name='L3' />    all.leaves = FALSE, pretty = NULL, digits = getOption("digits") - 2,
+<a id='L4' name='L4' />    tadj = 0.65, stats = TRUE, use.n = FALSE, bars = TRUE, 
+<a id='L5' name='L5' />    legend = FALSE, xadj = 1, yadj = 1, bord = FALSE, big.pts = FALSE,
+<a id='L6' name='L6' />    uniform = FALSE, branch = 1, nspace = -1, minbranch = 0.3, ...) 
+<a id='L7' name='L7' />{
+<a id='L8' name='L8' />    if (!inherits(x, "rpart")) 
+<a id='L9' name='L9' />        stop("Not legitimate rpart")
+<a id='L10' name='L10' />   if (!is.null(x$frame$splits)) 
+<a id='L11' name='L11' />        x &lt;- rpconvert(x)
+<a id='L12' name='L12' />    frame &lt;- x$frame
+<a id='L13' name='L13' />    col &lt;- names(frame)
+<a id='L14' name='L14' />    method &lt;- x$method
+<a id='L15' name='L15' />    ylevels &lt;- attr(x, "ylevels")
+<a id='L16' name='L16' />    if (!is.null(ylevels &lt;- attr(x, "ylevels"))) 
+<a id='L17' name='L17' />        col &lt;- c(col, ylevels)
+<a id='L18' name='L18' />    if (is.na(match(label, col))) 
+<a id='L19' name='L19' />        stop("Label must be a column label of the frame component of the tree")
+<a id='L20' name='L20' />    cxy &lt;- par("cxy")
+<a id='L21' name='L21' />    if (!is.null(srt &lt;- list(...)$srt) &amp;&amp; srt == 90) 
+<a id='L22' name='L22' />        cxy &lt;- rev(cxy)
+<a id='L23' name='L23' />    parms &lt;- list(uniform = uniform, branch = branch, nspace = nspace,
+<a id='L24' name='L24' />                 minbranch = minbranch)
+<a id='L25' name='L25' />    xy &lt;- rpartco(x,parms)
+<a id='L26' name='L26' />    node &lt;- as.numeric(row.names(x$frame))
+<a id='L27' name='L27' />    is.left &lt;- (node%%2 == 0)
+<a id='L28' name='L28' />    node.left &lt;- node[is.left]
+<a id='L29' name='L29' />    parent &lt;- match(node.left/2, node)
+<a id='L30' name='L30' />    bars &lt;- bars &amp; is.matrix(frame$yval2)
+<a id='L31' name='L31' />    text.adj &lt;- ifelse(bars, yadj * diff(range(xy$y))/12, 0)
+<a id='L32' name='L32' />    if (splits) {
+<a id='L33' name='L33' />        left.child &lt;- match(2 * node, node)
+<a id='L34' name='L34' />        right.child &lt;- match(node * 2 + 1, node)
+<a id='L35' name='L35' />        rows &lt;- labels(x, pretty = pretty)
+<a id='L36' name='L36' />        if (which == 1) 
+<a id='L37' name='L37' />            FUN(xy$x, xy$y + tadj * cxy[2], rows[left.child], 
+<a id='L38' name='L38' />                ...)
+<a id='L39' name='L39' />        else {
+<a id='L40' name='L40' />            if (which == 2 | which == 4) 
+<a id='L41' name='L41' />                FUN(xy$x, xy$y + tadj * cxy[2], rows[left.child], 
+<a id='L42' name='L42' />                  pos = 2, ...)
+<a id='L43' name='L43' />            if (which == 3 | which == 4) 
+<a id='L44' name='L44' />                FUN(xy$x, xy$y + tadj * cxy[2], rows[right.child], 
+<a id='L45' name='L45' />                  pos = 4, ...)
+<a id='L46' name='L46' />        }
+<a id='L47' name='L47' />    }
+<a id='L48' name='L48' />    leaves &lt;- if (all.leaves) 
+<a id='L49' name='L49' />        rep(TRUE, nrow(frame))
+<a id='L50' name='L50' />    else frame$var == "&lt;leaf&gt;"
+<a id='L51' name='L51' />    if (stats) {
+<a id='L52' name='L52' />        if (is.null(frame$yval2)) 
+<a id='L53' name='L53' />            stat &lt;- x$functions$text(yval = frame$yval[leaves], 
+<a id='L54' name='L54' />                dev = frame$dev[leaves], wt = frame$wt[leaves], 
+<a id='L55' name='L55' />                ylevel = ylevels, digits = digits, n = frame$n[leaves], 
+<a id='L56' name='L56' />                use.n = use.n)
+<a id='L57' name='L57' />        else stat &lt;- x$functions$text(yval = frame$yval2[leaves, 
+<a id='L58' name='L58' />            ], dev = frame$dev[leaves], wt = frame$wt[leaves], 
+<a id='L59' name='L59' />            ylevel = ylevels, digits = digits, n = frame$n[leaves], 
+<a id='L60' name='L60' />            use.n = use.n)
+<a id='L61' name='L61' />        FUN(xy$x[leaves], xy$y[leaves] - tadj * cxy[2] - text.adj, 
+<a id='L62' name='L62' />            stat, adj = 0.5, ...)
+<a id='L63' name='L63' />    }
+<a id='L64' name='L64' />    if (bars) {
+<a id='L65' name='L65' />        bar.vals &lt;- x$functions$bar(yval2 = frame$yval2)
+<a id='L66' name='L66' />        sub.barplot(xy$x, xy$y, bar.vals, leaves, xadj = xadj, 
+<a id='L67' name='L67' />            yadj = yadj, bord = bord, line = TRUE, col = c("lightblue", 
+<a id='L68' name='L68' />                "blue", "darkblue"))
+<a id='L69' name='L69' />        rx &lt;- range(xy$x)
+<a id='L70' name='L70' />        ry &lt;- range(xy$y)
+<a id='L71' name='L71' />        if (!is.null(ylevels)) 
+<a id='L72' name='L72' />            bar.labs &lt;- ylevels
+<a id='L73' name='L73' />        else bar.labs &lt;- dimnames(x$y)[[2]]
+<a id='L74' name='L74' />     if (legend &amp; !is.null(bar.labs)) 
+<a id='L75' name='L75' />            legend(min(xy$x) - 0.1 * rx, max(xy$y) + 0.05 * ry, bar.labs, 
+<a id='L76' name='L76' />            col = c("lightblue", "blue", "darkblue"), pch = 15, bty = "n", ...)
+<a id='L77' name='L77' />    }
+<a id='L78' name='L78' />    if (big.pts) 
+<a id='L79' name='L79' />        points(xy$x[leaves], xy$y[leaves], pch = 16, cex = 3 * 
+<a id='L80' name='L80' />            par()$cex, col = 2:(sum(leaves) + 1))
+<a id='L81' name='L81' />    invisible()
+<a id='L82' name='L82' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+82 R/text.rpart.R]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lambda</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/67.html#L88'>lambda</a>             88 src/poisson.c  double poissonpred(double *y, double *lambda) {</span>
+<span class='curline'><a href='../S/67.html#L93'>lambda</a>             93 src/poisson.c      dev  = temp - *lambda*y[0];</span>
+<span class='curline'><a href='../S/67.html#L95'>lambda</a>             95 src/poisson.c          dev += temp * log(*lambda * y[0] / temp);</span>
+<span class='curline'><a href='../S/67.html#L104'>lambda</a>            104 src/poisson.c      temp = sqrt(y[1]) - sqrt(*lambda * y[0]); /*sqrt(obs) - sqrt(exp) */</span>
+<span class='curline'><a href='../S/67.html#L119'>lambda</a>            119 src/poisson.c      double lambda, dev;</span>
+<span class='curline'><a href='../S/67.html#L132'>lambda</a>            132 src/poisson.c      lambda = (death + exp_alpha) / (time + exp_beta);</span>
+<span class='curline'><a href='../S/67.html#L137'>lambda</a>            137 src/poisson.c      dev -= (lambda*y[i][0] - temp) * wt[i];</span>
+<span class='curline'><a href='../S/67.html#L139'>lambda</a>            139 src/poisson.c          dev += (temp * log(lambda * y[i][0] / temp)) * wt[i];</span>
+<span class='curline'><a href='../S/67.html#L142'>lambda</a>            142 src/poisson.c      value[0] = lambda;</span>
+</pre>
+</body>
+</html>

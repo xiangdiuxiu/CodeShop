@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/scaler.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/scaler.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/scaler.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{scaler}
+<a id='L2' name='L2' />\alias{scaler}
+<a id='L3' name='L3' />\title{Row and Column Scaling of a Data Matrix}
+<a id='L4' name='L4' />\description{
+<a id='L5' name='L5' />The function provides some popular (and effective) standardization
+<a id='L6' name='L6' />methods for community ecologists.
+<a id='L7' name='L7' />}
+<a id='L8' name='L8' />
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />scaler(x, col = c("mean1", "max1", "min0", "ssq1", "range01",
+<a id='L11' name='L11' />        "zsc", "pa", "rank")[2], row = c("mean1", "max1", "min0",
+<a id='L12' name='L12' />        "ssq1", "range01", "zsc", "pa", "rank")[1])
+<a id='L13' name='L13' />}
+<a id='L14' name='L14' />\arguments{
+<a id='L15' name='L15' />  \item{x}{ Data matrix.}
+<a id='L16' name='L16' />  \item{col}{ Character vector of column standardizations.}
+<a id='L17' name='L17' />  \item{row}{ Character vector of row standardizations.}
+<a id='L18' name='L18' />}
+<a id='L19' name='L19' />\details{
+<a id='L20' name='L20' />  The function offers following data matrix standardizations:
+<a id='L21' name='L21' />    \itemize{
+<a id='L22' name='L22' />    \item \code{mean1 }: scale to mean of 1.
+<a id='L23' name='L23' />    \item \code{max1 }: scale to maximum of 1.
+<a id='L24' name='L24' />    \item \code{ssq1 }: scale to sums of sqaures equal 1.
+<a id='L25' name='L25' />    \item \code{range01 }: scale range to 0-1.
+<a id='L26' name='L26' />    \item \code{zsc }: standardize to z-scores (mean=0, sd=1).
+<a id='L27' name='L27' />    \item \code{pa }: scale to presence/absence scale (0/1).
+<a id='L28' name='L28' />    \item \code{rank }: scale to rank order (1=lowest).
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />
+<a id='L31' name='L31' />
+<a id='L32' name='L32' />  Standardizations are performed first on columns then on rows.
+<a id='L33' name='L33' />  "pa" applies to the whole matrix and can be specied using row or col.
+<a id='L34' name='L34' />}
+<a id='L35' name='L35' />\value{
+<a id='L36' name='L36' />  Returns the standardized matrix.
+<a id='L37' name='L37' />}
+<a id='L38' name='L38' />\author{Jari Oksanen -- modified Glenn De'ath (Dec 03)}
+<a id='L39' name='L39' />\note{Common transformations can be made with standard \R functions.}
+<a id='L40' name='L40' />
+<a id='L41' name='L41' />
+<a id='L42' name='L42' />\examples{
+<a id='L43' name='L43' />data(spider)
+<a id='L44' name='L44' />spid.data &lt;- scaler(spider, col = "max", row="mean1")
+<a id='L45' name='L45' />}
+<a id='L46' name='L46' />\keyword{ multivariate}%-- one or more ...
+<a id='L47' name='L47' />\keyword{ manip }
+<a id='L48' name='L48' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+48 man/scaler.Rd]</em> */</em>
+</body>
+</html>

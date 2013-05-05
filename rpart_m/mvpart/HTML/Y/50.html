@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cptemp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/64.html#L38'>cptemp</a>             38 src/make_cp_list.c     struct cptable *cplist, *cptemp = NULL;</span>
+<span class='curline'><a href='../S/64.html#L54'>cptemp</a>             54 src/make_cp_list.c         cptemp = cplist;</span>
+<span class='curline'><a href='../S/64.html#L62'>cptemp</a>             62 src/make_cp_list.c     cplist-&gt;back = cptemp;</span>
+<span class='curline'><a href='../S/64.html#L63'>cptemp</a>             63 src/make_cp_list.c     cplist-&gt;forward = cptemp-&gt;forward;</span>
+<span class='curline'><a href='../S/64.html#L64'>cptemp</a>             64 src/make_cp_list.c     if (cptemp-&gt;forward!=0) (cptemp-&gt;forward)-&gt;back = cplist;</span>
+<span class='curline'><a href='../S/64.html#L66'>cptemp</a>             66 src/make_cp_list.c     cptemp-&gt;forward = cplist;</span>
+</pre>
+</body>
+</html>

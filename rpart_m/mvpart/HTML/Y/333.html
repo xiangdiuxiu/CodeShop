@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tsplit</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/66.html#L14'>tsplit</a>             14 src/anova.c    static int *tsplit;</span>
+<span class='curline'><a href='../S/66.html#L22'>tsplit</a>             22 src/anova.c        tsplit  = countn + maxcat;</span>
+<span class='curline'><a href='../S/66.html#L148'>tsplit</a>            148 src/anova.c            tsplit[i] = RIGHT;</span>
+<span class='curline'><a href='../S/66.html#L151'>tsplit</a>            151 src/anova.c            else tsplit[i] = 0;</span>
+<span class='curline'><a href='../S/66.html#L164'>tsplit</a>            164 src/anova.c            tsplit[j] = LEFT;</span>
+<span class='curline'><a href='../S/66.html#L178'>tsplit</a>            178 src/anova.c    			        for (i=0; i&lt;nclass; i++) csplit[i] = -tsplit[i];</span>
+<span class='curline'><a href='../S/66.html#L181'>tsplit</a>            181 src/anova.c    			        for (i=0; i&lt;nclass; i++) csplit[i] = tsplit[i];</span>
+<span class='curline'><a href='../S/55.html#L16'>tsplit</a>             16 src/branch.c       struct split *tsplit;</span>
+<span class='curline'><a href='../S/55.html#L28'>tsplit</a>             28 src/branch.c       tsplit = me-&gt;primary;</span>
+<span class='curline'><a href='../S/55.html#L29'>tsplit</a>             29 src/branch.c       j= tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/55.html#L33'>tsplit</a>             33 src/branch.c           if (xdata[j][i] &lt; tsplit-&gt;spoint)</span>
+<span class='curline'><a href='../S/55.html#L34'>tsplit</a>             34 src/branch.c               dir =  tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/55.html#L35'>tsplit</a>             35 src/branch.c              else dir = -tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/55.html#L41'>tsplit</a>             41 src/branch.c       dir = (tsplit-&gt;csplit)[(int)xdata[j][obs] -1];</span>
+<span class='curline'><a href='../S/55.html#L49'>tsplit</a>             49 src/branch.c       for (tsplit= me-&gt;surrogate; tsplit !=0; tsplit= tsplit-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/55.html#L50'>tsplit</a>             50 src/branch.c       j = tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/55.html#L54'>tsplit</a>             54 src/branch.c               if (xdata[j][i] &lt; tsplit-&gt;spoint)</span>
+<span class='curline'><a href='../S/55.html#L55'>tsplit</a>             55 src/branch.c                   dir =  tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/55.html#L56'>tsplit</a>             56 src/branch.c                  else dir = -tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/55.html#L62'>tsplit</a>             62 src/branch.c           dir = (tsplit-&gt;csplit)[(int)xdata[j][obs] -1];</span>
+<span class='curline'><a href='../S/72.html#L23'>tsplit</a>             23 src/bsplit.c       struct split *tsplit;</span>
+<span class='curline'><a href='../S/72.html#L84'>tsplit</a>             84 src/bsplit.c           tsplit = insert_split(&amp;(me-&gt;primary), nc, improve, rp.maxpri);</span>
+<span class='curline'><a href='../S/72.html#L85'>tsplit</a>             85 src/bsplit.c           if (tsplit !=0) {</span>
+<span class='curline'><a href='../S/72.html#L86'>tsplit</a>             86 src/bsplit.c           tsplit-&gt;improve = improve;</span>
+<span class='curline'><a href='../S/72.html#L87'>tsplit</a>             87 src/bsplit.c           tsplit-&gt;var_num = i;</span>
+<span class='curline'><a href='../S/72.html#L88'>tsplit</a>             88 src/bsplit.c           tsplit-&gt;spoint  = split;</span>
+<span class='curline'><a href='../S/72.html#L89'>tsplit</a>             89 src/bsplit.c           tsplit-&gt;count   = k;</span>
+<span class='curline'><a href='../S/72.html#L91'>tsplit</a>             91 src/bsplit.c               tsplit-&gt;spoint = split;</span>
+<span class='curline'><a href='../S/72.html#L92'>tsplit</a>             92 src/bsplit.c               tsplit-&gt;csplit[0]= rp.csplit[0];</span>
+<span class='curline'><a href='../S/72.html#L94'>tsplit</a>             94 src/bsplit.c           else for (k=0; k&lt;nc; k++) tsplit-&gt;csplit[k] = rp.csplit[k];</span>
+<span class='curline'><a href='../S/65.html#L14'>tsplit</a>             14 src/dist.c     static int *tsplit, *countn, *count;</span>
+<span class='curline'><a href='../S/65.html#L21'>tsplit</a>             21 src/dist.c         tsplit= (int *) ALLOC(maxcat*2, sizeof(int));   </span>
+<span class='curline'><a href='../S/65.html#L160'>tsplit</a>            160 src/dist.c             if (count[i]==0) tsplit[i] = 0;</span>
+<span class='curline'><a href='../S/65.html#L161'>tsplit</a>            161 src/dist.c             else tsplit[i] = RIGHT;</span>
+<span class='curline'><a href='../S/65.html#L166'>tsplit</a>            166 src/dist.c             if (tsplit[k]!=0) {</span>
+<span class='curline'><a href='../S/65.html#L168'>tsplit</a>            168 src/dist.c                 if (tsplit[j]!=0) </span>
+<span class='curline'><a href='../S/65.html#L196'>tsplit</a>            196 src/dist.c         if (tsplit[i]==LEFT)  tsplit[i]=RIGHT;</span>
+<span class='curline'><a href='../S/65.html#L197'>tsplit</a>            197 src/dist.c         else tsplit[i]=LEFT;</span>
+<span class='curline'><a href='../S/65.html#L200'>tsplit</a>            200 src/dist.c             if (tsplit[k]==LEFT) {</span>
+<span class='curline'><a href='../S/65.html#L202'>tsplit</a>            202 src/dist.c                 if (tsplit[j]==LEFT)   {        </span>
+<span class='curline'><a href='../S/65.html#L207'>tsplit</a>            207 src/dist.c             else if (tsplit[k]==RIGHT) {</span>
+<span class='curline'><a href='../S/65.html#L209'>tsplit</a>            209 src/dist.c                 if (tsplit[j]==RIGHT)   {       </span>
+<span class='curline'><a href='../S/65.html#L224'>tsplit</a>            224 src/dist.c                     for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/65.html#L226'>tsplit</a>            226 src/dist.c                     for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/73.html#L18'>tsplit</a>             18 src/gini.c     static int    *tsplit,</span>
+<span class='curline'><a href='../S/73.html#L48'>tsplit</a>             48 src/gini.c         tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/73.html#L49'>tsplit</a>             49 src/gini.c         countn= tsplit + maxcat;</span>
+<span class='curline'><a href='../S/73.html#L254'>tsplit</a>            254 src/gini.c         if (awt[i]==0) tsplit[i] =0;</span>
+<span class='curline'><a href='../S/73.html#L257'>tsplit</a>            257 src/gini.c             tsplit[i]=RIGHT;</span>
+<span class='curline'><a href='../S/73.html#L266'>tsplit</a>            266 src/gini.c         if (tsplit[i]==LEFT) {</span>
+<span class='curline'><a href='../S/73.html#L267'>tsplit</a>            267 src/gini.c             tsplit[i]=RIGHT;</span>
+<span class='curline'><a href='../S/73.html#L278'>tsplit</a>            278 src/gini.c             tsplit[i]=LEFT;</span>
+<span class='curline'><a href='../S/73.html#L303'>tsplit</a>            303 src/gini.c                 for (j=0; j&lt;numcat; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/73.html#L305'>tsplit</a>            305 src/gini.c                 for (j=0; j&lt;numcat; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/62.html#L15'>tsplit</a>             15 src/mrt.c      static int *tsplit, *countn, *countwt;</span>
+<span class='curline'><a href='../S/62.html#L58'>tsplit</a>             58 src/mrt.c          tsplit= (int *) ALLOC(maxcat*2, sizeof(int));</span>
+<span class='curline'><a href='../S/62.html#L224'>tsplit</a>            224 src/mrt.c              if (countn[i]==0) tsplit[i] = 0;</span>
+<span class='curline'><a href='../S/62.html#L225'>tsplit</a>            225 src/mrt.c              else tsplit[i] = RIGHT;</span>
+<span class='curline'><a href='../S/62.html#L252'>tsplit</a>            252 src/mrt.c          if (tsplit[i]==LEFT) {</span>
+<span class='curline'><a href='../S/62.html#L253'>tsplit</a>            253 src/mrt.c              tsplit[i]=RIGHT;</span>
+<span class='curline'><a href='../S/62.html#L261'>tsplit</a>            261 src/mrt.c              tsplit[i]=LEFT;</span>
+<span class='curline'><a href='../S/62.html#L282'>tsplit</a>            282 src/mrt.c                      for (j=0; j&lt;nclass; j++) csplit[j] = tsplit[j];</span>
+<span class='curline'><a href='../S/62.html#L284'>tsplit</a>            284 src/mrt.c                      for (j=0; j&lt;nclass; j++) csplit[j] = -tsplit[j];</span>
+<span class='curline'><a href='../S/71.html#L13'>tsplit</a>             13 src/nodesplit.c     struct split *tsplit;</span>
+<span class='curline'><a href='../S/71.html#L31'>tsplit</a>             31 src/nodesplit.c     tsplit = me-&gt;primary;</span>
+<span class='curline'><a href='../S/71.html#L32'>tsplit</a>             32 src/nodesplit.c     var = tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/71.html#L35'>tsplit</a>             35 src/nodesplit.c     index = tsplit-&gt;csplit;</span>
+<span class='curline'><a href='../S/71.html#L46'>tsplit</a>             46 src/nodesplit.c     psplit = tsplit-&gt;spoint;</span>
+<span class='curline'><a href='../S/71.html#L47'>tsplit</a>             47 src/nodesplit.c     extra = tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/71.html#L64'>tsplit</a>             64 src/nodesplit.c     for (tsplit=me-&gt;surrogate;  tsplit!=0 &amp;&amp; someleft&gt;0;</span>
+<span class='curline'><a href='../S/71.html#L65'>tsplit</a>             65 src/nodesplit.c                    tsplit=tsplit-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/71.html#L67'>tsplit</a>             67 src/nodesplit.c     var = tsplit-&gt;var_num;</span>
+<span class='curline'><a href='../S/71.html#L69'>tsplit</a>             69 src/nodesplit.c         index = tsplit-&gt;csplit;</span>
+<span class='curline'><a href='../S/71.html#L86'>tsplit</a>             86 src/nodesplit.c             tsplit-&gt;count++;</span>
+<span class='curline'><a href='../S/71.html#L95'>tsplit</a>             95 src/nodesplit.c         psplit= tsplit-&gt;spoint;</span>
+<span class='curline'><a href='../S/71.html#L96'>tsplit</a>             96 src/nodesplit.c         extra = tsplit-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/71.html#L103'>tsplit</a>            103 src/nodesplit.c             tsplit-&gt;count++;</span>
+</pre>
+</body>
+</html>

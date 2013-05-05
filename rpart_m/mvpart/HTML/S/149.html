@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>PORTING</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/PORTING</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 PORTING]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />src/*.{h,c} long -&gt; int
+<a id='L2' name='L2' />
+<a id='L3' name='L3' />man/*.Rd  convert *.d by Sd2Rd
+<a id='L4' name='L4' />
+<a id='L5' name='L5' />Don't implement code using naresid, which R does not have.
+<a id='L6' name='L6' />F -&gt; FALSE, T -&gt; TRUE
+<a id='L7' name='L7' />
+<a id='L8' name='L8' />R/labels.rpart.s        replace call to prlabel by S code.
+<a id='L9' name='L9' />R/model.frame.rpart.s   deparse calls
+<a id='L10' name='L10' />R/na.rpart.s            as x has no attributes in R, redesign
+<a id='L11' name='L11' />R/plot.rpart.s          change frame=0 to .GlobalEnv
+<a id='L12' name='L12' />R/post.rpart.s          change `title' trickery
+<a id='L13' name='L13' />R/print.rpart.s         remove nsmall in call to format
+<a id='L14' name='L14' />                        attr(x, 'ylevels') not 'ylevel'
+<a id='L15' name='L15' />R/rpart.branch.s        get with inherits not frame=0
+<a id='L16' name='L16' />R/rpart.matrix.s        adjust for different terms structure
+<a id='L17' name='L17' />R/rpart.s               single -&gt; double
+<a id='L18' name='L18' />                        sys.parent() -&gt; sys.frame(sys.parent())
+<a id='L19' name='L19' />R/rpartco.s             remove frame=0 several times
+<a id='L20' name='L20' />R/snip.rpart.mouse.s    drop frame=0
+<a id='L21' name='L21' />R/summary.rpart.s       remove justify="left" in format
+<a id='L22' name='L22' />                        remove comma in paste(... ,,collapse ...)
+<a id='L23' name='L23' />                        attr(x, 'ylevels') not 'ylevel'
+<a id='L24' name='L24' />R/text.rpart.s          text.default prints "NA", so remove these
+<a id='L25' name='L25' />                        remove density=0 in calls to polygon
+<a id='L26' name='L26' />R/xpred.rpart.s         single -&gt; double
+<a id='L27' name='L27' />                        sys.parent() -&gt; sys.frame(sys.parent())
+<a id='L28' name='L28' />R/zzz.R                 a few missing functions.
+<a id='L29' name='L29' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+29 PORTING]</em> */</em>
+</body>
+</html>

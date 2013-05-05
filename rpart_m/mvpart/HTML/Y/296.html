@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>spl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/58.html#L36'>spl</a>                36 src/rpmatrix.c     struct split *spl;</span>
+<span class='curline'><a href='../S/58.html#L66'>spl</a>                66 src/rpmatrix.c     for (spl = me-&gt;primary; spl!=0; spl = spl-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/58.html#L68'>spl</a>                68 src/rpmatrix.c         j = spl-&gt;var_num;</span>
+<span class='curline'><a href='../S/58.html#L69'>spl</a>                69 src/rpmatrix.c         dsplit[0][scnt] = spl-&gt;improve;</span>
+<span class='curline'><a href='../S/58.html#L71'>spl</a>                71 src/rpmatrix.c         dsplit[1][scnt] = spl-&gt;spoint;</span>
+<span class='curline'><a href='../S/58.html#L72'>spl</a>                72 src/rpmatrix.c         isplit[2][scnt] = spl-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/58.html#L77'>spl</a>                77 src/rpmatrix.c         for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/58.html#L81'>spl</a>                81 src/rpmatrix.c         isplit[1][scnt] = spl-&gt;count;</span>
+<span class='curline'><a href='../S/58.html#L87'>spl</a>                87 src/rpmatrix.c     for (spl=me-&gt;surrogate; spl!=0; spl = spl-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/58.html#L89'>spl</a>                89 src/rpmatrix.c         j = spl-&gt;var_num;</span>
+<span class='curline'><a href='../S/58.html#L90'>spl</a>                90 src/rpmatrix.c         dsplit[0][scnt] = spl-&gt;improve;</span>
+<span class='curline'><a href='../S/58.html#L91'>spl</a>                91 src/rpmatrix.c         dsplit[2][scnt] = spl-&gt;adj;</span>
+<span class='curline'><a href='../S/58.html#L93'>spl</a>                93 src/rpmatrix.c         dsplit[1][scnt] = spl-&gt;spoint;</span>
+<span class='curline'><a href='../S/58.html#L94'>spl</a>                94 src/rpmatrix.c         isplit[2][scnt] = spl-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/58.html#L99'>spl</a>                99 src/rpmatrix.c         for (k=0; k&lt;numcat[j]; k++) csplit[k][ccnt] = spl-&gt;csplit[k];</span>
+<span class='curline'><a href='../S/58.html#L103'>spl</a>               103 src/rpmatrix.c         isplit[1][scnt] = spl-&gt;count;</span>
+</pre>
+</body>
+</html>

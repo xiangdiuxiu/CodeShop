@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>complexity</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/87.html#L13'>complexity</a>         13 src/fix_cp.c       if (me-&gt;complexity &gt; parent_cp)  me-&gt;complexity = parent_cp;</span>
+<span class='curline'><a href='../S/87.html#L16'>complexity</a>         16 src/fix_cp.c       fix_cp(me-&gt;leftson, me-&gt;complexity);</span>
+<span class='curline'><a href='../S/87.html#L17'>complexity</a>         17 src/fix_cp.c       fix_cp(me-&gt;rightson,me-&gt;complexity);</span>
+<span class='curline'><a href='../S/64.html#L40'>complexity</a>         40 src/make_cp_list.c     if (me-&gt;complexity &gt; parent) me-&gt;complexity = parent;</span>
+<span class='curline'><a href='../S/64.html#L41'>complexity</a>         41 src/make_cp_list.c     me_cp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/79.html#L31'>complexity</a>         31 src/make_cp_table.c     make_cp_table(me-&gt;leftson, me-&gt;complexity, 0);</span>
+<span class='curline'><a href='../S/79.html#L32'>complexity</a>         32 src/make_cp_table.c     cplist = make_cp_table(me-&gt;rightson, me-&gt;complexity, nsplit+1);</span>
+<span class='curline'><a href='../S/74.html#L27'>complexity</a>         27 src/node.h         double complexity;  /* complexity at which it will collapse */</span>
+<span class='curline'><a href='../S/77.html#L66'>complexity</a>         66 src/partition.c     if (tempcp &gt; me-&gt;complexity)  tempcp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/77.html#L77'>complexity</a>         77 src/partition.c     me-&gt;complexity =  rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L92'>complexity</a>         92 src/partition.c     me-&gt;complexity = rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L107'>complexity</a>        107 src/partition.c     (me-&gt;leftson)-&gt;complexity = tempcp - rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L116'>complexity</a>        116 src/partition.c     if (tempcp &gt; me-&gt;complexity)  tempcp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/77.html#L119'>complexity</a>        119 src/partition.c     (me-&gt;rightson)-&gt;complexity = tempcp - rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L132'>complexity</a>        132 src/partition.c     if ( (me-&gt;rightson)-&gt;complexity  &gt; (me-&gt;leftson)-&gt;complexity ) {</span>
+<span class='curline'><a href='../S/77.html#L133'>complexity</a>        133 src/partition.c     if (tempcp &gt; (me-&gt;leftson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L140'>complexity</a>        140 src/partition.c         if (tempcp &gt; (me-&gt;rightson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L148'>complexity</a>        148 src/partition.c     else if (tempcp &gt; (me-&gt;rightson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L155'>complexity</a>        155 src/partition.c     if (tempcp &gt; (me-&gt;leftson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L162'>complexity</a>        162 src/partition.c     me-&gt;complexity= (me-&gt;risk - (left_risk + right_risk))/</span>
+<span class='curline'><a href='../S/77.html#L165'>complexity</a>        165 src/partition.c     if (me-&gt;complexity &lt;= rp.alpha ) {</span>
+<span class='curline'><a href='../S/92.html#L79'>complexity</a>         79 src/rpart.c        rp.complexity = opt[2];</span>
+<span class='curline'><a href='../S/92.html#L174'>complexity</a>        174 src/rpart.c        (*tree)-&gt;complexity = (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/92.html#L175'>complexity</a>        175 src/rpart.c        rp.alpha = rp.complexity * (*tree)-&gt;risk;</span>
+<span class='curline'><a href='../S/92.html#L182'>complexity</a>        182 src/rpart.c        cptable-&gt;cp = (*tree)-&gt;complexity;</span>
+<span class='curline'><a href='../S/92.html#L191'>complexity</a>        191 src/rpart.c        make_cp_list((*tree), (*tree)-&gt;complexity, cptable);</span>
+<span class='curline'><a href='../S/92.html#L192'>complexity</a>        192 src/rpart.c        make_cp_table((*tree), (*tree)-&gt;complexity, 0);</span>
+<span class='curline'><a href='../S/82.html#L25'>complexity</a>         25 src/rpart.h        double complexity;</span>
+<span class='curline'><a href='../S/56.html#L19'>complexity</a>         19 src/rpcountup.c     if (me-&gt;complexity &lt;=rp.alpha || me-&gt;leftson==0) { /*no kids */</span>
+<span class='curline'><a href='../S/58.html#L47'>complexity</a>         47 src/rpmatrix.c     dnode[1][ncnt] = me-&gt;complexity * cp_scale;</span>
+<span class='curline'><a href='../S/58.html#L55'>complexity</a>         55 src/rpmatrix.c     if (me-&gt;complexity &lt;=rp.alpha || me-&gt;leftson==0) { /*no kids */</span>
+<span class='curline'><a href='../S/89.html#L25'>complexity</a>         25 src/rundown.c      while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/88.html#L25'>complexity</a>         25 src/rundown2.c     while ( cp[i] &lt; tree-&gt;complexity) {</span>
+<span class='curline'><a href='../S/83.html#L60'>complexity</a>         60 src/s_xpred.c      rp.complexity= opt[2];</span>
+<span class='curline'><a href='../S/83.html#L133'>complexity</a>        133 src/s_xpred.c      rp.alpha = rp.complexity * (xtree)-&gt;risk;</span>
+<span class='curline'><a href='../S/83.html#L174'>complexity</a>        174 src/s_xpred.c      xtree-&gt;complexity = xtree-&gt;risk;</span>
+<span class='curline'><a href='../S/83.html#L176'>complexity</a>        176 src/s_xpred.c      fix_cp(xtree, xtree-&gt;complexity);</span>
+<span class='curline'><a href='../S/63.html#L111'>complexity</a>        111 src/xval.c         xtree-&gt;complexity = xtree-&gt;risk;</span>
+<span class='curline'><a href='../S/63.html#L113'>complexity</a>        113 src/xval.c         fix_cp(xtree, xtree-&gt;complexity);</span>
+</pre>
+</body>
+</html>

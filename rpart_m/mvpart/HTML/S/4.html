@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/rpart.object.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/rpart.object.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/rpart.object.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{rpart.object}
+<a id='L2' name='L2' />\alias{rpart.object}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Recursive Partitioning and Regression Trees Object 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />These are objects representing fitted \code{rpart} trees. 
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\section{Structure}{
+<a id='L10' name='L10' />The following components must be included in a legitimate \code{rpart} object. 
+<a id='L11' name='L11' />Of these, only the \code{where} component has the same length as  
+<a id='L12' name='L12' />the data used to fit the \code{rpart} object. 
+<a id='L13' name='L13' />}
+<a id='L14' name='L14' />\value{
+<a id='L15' name='L15' />
+<a id='L16' name='L16' />\item{frame}{
+<a id='L17' name='L17' />data frame with one row for each node in the tree.
+<a id='L18' name='L18' />The \code{row.names} of \code{frame} contain the (unique) node numbers that
+<a id='L19' name='L19' />follow a binary ordering indexed by node depth.
+<a id='L20' name='L20' />Elements of \code{frame} include \code{var},
+<a id='L21' name='L21' />the variable used in the split at each node
+<a id='L22' name='L22' />(leaf nodes are denoted by the string \code{&lt;leaf&gt;}), \code{n}, the size of each node,
+<a id='L23' name='L23' />\code{wt}, the sum of case weights for the node,
+<a id='L24' name='L24' />\code{dev}, the deviance of each node,
+<a id='L25' name='L25' />\code{yval}, the fitted value of the response at each node,
+<a id='L26' name='L26' />and \code{splits}, a two column matrix of left and right split labels
+<a id='L27' name='L27' />for each node.
+<a id='L28' name='L28' />All of these are the same as for an \code{rpart} object.
+<a id='L29' name='L29' />
+<a id='L30' name='L30' />Extra response information is in \code{yval2}, which contains the number
+<a id='L31' name='L31' />of events at the node (poisson), or a matrix containing the fitted
+<a id='L32' name='L32' />class, the class counts for each node and the class probabilities
+<a id='L33' name='L33' />(classification).  Also included in the frame are \code{complexity}, the
+<a id='L34' name='L34' />complexity parameter at which this split will collapse, \code{ncompete},
+<a id='L35' name='L35' />the number of competitor splits retained, and \code{nsurrogate}, the
+<a id='L36' name='L36' />number of surrogate splits retained.
+<a id='L37' name='L37' />}
+<a id='L38' name='L38' />\item{where}{
+<a id='L39' name='L39' />vector, the same length as the number of observations in the root node, 
+<a id='L40' name='L40' />containing the row number of \code{frame} corresponding to the leaf node 
+<a id='L41' name='L41' />that each observation falls into. 
+<a id='L42' name='L42' />}
+<a id='L43' name='L43' />\item{splits}{
+<a id='L44' name='L44' />a matrix describing the splits.  The row label is the name of the split
+<a id='L45' name='L45' />variable, and columns are \code{count}, the number of observations sent left
+<a id='L46' name='L46' />or right by the split (for competitor splits this is the number that
+<a id='L47' name='L47' />would have been sent left or right had this split been used, for surrogate
+<a id='L48' name='L48' />splits it is the number missing the primary split variable which were decided
+<a id='L49' name='L49' />using this surrogate), \code{ncat}, the number of categories or levels for the
+<a id='L50' name='L50' />variable (\code{+/-1} for a continuous variable), \code{improve}, which is the improvement
+<a id='L51' name='L51' />in deviance given by this split, or, for surrogates, the concordance of the
+<a id='L52' name='L52' />surrogate with the primary, and \code{split}, the numeric split point.  
+<a id='L53' name='L53' />The last column \code{adj} gives the adjusted concordance for surrogate splits.
+<a id='L54' name='L54' />For
+<a id='L55' name='L55' />a factor, the \code{split} column contains the row number of the csplit matrix.
+<a id='L56' name='L56' />For a continuous variable, the sign of \code{ncat} determines whether the
+<a id='L57' name='L57' />subset \code{x &lt; cutpoint} or \code{x &gt; cutpoint} is sent to the left.
+<a id='L58' name='L58' />}
+<a id='L59' name='L59' />\item{csplit}{
+<a id='L60' name='L60' />this will be present only if one of the split variables is a factor. There
+<a id='L61' name='L61' />is one row for each such split, and column \code{i = -1} if this level of the
+<a id='L62' name='L62' />factor goes to the left, \code{+1} if it goes to the right, and 0 if that level
+<a id='L63' name='L63' />is not present at this node of the tree.
+<a id='L64' name='L64' />For an ordered categorical variable all levels are marked as \code{R/L}, 
+<a id='L65' name='L65' />including levels that are not present.
+<a id='L66' name='L66' />}
+<a id='L67' name='L67' />\item{method}{
+<a id='L68' name='L68' />the method used to grow the tree. 
+<a id='L69' name='L69' />}
+<a id='L70' name='L70' />\item{cptable}{
+<a id='L71' name='L71' />the table of optimal prunings based on a complexity parameter. 
+<a id='L72' name='L72' />}
+<a id='L73' name='L73' />\item{terms}{
+<a id='L74' name='L74' />an object of mode \code{expression} and class \code{term} summarizing the formula. 
+<a id='L75' name='L75' />Used by various methods, but typically not of direct relevance to users. 
+<a id='L76' name='L76' />}
+<a id='L77' name='L77' />\item{call}{
+<a id='L78' name='L78' />an image of the call that produced the object, but with the arguments 
+<a id='L79' name='L79' />all named and with the actual formula included as the formula argument. 
+<a id='L80' name='L80' />To re-evaluate the call, say \code{update(tree)}. 
+<a id='L81' name='L81' />
+<a id='L82' name='L82' />Optional components include the matrix of predictors (\code{x}) and the 
+<a id='L83' name='L83' />response variable (\code{y}) used to construct the \code{rpart} object. 
+<a id='L84' name='L84' />}
+<a id='L85' name='L85' />}
+<a id='L86' name='L86' />\seealso{
+<a id='L87' name='L87' />\code{\link{rpart}}.
+<a id='L88' name='L88' />}
+<a id='L89' name='L89' />\keyword{tree}
+<a id='L90' name='L90' />\keyword{methods}
+<a id='L91' name='L91' />% docclass is function
+<a id='L92' name='L92' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+92 man/rpart.object.Rd]</em> */</em>
+</body>
+</html>

@@ -46,7 +46,7 @@ int rpart(int n,         int nvarx,      Sint *ncat,     int method,
           int dissim, Sint *missmat, struct cptable *cptable,
       struct node **tree,            char **error,   int *which,
       int xvals,     Sint *x_grp,    double *wt,     double *opt,
-      int ny,        double *cost) ;
+	  int ny,        double *cost, double *myAlpha) ;
 
 void rpart_callback0(int *nr);
 void rpart_callback1(int n, double *y[], double *wt, double *z);
@@ -72,7 +72,7 @@ void rundown2(struct node *tree, int obs, double *cp, double *xpred);
 void s_to_rp(Sint *n,     Sint *nvarx,   Sint *ncat,    Sint *method, 
          double *opt, double *parms, Sint *xvals,   Sint *x_grp,
          double *y,   FLOAT  *xmat,  Sint *dissim, Sint *missmat, char **error,
-         double *wt,  Sint   *ny,    double *cost);
+	     double *wt,  Sint   *ny,    double *cost, double *myAlpha);
 
 void s_to_rp2(Sint *n,         Sint *nsplit,    Sint *nnode,     Sint *ncat, 
           Sint *numcat,    Sint *maxcat,    Sint *xvals,     Sint *which, 

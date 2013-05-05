@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/plotcp.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/plotcp.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/plotcp.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{plotcp}
+<a id='L2' name='L2' />\alias{plotcp}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Plot a Complexity Parameter Table for an Rpart Fit 
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />Gives a visual representation of the cross-validation results in an 
+<a id='L8' name='L8' />\code{rpart} object. 
+<a id='L9' name='L9' />}
+<a id='L10' name='L10' />\usage{
+<a id='L11' name='L11' />plotcp(x, xvse = 1, minline = TRUE, lty = 3, col = 1, upper = c("size", 
+<a id='L12' name='L12' />    "splits", "none"), tab, resub.err = TRUE, adj.df = FALSE, ...) 
+<a id='L13' name='L13' />}
+<a id='L14' name='L14' />\arguments{
+<a id='L15' name='L15' />\item{x}{
+<a id='L16' name='L16' />an object of class \code{rpart} 
+<a id='L17' name='L17' />}
+<a id='L18' name='L18' />\item{xvse}{
+<a id='L19' name='L19' />multiplier for xvse * SE above the minimum of the curve. 
+<a id='L20' name='L20' />}
+<a id='L21' name='L21' />\item{minline}{
+<a id='L22' name='L22' />whether a horizontal line is drawn 1SE above the minimum of the curve. 
+<a id='L23' name='L23' />}
+<a id='L24' name='L24' />\item{lty}{
+<a id='L25' name='L25' />type of lines used in plot, default = 3. 
+<a id='L26' name='L26' />}
+<a id='L27' name='L27' />\item{col}{
+<a id='L28' name='L28' />color of lines, default =1. 
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />\item{upper}{
+<a id='L31' name='L31' />what is plotted on the top axis: the size of the tree (the number of
+<a id='L32' name='L32' />leaves), the number of splits or nothing. 
+<a id='L33' name='L33' />}
+<a id='L34' name='L34' />\item{tab}{
+<a id='L35' name='L35' />used for multiple cross-validation.
+<a id='L36' name='L36' />}
+<a id='L37' name='L37' />\item{resub.err}{
+<a id='L38' name='L38' />use resubstitution error for calculations of SEs.
+<a id='L39' name='L39' />}
+<a id='L40' name='L40' />\item{adj.df}{
+<a id='L41' name='L41' />adjust df of resubstitution error estimate for calculations of SEs.
+<a id='L42' name='L42' />}
+<a id='L43' name='L43' />\item{\dots}{
+<a id='L44' name='L44' />additional plotting parameters 
+<a id='L45' name='L45' />}
+<a id='L46' name='L46' />}
+<a id='L47' name='L47' />\value{
+<a id='L48' name='L48' />None. 
+<a id='L49' name='L49' />}
+<a id='L50' name='L50' />\section{Side Effects}{
+<a id='L51' name='L51' />A plot is produced on the current graphical device. 
+<a id='L52' name='L52' />}
+<a id='L53' name='L53' />\details{
+<a id='L54' name='L54' />The set of possible cost-complexity prunings of a tree from a nested
+<a id='L55' name='L55' />set. For the geometric means of the intervals of values of \code{cp} for which
+<a id='L56' name='L56' />a pruning is optimal, a cross-validation has (usually) been done in
+<a id='L57' name='L57' />the initial construction by \code{\link{rpart}}. The \code{cptable} in the fit contains
+<a id='L58' name='L58' />the mean and standard deviation of the errors in the cross-validated
+<a id='L59' name='L59' />prediction against each of the geometric means, and these are plotted
+<a id='L60' name='L60' />by this function. A good choice of \code{cp} for pruning is often the
+<a id='L61' name='L61' />leftmost value for which the mean lies below the horizontal line.
+<a id='L62' name='L62' />}
+<a id='L63' name='L63' />\seealso{
+<a id='L64' name='L64' />\code{\link{rpart}},  \code{\link{printcp}},  \code{\link{rpart.object}}   
+<a id='L65' name='L65' />}
+<a id='L66' name='L66' />\keyword{tree}
+<a id='L67' name='L67' />% docclass is function
+<a id='L68' name='L68' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+68 man/plotcp.Rd]</em> */</em>
+</body>
+</html>

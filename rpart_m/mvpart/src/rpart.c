@@ -48,7 +48,7 @@ int rpart(int n,         int nvarx,      Sint *ncat,     int method,
           int  dissim,   Sint *missmat, struct cptable *cptable,
           struct node **tree,            char **error,   int *which,
           int xvals,     Sint *x_grp,    double *wt,     double *opt,
-          int ny,        double *cost) 
+          int ny,        double *cost, double *myAlpha) /*Alpha --ZhangYet*/ 
           {
     int i,k,nny;
     int maxcat;
@@ -95,7 +95,7 @@ int rpart(int n,         int nvarx,      Sint *ncat,     int method,
     rp.method  = method;  
     if (rp.method!=5) nny = n; 
     else nny = (int)(n*(n-1)/2);
-
+    rp.alpha2 = *myAlpha; /*Alpha--ZhangYet*/
     /*
     ** add rp.method for dist splitting -- GD 11/03 
     ** also add nny for dist splitting -- GD 11/03 

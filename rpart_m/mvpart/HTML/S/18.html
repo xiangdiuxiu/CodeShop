@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/mvpart.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/mvpart.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/mvpart.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{mvpart}
+<a id='L2' name='L2' />\alias{mvpart}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />Recursive Partitioning and Regression Trees
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />Wrapper function for fitting and plotting \code{rpart} models
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />
+<a id='L10' name='L10' />\usage{
+<a id='L11' name='L11' />mvpart(form, data, minauto = TRUE, size, xv = c("1se", "min",
+<a id='L12' name='L12' />    "pick", "none"), xval = 10, xvmult = 0, xvse = 1, snip = FALSE,
+<a id='L13' name='L13' />    plot.add = TRUE, text.add = TRUE, digits = 3, margin = 0,
+<a id='L14' name='L14' />    uniform = FALSE, which = 4, pretty = TRUE, use.n = TRUE,
+<a id='L15' name='L15' />    all.leaves = FALSE, bars = TRUE, legend, bord = FALSE,
+<a id='L16' name='L16' />    xadj = 1, yadj = 1, prn = FALSE, branch = 1, rsq = FALSE,
+<a id='L17' name='L17' />    big.pts = FALSE, pca = FALSE, interact.pca = FALSE,
+<a id='L18' name='L18' />    wgt.ave.pca = FALSE, keep.y = TRUE, \dots)
+<a id='L19' name='L19' />}
+<a id='L20' name='L20' />
+<a id='L21' name='L21' />\arguments{
+<a id='L22' name='L22' />\item{form}{
+<a id='L23' name='L23' />As for \code{rpart} function.
+<a id='L24' name='L24' />Arguments to rpart can be passed by \dots.
+<a id='L25' name='L25' />}
+<a id='L26' name='L26' />\item{data}{
+<a id='L27' name='L27' />Optional data frame in which to interpret the variables named in the
+<a id='L28' name='L28' />formula
+<a id='L29' name='L29' />}
+<a id='L30' name='L30' />\item{minauto}{
+<a id='L31' name='L31' />If \code{TRUE} uses smart minsplit and minbucket based on N cases.
+<a id='L32' name='L32' />}
+<a id='L33' name='L33' />\item{size}{
+<a id='L34' name='L34' />The size of tree to be generated.
+<a id='L35' name='L35' />}
+<a id='L36' name='L36' />\item{xv}{
+<a id='L37' name='L37' />Selection of tree by cross-validation: \code{"1se"} - gives best tree within one SE of the overall best,
+<a id='L38' name='L38' />\code{"min"} - the best tree, \code{"pick"} - pick the tree size interactively,
+<a id='L39' name='L39' />\code{"none"} - no cross-validation.
+<a id='L40' name='L40' />}
+<a id='L41' name='L41' />\item{xval}{
+<a id='L42' name='L42' />Number of cross-validations or vector defining cross-validation groups.
+<a id='L43' name='L43' />}
+<a id='L44' name='L44' />
+<a id='L45' name='L45' />\item{xvmult}{
+<a id='L46' name='L46' />Number of multiple cross-validations.
+<a id='L47' name='L47' />}
+<a id='L48' name='L48' />\item{xvse}{
+<a id='L49' name='L49' />Multiplier for the number of SEs used for \code{xv = "1se"}.
+<a id='L50' name='L50' />}
+<a id='L51' name='L51' />\item{plot.add}{
+<a id='L52' name='L52' />Plot the tree and (optionally) add text.
+<a id='L53' name='L53' />}
+<a id='L54' name='L54' />\item{text.add}{
+<a id='L55' name='L55' />Add output of \code{text.rpart} to tree.
+<a id='L56' name='L56' />}
+<a id='L57' name='L57' />\item{snip}{
+<a id='L58' name='L58' />Interactively prune the tree.
+<a id='L59' name='L59' />}
+<a id='L60' name='L60' />\item{digits}{
+<a id='L61' name='L61' />Number of digits on labels.
+<a id='L62' name='L62' />}
+<a id='L63' name='L63' />\item{margin}{
+<a id='L64' name='L64' />Margin around plot, 0.1 gives an extra 10 percent space around the plot.
+<a id='L65' name='L65' />}
+<a id='L66' name='L66' />\item{uniform}{
+<a id='L67' name='L67' />Uniform lengths to the branches of the tree.
+<a id='L68' name='L68' />}
+<a id='L69' name='L69' />\item{which}{
+<a id='L70' name='L70' />Which split labels and where to plot them, 1=centered, 2 = left, 3 = right and 4 = both.
+<a id='L71' name='L71' />}
+<a id='L72' name='L72' />\item{pretty}{
+<a id='L73' name='L73' />Pretty labels or full labels.
+<a id='L74' name='L74' />}
+<a id='L75' name='L75' />\item{use.n}{
+<a id='L76' name='L76' />Add number of cases at each node.
+<a id='L77' name='L77' />}
+<a id='L78' name='L78' />\item{all.leaves}{
+<a id='L79' name='L79' />Annotate all nodes.
+<a id='L80' name='L80' />}
+<a id='L81' name='L81' />\item{bars}{
+<a id='L82' name='L82' />If \code{TRUE} adds barplots to nodes.
+<a id='L83' name='L83' />}
+<a id='L84' name='L84' />\item{legend}{
+<a id='L85' name='L85' />If \code{TRUE} adds legend for mrt and classification trees.
+<a id='L86' name='L86' />}
+<a id='L87' name='L87' />\item{bord}{
+<a id='L88' name='L88' />Border (box) around the barplots.
+<a id='L89' name='L89' />}
+<a id='L90' name='L90' />\item{xadj, yadj}{
+<a id='L91' name='L91' />Adjust the size of the individual barplots (default = 1).
+<a id='L92' name='L92' />}
+<a id='L93' name='L93' />\item{prn}{
+<a id='L94' name='L94' />If \code{TRUE} prints tree details.
+<a id='L95' name='L95' />}
+<a id='L96' name='L96' />\item{branch}{
+<a id='L97' name='L97' />Controls spread of branches: 1=vertical lines, 0=maximum slope.
+<a id='L98' name='L98' />}
+<a id='L99' name='L99' />\item{rsq}{
+<a id='L100' name='L100' />If \code{TRUE} gives "rsq" plot.
+<a id='L101' name='L101' />}
+<a id='L102' name='L102' />\item{big.pts}{
+<a id='L103' name='L103' />Plot colored points at leaves -- useful to link to PCA plot.
+<a id='L104' name='L104' />}
+<a id='L105' name='L105' />\item{pca}{
+<a id='L106' name='L106' />If \code{TRUE} plots PCA of group means and add species and site information.
+<a id='L107' name='L107' />}
+<a id='L108' name='L108' />\item{interact.pca}{
+<a id='L109' name='L109' />If \code{TRUE} runs interactive PCA. See \code{rpart.pca}.
+<a id='L110' name='L110' />}
+<a id='L111' name='L111' />\item{wgt.ave.pca}{
+<a id='L112' name='L112' />If \code{TRUE} plot weighted averages acorss sites for species.
+<a id='L113' name='L113' />}
+<a id='L114' name='L114' />\item{keep.y}{
+<a id='L115' name='L115' />If \code{TRUE} y values are returned.
+<a id='L116' name='L116' />}
+<a id='L117' name='L117' />\item{\dots}{
+<a id='L118' name='L118' />\dots other arguments passed to \code{rpart}.
+<a id='L119' name='L119' />}
+<a id='L120' name='L120' />}
+<a id='L121' name='L121' />
+<a id='L122' name='L122' />\value{
+<a id='L123' name='L123' />an object of class \code{rpart}, a superset of class tree.
+<a id='L124' name='L124' />}
+<a id='L125' name='L125' />
+<a id='L126' name='L126' />\seealso{
+<a id='L127' name='L127' />  \code{\link{rpart}}, \code{\link{rpart.pca}},
+<a id='L128' name='L128' />}
+<a id='L129' name='L129' />\examples{
+<a id='L130' name='L130' />data(spider)
+<a id='L131' name='L131' />mvpart(data.matrix(spider[,1:12])~herbs+reft+moss+sand+twigs+
+<a id='L132' name='L132' />water,spider)       # defaults
+<a id='L133' name='L133' />mvpart(data.matrix(spider[,1:12])~herbs+reft+moss+sand+twigs+
+<a id='L134' name='L134' />water,spider,xv="p")  # pick the tree size
+<a id='L135' name='L135' /># pick cv size and do PCA
+<a id='L136' name='L136' />fit &lt;- mvpart(data.matrix(spider[,1:12])~herbs+reft+moss+sand+
+<a id='L137' name='L137' />twigs+water,spider,xv="1se",pca=TRUE)
+<a id='L138' name='L138' />rpart.pca(fit,interact=TRUE,wgt.ave=TRUE) # interactive PCA plot of saved multivariate tree
+<a id='L139' name='L139' />}
+<a id='L140' name='L140' />\keyword{tree}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+140 man/mvpart.Rd]</em> */</em>
+</body>
+</html>

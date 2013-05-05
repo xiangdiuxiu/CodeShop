@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Sint</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/55.html#L18'>Sint</a>               18 src/branch.c       Sint   **sorts;</span>
+<span class='curline'><a href='../S/72.html#L24'>Sint</a>               24 src/bsplit.c       Sint *index;</span>
+<span class='curline'><a href='../S/78.html#L15'>Sint</a>               15 src/choose_surg.c void choose_surg(int nodenum,    int *y,         FLOAT *x,     Sint *order, </span>
+<span class='curline'><a href='../S/70.html#L10'>Sint</a>               10 src/formatg.c  void formatg( Sint *n, double *x, char **format, char **out) </span>
+<span class='curline'><a href='../S/71.html#L21'>Sint</a>               21 src/nodesplit.c     Sint   **sorts;</span>
+<span class='curline'><a href='../S/86.html#L31'>Sint</a>               31 src/pred_rpart.c void pred_rpart(Sint *dimx, Sint *nnode,    Sint *nsplit,   Sint *dimc, </span>
+<span class='curline'><a href='../S/86.html#L32'>Sint</a>               32 src/pred_rpart.c         Sint *nnum,     Sint *nodes2,   Sint *vnum,     double *split2,</span>
+<span class='curline'><a href='../S/86.html#L33'>Sint</a>               33 src/pred_rpart.c         Sint *csplit2,  Sint *usesur,   double *xdata2, </span>
+<span class='curline'><a href='../S/86.html#L34'>Sint</a>               34 src/pred_rpart.c         Sint *xmiss2,   Sint *where)</span>
+<span class='curline'><a href='../S/86.html#L43'>Sint</a>               43 src/pred_rpart.c     Sint   *nodes[4];</span>
+<span class='curline'><a href='../S/86.html#L45'>Sint</a>               45 src/pred_rpart.c     Sint   **csplit = NULL,</span>
+<span class='curline'><a href='../S/86.html#L56'>Sint</a>               56 src/pred_rpart.c     csplit = (Sint **)  ALLOC((int)dimc[1], sizeof(int*));</span>
+<span class='curline'><a href='../S/86.html#L59'>Sint</a>               59 src/pred_rpart.c     xmiss =  (Sint **)  ALLOC((int)dimx[1], sizeof(int*));</span>
+<span class='curline'><a href='../S/92.html#L46'>Sint</a>               46 src/rpart.c    int rpart(int n,         int nvarx,      Sint *ncat,     int method, </span>
+<span class='curline'><a href='../S/92.html#L48'>Sint</a>               48 src/rpart.c              int  dissim,   Sint *missmat, struct cptable *cptable,</span>
+<span class='curline'><a href='../S/92.html#L50'>Sint</a>               50 src/rpart.c              int xvals,     Sint *x_grp,    double *wt,     double *opt,</span>
+<span class='curline'><a href='../S/92.html#L129'>Sint</a>              129 src/rpart.c        rp.sorts  = (Sint**) ALLOC(nvarx, sizeof(Sint *));</span>
+<span class='curline'><a href='../S/82.html#L38'>Sint</a>               38 src/rpart.h        Sint   *numcat;        /* variable type: 0=cont, 1+  =#categories */</span>
+<span class='curline'><a href='../S/82.html#L39'>Sint</a>               39 src/rpart.h        Sint   **sorts;             /* allocated on the fly */</span>
+<span class='curline'><a href='../S/81.html#L33'>Sint</a>               33 src/rpartS.h   #ifndef Sint</span>
+<span class='curline'><a href='../S/57.html#L14'>Sint</a>               14 src/rpartexp2.c void rpartexp2(Sint *n2, double *y, double *eps, int *keep) {</span>
+<span class='curline'><a href='../S/84.html#L12'>Sint</a>               12 src/rpartproto.h void choose_surg(int nodenum,    int *y,            FLOAT *x,     Sint *order, </span>
+<span class='curline'><a href='../S/84.html#L39'>Sint</a>               39 src/rpartproto.h void pred_rpart(Sint *dimx, Sint *nnode,    Sint *nsplit,   Sint *dimc, </span>
+<span class='curline'><a href='../S/84.html#L40'>Sint</a>               40 src/rpartproto.h         Sint *nnum,     Sint *nodes2,   Sint *vnum,     double *split2,</span>
+<span class='curline'><a href='../S/84.html#L41'>Sint</a>               41 src/rpartproto.h         Sint *csplit2,  Sint *usesur,   double *xdata2, </span>
+<span class='curline'><a href='../S/84.html#L42'>Sint</a>               42 src/rpartproto.h         Sint *xmiss2,   Sint *where);</span>
+<span class='curline'><a href='../S/84.html#L44'>Sint</a>               44 src/rpartproto.h int rpart(int n,         int nvarx,      Sint *ncat,     int method, </span>
+<span class='curline'><a href='../S/84.html#L46'>Sint</a>               46 src/rpartproto.h           int dissim, Sint *missmat, struct cptable *cptable,</span>
+<span class='curline'><a href='../S/84.html#L48'>Sint</a>               48 src/rpartproto.h       int xvals,     Sint *x_grp,    double *wt,     double *opt,</span>
+<span class='curline'><a href='../S/84.html#L57'>Sint</a>               57 src/rpartproto.h void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat);</span>
+<span class='curline'><a href='../S/84.html#L59'>Sint</a>               59 src/rpartproto.h void rplabel(Sint *nsplit,   Sint *index,   double *splits, </span>
+<span class='curline'><a href='../S/84.html#L60'>Sint</a>               60 src/rpartproto.h              Sint *ncat,     Sint *csplit,  char   **cutleft, char **cutright);</span>
+<span class='curline'><a href='../S/84.html#L62'>Sint</a>               62 src/rpartproto.h void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/84.html#L63'>Sint</a>               63 src/rpartproto.h           Sint *catcount,   Sint *numcat,      double **dsplit,</span>
+<span class='curline'><a href='../S/84.html#L64'>Sint</a>               64 src/rpartproto.h           Sint **isplit,    Sint **csplit,     double **dnode, </span>
+<span class='curline'><a href='../S/84.html#L65'>Sint</a>               65 src/rpartproto.h           Sint **inode,     int id);</span>
+<span class='curline'><a href='../S/84.html#L72'>Sint</a>               72 src/rpartproto.h void s_to_rp(Sint *n,     Sint *nvarx,   Sint *ncat,    Sint *method, </span>
+<span class='curline'><a href='../S/84.html#L73'>Sint</a>               73 src/rpartproto.h          double *opt, double *parms, Sint *xvals,   Sint *x_grp,</span>
+<span class='curline'><a href='../S/84.html#L74'>Sint</a>               74 src/rpartproto.h          double *y,   FLOAT  *xmat,  Sint *dissim, Sint *missmat, char **error,</span>
+<span class='curline'><a href='../S/84.html#L75'>Sint</a>               75 src/rpartproto.h 	     double *wt,  Sint   *ny,    double *cost, double *myAlpha);</span>
+<span class='curline'><a href='../S/84.html#L77'>Sint</a>               77 src/rpartproto.h void s_to_rp2(Sint *n,         Sint *nsplit,    Sint *nnode,     Sint *ncat, </span>
+<span class='curline'><a href='../S/84.html#L78'>Sint</a>               78 src/rpartproto.h           Sint *numcat,    Sint *maxcat,    Sint *xvals,     Sint *which, </span>
+<span class='curline'><a href='../S/84.html#L79'>Sint</a>               79 src/rpartproto.h           double *cptable, double *dsplit,  Sint *isplit,    Sint *csplit,</span>
+<span class='curline'><a href='../S/84.html#L80'>Sint</a>               80 src/rpartproto.h           double *dnode,   Sint *inode);</span>
+<span class='curline'><a href='../S/84.html#L82'>Sint</a>               82 src/rpartproto.h void s_xpred(Sint *sn,     Sint *nvarx,   Sint *ncat,    Sint *method, </span>
+<span class='curline'><a href='../S/84.html#L83'>Sint</a>               83 src/rpartproto.h          double *opt,  double *parms, Sint *xvals,   Sint *x_grp,</span>
+<span class='curline'><a href='../S/84.html#L84'>Sint</a>               84 src/rpartproto.h          double *ymat, FLOAT  *xmat,  Sint *missmat, double *predict,</span>
+<span class='curline'><a href='../S/84.html#L85'>Sint</a>               85 src/rpartproto.h          Sint *ncp,    double *cp,    char **error,  double *wt,</span>
+<span class='curline'><a href='../S/84.html#L86'>Sint</a>               86 src/rpartproto.h          Sint *ny,     double *cost);</span>
+<span class='curline'><a href='../S/84.html#L90'>Sint</a>               90 src/rpartproto.h void xval(int n_xval,  struct cptable *cptable_head,  Sint *x_grp, </span>
+<span class='curline'><a href='../S/56.html#L12'>Sint</a>               12 src/rpcountup.c void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat)</span>
+<span class='curline'><a href='../S/56.html#L14'>Sint</a>               14 src/rpcountup.c     Sint  node2, split2;</span>
+<span class='curline'><a href='../S/58.html#L9'>Sint</a>                9 src/rpmatrix.c void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/58.html#L10'>Sint</a>               10 src/rpmatrix.c           Sint *catcount,   Sint *numcat,      double **dsplit,</span>
+<span class='curline'><a href='../S/58.html#L11'>Sint</a>               11 src/rpmatrix.c           Sint **isplit,    Sint **csplit,     double **dnode, </span>
+<span class='curline'><a href='../S/58.html#L12'>Sint</a>               12 src/rpmatrix.c           Sint **inode,     int id)</span>
+<span class='curline'><a href='../S/59.html#L15'>Sint</a>               15 src/s_to_rp.c  void s_to_rp(Sint *n,     Sint *nvarx,   Sint *ncat,    Sint *method, </span>
+<span class='curline'><a href='../S/59.html#L16'>Sint</a>               16 src/s_to_rp.c           double *opt, double *parms, Sint *xvals,   Sint *x_grp,</span>
+<span class='curline'><a href='../S/59.html#L17'>Sint</a>               17 src/s_to_rp.c           double *y,   FLOAT *xmat,   Sint *dissim, Sint *missmat, char **error,</span>
+<span class='curline'><a href='../S/59.html#L18'>Sint</a>               18 src/s_to_rp.c  	     double *wt,  Sint  *ny,     double *cost, double *myAlpha)</span>
+<span class='curline'><a href='../S/59.html#L49'>Sint</a>               49 src/s_to_rp.c  void s_to_rp2(Sint *n,         Sint *nsplit,    Sint *nnode,     Sint *ncat, </span>
+<span class='curline'><a href='../S/59.html#L50'>Sint</a>               50 src/s_to_rp.c            Sint *numcat,    Sint *maxcat,    Sint *xvals,     Sint *which, </span>
+<span class='curline'><a href='../S/59.html#L51'>Sint</a>               51 src/s_to_rp.c            double *cptable, double *dsplit,  Sint *isplit,    Sint *csplit,</span>
+<span class='curline'><a href='../S/59.html#L52'>Sint</a>               52 src/s_to_rp.c            double *dnode,   Sint *inode)</span>
+<span class='curline'><a href='../S/59.html#L58'>Sint</a>               58 src/s_to_rp.c      Sint   *iinode[6], *iisplit[3];</span>
+<span class='curline'><a href='../S/59.html#L59'>Sint</a>               59 src/s_to_rp.c      Sint   **ccsplit;</span>
+<span class='curline'><a href='../S/59.html#L85'>Sint</a>               85 src/s_to_rp.c      ccsplit = (Sint **)CALLOC(i, sizeof(Sint *));</span>
+<span class='curline'><a href='../S/83.html#L12'>Sint</a>               12 src/s_xpred.c  void s_xpred(Sint *sn,     Sint *nvarx,   Sint *ncat,    Sint *method, </span>
+<span class='curline'><a href='../S/83.html#L13'>Sint</a>               13 src/s_xpred.c           double *opt,  double *parms, Sint *xvals,   Sint *x_grp,</span>
+<span class='curline'><a href='../S/83.html#L14'>Sint</a>               14 src/s_xpred.c           double *ymat, FLOAT *xmat,   Sint *missmat, double *predict,</span>
+<span class='curline'><a href='../S/83.html#L15'>Sint</a>               15 src/s_xpred.c           Sint *ncp,    double *cp,    char **error,  double *wt,</span>
+<span class='curline'><a href='../S/83.html#L16'>Sint</a>               16 src/s_xpred.c           Sint *ny,     double *cost)</span>
+<span class='curline'><a href='../S/83.html#L97'>Sint</a>               97 src/s_xpred.c      rp.sorts  = (Sint**) ALLOC(nvar, sizeof(Sint *));</span>
+<span class='curline'><a href='../S/91.html#L32'>Sint</a>               32 src/surrogate.c     Sint **sorts;</span>
+<span class='curline'><a href='../S/63.html#L37'>Sint</a>               37 src/xval.c     void xval(int n_xval,  struct cptable *cptable_head,  Sint *x_grp, </span>
+</pre>
+</body>
+</html>

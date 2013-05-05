@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.exp.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.exp.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.exp.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart.exp" &lt;-
+<a id='L2' name='L2' />function(y, offset, parms, wt) {
+<a id='L3' name='L3' />
+<a id='L4' name='L4' />    if (!inherits(y, "Surv"))
+<a id='L5' name='L5' />       stop("Response must be a survival object - use the Surv() function")
+<a id='L6' name='L6' />
+<a id='L7' name='L7' />    ny &lt;- ncol(y)
+<a id='L8' name='L8' />    n  &lt;- nrow(y)
+<a id='L9' name='L9' />
+<a id='L10' name='L10' />    status &lt;- y[,ny]
+<a id='L11' name='L11' />    if (any(y[,1]&lt;=0)) stop("Observation time must be &gt;0")
+<a id='L12' name='L12' />    if (all(status==0)) stop("No deaths in data set")
+<a id='L13' name='L13' />    time &lt;- y[ ,ny-1]
+<a id='L14' name='L14' />
+<a id='L15' name='L15' />    # Make my table of time intervals.  The first goes from 0 to the first
+<a id='L16' name='L16' />    #   death, the next from death 2 to death 3, ..., and the last from
+<a id='L17' name='L17' />    #   "next to last death" to "max time in dataset".
+<a id='L18' name='L18' />    # We also need to avoid a pathological condition in some data sets, where
+<a id='L19' name='L19' />    #   two death times differ by a trivial amount, e.g., 10^-16, perhaps due
+<a id='L20' name='L20' />    #   to roundoff error in creating the input data.  Ammalgamate such
+<a id='L21' name='L21' />    #   intervals.  This turns out to be hard to do in S, but easy in C
+<a id='L22' name='L22' />    dtimes &lt;- sort(unique(time[status==1]))        # unique death times
+<a id='L23' name='L23' />    temp &lt;- .C('rpartexp2',
+<a id='L24' name='L24' />           as.integer(length(dtimes)),
+<a id='L25' name='L25' />           as.double(dtimes),
+<a id='L26' name='L26' />           as.double(.Machine$double.eps),
+<a id='L27' name='L27' />           keep=integer(length(dtimes)), PACKAGE="mvpart")$keep
+<a id='L28' name='L28' />    dtimes &lt;- dtimes[temp==1]
+<a id='L29' name='L29' />
+<a id='L30' name='L30' />    # For the sake of speed, restrict the number of intervals to be &lt;1000.
+<a id='L31' name='L31' />    #   (Actually, anything &gt;100 is probably overkill for the
+<a id='L32' name='L32' />    #   actual task at hand, which is to approximately scale to exponential).
+<a id='L33' name='L33' />    if (length(dtimes) &gt; 1000) dtimes &lt;- quantile(dtimes, 0:1000/1000)
+<a id='L34' name='L34' />
+<a id='L35' name='L35' />    # The last interval goes to the max time in the data set
+<a id='L36' name='L36' />    itable &lt;- c(0, dtimes[-length(dtimes)], max(time)) # set of intervals
+<a id='L37' name='L37' />
+<a id='L38' name='L38' />    drate1 &lt;- function(n, ny, y, wt, itable) {
+<a id='L39' name='L39' />    # Compute the death rate within each of the intervals
+<a id='L40' name='L40' />    #  The pyears2 routine is part of the survival library
+<a id='L41' name='L41' />    ngrp &lt;- length(itable) -1
+<a id='L42' name='L42' />    temp &lt;- .C('pyears2',
+<a id='L43' name='L43' />           as.integer(n),
+<a id='L44' name='L44' />           as.integer(ny),
+<a id='L45' name='L45' />           as.integer(1),
+<a id='L46' name='L46' />           as.double (y),
+<a id='L47' name='L47' />           as.double(wt),
+<a id='L48' name='L48' />           as.integer(1),
+<a id='L49' name='L49' />           as.integer(0),
+<a id='L50' name='L50' />           as.integer(ngrp),
+<a id='L51' name='L51' />           as.double(itable),
+<a id='L52' name='L52' />           as.double(rep(0., n)),
+<a id='L53' name='L53' />           pyears = double(ngrp),
+<a id='L54' name='L54' />           pn     = double(ngrp),
+<a id='L55' name='L55' />           pcount = double(ngrp),
+<a id='L56' name='L56' />           offtable= double(1), PACKAGE="survival")[11:14]
+<a id='L57' name='L57' />    rates &lt;- temp$pcount / temp$pyears
+<a id='L58' name='L58' />    rates
+<a id='L59' name='L59' />    }
+<a id='L60' name='L60' />
+<a id='L61' name='L61' />    drate2 &lt;- function(n, ny, y, wt, itable) {
+<a id='L62' name='L62' />    # An alternative to the drate1 function
+<a id='L63' name='L63' />    # Why?  The pyears2 routine changed in 6/2001, with the inclusion
+<a id='L64' name='L64' />    #  of case weights.  We need the newer version.  If you have the
+<a id='L65' name='L65' />    #  older version of the survival library, the above will crash S.
+<a id='L66' name='L66' />    # How to tell -- list the pyears function, and see whether it's
+<a id='L67' name='L67' />    #  call to pyears2 has weights in the argument list.
+<a id='L68' name='L68' />    #
+<a id='L69' name='L69' />    time &lt;- y[, ny-1]
+<a id='L70' name='L70' />    status &lt;- y[,ny]
+<a id='L71' name='L71' />    ilength &lt;- diff(itable)                   #lengths of intervals
+<a id='L72' name='L72' />    ngrp &lt;- length(ilength)                   #number of intervals
+<a id='L73' name='L73' />
+<a id='L74' name='L74' />    # The code below is as opaque as any I've written, all in the
+<a id='L75' name='L75' />    #  service of "no for loops".
+<a id='L76' name='L76' />    # First, 'index' gives the time interval (as defined by itable)
+<a id='L77' name='L77' />    #  in which the end of each observation's follow-up (time) lies.
+<a id='L78' name='L78' />    #  Then 'itime' will be the amount of time spent in that last
+<a id='L79' name='L79' />    #  interval, which is of course somewhat less than ilength.
+<a id='L80' name='L80' />    index &lt;- unclass(cut(time, itable, include.lowest=TRUE))
+<a id='L81' name='L81' />    itime &lt;- time - itable[index]
+<a id='L82' name='L82' />    if (ny ==3) {
+<a id='L83' name='L83' />        # there is both a start time and a stop time
+<a id='L84' name='L84' />        #  compute the amount of time NOT spent in the interval that
+<a id='L85' name='L85' />        #  the start time lies in.
+<a id='L86' name='L86' />        # stime &lt;- y[,1]   #start time for each interval
+<a id='L87' name='L87' />        index2&lt;- unclass(cut(y[,1], itable, include.lowest=TRUE))
+<a id='L88' name='L88' />        itime2&lt;- y[,1] - itable[index2]
+<a id='L89' name='L89' />        }
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />    # Compute the amount of person-years in each of the intervals
+<a id='L92' name='L92' />    #   This is:  (width of interval) * (number of "time" elements that
+<a id='L93' name='L93' />    #                                     end in an interval farther right)
+<a id='L94' name='L94' />    #            + (ending times in this interval)
+<a id='L95' name='L95' />    # By construction, I know that there is at least 1 obs in each of the
+<a id='L96' name='L96' />    #  intervals, so tab1 is of a determined length
+<a id='L97' name='L97' />    tab1 &lt;- table(index)
+<a id='L98' name='L98' />    temp &lt;- rev(cumsum(rev(tab1)))  #cumsum, counting from the right
+<a id='L99' name='L99' />    pyears &lt;- ilength * c(temp[-1], 0) +     tapply(itime, index, sum)
+<a id='L100' name='L100' />    if (ny==3) {
+<a id='L101' name='L101' />        #subtract off the time before "start"
+<a id='L102' name='L102' />        tab2 &lt;- table(index2, levels=1:ngrp) #force the length of tab2
+<a id='L103' name='L103' />        temp &lt;- rev(cumsum(rev(tab2)))
+<a id='L104' name='L104' />        py2  &lt;-  ilength * c(0, temp[-ngrp]) +  tapply(itime2, index2, sum)
+<a id='L105' name='L105' />        pyears &lt;- pyears - py2
+<a id='L106' name='L106' />        }
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />    deaths &lt;- tapply(status, index, sum)
+<a id='L109' name='L109' />    rate &lt;- deaths/pyears   #hazard rate in each interval
+<a id='L110' name='L110' />    rate
+<a id='L111' name='L111' />    }
+<a id='L112' name='L112' />
+<a id='L113' name='L113' />    #
+<a id='L114' name='L114' />    # Now, compute the "new y" for each observation.
+<a id='L115' name='L115' />    #  This is a stretching of the time axis
+<a id='L116' name='L116' />    # The cumulative hazard over each interval is rate*length(interval),
+<a id='L117' name='L117' />    #  and is the basis of the rescaling.
+<a id='L118' name='L118' />    rate &lt;- drate2(n, ny, y, wt, itable)
+<a id='L119' name='L119' />    cumhaz &lt;- cumsum(c(0, rate*diff(itable)))
+<a id='L120' name='L120' />    newy &lt;- approx(itable, cumhaz, time)$y
+<a id='L121' name='L121' />    if (ny==3) {
+<a id='L122' name='L122' />    newy &lt;- newy - approx(itable, cumhaz, y[,1])$y
+<a id='L123' name='L123' />    }
+<a id='L124' name='L124' />
+<a id='L125' name='L125' />    if (length(offset)==n)  newy &lt;- newy * exp(offset)
+<a id='L126' name='L126' />
+<a id='L127' name='L127' />    if (missing(parms)) parms &lt;- c(shrink=1, method=1)
+<a id='L128' name='L128' />    else {
+<a id='L129' name='L129' />    parms &lt;- as.list(parms)
+<a id='L130' name='L130' />        if(is.null(names(parms))) stop("You must input a named list for parms")
+<a id='L131' name='L131' />        parmsNames &lt;- c("method", "shrink")
+<a id='L132' name='L132' />        indx &lt;- pmatch(names(parms), parmsNames, nomatch= 0)
+<a id='L133' name='L133' />        if (any(indx==0))
+<a id='L134' name='L134' />            stop(paste("parms component not matched: ",
+<a id='L135' name='L135' />               names(parms)[indx==0]))
+<a id='L136' name='L136' />    else names(parms) &lt;- parmsNames[indx]
+<a id='L137' name='L137' />
+<a id='L138' name='L138' />    if (is.null(parms$method)) method &lt;- 1
+<a id='L139' name='L139' />    else method &lt;- pmatch(parms$method, c("deviance", "sqrt"))
+<a id='L140' name='L140' />    if (is.na(method)) stop("Invalid error method for Poisson")
+<a id='L141' name='L141' />
+<a id='L142' name='L142' />    if (is.null(parms$shrink)) shrink &lt;- 2-method
+<a id='L143' name='L143' />    else shrink &lt;- parms$shrink
+<a id='L144' name='L144' />    if (!is.numeric(shrink) || shrink &lt; 0)
+<a id='L145' name='L145' />        stop("Invalid shrinkage value")
+<a id='L146' name='L146' />    parms &lt;- c(shrink=shrink, method=method)
+<a id='L147' name='L147' />    }
+<a id='L148' name='L148' />    list(y=cbind(newy, y[,2]), parms=parms, numresp=2, numy=2,
+<a id='L149' name='L149' />     summary= function(yval, dev, wt, ylevel, digits) {
+<a id='L150' name='L150' />         paste("  events=", formatg(yval[,2]),
+<a id='L151' name='L151' />        ",  estimated rate=" , formatg(yval[,1], digits),
+<a id='L152' name='L152' />        " , mean deviance=",formatg(dev/wt, digits),
+<a id='L153' name='L153' />        sep = "")
+<a id='L154' name='L154' />         },
+<a id='L155' name='L155' />     text= function(yval, dev, wt, ylevel, digits, n, use.n) {
+<a id='L156' name='L156' />         if(use.n) {paste(formatg(yval[,1],digits),"\n",
+<a id='L157' name='L157' />                formatg(yval[,2]),"/",n,sep="")} else
+<a id='L158' name='L158' />            {paste(formatg(yval[,1],digits))}
+<a id='L159' name='L159' />         })
+<a id='L160' name='L160' />    }
+<a id='L161' name='L161' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+161 R/rpart.exp.R]</em> */</em>
+</body>
+</html>

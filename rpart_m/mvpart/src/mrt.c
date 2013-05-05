@@ -14,7 +14,7 @@ static double *mean, *grandmean, *wts, *diffs, *tdiffs;
 static **distMatrix; /*here, we use a matrix to store distance between y's*/
 static int *tsplit, *countn, *countwt;
 
-double alpha = 0.3; /*this is the alpha we need to determint, I will find way to pass value to assign it.*/
+
 
 int mrtinit(int n, double *y[], int maxcat, char **error,
           double *parm, int *size,    int who, double *wt)

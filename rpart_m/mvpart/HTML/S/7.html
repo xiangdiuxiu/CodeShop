@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/car.test.frame.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/car.test.frame.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/car.test.frame.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{car.test.frame}
+<a id='L2' name='L2' />\alias{car.test.frame}
+<a id='L3' name='L3' />\title{Automobile Data from `Consumer Reports' 1990}
+<a id='L4' name='L4' />\description{
+<a id='L5' name='L5' />  The \code{car.test.frame} data frame has 60 rows and 8 columns,
+<a id='L6' name='L6' />  giving data on makes of cars taken from the April, 1990 issue of
+<a id='L7' name='L7' />  \emph{Consumer Reports}. 
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />data(car.test.frame)
+<a id='L11' name='L11' />}
+<a id='L12' name='L12' />\format{
+<a id='L13' name='L13' />This data frame contains the following columns:
+<a id='L14' name='L14' />\describe{
+<a id='L15' name='L15' />\item{\code{Price}}{
+<a id='L16' name='L16' />a numeric vector giving the list price in US dollars of a standard model
+<a id='L17' name='L17' />}
+<a id='L18' name='L18' />\item{\code{Country}}{
+<a id='L19' name='L19' />of origin, a factor with levels
+<a id='L20' name='L20' />\code{France} 
+<a id='L21' name='L21' />\code{Germany} 
+<a id='L22' name='L22' />\code{Japan} 
+<a id='L23' name='L23' />\code{Japan/USA} 
+<a id='L24' name='L24' />\code{Korea} 
+<a id='L25' name='L25' />\code{Mexico} 
+<a id='L26' name='L26' />\code{Sweden} 
+<a id='L27' name='L27' />\code{USA} 
+<a id='L28' name='L28' />}
+<a id='L29' name='L29' />\item{\code{Reliability}}{
+<a id='L30' name='L30' />a numeric vector coded \code{1} to \code{5}.
+<a id='L31' name='L31' />}
+<a id='L32' name='L32' />\item{\code{Mileage}}{
+<a id='L33' name='L33' />fuel consumption miles per US gallon, as tested. 
+<a id='L34' name='L34' />}
+<a id='L35' name='L35' />\item{\code{Type}}{
+<a id='L36' name='L36' />a factor with levels
+<a id='L37' name='L37' />\code{Compact} 
+<a id='L38' name='L38' />\code{Large} 
+<a id='L39' name='L39' />\code{Medium} 
+<a id='L40' name='L40' />\code{Small} 
+<a id='L41' name='L41' />\code{Sporty} 
+<a id='L42' name='L42' />\code{Van} 
+<a id='L43' name='L43' />}
+<a id='L44' name='L44' />\item{\code{Weight}}{
+<a id='L45' name='L45' />kerb weight in pounds.
+<a id='L46' name='L46' />}
+<a id='L47' name='L47' />\item{\code{Disp.}}{
+<a id='L48' name='L48' />the engine capacity (displacement) in litres.
+<a id='L49' name='L49' />}
+<a id='L50' name='L50' />\item{\code{HP}}{
+<a id='L51' name='L51' />the net horsepower of the vehicle.
+<a id='L52' name='L52' />}
+<a id='L53' name='L53' />}}
+<a id='L54' name='L54' />\source{
+<a id='L55' name='L55' />  \emph{Consumer Reports}, April, 1990, pp. 235--288 quoted in
+<a id='L56' name='L56' />
+<a id='L57' name='L57' />  John M. Chambers and Trevor J. Hastie eds. (1992)
+<a id='L58' name='L58' />  \emph{Statistical Models in S}, Wadsworth and Brooks/Cole,
+<a id='L59' name='L59' />  Pacific Grove, CA 1992, pp. 46--47.
+<a id='L60' name='L60' />}
+<a id='L61' name='L61' />
+<a id='L62' name='L62' />\examples{
+<a id='L63' name='L63' />data(car.test.frame)
+<a id='L64' name='L64' />z.auto &lt;- rpart(Mileage ~ Weight, car.test.frame)
+<a id='L65' name='L65' />summary(z.auto)
+<a id='L66' name='L66' />}
+<a id='L67' name='L67' />\keyword{datasets}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+67 man/car.test.frame.Rd]</em> */</em>
+</body>
+</html>

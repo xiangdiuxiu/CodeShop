@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/cmds.diss.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/cmds.diss.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/cmds.diss.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"cmds.diss" &lt;-
+<a id='L2' name='L2' />function (data, k = ncol(data), x.use = FALSE, zero.chk = TRUE,
+<a id='L3' name='L3' />     plt = FALSE, plot.subset = FALSE , plot.subn = 5, ...) 
+<a id='L4' name='L4' />{
+<a id='L5' name='L5' />    if (x.use) {
+<a id='L6' name='L6' />        xdists &lt;- xdiss(data, ...)
+<a id='L7' name='L7' />        xds &lt;- cmdscale(xdists, k = k)
+<a id='L8' name='L8' />        colnames(xds) &lt;- paste("s",1:ncol(xds),sep="")
+<a id='L9' name='L9' />            }
+<a id='L10' name='L10' />    else {
+<a id='L11' name='L11' />        xdists &lt;- gdist(data, ...)
+<a id='L12' name='L12' />        xds &lt;- cmdscale(xdists, k = k)
+<a id='L13' name='L13' />        colnames(xds) &lt;- paste("s",1:ncol(xds),sep="")
+<a id='L14' name='L14' />
+<a id='L15' name='L15' />           }
+<a id='L16' name='L16' />    if (zero.chk) {
+<a id='L17' name='L17' />        drop.cols &lt;- apply(xds, 2, function(x) (all(is.nan(x)) || 
+<a id='L18' name='L18' />            all(x == 0) || all(is.na(x))))
+<a id='L19' name='L19' />        if (any(drop.cols)) {
+<a id='L20' name='L20' />            cat(sum(drop.cols), " columns with NAs or all zeros dropped \n")
+<a id='L21' name='L21' />            xds &lt;- xds[, !drop.cols]
+<a id='L22' name='L22' />        }
+<a id='L23' name='L23' />    }
+<a id='L24' name='L24' />    if (plt) {
+<a id='L25' name='L25' />        n &lt;- nrow(data)
+<a id='L26' name='L26' />        if (n &lt; 30 || !plot.subset) 
+<a id='L27' name='L27' />        plot(xdists, dxds &lt;- dist(xds), xlim = c(0, max(xdists)), 
+<a id='L28' name='L28' />            ylim = c(0, max(dxds)), xlab = "Dists", ylab = "CMDS Dists", pch=1)
+<a id='L29' name='L29' />        else { 
+<a id='L30' name='L30' />        samp &lt;- sample(n*n, floor(750 + n * plot.subn))
+<a id='L31' name='L31' />        dxds &lt;- dist(xds)
+<a id='L32' name='L32' />        plot(xdists[samp], dxds[samp], xlim = c(0, md &lt;- max(xdists)), 
+<a id='L33' name='L33' />            ylim = c(0, max(dxds)), xlab = "Dists", ylab = "CMDS Dists", pch=1)
+<a id='L34' name='L34' />        }    
+<a id='L35' name='L35' />        abline(c(0, 1), col = 2, xpd = FALSE)
+<a id='L36' name='L36' />        mtext("Pairwise distances vs CMD scaled pairwise distances", 
+<a id='L37' name='L37' />            3, line = 1.5)
+<a id='L38' name='L38' />        mtext(paste("R2 =", signif(cor(xdists, dxds)^2, 4), sep = ""), 
+<a id='L39' name='L39' />            3, line = -1.5)
+<a id='L40' name='L40' />        locator(1)
+<a id='L41' name='L41' />    }
+<a id='L42' name='L42' />    xds
+<a id='L43' name='L43' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+43 R/cmds.diss.R]</em> */</em>
+</body>
+</html>

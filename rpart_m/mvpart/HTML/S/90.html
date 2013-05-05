@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/insert_split.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/152.html'>src</a>/insert_split.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L14'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 src/insert_split.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L14' title='Defined at 14.'>insert_split</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/* SCCS 06/06/01 @(#)insert_split.c 1.5 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** sort a new split into a linked list, based on its "improvement"</em>
+<a id='L4' name='L4' />   4 <em class='comment'>**</em>
+<a id='L5' name='L5' />   5 <em class='comment'>**  allocates new memory as needed</em>
+<a id='L6' name='L6' />   6 <em class='comment'>**   returns 0 if the new element isn't good enough,</em>
+<a id='L7' name='L7' />   7 <em class='comment'>**   the address of the new element otherwise</em>
+<a id='L8' name='L8' />   8 <em class='comment'>*/</em>
+<a id='L9' name='L9' />   9 <em class='sharp'>#include</em> "<a href='82.html'>rpart.h</a>"
+<a id='L10' name='L10' />  10 <em class='sharp'>#include</em> "<a href='74.html'>node.h</a>"
+<a id='L11' name='L11' />  11 <em class='sharp'>#include</em> "<a href='84.html'>rpartproto.h</a>"
+<a id='L12' name='L12' />  12 <em class='sharp'>#include</em> "<a href='81.html'>rpartS.h</a>"
+<a id='L13' name='L13' />  13 
+<a id='L14' name='L14' />  14 <strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *<a href='../R/51.html' title='Multiple refered from 3 places.'>insert_split</a>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> **<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>, <strong class='reserved'>int</strong> <a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>, 
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+14 src/insert_split.c]</em> */</em>
+<a id='L15' name='L15' />  15                <strong class='reserved'>double</strong> <a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a>,          <strong class='reserved'>int</strong> <a href='../Y/167.html' title='Multiple used in 7 places.'>max</a>)
+<a id='L16' name='L16' />  16     <em class='brace'>{</em>
+<a id='L17' name='L17' />  17     <strong class='reserved'>int</strong> <a href='../Y/202.html' title='Multiple used in 4 places.'>nlist</a>;
+<a id='L18' name='L18' />  18     <strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *<a href='../Y/282.html' title='Multiple used in 12 places.'>s1</a>, *<a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>, *<a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>=<a href='../Y/6.html' title='Multiple used in 3 places.'>NULL</a>, *<a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>;
+<a id='L19' name='L19' />  19 
+<a id='L20' name='L20' />  20     <strong class='reserved'>if</strong> (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>==0) <a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>=1;     <em class='comment'>/* ensure "ncat-1" below never gives a negative */</em>
+<a id='L21' name='L21' />  21     <strong class='reserved'>if</strong> (*<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a> ==0) <em class='brace'>{</em>
+<a id='L22' name='L22' />  22     <em class='comment'>/* first call to a new list */</em>
+<a id='L23' name='L23' />  23     <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a> = (<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *)<a href='../S/81.html#L27' title='Defined at 27 in src/rpartS.h.'>CALLOC</a>(1, <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a>)+
+<a id='L24' name='L24' />  24                         (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>-1)*<strong class='reserved'>sizeof</strong>(<strong class='reserved'>int</strong>));
+<a id='L25' name='L25' />  25     <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> =0;
+<a id='L26' name='L26' />  26     *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a> = <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>;
+<a id='L27' name='L27' />  27     <strong class='reserved'>return</strong>(<a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>);
+<a id='L28' name='L28' />  28     <em class='brace'>}</em>
+<a id='L29' name='L29' />  29 
+<a id='L30' name='L30' />  30     <strong class='reserved'>if</strong> (<a href='../Y/167.html' title='Multiple used in 7 places.'>max</a> &lt;2) <em class='brace'>{</em>
+<a id='L31' name='L31' />  31     <em class='comment'>/* user asked for only 1 to be retained! */</em>
+<a id='L32' name='L32' />  32     <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a> = *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>;
+<a id='L33' name='L33' />  33     <strong class='reserved'>if</strong> (<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a> &lt;= <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>-&gt;<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a>) <strong class='reserved'>return</strong>(0);
+<a id='L34' name='L34' />  34     <strong class='reserved'>if</strong> (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a> &gt;1) <em class='brace'>{</em>
+<a id='L35' name='L35' />  35         <a href='../Y/1.html' title='Multiple used in 10 places.'>Free</a>(<a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>);
+<a id='L36' name='L36' />  36         <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a> = (<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *)<a href='../S/81.html#L27' title='Defined at 27 in src/rpartS.h.'>CALLOC</a>(1, <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a>)+
+<a id='L37' name='L37' />  37                         (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>-1)*<strong class='reserved'>sizeof</strong>(<strong class='reserved'>int</strong>));
+<a id='L38' name='L38' />  38         <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> =0;
+<a id='L39' name='L39' />  39         *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a> = <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>;
+<a id='L40' name='L40' />  40         <em class='brace'>}</em>
+<a id='L41' name='L41' />  41     <strong class='reserved'>return</strong>(<a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>);
+<a id='L42' name='L42' />  42     <em class='brace'>}</em>
+<a id='L43' name='L43' />  43 
+<a id='L44' name='L44' />  44     <em class='comment'>/*set up --- nlist = length of list, s4=last element, s3=next to last */</em>
+<a id='L45' name='L45' />  45     <a href='../Y/202.html' title='Multiple used in 4 places.'>nlist</a>=1;
+<a id='L46' name='L46' />  46     <strong class='reserved'>for</strong> (<a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>= *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>; <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a>!=0; <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>=<a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a>) <em class='brace'>{</em>
+<a id='L47' name='L47' />  47     <a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a> = <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>;
+<a id='L48' name='L48' />  48     <a href='../Y/202.html' title='Multiple used in 4 places.'>nlist</a>++;
+<a id='L49' name='L49' />  49     <em class='brace'>}</em>
+<a id='L50' name='L50' />  50 
+<a id='L51' name='L51' />  51     <em class='comment'>/* now set up so that the "to be added" is between s1 and s2 */</em>
+<a id='L52' name='L52' />  52     <a href='../Y/282.html' title='Multiple used in 12 places.'>s1</a> = *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>;
+<a id='L53' name='L53' />  53     <strong class='reserved'>for</strong> (<a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>= *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>; <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a> !=0; <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>= <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a>) <em class='brace'>{</em>
+<a id='L54' name='L54' />  54     <strong class='reserved'>if</strong> (<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a> &gt; <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>-&gt;<a href='../Y/117.html' title='Multiple used in 44 places.'>improve</a>) <strong class='reserved'>break</strong>;
+<a id='L55' name='L55' />  55     <a href='../Y/282.html' title='Multiple used in 12 places.'>s1</a> = <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>;
+<a id='L56' name='L56' />  56     <em class='brace'>}</em>
+<a id='L57' name='L57' />  57 
+<a id='L58' name='L58' />  58     <strong class='reserved'>if</strong> (<a href='../Y/202.html' title='Multiple used in 4 places.'>nlist</a>==<a href='../Y/167.html' title='Multiple used in 7 places.'>max</a>) <em class='brace'>{</em>
+<a id='L59' name='L59' />  59     <strong class='reserved'>if</strong> (<a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>==0)  <strong class='reserved'>return</strong>(0);        <em class='comment'>/* not good enough */</em>
+<a id='L60' name='L60' />  60     <strong class='reserved'>if</strong> (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a> &gt;1) <em class='brace'>{</em>
+<a id='L61' name='L61' />  61         <a href='../Y/1.html' title='Multiple used in 10 places.'>Free</a>(<a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>);         <em class='comment'>/*get new memory-- this chunk may be too small */</em>
+<a id='L62' name='L62' />  62         <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a> = (<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *)<a href='../S/81.html#L27' title='Defined at 27 in src/rpartS.h.'>CALLOC</a>(1, <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a>) +
+<a id='L63' name='L63' />  63                              (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>-2)*<strong class='reserved'>sizeof</strong>(<strong class='reserved'>int</strong>));
+<a id='L64' name='L64' />  64         <em class='brace'>}</em>
+<a id='L65' name='L65' />  65     <strong class='reserved'>if</strong> (<a href='../Y/282.html' title='Multiple used in 12 places.'>s1</a>==<a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>)   <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> =0;
+<a id='L66' name='L66' />  66     <strong class='reserved'>else</strong>         <em class='brace'>{</em><a href='../Y/284.html' title='Multiple used in 15 places.'>s3</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> =0;  <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> =<a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>;<em class='brace'>}</em>
+<a id='L67' name='L67' />  67     <em class='brace'>}</em>
+<a id='L68' name='L68' />  68     <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L69' name='L69' />  69     <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a> = (<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a> *)<a href='../S/81.html#L27' title='Defined at 27 in src/rpartS.h.'>CALLOC</a>(1, <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../S/74.html#L15' title='Defined at 15 in src/node.h.'>split</a>) +
+<a id='L70' name='L70' />  70                             (<a href='../Y/194.html' title='Multiple used in 62 places.'>ncat</a>-2)*<strong class='reserved'>sizeof</strong>(<strong class='reserved'>int</strong>));
+<a id='L71' name='L71' />  71     <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> = <a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>;
+<a id='L72' name='L72' />  72     <em class='brace'>}</em>
+<a id='L73' name='L73' />  73     <strong class='reserved'>if</strong> (<a href='../Y/283.html' title='Multiple used in 13 places.'>s2</a>== *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>) *<a href='../Y/155.html' title='Multiple used in 10 places.'>listhead</a>     = <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>;
+<a id='L74' name='L74' />  74     <strong class='reserved'>else</strong>                <a href='../Y/282.html' title='Multiple used in 12 places.'>s1</a>-&gt;<a href='../Y/201.html' title='Multiple used in 17 places.'>nextsplit</a> = <a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>;
+<a id='L75' name='L75' />  75     <strong class='reserved'>return</strong>(<a href='../Y/285.html' title='Multiple used in 12 places.'>s4</a>);
+<a id='L76' name='L76' />  76     <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L14'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+76 src/insert_split.c]</em> */</em>
+</body>
+</html>

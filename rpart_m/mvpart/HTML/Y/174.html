@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>me</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/55.html#L15'>me</a>                 15 src/branch.c       struct node *me;</span>
+<span class='curline'><a href='../S/55.html#L21'>me</a>                 21 src/branch.c       me = tree;</span>
+<span class='curline'><a href='../S/55.html#L28'>me</a>                 28 src/branch.c       tsplit = me-&gt;primary;</span>
+<span class='curline'><a href='../S/55.html#L49'>me</a>                 49 src/branch.c       for (tsplit= me-&gt;surrogate; tsplit !=0; tsplit= tsplit-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/55.html#L72'>me</a>                 72 src/branch.c       dir = me-&gt;lastsurrogate;</span>
+<span class='curline'><a href='../S/55.html#L74'>me</a>                 74 src/branch.c   down:if (dir==LEFT) return(me-&gt;leftson);</span>
+<span class='curline'><a href='../S/55.html#L75'>me</a>                 75 src/branch.c        else           return(me-&gt;rightson);</span>
+<span class='curline'><a href='../S/72.html#L17'>me</a>                 17 src/bsplit.c   void bsplit(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/72.html#L38'>me</a>                 38 src/bsplit.c       me-&gt;primary =0;</span>
+<span class='curline'><a href='../S/72.html#L74'>me</a>                 74 src/bsplit.c                    &amp;split, rp.csplit, me-&gt;risk, wtemp);</span>
+<span class='curline'><a href='../S/72.html#L84'>me</a>                 84 src/bsplit.c           tsplit = insert_split(&amp;(me-&gt;primary), nc, improve, rp.maxpri);</span>
+<span class='curline'><a href='../S/87.html#L11'>me</a>                 11 src/fix_cp.c   void fix_cp(struct node *me, double parent_cp)</span>
+<span class='curline'><a href='../S/87.html#L13'>me</a>                 13 src/fix_cp.c       if (me-&gt;complexity &gt; parent_cp)  me-&gt;complexity = parent_cp;</span>
+<span class='curline'><a href='../S/87.html#L15'>me</a>                 15 src/fix_cp.c       if (me-&gt;leftson != 0) {</span>
+<span class='curline'><a href='../S/87.html#L16'>me</a>                 16 src/fix_cp.c       fix_cp(me-&gt;leftson, me-&gt;complexity);</span>
+<span class='curline'><a href='../S/87.html#L17'>me</a>                 17 src/fix_cp.c       fix_cp(me-&gt;rightson,me-&gt;complexity);</span>
+<span class='curline'><a href='../S/64.html#L35'>me</a>                 35 src/make_cp_list.c void make_cp_list(struct node *me, double parent, struct cptable *cptable_head)</span>
+<span class='curline'><a href='../S/64.html#L40'>me</a>                 40 src/make_cp_list.c     if (me-&gt;complexity &gt; parent) me-&gt;complexity = parent;</span>
+<span class='curline'><a href='../S/64.html#L41'>me</a>                 41 src/make_cp_list.c     me_cp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/64.html#L43'>me</a>                 43 src/make_cp_list.c     if (me-&gt;leftson != 0) {</span>
+<span class='curline'><a href='../S/64.html#L44'>me</a>                 44 src/make_cp_list.c      make_cp_list(me-&gt;leftson, me_cp, cptable_head);</span>
+<span class='curline'><a href='../S/64.html#L45'>me</a>                 45 src/make_cp_list.c      make_cp_list(me-&gt;rightson,me_cp, cptable_head);</span>
+<span class='curline'><a href='../S/79.html#L19'>me</a>                 19 src/make_cp_table.c struct cptable *make_cp_table(struct node *me, double parent, int nsplit)</span>
+<span class='curline'><a href='../S/79.html#L23'>me</a>                 23 src/make_cp_table.c     if (me-&gt;leftson) {  /* if there are splits below */</span>
+<span class='curline'><a href='../S/79.html#L31'>me</a>                 31 src/make_cp_table.c     make_cp_table(me-&gt;leftson, me-&gt;complexity, 0);</span>
+<span class='curline'><a href='../S/79.html#L32'>me</a>                 32 src/make_cp_table.c     cplist = make_cp_table(me-&gt;rightson, me-&gt;complexity, nsplit+1);</span>
+<span class='curline'><a href='../S/79.html#L37'>me</a>                 37 src/make_cp_table.c     cplist-&gt;risk += me-&gt;risk;</span>
+<span class='curline'><a href='../S/71.html#L10'>me</a>                 10 src/nodesplit.c void nodesplit(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/71.html#L31'>me</a>                 31 src/nodesplit.c     tsplit = me-&gt;primary;</span>
+<span class='curline'><a href='../S/71.html#L64'>me</a>                 64 src/nodesplit.c     for (tsplit=me-&gt;surrogate;  tsplit!=0 &amp;&amp; someleft&gt;0;</span>
+<span class='curline'><a href='../S/71.html#L115'>me</a>                115 src/nodesplit.c     i = me-&gt;lastsurrogate;</span>
+<span class='curline'><a href='../S/77.html#L19'>me</a>                 19 src/partition.c     struct node *me;</span>
+<span class='curline'><a href='../S/77.html#L29'>me</a>                 29 src/partition.c     me = splitnode;</span>
+<span class='curline'><a href='../S/77.html#L62'>me</a>                 62 src/partition.c     (*rp_eval)(j, rp.ytemp, me-&gt;response_est, &amp;(me-&gt;risk), rp.wtemp);</span>
+<span class='curline'><a href='../S/77.html#L63'>me</a>                 63 src/partition.c     me -&gt; num_obs = j;</span>
+<span class='curline'><a href='../S/77.html#L64'>me</a>                 64 src/partition.c     me -&gt; sum_wt  = twt;</span>
+<span class='curline'><a href='../S/77.html#L65'>me</a>                 65 src/partition.c     tempcp = me-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L66'>me</a>                 66 src/partition.c     if (tempcp &gt; me-&gt;complexity)  tempcp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/77.html#L69'>me</a>                 69 src/partition.c     tempcp = me-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L75'>me</a>                 75 src/partition.c     if (me-&gt;num_obs &lt; rp.min_split  ||  tempcp &lt;= rp.alpha  || </span>
+<span class='curline'><a href='../S/77.html#L77'>me</a>                 77 src/partition.c     me-&gt;complexity =  rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L78'>me</a>                 78 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L79'>me</a>                 79 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L80'>me</a>                 80 src/partition.c     *sumrisk = me-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L87'>me</a>                 87 src/partition.c     bsplit(me, nodenum);</span>
+<span class='curline'><a href='../S/77.html#L88'>me</a>                 88 src/partition.c     if (me-&gt;primary ==0) {</span>
+<span class='curline'><a href='../S/77.html#L92'>me</a>                 92 src/partition.c     me-&gt;complexity = rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L93'>me</a>                 93 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L94'>me</a>                 94 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L95'>me</a>                 95 src/partition.c     *sumrisk = me-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L99'>me</a>                 99 src/partition.c     if (rp.maxsur&gt;0) (void)surrogate(me, nodenum);</span>
+<span class='curline'><a href='../S/77.html#L100'>me</a>                100 src/partition.c     else  me-&gt;surrogate =0;</span>
+<span class='curline'><a href='../S/77.html#L101'>me</a>                101 src/partition.c     nodesplit(me, nodenum);</span>
+<span class='curline'><a href='../S/77.html#L106'>me</a>                106 src/partition.c     me-&gt;leftson = (struct node *)CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/77.html#L107'>me</a>                107 src/partition.c     (me-&gt;leftson)-&gt;complexity = tempcp - rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L108'>me</a>                108 src/partition.c     left_split = partition(2*nodenum, me-&gt;leftson, &amp;left_risk);</span>
+<span class='curline'><a href='../S/77.html#L113'>me</a>                113 src/partition.c     tempcp = (me-&gt;risk - left_risk) / (left_split +1);</span>
+<span class='curline'><a href='../S/77.html#L114'>me</a>                114 src/partition.c     tempcp2 =(me-&gt;risk - (me-&gt;leftson)-&gt;risk);</span>
+<span class='curline'><a href='../S/77.html#L116'>me</a>                116 src/partition.c     if (tempcp &gt; me-&gt;complexity)  tempcp = me-&gt;complexity;</span>
+<span class='curline'><a href='../S/77.html#L118'>me</a>                118 src/partition.c     me-&gt;rightson = (struct node *) CALLOC(1, nodesize);</span>
+<span class='curline'><a href='../S/77.html#L119'>me</a>                119 src/partition.c     (me-&gt;rightson)-&gt;complexity = tempcp - rp.alpha;</span>
+<span class='curline'><a href='../S/77.html#L120'>me</a>                120 src/partition.c     right_split = partition(1+2*nodenum, me-&gt;rightson, &amp;right_risk);</span>
+<span class='curline'><a href='../S/77.html#L128'>me</a>                128 src/partition.c     tempcp = (me-&gt;risk - (left_risk + right_risk))/</span>
+<span class='curline'><a href='../S/77.html#L132'>me</a>                132 src/partition.c     if ( (me-&gt;rightson)-&gt;complexity  &gt; (me-&gt;leftson)-&gt;complexity ) {</span>
+<span class='curline'><a href='../S/77.html#L133'>me</a>                133 src/partition.c     if (tempcp &gt; (me-&gt;leftson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L135'>me</a>                135 src/partition.c         left_risk = (me-&gt;leftson)-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L138'>me</a>                138 src/partition.c         tempcp = (me-&gt;risk - (left_risk + right_risk)) /</span>
+<span class='curline'><a href='../S/77.html#L140'>me</a>                140 src/partition.c         if (tempcp &gt; (me-&gt;rightson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L142'>me</a>                142 src/partition.c         right_risk = (me-&gt;rightson)-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L148'>me</a>                148 src/partition.c     else if (tempcp &gt; (me-&gt;rightson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L151'>me</a>                151 src/partition.c     right_risk = (me-&gt;rightson)-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L153'>me</a>                153 src/partition.c     tempcp = (me-&gt;risk - (left_risk + right_risk)) /</span>
+<span class='curline'><a href='../S/77.html#L155'>me</a>                155 src/partition.c     if (tempcp &gt; (me-&gt;leftson)-&gt;complexity) {</span>
+<span class='curline'><a href='../S/77.html#L157'>me</a>                157 src/partition.c         left_risk = (me-&gt;leftson)-&gt;risk;</span>
+<span class='curline'><a href='../S/77.html#L162'>me</a>                162 src/partition.c     me-&gt;complexity= (me-&gt;risk - (left_risk + right_risk))/</span>
+<span class='curline'><a href='../S/77.html#L165'>me</a>                165 src/partition.c     if (me-&gt;complexity &lt;= rp.alpha ) {</span>
+<span class='curline'><a href='../S/77.html#L169'>me</a>                169 src/partition.c     free_tree(me-&gt;leftson, 1);</span>
+<span class='curline'><a href='../S/77.html#L170'>me</a>                170 src/partition.c     free_tree(me-&gt;rightson,1);</span>
+<span class='curline'><a href='../S/77.html#L171'>me</a>                171 src/partition.c     me-&gt;leftson = (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L172'>me</a>                172 src/partition.c     me-&gt;rightson= (struct node *)0;</span>
+<span class='curline'><a href='../S/77.html#L173'>me</a>                173 src/partition.c     *sumrisk = me-&gt;risk;</span>
+<span class='curline'><a href='../S/84.html#L10'>me</a>                 10 src/rpartproto.h void bsplit(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/84.html#L16'>me</a>                 16 src/rpartproto.h void fix_cp(struct node *me, double parent_cp);</span>
+<span class='curline'><a href='../S/84.html#L28'>me</a>                 28 src/rpartproto.h void make_cp_list(struct node *me, double parent, </span>
+<span class='curline'><a href='../S/84.html#L31'>me</a>                 31 src/rpartproto.h struct cptable *make_cp_table(struct node *me, double parent, int nsplit);</span>
+<span class='curline'><a href='../S/84.html#L35'>me</a>                 35 src/rpartproto.h void nodesplit(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/84.html#L57'>me</a>                 57 src/rpartproto.h void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat);</span>
+<span class='curline'><a href='../S/84.html#L62'>me</a>                 62 src/rpartproto.h void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/84.html#L88'>me</a>                 88 src/rpartproto.h void surrogate(struct node *me, int nodenum);</span>
+<span class='curline'><a href='../S/56.html#L12'>me</a>                 12 src/rpcountup.c void rpcountup(struct node *me, Sint *nnode, Sint *nsplit, int *ncat)</span>
+<span class='curline'><a href='../S/56.html#L19'>me</a>                 19 src/rpcountup.c     if (me-&gt;complexity &lt;=rp.alpha || me-&gt;leftson==0) { /*no kids */</span>
+<span class='curline'><a href='../S/56.html#L26'>me</a>                 26 src/rpcountup.c     for (ss= me-&gt;primary;   ss!=0; ss = ss-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/56.html#L30'>me</a>                 30 src/rpcountup.c     for (ss= me-&gt;surrogate; ss!=0; ss = ss-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/56.html#L35'>me</a>                 35 src/rpcountup.c     rpcountup(me-&gt;leftson, nnode,  nsplit,  ncat);</span>
+<span class='curline'><a href='../S/56.html#L36'>me</a>                 36 src/rpcountup.c     rpcountup(me-&gt;rightson,&amp;node2, &amp;split2, &amp;cat2);</span>
+<span class='curline'><a href='../S/58.html#L9'>me</a>                  9 src/rpmatrix.c void rpmatrix(struct node *me,  Sint *nodecount,   Sint *splitcount, </span>
+<span class='curline'><a href='../S/58.html#L41'>me</a>                 41 src/rpmatrix.c     cp_scale = 1/ me-&gt;risk;</span>
+<span class='curline'><a href='../S/58.html#L46'>me</a>                 46 src/rpmatrix.c     dnode[0][ncnt] = me-&gt;risk;</span>
+<span class='curline'><a href='../S/58.html#L47'>me</a>                 47 src/rpmatrix.c     dnode[1][ncnt] = me-&gt;complexity * cp_scale;</span>
+<span class='curline'><a href='../S/58.html#L48'>me</a>                 48 src/rpmatrix.c     dnode[2][ncnt] = me-&gt;sum_wt;</span>
+<span class='curline'><a href='../S/58.html#L50'>me</a>                 50 src/rpmatrix.c     for (i=0; i&lt;(rp.num_resp); i++) dnode[3+i][ncnt] = me-&gt;response_est[i];</span>
+<span class='curline'><a href='../S/58.html#L53'>me</a>                 53 src/rpmatrix.c     inode[4][ncnt] = me-&gt;num_obs;</span>
+<span class='curline'><a href='../S/58.html#L55'>me</a>                 55 src/rpmatrix.c     if (me-&gt;complexity &lt;=rp.alpha || me-&gt;leftson==0) { /*no kids */</span>
+<span class='curline'><a href='../S/58.html#L59'>me</a>                 59 src/rpmatrix.c     inode[5][ncnt] = me-&gt;num_obs;</span>
+<span class='curline'><a href='../S/58.html#L66'>me</a>                 66 src/rpmatrix.c     for (spl = me-&gt;primary; spl!=0; spl = spl-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/58.html#L87'>me</a>                 87 src/rpmatrix.c     for (spl=me-&gt;surrogate; spl!=0; spl = spl-&gt;nextsplit) {</span>
+<span class='curline'><a href='../S/58.html#L107'>me</a>                107 src/rpmatrix.c     inode[5][ncnt] = me-&gt;num_obs -</span>
+<span class='curline'><a href='../S/58.html#L108'>me</a>                108 src/rpmatrix.c                ((me-&gt;leftson)-&gt;num_obs + (me-&gt;rightson)-&gt;num_obs);</span>
+<span class='curline'><a href='../S/58.html#L115'>me</a>                115 src/rpmatrix.c     rpmatrix(me-&gt;leftson, nodecount, splitcount, catcount, numcat,</span>
+<span class='curline'><a href='../S/58.html#L117'>me</a>                117 src/rpmatrix.c     rpmatrix(me-&gt;rightson,nodecount, splitcount, catcount, numcat,</span>
+<span class='curline'><a href='../S/91.html#L20'>me</a>                 20 src/surrogate.c void surrogate(struct node *me, int nodenum)</span>
+<span class='curline'><a href='../S/91.html#L47'>me</a>                 47 src/surrogate.c     var = (me-&gt;primary)-&gt;var_num;</span>
+<span class='curline'><a href='../S/91.html#L49'>me</a>                 49 src/surrogate.c     split = (me-&gt;primary)-&gt;spoint;</span>
+<span class='curline'><a href='../S/91.html#L50'>me</a>                 50 src/surrogate.c     extra = (me-&gt;primary)-&gt;csplit[0];</span>
+<span class='curline'><a href='../S/91.html#L64'>me</a>                 64 src/surrogate.c     index = (me-&gt;primary)-&gt;csplit;</span>
+<span class='curline'><a href='../S/91.html#L82'>me</a>                 82 src/surrogate.c     if (lcount &lt; rcount) me-&gt;lastsurrogate = RIGHT;</span>
+<span class='curline'><a href='../S/91.html#L83'>me</a>                 83 src/surrogate.c     else                 me-&gt;lastsurrogate = LEFT;</span>
+<span class='curline'><a href='../S/91.html#L88'>me</a>                 88 src/surrogate.c     me-&gt;surrogate =0;</span>
+<span class='curline'><a href='../S/91.html#L99'>me</a>                 99 src/surrogate.c     ss = insert_split( &amp;(me-&gt;surrogate), ncat, improve, rp.maxsur);</span>
+</pre>
+</body>
+</html>

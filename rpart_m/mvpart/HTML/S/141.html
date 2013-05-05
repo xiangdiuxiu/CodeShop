@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/labels.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/labels.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/labels.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"labels.rpart" &lt;-
+<a id='L2' name='L2' />function(object, digits=4, minlength=1, pretty,
+<a id='L3' name='L3' />                  collapse=TRUE, ...) {
+<a id='L4' name='L4' />    if (missing(minlength) &amp;&amp; !missing(pretty)) {
+<a id='L5' name='L5' />    if (is.null(pretty)) minlength &lt;-1
+<a id='L6' name='L6' />    else if (is.logical(pretty)) {
+<a id='L7' name='L7' />        if (pretty) minlength &lt;- 4
+<a id='L8' name='L8' />        else        minlength &lt;- 0
+<a id='L9' name='L9' />        }
+<a id='L10' name='L10' />    else minlength &lt;- 0
+<a id='L11' name='L11' />    }
+<a id='L12' name='L12' />
+<a id='L13' name='L13' />    ff &lt;- object$frame
+<a id='L14' name='L14' />    n  &lt;- nrow(ff)
+<a id='L15' name='L15' />    if (n==1) return("root")  #special case of no splits
+<a id='L16' name='L16' />
+<a id='L17' name='L17' />    is.leaf &lt;- (ff$var == "&lt;leaf&gt;")
+<a id='L18' name='L18' />    whichrow &lt;- !is.leaf
+<a id='L19' name='L19' />    vnames &lt;- ff$var[whichrow]  #the variable names for the primary splits
+<a id='L20' name='L20' />
+<a id='L21' name='L21' />    index &lt;- cumsum(c(1, ff$ncompete + ff$nsurrogate + 1*(!is.leaf)))
+<a id='L22' name='L22' />    irow  &lt;- index[c(whichrow, FALSE)]     #we only care about the primary split
+<a id='L23' name='L23' />    ncat  &lt;- object$splits[irow, 2]
+<a id='L24' name='L24' />
+<a id='L25' name='L25' />    # Now to work: first create labels for the left and right splits,
+<a id='L26' name='L26' />    #  but not for leaves of course
+<a id='L27' name='L27' />    #
+<a id='L28' name='L28' />    lsplit &lt;- rsplit &lt;- vector(mode='character', length= length(irow))
+<a id='L29' name='L29' />
+<a id='L30' name='L30' />    if (any(ncat &lt;2)) {  # any continuous vars ?
+<a id='L31' name='L31' />    jrow &lt;- irow[ncat &lt;2]
+<a id='L32' name='L32' />    cutpoint &lt;- formatg(object$splits[jrow,4], digits)
+<a id='L33' name='L33' />    temp1 &lt;- (ifelse(ncat&lt;0, "&lt; ", "&gt;="))[ncat &lt;2]
+<a id='L34' name='L34' />    temp2 &lt;- (ifelse(ncat&lt;0, "&gt;=", "&lt; "))[ncat &lt;2]
+<a id='L35' name='L35' />    lsplit[ncat&lt;2] &lt;- paste(temp1, cutpoint, sep='')
+<a id='L36' name='L36' />    rsplit[ncat&lt;2] &lt;- paste(temp2, cutpoint, sep='')
+<a id='L37' name='L37' />    }
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />    if (any(ncat &gt;1)) { # any categorical variables ?
+<a id='L40' name='L40' />    xlevels &lt;- attr(object, 'xlevels')
+<a id='L41' name='L41' />    #
+<a id='L42' name='L42' />    # jrow will be the row numbers of factors within lsplit and rsplit
+<a id='L43' name='L43' />    # crow the row number in "csplit"
+<a id='L44' name='L44' />    # and cindex the index on the "xlevels" list
+<a id='L45' name='L45' />    #
+<a id='L46' name='L46' />    jrow &lt;- (seq(along=ncat))[ncat&gt;1]
+<a id='L47' name='L47' />    crow &lt;- object$splits[irow[ncat&gt;1],4]    #row number in csplit
+<a id='L48' name='L48' />    cindex &lt;- (match(vnames, names(xlevels)))[ncat &gt;1]
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />    # Now, abbreviate the levels
+<a id='L51' name='L51' />    if (minlength ==1) {
+<a id='L52' name='L52' />        if (any(ncat&gt;52))
+<a id='L53' name='L53' />        warning(paste("More than 52 levels in a predicting factor,",
+<a id='L54' name='L54' />                  "truncated for printout"))
+<a id='L55' name='L55' />        xlevels &lt;- lapply(xlevels,
+<a id='L56' name='L56' />                   function(z) {
+<a id='L57' name='L57' />                   k &lt;- length(z)
+<a id='L58' name='L58' />                   k &lt;- pmin(1:k, 52)
+<a id='L59' name='L59' />                   c(letters, LETTERS)[k]
+<a id='L60' name='L60' />                   })
+<a id='L61' name='L61' />        }
+<a id='L62' name='L62' />    else if (minlength &gt;1)
+<a id='L63' name='L63' />        xlevels &lt;- lapply(xlevels, abbreviate, minlength, ...)
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />    # Now tuck in the labels
+<a id='L66' name='L66' />    # I'll let some other clever person vectorize this
+<a id='L67' name='L67' />    for (i in 1:(length(jrow))) {
+<a id='L68' name='L68' />        j &lt;- jrow[i]
+<a id='L69' name='L69' />        splits &lt;- object$csplit[crow[i],]
+<a id='L70' name='L70' />        # splits will contain 1=left, 2=right, 3= neither
+<a id='L71' name='L71' />        ltemp &lt;- (1:length(splits))[splits== 1]
+<a id='L72' name='L72' />        rtemp &lt;- (1:length(splits))[splits== 3]
+<a id='L73' name='L73' />        if (minlength==1) {
+<a id='L74' name='L74' />        lsplit[j] &lt;- paste((xlevels[[cindex[i]]])[ltemp], collapse='')
+<a id='L75' name='L75' />        rsplit[j] &lt;- paste((xlevels[[cindex[i]]])[rtemp], collapse='')
+<a id='L76' name='L76' />        }
+<a id='L77' name='L77' />        else {
+<a id='L78' name='L78' />        lsplit[j] &lt;-paste((xlevels[[cindex[i]]])[ltemp], collapse=',')
+<a id='L79' name='L79' />        rsplit[j] &lt;-paste((xlevels[[cindex[i]]])[rtemp], collapse=',')
+<a id='L80' name='L80' />        }
+<a id='L81' name='L81' />        }
+<a id='L82' name='L82' />    }
+<a id='L83' name='L83' />
+<a id='L84' name='L84' />    if (!collapse) {  #called by no routines that I know of
+<a id='L85' name='L85' />    ltemp &lt;- rtemp &lt;- rep("&lt;leaf&gt;", n)
+<a id='L86' name='L86' />    ltemp[whichrow] &lt;- lsplit
+<a id='L87' name='L87' />    rtemp[whichrow] &lt;- rsplit
+<a id='L88' name='L88' />    return(cbind(ltemp, rtemp))
+<a id='L89' name='L89' />    }
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />    lsplit &lt;- paste(ifelse(ncat&lt;2, "", "="), lsplit, sep='')
+<a id='L92' name='L92' />    rsplit &lt;- paste(ifelse(ncat&lt;2, "", "="), rsplit, sep='')
+<a id='L93' name='L93' />
+<a id='L94' name='L94' />    #
+<a id='L95' name='L95' />    # Now match them up to node numbers
+<a id='L96' name='L96' />    #   The output will have one label per row of object$frame, each
+<a id='L97' name='L97' />    #   corresponding the the line segement joining this node to its parent
+<a id='L98' name='L98' />    #
+<a id='L99' name='L99' />    varname &lt;- (as.character(vnames))
+<a id='L100' name='L100' />    node &lt;- as.numeric(row.names(ff))
+<a id='L101' name='L101' />    parent &lt;- match(node %/% 2, node[whichrow])
+<a id='L102' name='L102' />    odd &lt;- (as.logical(node %%2))
+<a id='L103' name='L103' />
+<a id='L104' name='L104' />    labels &lt;- vector('character', length=n)
+<a id='L105' name='L105' />    labels[odd] &lt;- paste(varname[parent[odd]], rsplit[parent[odd]], sep="")
+<a id='L106' name='L106' />    labels[!odd]&lt;- paste(varname[parent[!odd]],lsplit[parent[!odd]], sep="")
+<a id='L107' name='L107' />    labels[1] &lt;- "root"
+<a id='L108' name='L108' />    labels
+<a id='L109' name='L109' />    }
+<a id='L110' name='L110' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+110 R/labels.rpart.R]</em> */</em>
+</body>
+</html>

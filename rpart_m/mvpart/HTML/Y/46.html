@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cplist</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/64.html#L38'>cplist</a>             38 src/make_cp_list.c     struct cptable *cplist, *cptemp = NULL;</span>
+<span class='curline'><a href='../S/64.html#L49'>cplist</a>             49 src/make_cp_list.c     for (cplist= cptable_head; cplist !=0; cplist= cplist-&gt;forward) {</span>
+<span class='curline'><a href='../S/64.html#L51'>cplist</a>             51 src/make_cp_list.c         if (me_cp == cplist-&gt;cp) return;  /* exact ties */</span>
+<span class='curline'><a href='../S/64.html#L53'>cplist</a>             53 src/make_cp_list.c         if (me_cp &gt; cplist-&gt;cp) break;</span>
+<span class='curline'><a href='../S/64.html#L54'>cplist</a>             54 src/make_cp_list.c         cptemp = cplist;</span>
+<span class='curline'><a href='../S/64.html#L58'>cplist</a>             58 src/make_cp_list.c     cplist = (struct cptable *) CALLOC(1, sizeof(struct cptable));</span>
+<span class='curline'><a href='../S/64.html#L59'>cplist</a>             59 src/make_cp_list.c     cplist-&gt;cp = me_cp;</span>
+<span class='curline'><a href='../S/64.html#L60'>cplist</a>             60 src/make_cp_list.c     cplist-&gt;xrisk = 0;</span>
+<span class='curline'><a href='../S/64.html#L61'>cplist</a>             61 src/make_cp_list.c     cplist-&gt;xstd  =0;</span>
+<span class='curline'><a href='../S/64.html#L62'>cplist</a>             62 src/make_cp_list.c     cplist-&gt;back = cptemp;</span>
+<span class='curline'><a href='../S/64.html#L63'>cplist</a>             63 src/make_cp_list.c     cplist-&gt;forward = cptemp-&gt;forward;</span>
+<span class='curline'><a href='../S/64.html#L64'>cplist</a>             64 src/make_cp_list.c     if (cptemp-&gt;forward!=0) (cptemp-&gt;forward)-&gt;back = cplist;</span>
+<span class='curline'><a href='../S/64.html#L65'>cplist</a>             65 src/make_cp_list.c       else  cptable_tail = cplist;</span>
+<span class='curline'><a href='../S/64.html#L66'>cplist</a>             66 src/make_cp_list.c     cptemp-&gt;forward = cplist;</span>
+<span class='curline'><a href='../S/79.html#L21'>cplist</a>             21 src/make_cp_table.c     struct cptable *cplist;</span>
+<span class='curline'><a href='../S/79.html#L32'>cplist</a>             32 src/make_cp_table.c     cplist = make_cp_table(me-&gt;rightson, me-&gt;complexity, nsplit+1);</span>
+<span class='curline'><a href='../S/79.html#L34'>cplist</a>             34 src/make_cp_table.c     else cplist = cptable_tail;</span>
+<span class='curline'><a href='../S/79.html#L36'>cplist</a>             36 src/make_cp_table.c     while (cplist-&gt;cp &lt; parent) {</span>
+<span class='curline'><a href='../S/79.html#L37'>cplist</a>             37 src/make_cp_table.c     cplist-&gt;risk += me-&gt;risk;</span>
+<span class='curline'><a href='../S/79.html#L38'>cplist</a>             38 src/make_cp_table.c     cplist-&gt;nsplit += nsplit;</span>
+<span class='curline'><a href='../S/79.html#L39'>cplist</a>             39 src/make_cp_table.c     cplist = cplist-&gt;back;</span>
+<span class='curline'><a href='../S/79.html#L42'>cplist</a>             42 src/make_cp_table.c     return(cplist);</span>
+<span class='curline'><a href='../S/63.html#L46'>cplist</a>             46 src/xval.c         struct cptable *cplist;</span>
+<span class='curline'><a href='../S/63.html#L67'>cplist</a>             67 src/xval.c         for (cplist= cptable_head; i&lt;rp.num_unique_cp; cplist = cplist-&gt;forward) {</span>
+<span class='curline'><a href='../S/63.html#L68'>cplist</a>             68 src/xval.c         cp[i] = sqrt(cplist-&gt;cp * (cplist-&gt;forward)-&gt;cp);</span>
+<span class='curline'><a href='../S/63.html#L128'>cplist</a>            128 src/xval.c             cplist = cptable_head;</span>
+<span class='curline'><a href='../S/63.html#L130'>cplist</a>            130 src/xval.c                 cplist-&gt;xrisk += xtemp[jj] * rp.wt[j];</span>
+<span class='curline'><a href='../S/63.html#L131'>cplist</a>            131 src/xval.c                 cplist-&gt;xstd  += xtemp[jj]*xtemp[jj] * rp.wt[j];</span>
+<span class='curline'><a href='../S/63.html#L134'>cplist</a>            134 src/xval.c                 cplist = cplist-&gt;forward;</span>
+<span class='curline'><a href='../S/63.html#L141'>cplist</a>            141 src/xval.c         for (cplist = cptable_head; cplist!=0; cplist=cplist-&gt;forward) {</span>
+<span class='curline'><a href='../S/63.html#L142'>cplist</a>            142 src/xval.c         cplist-&gt;xstd = sqrt( cplist-&gt;xstd -</span>
+<span class='curline'><a href='../S/63.html#L143'>cplist</a>            143 src/xval.c                           cplist-&gt;xrisk* cplist-&gt;xrisk/total_wt);</span>
+</pre>
+</body>
+</html>

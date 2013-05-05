@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/mvpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/mvpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/mvpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"mvpart" &lt;- function (form, data, minauto = TRUE, size, xv = c("1se", "min", 
+<a id='L2' name='L2' />    "pick", "none"), xval = 10, xvmult = 0, xvse = 1, snip = FALSE, 
+<a id='L3' name='L3' />    plot.add = TRUE, text.add = TRUE, digits = 3, margin = 0, 
+<a id='L4' name='L4' />    uniform = FALSE, which = 4, pretty = TRUE, use.n = TRUE, 
+<a id='L5' name='L5' />    all.leaves = FALSE, bars = TRUE, legend, bord = FALSE, 
+<a id='L6' name='L6' />    xadj = 1, yadj = 1, prn = FALSE, branch = 1, rsq = FALSE, 
+<a id='L7' name='L7' />    big.pts = FALSE, pca = FALSE, interact.pca = FALSE, 
+<a id='L8' name='L8' />    wgt.ave.pca = FALSE, keep.y = TRUE, ...) 
+<a id='L9' name='L9' />{
+<a id='L10' name='L10' />    call &lt;- match.call()
+<a id='L11' name='L11' />
+<a id='L12' name='L12' />        number &lt;-
+<a id='L13' name='L13' />                function (x) {
+<a id='L14' name='L14' />                    match(x, sort(unique(x)))
+<a id='L15' name='L15' />        }
+<a id='L16' name='L16' />    cv.var &lt;- function(x, cv = 10)  {
+<a id='L17' name='L17' />        x &lt;- match(x, sort(unique(x)))
+<a id='L18' name='L18' />        luni &lt;- length(unique(x))
+<a id='L19' name='L19' />        if(luni &gt;= cv) {
+<a id='L20' name='L20' />        grps &lt;- ceiling((cv * cumsum(table(x)))/length(x))
+<a id='L21' name='L21' />        x &lt;- number(grps[x])
+<a id='L22' name='L22' />        }
+<a id='L23' name='L23' />        x
+<a id='L24' name='L24' />    }
+<a id='L25' name='L25' />    if (length(xval) &gt; 1) {
+<a id='L26' name='L26' />        if (xvmult &gt; 1) 
+<a id='L27' name='L27' />            xvalvar &lt;- xval
+<a id='L28' name='L28' />        xval &lt;- cv.var(xval)
+<a id='L29' name='L29' />    }
+<a id='L30' name='L30' />    choice &lt;- c("1se", "min", "pick", "none")
+<a id='L31' name='L31' />    xv &lt;- choice[pmatch(xv[1], choice)]
+<a id='L32' name='L32' />    if (!missing(size) || xv == "none") 
+<a id='L33' name='L33' />        xval &lt;- 0
+<a id='L34' name='L34' />    if (minauto) {
+<a id='L35' name='L35' />        n &lt;- nrow(data)
+<a id='L36' name='L36' />        minsplit &lt;- ceiling(log2(n))
+<a id='L37' name='L37' />        minbucket &lt;- ceiling(minsplit/3)
+<a id='L38' name='L38' />    }
+<a id='L39' name='L39' />    z &lt;- rpart(form, data = data, dissim="myDist", ...)
+<a id='L40' name='L40' />    if (all(z$where==1)) {
+<a id='L41' name='L41' />    cat("No splits possible -- try decreasing cp\n")
+<a id='L42' name='L42' />    return(z)
+<a id='L43' name='L43' />    }
+<a id='L44' name='L44' />    old.par &lt;- par(mar = c(6, 4, 4, 4) + 0.1, xpd = NA, cex = par()$cex)
+<a id='L45' name='L45' />    on.exit(par(old.par))
+<a id='L46' name='L46' />
+<a id='L47' name='L47' />    if (!is.null(z)) {
+<a id='L48' name='L48' />        xval &lt;- z$control$xval
+<a id='L49' name='L49' />        if (xvmult &gt; 1) {
+<a id='L50' name='L50' />            zresse &lt;- zres &lt;- matrix(NA, nrow = nrow(z$cptable), 
+<a id='L51' name='L51' />                ncol = xvmult)
+<a id='L52' name='L52' />            zres[, 1] &lt;- z$cptable[, 4]
+<a id='L53' name='L53' />            zresse[, 1] &lt;- z$cptable[, 5]
+<a id='L54' name='L54' />            cat("X-Val rep : 1")
+<a id='L55' name='L55' />            for (i in 2:xvmult) {
+<a id='L56' name='L56' />                if (length(xval) == nrow(data)) 
+<a id='L57' name='L57' />                  xval &lt;- cv.var(xvalvar)
+<a id='L58' name='L58' />                ztemp &lt;- rpart(form, data = data, ...)$cptable[, 
+<a id='L59' name='L59' />                  4:5]
+<a id='L60' name='L60' />                zres[, i] &lt;- ztemp[, 1]
+<a id='L61' name='L61' />                zresse[, i] &lt;- ztemp[, 2]
+<a id='L62' name='L62' />                cat(" ", i)
+<a id='L63' name='L63' />                NULL
+<a id='L64' name='L64' />            }
+<a id='L65' name='L65' />            cat("\n")
+<a id='L66' name='L66' />            z$cptable[, 4] &lt;- apply(zres, 1, mean)
+<a id='L67' name='L67' />            z$cptable[, 5] &lt;- apply(zresse, 1, mean)
+<a id='L68' name='L68' />            tabmins &lt;- apply(zres, 2, function(x, nc, sizes) {
+<a id='L69' name='L69' />                sizes[x == min(x)][1]
+<a id='L70' name='L70' />            }, nc = nrow(zres), sizes = z$cptable[, 2] + 1)
+<a id='L71' name='L71' />            cat("Minimum tree sizes\n")
+<a id='L72' name='L72' />            print(table(tabmins))
+<a id='L73' name='L73' />        }
+<a id='L74' name='L74' />        if (missing(size)) {
+<a id='L75' name='L75' />        if (xv == "pick") {
+<a id='L76' name='L76' />            if (xvmult &lt;= 1) 
+<a id='L77' name='L77' />                plotcp(z, xvse, pch = 16, col = 2)
+<a id='L78' name='L78' />            else plotcp(z, xvse, pch = 16, col = 2, tab = table(tabmins))
+<a id='L79' name='L79' />            size.loc &lt;- locator(1)
+<a id='L80' name='L80' />            if (!is.null(size.loc)) {
+<a id='L81' name='L81' />                splt &lt;- round(size.loc$x)
+<a id='L82' name='L82' />                if (splt &lt; 2) 
+<a id='L83' name='L83' />                  splt &lt;- 2
+<a id='L84' name='L84' />                else if (splt &gt; length(z$cptable[, 1])) 
+<a id='L85' name='L85' />                  splt &lt;- length(z$cptable[, 1])
+<a id='L86' name='L86' />                cpp &lt;- z$cptable[, 1][splt]
+<a id='L87' name='L87' />                z &lt;- prune.rpart(z, cp = cpp)
+<a id='L88' name='L88' />            }
+<a id='L89' name='L89' />        }
+<a id='L90' name='L90' />        else if ((xv == "1se" | xv == "min") &amp;&amp; (xval[1] != 0)) {
+<a id='L91' name='L91' />            xerror &lt;- z$cptable[, 4]
+<a id='L92' name='L92' />            xstd &lt;- z$cptable[, 5]
+<a id='L93' name='L93' />            if (xv == "min") 
+<a id='L94' name='L94' />                splt &lt;- min(seq(along = xerror)[xerror == min(xerror)])
+<a id='L95' name='L95' />            else splt &lt;- min(seq(along = xerror)[xerror &lt;= min(xerror) + 
+<a id='L96' name='L96' />                xvse * xstd])
+<a id='L97' name='L97' />            if (!is.na(splt)) {
+<a id='L98' name='L98' />                if (splt == 1) 
+<a id='L99' name='L99' />                  splt &lt;- 2
+<a id='L100' name='L100' />                cpp &lt;- z$cptable[, 1][splt]
+<a id='L101' name='L101' />                z &lt;- prune.rpart(z, cp = cpp)
+<a id='L102' name='L102' />            }
+<a id='L103' name='L103' />            else {
+<a id='L104' name='L104' />                (cat("No pruning possible : size 2 tree produced ?? \n"))
+<a id='L105' name='L105' />                use.size &lt;- TRUE
+<a id='L106' name='L106' />                size &lt;- 2
+<a id='L107' name='L107' />            }
+<a id='L108' name='L108' />            }
+<a id='L109' name='L109' />        }
+<a id='L110' name='L110' />        else {
+<a id='L111' name='L111' />            if (size &lt;= 2) 
+<a id='L112' name='L112' />                cpp &lt;- z$cptable[2, 1]
+<a id='L113' name='L113' />            else if (size &gt;= max(z$cptable[, 2] + 1)) 
+<a id='L114' name='L114' />                cpp &lt;- z$cptable[dim(z$cptable)[1], 1]
+<a id='L115' name='L115' />            else cpp &lt;- z$cptable[, 1][min(abs(size - z$cptable[, 
+<a id='L116' name='L116' />                2] - 1)) == abs(size - z$cptable[, 2] - 1)][1]
+<a id='L117' name='L117' />            z &lt;- prune.rpart(z, cp = cpp)
+<a id='L118' name='L118' />        }
+<a id='L119' name='L119' />        if (snip) {
+<a id='L120' name='L120' />            plot(z)
+<a id='L121' name='L121' />            z &lt;- snip.rpart(z)
+<a id='L122' name='L122' />        }
+<a id='L123' name='L123' />        if (rsq &amp;&amp; xval != 0 &amp;&amp; z$method != "class") {
+<a id='L124' name='L124' />            par(mfrow = c(1, 2))
+<a id='L125' name='L125' />            rsq.rpart(z)
+<a id='L126' name='L126' />            locator(1)
+<a id='L127' name='L127' />            par(mfrow = c(1, 1))
+<a id='L128' name='L128' />        }
+<a id='L129' name='L129' />        if (plot.add) {
+<a id='L130' name='L130' />            plot.rpart(z, uniform = uniform, branch = branch, 
+<a id='L131' name='L131' />                margin = margin)
+<a id='L132' name='L132' />            if (text.add) 
+<a id='L133' name='L133' />                text.rpart(z, digits = digits, xadj = xadj, yadj = yadj, 
+<a id='L134' name='L134' />                  which = which, pretty = pretty, use.n = use.n, bars = bars,
+<a id='L135' name='L135' />                  legend = ifelse(missing(legend),(z$method=="mrt") 
+<a id='L136' name='L136' />                  &amp;&amp; (ncol(z$frame$yval2)&lt;20),legend),
+<a id='L137' name='L137' />                  all.leaves = all.leaves, bord = bord, big.pts = big.pts | pca)
+<a id='L138' name='L138' />            len &lt;- dim(z$cptable)[1]
+<a id='L139' name='L139' />            foot &lt;- paste("Error : ", signif(z$cptable[len, 3], 
+<a id='L140' name='L140' />                digits))
+<a id='L141' name='L141' />            if (xval[1] &gt; 0) 
+<a id='L142' name='L142' />                foot &lt;- paste(foot, "  CV Error : ", signif(z$cptable[len, 
+<a id='L143' name='L143' />                  4], digits), "  SE : ", signif(z$cptable[len, 
+<a id='L144' name='L144' />                  5], digits))
+<a id='L145' name='L145' />            mtext(foot, side = 1, line = 3.5, cex = par()$cex)
+<a id='L146' name='L146' />            n &lt;- dim(data)[1]
+<a id='L147' name='L147' />            if (z$method == "class") {
+<a id='L148' name='L148' />                nex &lt;- max(table(z$y))
+<a id='L149' name='L149' />                foot2 &lt;- paste("Missclass rates : Null = ", signif(1 - 
+<a id='L150' name='L150' />                  nex/n, digits), " : Model = ", signif((1 - 
+<a id='L151' name='L151' />                  nex/n) * z$cptable[len, 3], digits))
+<a id='L152' name='L152' />                if (xval[1] &gt; 0) 
+<a id='L153' name='L153' />                  foot2 &lt;- paste(foot2, " : CV = ", signif((1 - 
+<a id='L154' name='L154' />                    nex/n) * z$cptable[len, 4], digits))
+<a id='L155' name='L155' />                mtext(foot2, side = 1, line = 4.5, cex = par()$cex)
+<a id='L156' name='L156' />            }
+<a id='L157' name='L157' />        }
+<a id='L158' name='L158' />        if (prn) 
+<a id='L159' name='L159' />            printcp(z)
+<a id='L160' name='L160' />        if (pca) {
+<a id='L161' name='L161' />            locator(1)
+<a id='L162' name='L162' />            rpart.pca(z, interact = interact.pca, wgt.ave = wgt.ave.pca)
+<a id='L163' name='L163' />        }
+<a id='L164' name='L164' />    }
+<a id='L165' name='L165' />    else {
+<a id='L166' name='L166' />        plot(c(-1, 1), c(-1, 1), axes = FALSE, type = "n", xlab = "", 
+<a id='L167' name='L167' />            ylab = "")
+<a id='L168' name='L168' />        text(c(0), c(0), "No splits could be formed", col = 2)
+<a id='L169' name='L169' />        cat("No splits could be formed\n")
+<a id='L170' name='L170' />    }
+<a id='L171' name='L171' />    if (!is.null(z)) {
+<a id='L172' name='L172' />        if (!keep.y) z$y &lt;- NULL
+<a id='L173' name='L173' />        z$call &lt;- call
+<a id='L174' name='L174' />        invisible(z)
+<a id='L175' name='L175' />    }
+<a id='L176' name='L176' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+176 R/mvpart.R]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/solder.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/solder.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/solder.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{solder}
+<a id='L2' name='L2' />\alias{solder}\title{Soldering of Components on Printed-Circuit Boards}
+<a id='L3' name='L3' />\description{
+<a id='L4' name='L4' />  The \code{solder} data frame has 720 rows and 6 columns, representing
+<a id='L5' name='L5' />  a balanced subset of a designed experiment varying 5 factors on the
+<a id='L6' name='L6' />  soldering of components on printed-circuit boards.
+<a id='L7' name='L7' />}
+<a id='L8' name='L8' />\usage{
+<a id='L9' name='L9' />data(solder)
+<a id='L10' name='L10' />}
+<a id='L11' name='L11' />\format{
+<a id='L12' name='L12' />This data frame contains the following columns:
+<a id='L13' name='L13' />\describe{
+<a id='L14' name='L14' />\item{\code{Opening}}{
+<a id='L15' name='L15' />a factor with levels
+<a id='L16' name='L16' />\code{L} 
+<a id='L17' name='L17' />\code{M} 
+<a id='L18' name='L18' />\code{S}
+<a id='L19' name='L19' />indicating the amount of clearance around the mounting pad.
+<a id='L20' name='L20' />}
+<a id='L21' name='L21' />\item{\code{Solder}}{
+<a id='L22' name='L22' />a factor with levels
+<a id='L23' name='L23' />\code{Thick} 
+<a id='L24' name='L24' />\code{Thin}
+<a id='L25' name='L25' />giving the thickness of the solder used.
+<a id='L26' name='L26' />}
+<a id='L27' name='L27' />\item{\code{Mask}}{
+<a id='L28' name='L28' />a factor with levels
+<a id='L29' name='L29' />\code{A1.5} 
+<a id='L30' name='L30' />\code{A3} 
+<a id='L31' name='L31' />\code{B3} 
+<a id='L32' name='L32' />\code{B6}
+<a id='L33' name='L33' />indicating the type and thickness of mask used.
+<a id='L34' name='L34' />}
+<a id='L35' name='L35' />\item{\code{PadType}}{
+<a id='L36' name='L36' />a factor with levels
+<a id='L37' name='L37' />\code{D4} 
+<a id='L38' name='L38' />\code{D6} 
+<a id='L39' name='L39' />\code{D7} 
+<a id='L40' name='L40' />\code{L4} 
+<a id='L41' name='L41' />\code{L6} 
+<a id='L42' name='L42' />\code{L7} 
+<a id='L43' name='L43' />\code{L8} 
+<a id='L44' name='L44' />\code{L9} 
+<a id='L45' name='L45' />\code{W4} 
+<a id='L46' name='L46' />\code{W9}
+<a id='L47' name='L47' />giving the size and geometry of the mounting pad.
+<a id='L48' name='L48' />}
+<a id='L49' name='L49' />\item{\code{Panel}}{
+<a id='L50' name='L50' /> \code{1:3} indicating the panel on a board being tested.
+<a id='L51' name='L51' />}
+<a id='L52' name='L52' />\item{\code{skips}}{
+<a id='L53' name='L53' />a numeric vector giving the number of visible solder skips.
+<a id='L54' name='L54' />}
+<a id='L55' name='L55' />}}
+<a id='L56' name='L56' />\source{
+<a id='L57' name='L57' />   John M. Chambers and Trevor J. Hastie eds. (1992)
+<a id='L58' name='L58' />  \emph{Statistical Models in S}, Wadsworth and Brooks/Cole,
+<a id='L59' name='L59' />  Pacific Grove, CA 1992.
+<a id='L60' name='L60' />}
+<a id='L61' name='L61' />\examples{
+<a id='L62' name='L62' />data(solder)
+<a id='L63' name='L63' />fit &lt;- rpart(skips ~ Opening + Solder + Mask + PadType + Panel,
+<a id='L64' name='L64' />       data=solder, method='anova')
+<a id='L65' name='L65' />summary(residuals(fit))
+<a id='L66' name='L66' />plot(predict(fit),residuals(fit))
+<a id='L67' name='L67' />}
+<a id='L68' name='L68' />\keyword{datasets}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+68 man/solder.Rd]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>diffs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/62.html#L13'>diffs</a>              13 src/mrt.c      static double *mean, *grandmean, *wts, *diffs, *tdiffs;</span>
+<span class='curline'><a href='../S/62.html#L30'>diffs</a>              30 src/mrt.c          diffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L31'>diffs</a>              31 src/mrt.c          if (diffs == 0) {</span>
+<span class='curline'><a href='../S/62.html#L172'>diffs</a>             172 src/mrt.c                  diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/62.html#L173'>diffs</a>             173 src/mrt.c                  temp += diffs[j];</span>
+<span class='curline'><a href='../S/62.html#L174'>diffs</a>             174 src/mrt.c                  tdiffs[j] += diffs[j];</span>
+</pre>
+</body>
+</html>

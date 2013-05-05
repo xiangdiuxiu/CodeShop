@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/print.rpart.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/print.rpart.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/print.rpart.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"print.rpart" &lt;-
+<a id='L2' name='L2' />function(x, minlength=0, spaces=2, cp,
+<a id='L3' name='L3' />               digits=getOption("digits"), ...) {
+<a id='L4' name='L4' />    if(!inherits(x, "rpart")) stop("Not legitimate rpart object")
+<a id='L5' name='L5' />    if (!is.null(x$frame$splits)) x &lt;- rpconvert(x)  #help for old objects
+<a id='L6' name='L6' />
+<a id='L7' name='L7' />    if (!missing(cp)) x &lt;- prune.rpart(x, cp=cp)
+<a id='L8' name='L8' />    frame &lt;- x$frame
+<a id='L9' name='L9' />    ylevel &lt;- attr(x, "ylevels")
+<a id='L10' name='L10' />    node &lt;- as.numeric(row.names(frame))
+<a id='L11' name='L11' />    depth &lt;- tree.depth(node)
+<a id='L12' name='L12' />    indent &lt;- paste(rep(" ", spaces * 32), collapse = "")
+<a id='L13' name='L13' />    #32 is the maximal depth
+<a id='L14' name='L14' />    if(length(node) &gt; 1) {
+<a id='L15' name='L15' />        indent &lt;- substring(indent, 1, spaces * seq(depth))
+<a id='L16' name='L16' />        indent &lt;- paste(c("", indent[depth]), format(node), ")", sep = "")
+<a id='L17' name='L17' />    }
+<a id='L18' name='L18' />    else indent &lt;- paste(format(node), ")", sep = "")
+<a id='L19' name='L19' />
+<a id='L20' name='L20' />    tfun &lt;- (x$functions)$print
+<a id='L21' name='L21' />    if (!is.null(tfun)) {
+<a id='L22' name='L22' />    if (is.null(frame$yval2))
+<a id='L23' name='L23' />        yval &lt;- tfun(frame$yval,  ylevel, digits)
+<a id='L24' name='L24' />    else    yval &lt;- tfun(frame$yval2,  ylevel, digits)
+<a id='L25' name='L25' />    }
+<a id='L26' name='L26' />    else yval &lt;- format(signif(frame$yval, digits = digits))
+<a id='L27' name='L27' />    term &lt;- rep(" ", length(depth))
+<a id='L28' name='L28' />    term[frame$var == "&lt;leaf&gt;"] &lt;- "*"
+<a id='L29' name='L29' />    z &lt;- labels(x, digits=digits, minlength=minlength, ...)
+<a id='L30' name='L30' />    n &lt;- frame$n
+<a id='L31' name='L31' />    z &lt;- paste(indent, z, n, format(signif(frame$dev, digits = digits)),
+<a id='L32' name='L32' />               yval, term)
+<a id='L33' name='L33' />
+<a id='L34' name='L34' />    omit &lt;- x$na.action
+<a id='L35' name='L35' />    if (length(omit))
+<a id='L36' name='L36' />    cat("n=", n[1], " (", naprint(omit), ")\n\n", sep="")
+<a id='L37' name='L37' />    else cat("n=", n[1], "\n\n")
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />    #This is stolen, unabashedly, from print.tree
+<a id='L40' name='L40' />    if (x$method=="class")
+<a id='L41' name='L41' />         cat("node), split, n, loss, yval, (yprob)\n")
+<a id='L42' name='L42' />    else cat("node), split, n, deviance, yval\n")
+<a id='L43' name='L43' />    cat("      * denotes terminal node\n\n")
+<a id='L44' name='L44' />
+<a id='L45' name='L45' />    cat(z, sep = "\n")
+<a id='L46' name='L46' />    return(invisible(x))
+<a id='L47' name='L47' />    #end of the theft
+<a id='L48' name='L48' />    }
+<a id='L49' name='L49' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+49 R/print.rpart.R]</em> */</em>
+</body>
+</html>

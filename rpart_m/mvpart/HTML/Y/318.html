@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tdiffs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/62.html#L13'>tdiffs</a>             13 src/mrt.c      static double *mean, *grandmean, *wts, *diffs, *tdiffs;</span>
+<span class='curline'><a href='../S/62.html#L35'>tdiffs</a>             35 src/mrt.c          tdiffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
+<span class='curline'><a href='../S/62.html#L36'>tdiffs</a>             36 src/mrt.c          if (tdiffs == 0) {</span>
+<span class='curline'><a href='../S/62.html#L157'>tdiffs</a>            157 src/mrt.c      	    grandmean[j] = 0; tdiffs[j] = 0;</span>
+<span class='curline'><a href='../S/62.html#L174'>tdiffs</a>            174 src/mrt.c                  tdiffs[j] += diffs[j];</span>
+<span class='curline'><a href='../S/62.html#L175'>tdiffs</a>            175 src/mrt.c                  if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/62.html#L176'>tdiffs</a>            176 src/mrt.c                  else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+<span class='curline'><a href='../S/62.html#L258'>tdiffs</a>            258 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] += mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L266'>tdiffs</a>            266 src/mrt.c              for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
+<span class='curline'><a href='../S/62.html#L272'>tdiffs</a>            272 src/mrt.c                  left_sum += tdiffs[j];</span>
+<span class='curline'><a href='../S/62.html#L273'>tdiffs</a>            273 src/mrt.c                  right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/62.html#L274'>tdiffs</a>            274 src/mrt.c              if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
+<span class='curline'><a href='../S/62.html#L275'>tdiffs</a>            275 src/mrt.c              else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
+</pre>
+</body>
+</html>

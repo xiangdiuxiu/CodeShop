@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/rpart.class.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/rpart.class.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/rpart.class.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"rpart.class" &lt;-
+<a id='L2' name='L2' />function (y, offset, parms, wt) 
+<a id='L3' name='L3' />{
+<a id='L4' name='L4' />    if (!is.null(offset)) 
+<a id='L5' name='L5' />        stop("No offset allowed in classification models")
+<a id='L6' name='L6' />    fy &lt;- as.factor(y)
+<a id='L7' name='L7' />    y &lt;- as.integer(fy)
+<a id='L8' name='L8' />    numclass &lt;- max(y[!is.na(y)])
+<a id='L9' name='L9' />    counts &lt;- tapply(wt, factor(y, levels = 1:numclass), sum)
+<a id='L10' name='L10' />    counts &lt;- ifelse(is.na(counts), 0, counts)
+<a id='L11' name='L11' />    numresp &lt;- 1 + numclass
+<a id='L12' name='L12' />    if (missing(parms) || is.null(parms)) 
+<a id='L13' name='L13' />        parms &lt;- list(prior = counts/sum(counts), loss = matrix(rep(1, 
+<a id='L14' name='L14' />            numclass^2) - diag(numclass), numclass), split = 1)
+<a id='L15' name='L15' />    else if (is.list(parms)) {
+<a id='L16' name='L16' />        if (is.null(names(parms))) 
+<a id='L17' name='L17' />            stop("The parms list must have names")
+<a id='L18' name='L18' />        temp &lt;- pmatch(names(parms), c("prior", "loss", "split"), 
+<a id='L19' name='L19' />            nomatch = 0)
+<a id='L20' name='L20' />        if (any(temp == 0)) 
+<a id='L21' name='L21' />            stop(paste("parms component not matched:", (names(parms))[temp == 
+<a id='L22' name='L22' />                0]))
+<a id='L23' name='L23' />        names(parms) &lt;- c("prior", "loss", "split")[temp]
+<a id='L24' name='L24' />        if (is.null(parms$prior)) 
+<a id='L25' name='L25' />            temp &lt;- c(counts/sum(counts))
+<a id='L26' name='L26' />        else {
+<a id='L27' name='L27' />            temp &lt;- parms$prior
+<a id='L28' name='L28' />            if (sum(temp) != 1) 
+<a id='L29' name='L29' />                stop("Priors must sum to 1")
+<a id='L30' name='L30' />            if (any(temp &lt; 0)) 
+<a id='L31' name='L31' />                stop("Priors must be &gt;= 0")
+<a id='L32' name='L32' />            if (length(temp) != numclass) 
+<a id='L33' name='L33' />                stop("Wrong length for priors")
+<a id='L34' name='L34' />        }
+<a id='L35' name='L35' />        if (is.null(parms$loss)) 
+<a id='L36' name='L36' />            temp2 &lt;- 1 - diag(numclass)
+<a id='L37' name='L37' />        else {
+<a id='L38' name='L38' />            temp2 &lt;- parms$loss
+<a id='L39' name='L39' />            if (length(temp2) != numclass^2) 
+<a id='L40' name='L40' />                stop("Wrong length for loss matrix")
+<a id='L41' name='L41' />            temp2 &lt;- matrix(temp2, ncol = numclass)
+<a id='L42' name='L42' />            if (any(diag(temp2) != 0)) 
+<a id='L43' name='L43' />                stop("Loss matrix must have zero on diagonals")
+<a id='L44' name='L44' />            if (any(temp2 &lt; 0)) 
+<a id='L45' name='L45' />                stop("Loss matrix cannot have negative elements")
+<a id='L46' name='L46' />            if (any(rowSums(temp2) == 0)) 
+<a id='L47' name='L47' />                stop("Loss matrix has a row of zeros")
+<a id='L48' name='L48' />        }
+<a id='L49' name='L49' />        if (is.null(parms$split)) 
+<a id='L50' name='L50' />            temp3 &lt;- 1
+<a id='L51' name='L51' />        else {
+<a id='L52' name='L52' />            temp3 &lt;- pmatch(parms$split, c("gini", "information"))
+<a id='L53' name='L53' />            if (is.null(temp3)) 
+<a id='L54' name='L54' />                stop("Invalid splitting rule")
+<a id='L55' name='L55' />        }
+<a id='L56' name='L56' />        parms &lt;- list(prior = temp, loss = matrix(temp2, numclass), 
+<a id='L57' name='L57' />            split = temp3)
+<a id='L58' name='L58' />    }
+<a id='L59' name='L59' />    else stop("Parameter argument must be a list")
+<a id='L60' name='L60' />    list(y = y, parms = parms, numresp = numclass + 1, counts = counts, 
+<a id='L61' name='L61' />        ylevels = levels(fy), numy = 1, print = function(yval, 
+<a id='L62' name='L62' />            ylevel, digits) {
+<a id='L63' name='L63' />            if (is.null(ylevel)) temp &lt;- as.character(yval[, 
+<a id='L64' name='L64' />                1]) else temp &lt;- ylevel[yval[, 1]]
+<a id='L65' name='L65' />            nclass &lt;- (ncol(yval) - 1)/2
+<a id='L66' name='L66' />            if (nclass &lt; 5) {
+<a id='L67' name='L67' />                yprob &lt;- format(yval[, 1 + nclass + 1:nclass], 
+<a id='L68' name='L68' />                  digits = digits, nsmall = digits)
+<a id='L69' name='L69' />            } else yprob &lt;- formatg(yval[, 1 + nclass + 1:nclass], 
+<a id='L70' name='L70' />                digits = 2)
+<a id='L71' name='L71' />            if (is.null(dim(yprob))) yprob &lt;- matrix(yprob, ncol = length(yprob))
+<a id='L72' name='L72' />            temp &lt;- paste(temp, " (", yprob[, 1], sep = "")
+<a id='L73' name='L73' />            for (i in 2:ncol(yprob)) temp &lt;- paste(temp, yprob[, 
+<a id='L74' name='L74' />                i], sep = " ")
+<a id='L75' name='L75' />            temp &lt;- paste(temp, ")", sep = "")
+<a id='L76' name='L76' />            temp
+<a id='L77' name='L77' />        }, summary = function(yval, dev, wt, ylevel, digits) {
+<a id='L78' name='L78' />            nclass &lt;- (ncol(yval) - 1)/2
+<a id='L79' name='L79' />            group &lt;- yval[, 1]
+<a id='L80' name='L80' />            counts &lt;- yval[, 1 + (1:nclass)]
+<a id='L81' name='L81' />            yprob &lt;- yval[, 1 + nclass + 1:nclass]
+<a id='L82' name='L82' />            if (!is.null(ylevel)) group &lt;- ylevel[group]
+<a id='L83' name='L83' />            temp1 &lt;- formatg(counts, format = "%5g")
+<a id='L84' name='L84' />            temp2 &lt;- formatg(yprob, format = "%5.3f")
+<a id='L85' name='L85' />            if (nclass &gt; 1) {
+<a id='L86' name='L86' />                temp1 &lt;- apply(matrix(temp1, ncol = nclass), 
+<a id='L87' name='L87' />                  1, paste, collapse = " ")
+<a id='L88' name='L88' />                temp2 &lt;- apply(matrix(temp2, ncol = nclass), 
+<a id='L89' name='L89' />                  1, paste, collapse = " ")
+<a id='L90' name='L90' />            }
+<a id='L91' name='L91' />            paste("  predicted class=", format(group, justify = "left"), 
+<a id='L92' name='L92' />                "  expected loss=", formatg(dev/wt, digits), 
+<a id='L93' name='L93' />                "\n", "    class counts: ", temp1, "\n", "   probabilities: ", 
+<a id='L94' name='L94' />                temp2, sep = "")
+<a id='L95' name='L95' />        }, text = function(yval, dev, wt, ylevel, digits, n, 
+<a id='L96' name='L96' />            use.n) {
+<a id='L97' name='L97' />            nclass &lt;- (ncol(yval) - 1)/2
+<a id='L98' name='L98' />            group &lt;- yval[, 1]
+<a id='L99' name='L99' />            counts &lt;- yval[, 1 + (1:nclass)]
+<a id='L100' name='L100' />            if (!is.null(ylevel)) group &lt;- ylevel[group]
+<a id='L101' name='L101' />            temp1 &lt;- formatg(counts, digits)
+<a id='L102' name='L102' />            if (nclass &gt; 1) {
+<a id='L103' name='L103' />                temp1 &lt;- apply(matrix(temp1, ncol = nclass), 
+<a id='L104' name='L104' />                  1, paste, collapse = "/")
+<a id='L105' name='L105' />            }
+<a id='L106' name='L106' />            if (use.n) {
+<a id='L107' name='L107' />                out &lt;- paste(format(group, justify = "left"), 
+<a id='L108' name='L108' />                  "\n", temp1, sep = "")
+<a id='L109' name='L109' />            } else {
+<a id='L110' name='L110' />                out &lt;- format(group, justify = "left")
+<a id='L111' name='L111' />            }
+<a id='L112' name='L112' />            return(out)
+<a id='L113' name='L113' />        }, bar = function(yval2){
+<a id='L114' name='L114' />            yval2[,2:((ncol(yval2) + 1)/2)]
+<a id='L115' name='L115' />        }
+<a id='L116' name='L116' />        )
+<a id='L117' name='L117' />}
+<a id='L118' name='L118' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+118 R/rpart.class.R]</em> */</em>
+</body>
+</html>

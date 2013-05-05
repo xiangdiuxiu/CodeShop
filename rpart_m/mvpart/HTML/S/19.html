@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>man/rpart.control.Rd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/151.html'>man</a>/rpart.control.Rd</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 man/rpart.control.Rd]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />\name{rpart.control}
+<a id='L2' name='L2' />\alias{rpart.control}
+<a id='L3' name='L3' />\title{
+<a id='L4' name='L4' />  Control for Rpart Models
+<a id='L5' name='L5' />}
+<a id='L6' name='L6' />\description{
+<a id='L7' name='L7' />Various parameters that control aspects of the \code{rpart} fit. 
+<a id='L8' name='L8' />}
+<a id='L9' name='L9' />\usage{
+<a id='L10' name='L10' />rpart.control(minsplit=5, minbucket=round(minsplit/3), cp=0.01, 
+<a id='L11' name='L11' />              maxcompete=4, maxsurrogate=0, usesurrogate=2, xval=10,
+<a id='L12' name='L12' />          surrogatestyle=0, maxdepth=30, \dots)
+<a id='L13' name='L13' />}
+<a id='L14' name='L14' />\arguments{
+<a id='L15' name='L15' />\item{minsplit}{
+<a id='L16' name='L16' />the minimum number of observations that must exist in a node, in order for 
+<a id='L17' name='L17' />a split to be attempted. 
+<a id='L18' name='L18' />}
+<a id='L19' name='L19' />\item{minbucket}{
+<a id='L20' name='L20' />  the minimum number of observations in any terminal \code{&lt;leaf&gt;} node.
+<a id='L21' name='L21' />  If only one of \code{minbucket} or \code{minsplit} is specified,
+<a id='L22' name='L22' />  the code either sets \code{minsplit} to \code{minbucket*3}
+<a id='L23' name='L23' />  or \code{minbucket} to \code{minsplit/3}, as appropriate.
+<a id='L24' name='L24' />}
+<a id='L25' name='L25' />\item{cp}{
+<a id='L26' name='L26' />  complexity parameter.  Any split that does not decrease the overall
+<a id='L27' name='L27' />  lack of fit by a factor of \code{cp} is not attempted.  For instance,
+<a id='L28' name='L28' />  with \code{anova} splitting, this means that the overall Rsquare must
+<a id='L29' name='L29' />  increase by \code{cp} at each step. The main role of this parameter
+<a id='L30' name='L30' />  is to save computing time by pruning off splits that are obviously
+<a id='L31' name='L31' />  not worthwhile. Essentially,the user informs the program that any
+<a id='L32' name='L32' />  split which does not improve the fit by \code{cp} will likely be
+<a id='L33' name='L33' />  pruned off by cross-validation, and that hence the program need
+<a id='L34' name='L34' />  not pursue it.
+<a id='L35' name='L35' />}
+<a id='L36' name='L36' />\item{maxcompete}{
+<a id='L37' name='L37' />  the number of competitor splits retained in the output.  It is useful to
+<a id='L38' name='L38' />  know not just which split was chosen, but which variable came in second,
+<a id='L39' name='L39' />  third, etc.
+<a id='L40' name='L40' />}
+<a id='L41' name='L41' />\item{maxsurrogate}{
+<a id='L42' name='L42' />  the number of surrogate splits retained in the output.  If this is set to
+<a id='L43' name='L43' />  zero the compute time will be shortened, since approximately half of the
+<a id='L44' name='L44' />  computational time (other than setup) is used in the search for surrogate
+<a id='L45' name='L45' />  splits.
+<a id='L46' name='L46' />}
+<a id='L47' name='L47' />\item{usesurrogate}{
+<a id='L48' name='L48' />  how to use surrogates in the splitting process.  0= display only; an
+<a id='L49' name='L49' />  observation with a missing value for the primary split rule is not sent
+<a id='L50' name='L50' />  further down the tree.  1= use surrogates, in order, to split subjects
+<a id='L51' name='L51' />  missing the primary variable; if all surrogates are missing the observation
+<a id='L52' name='L52' />  is not split.  2= if all surrogates are missing, then send the observation
+<a id='L53' name='L53' />  in the majority direction.  A value of 0 corresponds to the action of
+<a id='L54' name='L54' />  tree, and 2 to the recommendations of Breiman, et.al.
+<a id='L55' name='L55' />}
+<a id='L56' name='L56' />\item{xval}{
+<a id='L57' name='L57' />number of cross-validations 
+<a id='L58' name='L58' />}
+<a id='L59' name='L59' />\item{surrogatestyle}{
+<a id='L60' name='L60' />  controls the selection of a best surrogate.
+<a id='L61' name='L61' />  If set to 0 (default) the program uses the total number of correct
+<a id='L62' name='L62' />  classification for a potential surrogate variable,
+<a id='L63' name='L63' />  if set to 1 it uses the percent correct, calculated over the non-missing
+<a id='L64' name='L64' />  values of the surrogate.
+<a id='L65' name='L65' />  The first option more severely penalizes covariates with a large number of
+<a id='L66' name='L66' />  missing values.
+<a id='L67' name='L67' />}
+<a id='L68' name='L68' />\item{maxdepth}{
+<a id='L69' name='L69' />  Set the maximum depth of any node of the final tree, with the root
+<a id='L70' name='L70' />  node counted as depth 0 (past 30 \code{rpart} will give nonsense results on
+<a id='L71' name='L71' />  32-bit machines).
+<a id='L72' name='L72' />}
+<a id='L73' name='L73' />\item{\dots}{
+<a id='L74' name='L74' />  mop up other arguments.
+<a id='L75' name='L75' />}
+<a id='L76' name='L76' />}
+<a id='L77' name='L77' />\value{
+<a id='L78' name='L78' />  a list containing the options.
+<a id='L79' name='L79' />}
+<a id='L80' name='L80' />\seealso{
+<a id='L81' name='L81' />\code{\link{rpart}}
+<a id='L82' name='L82' />}
+<a id='L83' name='L83' />\keyword{tree}
+<a id='L84' name='L84' />% docclass is function
+<a id='L85' name='L85' />% Converted by Sd2Rd version 1.20.
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+85 man/rpart.control.Rd]</em> */</em>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>R/sub.barplot.R</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/150.html'>R</a>/sub.barplot.R</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 R/sub.barplot.R]</em> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' />"sub.barplot" &lt;-
+<a id='L2' name='L2' />function (x, y, z, keep = rep(TRUE , length(x)), row.scale = FALSE , xadj = 1,
+<a id='L3' name='L3' />    yadj = 1, bord = TRUE , line = TRUE , col = col)
+<a id='L4' name='L4' />{
+<a id='L5' name='L5' />    par(xpd = TRUE )
+<a id='L6' name='L6' />    drawbar &lt;- function(x, y, z, line.adj = 0, xwid, ywid, border = TRUE ,
+<a id='L7' name='L7' />        line = TRUE , colbar = 10:12) {
+<a id='L8' name='L8' />        xx &lt;- c(x - xwid/2, x + xwid/2, x + xwid/2, x - xwid/2)
+<a id='L9' name='L9' />        yy &lt;- c(y - ywid, y - ywid, y, y)
+<a id='L10' name='L10' />        nbar &lt;- length(z)
+<a id='L11' name='L11' />        xbwid &lt;- xwid/nbar
+<a id='L12' name='L12' />        for (i in 1:nbar) {
+<a id='L13' name='L13' />            xb &lt;- x - xwid/2 + xbwid * c(i - 1, i, i, i - 1)
+<a id='L14' name='L14' />            yb &lt;- y - ywid + z[i] * ywid * c(0, 0, 1, 1) - line.adj *
+<a id='L15' name='L15' />                ywid
+<a id='L16' name='L16' />            polygon(xb, yb, col = colbar[i])
+<a id='L17' name='L17' />        }
+<a id='L18' name='L18' />        if (border)
+<a id='L19' name='L19' />            polygon(xx, yy, col = 1, density = 0)
+<a id='L20' name='L20' />        if (line)
+<a id='L21' name='L21' />            lines(xx[1:2], yy[1:2] - line.adj * ywid)
+<a id='L22' name='L22' />    }
+<a id='L23' name='L23' />
+<a id='L24' name='L24' />    xrnge &lt;- range(x)
+<a id='L25' name='L25' />    yrnge &lt;- range(y)
+<a id='L26' name='L26' />    n &lt;- length(x)
+<a id='L27' name='L27' />    xdiv &lt;- max(sum(keep), 6)
+<a id='L28' name='L28' />    xwid &lt;- (xadj * diff(xrnge))/xdiv
+<a id='L29' name='L29' />    ywid &lt;- (yadj * diff(yrnge))/12
+<a id='L30' name='L30' />    x &lt;- x[keep]
+<a id='L31' name='L31' />    y &lt;- y[keep]
+<a id='L32' name='L32' />    z &lt;- z[keep, ]
+<a id='L33' name='L33' />    nkeep &lt;- sum(keep)
+<a id='L34' name='L34' />    nz &lt;- ncol(z)
+<a id='L35' name='L35' />    if (length(col) &lt; nz)
+<a id='L36' name='L36' />        col &lt;- rep(col, nz, length = nz)
+<a id='L37' name='L37' />    if (any(z &lt; 0)) {
+<a id='L38' name='L38' />        z &lt;- z/diff(range(z))
+<a id='L39' name='L39' />        ladj &lt;- min(z)
+<a id='L40' name='L40' />    }
+<a id='L41' name='L41' />    else {
+<a id='L42' name='L42' />        if (row.scale)
+<a id='L43' name='L43' />            z &lt;- z/apply(z, 1, sum)
+<a id='L44' name='L44' />        else z &lt;- z/max(z)
+<a id='L45' name='L45' />        ladj &lt;- 0
+<a id='L46' name='L46' />    }
+<a id='L47' name='L47' />    for (i in 1:nkeep) drawbar(x[i], y[i], z[i, ], line.adj = ladj,
+<a id='L48' name='L48' />        xwid, ywid, border = bord, line = line, colbar = col)
+<a id='L49' name='L49' />}
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+49 R/sub.barplot.R]</em> */</em>
+</body>
+</html>

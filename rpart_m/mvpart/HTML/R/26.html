@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dist</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/61.html#L49'>dist</a>               49 src/func_table.h extern void dist(    int n,    double *y[],     FLOAT *x,     int nclass, </span>
+<span class='curline'><a href='../S/61.html#L79'>dist</a>               79 src/func_table.h           {distinit,   dist,   distss,    distpred},</span>
+<span class='curline'><a href='../S/85.html#L33'>dist</a>               33 src/vgdist.c     double dist;</span>
+<span class='curline'><a href='../S/85.html#L36'>dist</a>               36 src/vgdist.c     dist = 0.0;</span>
+<span class='curline'><a href='../S/85.html#L40'>dist</a>               40 src/vgdist.c         dist += fabs( x[i1] - x[i2] );</span>
+<span class='curline'><a href='../S/85.html#L46'>dist</a>               46 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L47'>dist</a>               47 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L57'>dist</a>               57 src/vgdist.c     double dist;</span>
+<span class='curline'><a href='../S/85.html#L60'>dist</a>               60 src/vgdist.c     dist = 0.0;</span>
+<span class='curline'><a href='../S/85.html#L64'>dist</a>               64 src/vgdist.c         dist += fabs( x[i1] - x[i2] );</span>
+<span class='curline'><a href='../S/85.html#L70'>dist</a>               70 src/vgdist.c     dist /= (double) count;</span>
+<span class='curline'><a href='../S/85.html#L71'>dist</a>               71 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L76'>dist</a>               76 src/vgdist.c     double dist, dev;</span>
+<span class='curline'><a href='../S/85.html#L80'>dist</a>               80 src/vgdist.c     dist = 0.0;</span>
+<span class='curline'><a href='../S/85.html#L84'>dist</a>               84 src/vgdist.c         dist += dev*dev;</span>
+<span class='curline'><a href='../S/85.html#L90'>dist</a>               90 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L91'>dist</a>               91 src/vgdist.c     return sqrt(dist);</span>
+<span class='curline'><a href='../S/85.html#L96'>dist</a>               96 src/vgdist.c     double numer, denom, dist;</span>
+<span class='curline'><a href='../S/85.html#L100'>dist</a>              100 src/vgdist.c     dist = 0.0;</span>
+<span class='curline'><a href='../S/85.html#L108'>dist</a>              108 src/vgdist.c         dist += numer/denom;</span>
+<span class='curline'><a href='../S/85.html#L111'>dist</a>              111 src/vgdist.c         dist += R_PosInf;</span>
+<span class='curline'><a href='../S/85.html#L118'>dist</a>              118 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L119'>dist</a>              119 src/vgdist.c     dist /= (double)count;</span>
+<span class='curline'><a href='../S/85.html#L120'>dist</a>              120 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L125'>dist</a>              125 src/vgdist.c     double dist, total;</span>
+<span class='curline'><a href='../S/85.html#L130'>dist</a>              130 src/vgdist.c     dist = 0;</span>
+<span class='curline'><a href='../S/85.html#L133'>dist</a>              133 src/vgdist.c         dist += fabs(x[i1] - x[i2]);</span>
+<span class='curline'><a href='../S/85.html#L140'>dist</a>              140 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L141'>dist</a>              141 src/vgdist.c     dist /= total;</span>
+<span class='curline'><a href='../S/85.html#L142'>dist</a>              142 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L147'>dist</a>              147 src/vgdist.c     double sim, dist, t1, t2;</span>
+<span class='curline'><a href='../S/85.html#L164'>dist</a>              164 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L165'>dist</a>              165 src/vgdist.c     dist = 1 - sim/t1/2 - sim/t2/2;</span>
+<span class='curline'><a href='../S/85.html#L166'>dist</a>              166 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L171'>dist</a>              171 src/vgdist.c       double dev, dist;</span>
+<span class='curline'><a href='../S/85.html#L175'>dist</a>              175 src/vgdist.c       dist = -10^10;</span>
+<span class='curline'><a href='../S/85.html#L179'>dist</a>              179 src/vgdist.c           if(dev &gt; dist)</span>
+<span class='curline'><a href='../S/85.html#L180'>dist</a>              180 src/vgdist.c           dist = dev;</span>
+<span class='curline'><a href='../S/85.html#L186'>dist</a>              186 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L187'>dist</a>              187 src/vgdist.c     return dist;</span>
+<span class='curline'><a href='../S/85.html#L192'>dist</a>              192 src/vgdist.c       int total, count, dist;</span>
+<span class='curline'><a href='../S/85.html#L197'>dist</a>              197 src/vgdist.c       dist = 0;</span>
+<span class='curline'><a href='../S/85.html#L202'>dist</a>              202 src/vgdist.c           if( ! (x[i1] &amp;&amp; x[i2]) ) dist++;</span>
+<span class='curline'><a href='../S/85.html#L209'>dist</a>              209 src/vgdist.c     if (count == 0) dist = NA_REAL;</span>
+<span class='curline'><a href='../S/85.html#L210'>dist</a>              210 src/vgdist.c     return (double) dist / count;</span>
+<span class='curline'><a href='../S/69.html#L1'>dist</a>                1 src/xdiss.c    void xdists(dist,nn,dcrit,usemin,eps,bigd)</span>
+<span class='curline'><a href='../S/69.html#L3'>dist</a>                3 src/xdiss.c    double *dist, *dcrit, *eps, *bigd;</span>
+<span class='curline'><a href='../S/69.html#L12'>dist</a>               12 src/xdiss.c    	if (dist[i]&gt;*dcrit-*eps) {</span>
+<span class='curline'><a href='../S/69.html#L13'>dist</a>               13 src/xdiss.c    		dist[i] =  -1;</span>
+<span class='curline'><a href='../S/69.html#L29'>dist</a>               29 src/xdiss.c    	if(dist[pos] &lt; 0) {</span>
+<span class='curline'><a href='../S/69.html#L43'>dist</a>               43 src/xdiss.c    			dki=dist[ki];</span>
+<span class='curline'><a href='../S/69.html#L44'>dist</a>               44 src/xdiss.c    			dkj=dist[kj];</span>
+<span class='curline'><a href='../S/69.html#L54'>dist</a>               54 src/xdiss.c    				if (*usemin&gt;0) dist[pos] = mink + big;</span>
+<span class='curline'><a href='../S/69.html#L55'>dist</a>               55 src/xdiss.c    				else dist[pos] = sum/count + big;</span>
+<span class='curline'><a href='../S/69.html#L56'>dist</a>               56 src/xdiss.c    				if (dist[pos]&gt;maxd) maxd = dist[pos];</span>
+<span class='curline'><a href='../S/69.html#L57'>dist</a>               57 src/xdiss.c    				if (dist[pos]&lt;mind) mind = dist[pos];</span>
+<span class='curline'><a href='../S/69.html#L67'>dist</a>               67 src/xdiss.c    	if (dist[i]&lt;0) nbig += 1;</span>
+<span class='curline'><a href='../S/69.html#L73'>dist</a>               73 src/xdiss.c    	if (dist[i] &gt; big)	{</span>
+<span class='curline'><a href='../S/69.html#L74'>dist</a>               74 src/xdiss.c    		if (*usemin&gt;0)  dist[i] = dist[i] - big ;</span>
+<span class='curline'><a href='../S/69.html#L75'>dist</a>               75 src/xdiss.c    		else dist[i] = dist[i] - big - mind + adj + *eps;</span>
+</pre>
+</body>
+</html>

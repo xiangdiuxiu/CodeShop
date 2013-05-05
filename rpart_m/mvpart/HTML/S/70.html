@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/formatg.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/152.html'>src</a>/formatg.c</h2>
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><a href='#L10'><img class='icon' src='../icons/first.png' alt='[first]' /></a><img class='icon' src='../icons/n_last.png' alt='[last]' /><img class='icon' src='../icons/n_top.png' alt='[top]' /><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+1 src/formatg.c]</em> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L10' title='Defined at 10.'>formatg</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' />   1 <em class='comment'>/*  SCCS @(#)formatg.c  1.2 06/06/01 */</em>
+<a id='L2' name='L2' />   2 <em class='comment'>/*</em>
+<a id='L3' name='L3' />   3 <em class='comment'>** Write a bunch of numbers in a desired C format, (almost always %g)</em>
+<a id='L4' name='L4' />   4 <em class='comment'>*/</em>
+<a id='L5' name='L5' />   5 <em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L6' name='L6' />   6 <em class='sharp'>#include</em> "<a href='81.html'>rpartS.h</a>"
+<a id='L7' name='L7' />   7 <em class='sharp'>#ifdef</em> <a href='../Y/15.html' title='Multiple used in 3 places.'>WIN32</a>
+<a id='L8' name='L8' />   8 <em class='sharp'>#include</em> &lt;ctype.h&gt;
+<a id='L9' name='L9' />   9 <em class='sharp'>#endif</em>
+<a id='L10' name='L10' />  10 <strong class='reserved'>void</strong> formatg( <a href='../S/81.html#L34' title='Defined at 34 in src/rpartS.h.'>Sint</a> *<a href='../Y/187.html' title='Multiple used in 196 places.'>n</a>, <strong class='reserved'>double</strong> *<a href='../Y/354.html' title='Multiple used in 104 places.'>x</a>, <strong class='reserved'>char</strong> **<a href='../Y/97.html' title='Multiple used in 2 places.'>format</a>, <strong class='reserved'>char</strong> **<a href='../Y/236.html' title='Multiple used in 3 places.'>out</a>) 
+     <em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><img class='icon' src='../icons/n_last.png' alt='[last]' /><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><a href='#BOTTOM'><img class='icon' src='../icons/bottom.png' alt='[bottom]' /></a><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+10 src/formatg.c]</em> */</em>
+<a id='L11' name='L11' />  11 <em class='brace'>{</em>
+<a id='L12' name='L12' />  12     <strong class='reserved'>int</strong> <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>;
+<a id='L13' name='L13' />  13 <em class='sharp'>#ifdef</em> <a href='../Y/15.html' title='Multiple used in 3 places.'>WIN32</a>
+<a id='L14' name='L14' />  14     <strong class='reserved'>int</strong> <a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>;
+<a id='L15' name='L15' />  15     <strong class='reserved'>char</strong> *<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>;
+<a id='L16' name='L16' />  16 <em class='sharp'>#endif</em>
+<a id='L17' name='L17' />  17 
+<a id='L18' name='L18' />  18     <strong class='reserved'>for</strong> (<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>=0; <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>&lt; *<a href='../Y/187.html' title='Multiple used in 196 places.'>n</a>; <a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L19' name='L19' />  19     sprintf(<a href='../Y/236.html' title='Multiple used in 3 places.'>out</a>[<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>], <a href='../Y/97.html' title='Multiple used in 2 places.'>format</a>[<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>], <a href='../Y/354.html' title='Multiple used in 104 places.'>x</a>[<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>]);
+<a id='L20' name='L20' />  20 <em class='sharp'>#ifdef</em> <a href='../Y/15.html' title='Multiple used in 3 places.'>WIN32</a>
+<a id='L21' name='L21' />  21     <em class='comment'>/* change e+/-00n to e+/-0n etc */</em>
+<a id='L22' name='L22' />  22     <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a> = <a href='../Y/236.html' title='Multiple used in 3 places.'>out</a>[<a href='../Y/108.html' title='Multiple used in 571 places.'>i</a>];
+<a id='L23' name='L23' />  23     <a href='../Y/154.html' title='Multiple used in 9 places.'>len</a> = strlen(<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>);
+<a id='L24' name='L24' />  24     <strong class='reserved'>if</strong> (tolower(<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-5]) == 'e' &amp;&amp;
+<a id='L25' name='L25' />  25         (<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-4] == '+' || <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-4] == '-') &amp;&amp;
+<a id='L26' name='L26' />  26         <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-3] == '0' &amp;&amp;
+<a id='L27' name='L27' />  27         isdigit(<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-2]) &amp;&amp; isdigit(<a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-1])) <em class='brace'>{</em>
+<a id='L28' name='L28' />  28         <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-3] = <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-2];
+<a id='L29' name='L29' />  29         <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-2] = <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-1];
+<a id='L30' name='L30' />  30         <a href='../Y/237.html' title='Multiple used in 26 places.'>p</a>[<a href='../Y/154.html' title='Multiple used in 9 places.'>len</a>-1] = '\0';
+<a id='L31' name='L31' />  31     <em class='brace'>}</em>
+<a id='L32' name='L32' />  32 <em class='sharp'>#endif</em>
+<a id='L33' name='L33' />  33     <em class='brace'>}</em>
+<a id='L34' name='L34' />  34 <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* <img class='icon' src='../icons/n_left.png' alt='[previous]' /><img class='icon' src='../icons/n_right.png' alt='[next]' /><img class='icon' src='../icons/n_first.png' alt='[first]' /><a href='#L10'><img class='icon' src='../icons/last.png' alt='[last]' /></a><a href='#TOP'><img class='icon' src='../icons/top.png' alt='[top]' /></a><img class='icon' src='../icons/n_bottom.png' alt='[bottom]' /><a href='../mains.html'><img class='icon' src='../icons/index.png' alt='[index]' /></a><a href='../help.html'><img class='icon' src='../icons/help.png' alt='[help]' /></a>&nbsp;<em class='position'>[+34 src/formatg.c]</em> */</em>
+</body>
+</html>
