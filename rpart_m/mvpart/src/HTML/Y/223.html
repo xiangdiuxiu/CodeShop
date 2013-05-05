@@ -9,15 +9,15 @@
 </head>
 <body>
 <pre>
-<span class='curline'><a href='../S/38.html#L51'>ny</a>                 51 rpart.c                  int ny,        double *cost) </span>
+<span class='curline'><a href='../S/38.html#L51'>ny</a>                 51 rpart.c                  int ny,        double *cost, double *myAlpha) /*Alpha --ZhangYet*/ </span>
 <span class='curline'><a href='../S/38.html#L94'>ny</a>                 94 rpart.c            rp.num_y  = ny;</span>
 <span class='curline'><a href='../S/22.html#L27'>ny</a>                 27 rpart_callback.c SEXP init_rpcallback(SEXP rhox, SEXP ny, SEXP nr,</span>
 <span class='curline'><a href='../S/22.html#L33'>ny</a>                 33 rpart_callback.c     ysave  = asInteger(ny );</span>
-<span class='curline'><a href='../S/30.html#L49'>ny</a>                 49 rpartproto.h         int ny,        double *cost) ;</span>
-<span class='curline'><a href='../S/30.html#L75'>ny</a>                 75 rpartproto.h            double *wt,  Sint   *ny,    double *cost);</span>
+<span class='curline'><a href='../S/30.html#L49'>ny</a>                 49 rpartproto.h   	  int ny,        double *cost, double *myAlpha) ;</span>
+<span class='curline'><a href='../S/30.html#L75'>ny</a>                 75 rpartproto.h   	     double *wt,  Sint   *ny,    double *cost, double *myAlpha);</span>
 <span class='curline'><a href='../S/30.html#L86'>ny</a>                 86 rpartproto.h            Sint *ny,     double *cost);</span>
-<span class='curline'><a href='../S/5.html#L18'>ny</a>                 18 s_to_rp.c               double *wt,  Sint  *ny,     double *cost)</span>
-<span class='curline'><a href='../S/5.html#L34'>ny</a>                 34 s_to_rp.c                opt,        (int)ny[0],   cost);</span>
+<span class='curline'><a href='../S/5.html#L18'>ny</a>                 18 s_to_rp.c      	     double *wt,  Sint  *ny,     double *cost, double *myAlpha)</span>
+<span class='curline'><a href='../S/5.html#L34'>ny</a>                 34 s_to_rp.c      		  opt,        (int)ny[0],   cost, myAlpha); /*We add a parameter myAlpha here. --ZhangYet*/</span>
 <span class='curline'><a href='../S/29.html#L16'>ny</a>                 16 s_xpred.c               Sint *ny,     double *cost)</span>
 <span class='curline'><a href='../S/29.html#L35'>ny</a>                 35 s_xpred.c          rp.num_y  = *ny;</span>
 </pre>

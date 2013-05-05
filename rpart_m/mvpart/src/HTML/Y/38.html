@@ -9,13 +9,13 @@
 </head>
 <body>
 <pre>
-<span class='curline'><a href='../S/38.html#L51'>cost</a>               51 rpart.c                  int ny,        double *cost) </span>
+<span class='curline'><a href='../S/38.html#L51'>cost</a>               51 rpart.c                  int ny,        double *cost, double *myAlpha) /*Alpha --ZhangYet*/ </span>
 <span class='curline'><a href='../S/38.html#L93'>cost</a>               93 rpart.c            rp.vcost  = cost;</span>
-<span class='curline'><a href='../S/30.html#L49'>cost</a>               49 rpartproto.h         int ny,        double *cost) ;</span>
-<span class='curline'><a href='../S/30.html#L75'>cost</a>               75 rpartproto.h            double *wt,  Sint   *ny,    double *cost);</span>
+<span class='curline'><a href='../S/30.html#L49'>cost</a>               49 rpartproto.h   	  int ny,        double *cost, double *myAlpha) ;</span>
+<span class='curline'><a href='../S/30.html#L75'>cost</a>               75 rpartproto.h   	     double *wt,  Sint   *ny,    double *cost, double *myAlpha);</span>
 <span class='curline'><a href='../S/30.html#L86'>cost</a>               86 rpartproto.h            Sint *ny,     double *cost);</span>
-<span class='curline'><a href='../S/5.html#L18'>cost</a>               18 s_to_rp.c               double *wt,  Sint  *ny,     double *cost)</span>
-<span class='curline'><a href='../S/5.html#L34'>cost</a>               34 s_to_rp.c                opt,        (int)ny[0],   cost);</span>
+<span class='curline'><a href='../S/5.html#L18'>cost</a>               18 s_to_rp.c      	     double *wt,  Sint  *ny,     double *cost, double *myAlpha)</span>
+<span class='curline'><a href='../S/5.html#L34'>cost</a>               34 s_to_rp.c      		  opt,        (int)ny[0],   cost, myAlpha); /*We add a parameter myAlpha here. --ZhangYet*/</span>
 <span class='curline'><a href='../S/29.html#L16'>cost</a>               16 s_xpred.c               Sint *ny,     double *cost)</span>
 <span class='curline'><a href='../S/29.html#L68'>cost</a>               68 s_xpred.c          rp.vcost    = cost;</span>
 </pre>
