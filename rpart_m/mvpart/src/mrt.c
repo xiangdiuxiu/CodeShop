@@ -11,7 +11,7 @@
 #include "rpartproto.h"
 
 static double *mean, *grandmean, *wts, *diffs, *tdiffs;
-static **distMatrix; /*here, we use a matrix to store distance between y's*/
+static **distMatrix; /*here, we use a matrix to store distance between examples*/
 static int *tsplit, *countn, *countwt;
 
 
@@ -43,11 +43,11 @@ int mrtinit(int n, double *y[], int maxcat, char **error,
 	*error = "Could not allocate memory in mrtinit while initing the distance matrix";
 	return(1);
       }
-      for (i=0; i<rp.num_y; i++) {
+      for (i=0; i<n; i++) {
 	temp = 0.0;
-	for(j=0; j<rp.num_y; j++) {  
-	  for (k=0; k<n; k++) {
-	    temp += (y[k][i] - y[k][j]) *  (y[k][i] - y[k][j]); /*Here, we need to consider if it is need to multipy wt[i]. Anyway, do it later.*/
+	for(j=0; j<n; j++) {  
+	  for (k=0; k<rp.num_y; k++) {
+	    temp += (y[i][k] - y[j][k]) *  (y[k][i] - y[k][j]); /*Here, we need to consider if it is need to multipy wt[i]. Anyway, do it later.*/
 	  }/*end of for k=0*/
 	  distMatrix[i][j] = sqrt(temp); /*compute the norm of two y variables.--ZhangYet*/
 	} /*end of for j=0*/
@@ -91,8 +91,8 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
     
     if(rp.dissim==3){
       /*The iteration beneatch computes sum_i sum_j ||y_i-y_j||^alpha --ZhangYet*/
-      for(i=0; i<rp.num_y; i++) {
-	for (j=0; j<rp.num_y; j++){
+      for(i=0; i<n; i++) {
+	for (j=0; j<n; j++){
 	  ss += pow(distMatrix[i][j], inx);
 	} /*end for j=0*/
       } /*end for i=0*/
