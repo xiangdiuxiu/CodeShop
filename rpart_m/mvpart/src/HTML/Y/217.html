@@ -13,18 +13,18 @@
 <span class='curline'><a href='../S/8.html#L24'>num_y</a>              24 mrt.c                int k;</span>
 <span class='curline'><a href='../S/8.html#L29'>num_y</a>              29 mrt.c                  }</span>
 <span class='curline'><a href='../S/8.html#L39'>num_y</a>              39 mrt.c                  }</span>
-<span class='curline'><a href='../S/8.html#L47'>num_y</a>              47 mrt.c          	temp = 0.0;</span>
-<span class='curline'><a href='../S/8.html#L67'>num_y</a>              67 mrt.c          /*  sums   = wts + maxcat;  */</span>
-<span class='curline'><a href='../S/8.html#L121'>num_y</a>             121 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L136'>num_y</a>             136 mrt.c              int i,j,k;</span>
-<span class='curline'><a href='../S/8.html#L172'>num_y</a>             172 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>num_y</a>             179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L183'>num_y</a>             183 mrt.c                 if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L223'>num_y</a>             223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L231'>num_y</a>             231 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L236'>num_y</a>             236 mrt.c              /*</span>
-<span class='curline'><a href='../S/8.html#L270'>num_y</a>             270 mrt.c                  left_sum = 0; right_sum = 0; sumdiffs_sq = 0;</span>
-<span class='curline'><a href='../S/8.html#L273'>num_y</a>             273 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L47'>num_y</a>              47 mrt.c                  if (countn==0 || mean==0 ) {</span>
+<span class='curline'><a href='../S/8.html#L67'>num_y</a>              67 mrt.c              ss = 0;</span>
+<span class='curline'><a href='../S/8.html#L121'>num_y</a>             121 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L136'>num_y</a>             136 mrt.c              /*</span>
+<span class='curline'><a href='../S/8.html#L172'>num_y</a>             172 mrt.c          	} /*compute left_sum*/</span>
+<span class='curline'><a href='../S/8.html#L179'>num_y</a>             179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L183'>num_y</a>             183 mrt.c          	  best = temp;</span>
+<span class='curline'><a href='../S/8.html#L223'>num_y</a>             223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L231'>num_y</a>             231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L236'>num_y</a>             236 mrt.c              for (i=0; i&lt;n; i++) {</span>
+<span class='curline'><a href='../S/8.html#L270'>num_y</a>             270 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L273'>num_y</a>             273 mrt.c          </span>
 <span class='curline'><a href='../S/38.html#L94'>num_y</a>              94 rpart.c            rp.num_y  = ny;</span>
 <span class='curline'><a href='../S/38.html#L113'>num_y</a>             113 rpart.c            for (i=0; i&lt;nny; i++)  rp.ydata[i] = &amp;(ymat[i*rp.num_y]);</span>
 <span class='curline'><a href='../S/28.html#L40'>num_y</a>              40 rpart.h            int    n;              /* total number of subjects  */</span>

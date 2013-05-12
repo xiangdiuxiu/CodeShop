@@ -14,10 +14,10 @@
 <span class='curline'><a href='../S/12.html#L50'>ss</a>                 50 anova.c            if (rp.dissim==1) ss += temp * temp * wt[i];</span>
 <span class='curline'><a href='../S/12.html#L51'>ss</a>                 51 anova.c            else if (rp.dissim==2) ss += fabs(temp) * wt[i];</span>
 <span class='curline'><a href='../S/12.html#L55'>ss</a>                 55 anova.c            *risk = ss;</span>
-<span class='curline'><a href='../S/8.html#L59'>ss</a>                 59 mrt.c              countn = (int *)ALLOC(3*maxcat, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L60'>ss</a>                 60 mrt.c              countwt = (int *)ALLOC(3*maxcat, sizeof(int));</span>
-<span class='curline'><a href='../S/8.html#L86'>ss</a>                 86 mrt.c              </span>
-<span class='curline'><a href='../S/8.html#L88'>ss</a>                 88 mrt.c          ** move ss = 0 to total over all y vars -- gd.</span>
+<span class='curline'><a href='../S/8.html#L59'>ss</a>                 59 mrt.c          ** The mrt evaluation function.  Return the mean and the ss.</span>
+<span class='curline'><a href='../S/8.html#L60'>ss</a>                 60 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L86'>ss</a>                 86 mrt.c          	} /*end for j=0*/</span>
+<span class='curline'><a href='../S/8.html#L88'>ss</a>                 88 mrt.c              }else{</span>
 <span class='curline'><a href='../S/2.html#L17'>ss</a>                 17 rpcountup.c        struct split *ss;</span>
 <span class='curline'><a href='../S/2.html#L26'>ss</a>                 26 rpcountup.c        for (ss= me-&gt;primary;   ss!=0; ss = ss-&gt;nextsplit) {</span>
 <span class='curline'><a href='../S/2.html#L28'>ss</a>                 28 rpcountup.c            if (rp.numcat[ss-&gt;var_num] &gt;0) k++;</span>

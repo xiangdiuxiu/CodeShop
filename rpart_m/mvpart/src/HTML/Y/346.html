@@ -68,19 +68,19 @@
 <span class='curline'><a href='../S/19.html#L248'>wt</a>                248 gini.c             awt[k] += aprior[j] * wt[i];</span>
 <span class='curline'><a href='../S/19.html#L250'>wt</a>                250 gini.c             ccnt[j][k] += wt[i];</span>
 <span class='curline'><a href='../S/8.html#L17'>wt</a>                 17 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L55'>wt</a>                 55 mrt.c              }/*end of if 'rp.dissim == 3'*/</span>
-<span class='curline'><a href='../S/8.html#L65'>wt</a>                 65 mrt.c                  }</span>
-<span class='curline'><a href='../S/8.html#L71'>wt</a>                 71 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L76'>wt</a>                 76 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L77'>wt</a>                 77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L99'>wt</a>                 99 mrt.c              }else{</span>
-<span class='curline'><a href='../S/8.html#L120'>wt</a>                120 mrt.c                }/*end for j*/</span>
-<span class='curline'><a href='../S/8.html#L123'>wt</a>                123 mrt.c              *risk = ss;</span>
-<span class='curline'><a href='../S/8.html#L134'>wt</a>                134 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L137'>wt</a>                137 mrt.c              double sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L178'>wt</a>                178 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L179'>wt</a>                179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L199'>wt</a>                199 mrt.c                  csplit[0] = direction;</span>
+<span class='curline'><a href='../S/8.html#L55'>wt</a>                 55 mrt.c              return(0);</span>
+<span class='curline'><a href='../S/8.html#L65'>wt</a>                 65 mrt.c              double temp, twt;</span>
+<span class='curline'><a href='../S/8.html#L71'>wt</a>                 71 mrt.c              </span>
+<span class='curline'><a href='../S/8.html#L76'>wt</a>                 76 mrt.c              temp = 0.0; /*ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L77'>wt</a>                 77 mrt.c              if(rp.dissim==3){</span>
+<span class='curline'><a href='../S/8.html#L99'>wt</a>                 99 mrt.c          	  else if (rp.dissim==2) ssj += fabs(temp) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L120'>wt</a>                120 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L123'>wt</a>                123 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L134'>wt</a>                134 mrt.c              int e_i, e_j, e_k; /*compute distance -- ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L137'>wt</a>                137 mrt.c              ** Compute the grand mean, which will be subtracted from all of the</span>
+<span class='curline'><a href='../S/8.html#L178'>wt</a>                178 mrt.c          	    left_sum += pow(temp, inx);</span>
+<span class='curline'><a href='../S/8.html#L179'>wt</a>                179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L199'>wt</a>                199 mrt.c                      tdiffs[j] += diffs[j];</span>
 <span class='curline'><a href='../S/23.html#L36'>wt</a>                 36 partition.c            rp.wtemp[j]   = rp.wt[i];</span>
 <span class='curline'><a href='../S/23.html#L38'>wt</a>                 38 partition.c            twt += rp.wt[i];</span>
 <span class='curline'><a href='../S/23.html#L45'>wt</a>                 45 partition.c        twt += rp.wt[i];</span>

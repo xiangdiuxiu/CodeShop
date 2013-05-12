@@ -228,48 +228,48 @@
 <span class='curline'><a href='../S/6.html#L96'>i</a>                  96 graycode.c             gray[i] =2;</span>
 <span class='curline'><a href='../S/6.html#L97'>i</a>                  97 graycode.c             return(i);</span>
 <span class='curline'><a href='../S/6.html#L99'>i</a>                  99 graycode.c             else if (gray[i]==2) gray[i] =1;</span>
-<span class='curline'><a href='../S/8.html#L57'>i</a>                  57 mrt.c              graycode_init0(maxcat);</span>
-<span class='curline'><a href='../S/8.html#L65'>i</a>                  65 mrt.c                  }</span>
-<span class='curline'><a href='../S/8.html#L71'>i</a>                  71 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L74'>i</a>                  74 mrt.c          ** The mrt evaluation function.  Return the mean and the ss.</span>
-<span class='curline'><a href='../S/8.html#L75'>i</a>                  75 mrt.c          */</span>
-<span class='curline'><a href='../S/8.html#L76'>i</a>                  76 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L77'>i</a>                  77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L101'>i</a>                 101 mrt.c          	ssj = 0;</span>
-<span class='curline'><a href='../S/8.html#L120'>i</a>                 120 mrt.c                }/*end for j*/</span>
-<span class='curline'><a href='../S/8.html#L123'>i</a>                 123 mrt.c              *risk = ss;</span>
-<span class='curline'><a href='../S/8.html#L132'>i</a>                 132 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L134'>i</a>                 134 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L137'>i</a>                 137 mrt.c              double sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L147'>i</a>                 147 mrt.c              ** Compute the grand mean, which will be subtracted from all of the</span>
-<span class='curline'><a href='../S/8.html#L153'>i</a>                 153 mrt.c              right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L170'>i</a>                 170 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L171'>i</a>                 171 mrt.c                  for (j=0; j&lt;rp.num_y; j++) {</span>
-<span class='curline'><a href='../S/8.html#L172'>i</a>                 172 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L175'>i</a>                 175 mrt.c                      if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
-<span class='curline'><a href='../S/8.html#L176'>i</a>                 176 mrt.c                      else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
-<span class='curline'><a href='../S/8.html#L178'>i</a>                 178 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L179'>i</a>                 179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L182'>i</a>                 182 mrt.c                 if (x[i+1] != x[i] &amp;&amp;  left_n&gt;=edge) {</span>
-<span class='curline'><a href='../S/8.html#L184'>i</a>                 184 mrt.c                 else if (rp.dissim==2) temp = 2.0*sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L188'>i</a>                 188 mrt.c                  where = i;</span>
-<span class='curline'><a href='../S/8.html#L189'>i</a>                 189 mrt.c                  if (left_sum &lt; right_sum) direction = LEFT;</span>
-<span class='curline'><a href='../S/8.html#L190'>i</a>                 190 mrt.c                            else    direction = RIGHT;</span>
-<span class='curline'><a href='../S/8.html#L199'>i</a>                 199 mrt.c                  csplit[0] = direction;</span>
-<span class='curline'><a href='../S/8.html#L213'>i</a>                 213 mrt.c                          countwt[k] += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L217'>i</a>                 217 mrt.c                  for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L218'>i</a>                 218 mrt.c          	  for (j=0; j&lt;rp.num_y; j++) {</span>
-<span class='curline'><a href='../S/8.html#L219'>i</a>                 219 mrt.c          	    if (countwt[i]&gt;0) mean[i+nclass*j] /= countwt[i];</span>
-<span class='curline'><a href='../S/8.html#L220'>i</a>                 220 mrt.c          	  } /*end of for j=0*/</span>
-<span class='curline'><a href='../S/8.html#L221'>i</a>                 221 mrt.c          	} /*end of for i=0*/</span>
-<span class='curline'><a href='../S/8.html#L222'>i</a>                 222 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L223'>i</a>                 223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L226'>i</a>                 226 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L227'>i</a>                 227 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L228'>i</a>                 228 mrt.c              /*</span>
-<span class='curline'><a href='../S/8.html#L229'>i</a>                 229 mrt.c              ** Now find the split that we want</span>
-<span class='curline'><a href='../S/8.html#L230'>i</a>                 230 mrt.c              */</span>
-<span class='curline'><a href='../S/8.html#L231'>i</a>                 231 mrt.c              left_n = 0;  right_n = n;</span>
+<span class='curline'><a href='../S/8.html#L57'>i</a>                  57 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L65'>i</a>                  65 mrt.c              double temp, twt;</span>
+<span class='curline'><a href='../S/8.html#L71'>i</a>                  71 mrt.c              </span>
+<span class='curline'><a href='../S/8.html#L74'>i</a>                  74 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L75'>i</a>                  75 mrt.c              for (i=0; i&lt;n; i++) twt += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L76'>i</a>                  76 mrt.c              temp = 0.0; /*ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L77'>i</a>                  77 mrt.c              if(rp.dissim==3){</span>
+<span class='curline'><a href='../S/8.html#L101'>i</a>                 101 mrt.c          	value[j] = grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L120'>i</a>                 120 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L123'>i</a>                 123 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L132'>i</a>                 132 mrt.c              int direction = LEFT;</span>
+<span class='curline'><a href='../S/8.html#L134'>i</a>                 134 mrt.c              int e_i, e_j, e_k; /*compute distance -- ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L137'>i</a>                 137 mrt.c              ** Compute the grand mean, which will be subtracted from all of the</span>
+<span class='curline'><a href='../S/8.html#L147'>i</a>                 147 mrt.c          	    grandmean[j] = 0; tdiffs[j] = 0;</span>
+<span class='curline'><a href='../S/8.html#L153'>i</a>                 153 mrt.c              right_sum = 0; left_sum = 0;</span>
+<span class='curline'><a href='../S/8.html#L170'>i</a>                 170 mrt.c          	    left_sum += pow(temp, inx);</span>
+<span class='curline'><a href='../S/8.html#L171'>i</a>                 171 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L172'>i</a>                 172 mrt.c          	} /*compute left_sum*/</span>
+<span class='curline'><a href='../S/8.html#L175'>i</a>                 175 mrt.c          	  for(e_j=left_n; e_j&lt;n; e_j++){</span>
+<span class='curline'><a href='../S/8.html#L176'>i</a>                 176 mrt.c          	    for(e_k=0; e_k&lt;rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);</span>
+<span class='curline'><a href='../S/8.html#L178'>i</a>                 178 mrt.c          	    left_sum += pow(temp, inx);</span>
+<span class='curline'><a href='../S/8.html#L179'>i</a>                 179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L182'>i</a>                 182 mrt.c          	if (temp &gt; best) {</span>
+<span class='curline'><a href='../S/8.html#L184'>i</a>                 184 mrt.c          	  where = i;</span>
+<span class='curline'><a href='../S/8.html#L188'>i</a>                 188 mrt.c          	    direction = RIGHT;</span>
+<span class='curline'><a href='../S/8.html#L189'>i</a>                 189 mrt.c          	}</span>
+<span class='curline'><a href='../S/8.html#L190'>i</a>                 190 mrt.c                } /*end of for i=0;right_n&gt;edge*/</span>
+<span class='curline'><a href='../S/8.html#L199'>i</a>                 199 mrt.c                      tdiffs[j] += diffs[j];</span>
+<span class='curline'><a href='../S/8.html#L213'>i</a>                 213 mrt.c                  where = i;</span>
+<span class='curline'><a href='../S/8.html#L217'>i</a>                 217 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L218'>i</a>                 218 mrt.c                 } /*end of if x[i+1] != x[i]*/</span>
+<span class='curline'><a href='../S/8.html#L219'>i</a>                 219 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L220'>i</a>                 220 mrt.c              }</span>
+<span class='curline'><a href='../S/8.html#L221'>i</a>                 221 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L222'>i</a>                 222 mrt.c              }/*end of rp.dissim != 0 (else)*/</span>
+<span class='curline'><a href='../S/8.html#L223'>i</a>                 223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L226'>i</a>                 226 mrt.c                  *split = (x[where] + x[where+1]) /2;</span>
+<span class='curline'><a href='../S/8.html#L227'>i</a>                 227 mrt.c                  }</span>
+<span class='curline'><a href='../S/8.html#L228'>i</a>                 228 mrt.c              } /*end of if nclass == 0*/</span>
+<span class='curline'><a href='../S/8.html#L229'>i</a>                 229 mrt.c              else { /*this else is for if nclass == 0.*/</span>
+<span class='curline'><a href='../S/8.html#L230'>i</a>                 230 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L231'>i</a>                 231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
 <span class='curline'><a href='../S/26.html#L15'>i</a>                  15 mysort.c        int i, j, k;</span>
 <span class='curline'><a href='../S/26.html#L24'>i</a>                  24 mysort.c           for (i=start+1; i&lt;=stop; i++) {</span>
 <span class='curline'><a href='../S/26.html#L25'>i</a>                  25 mysort.c               temp = x[i];</span>

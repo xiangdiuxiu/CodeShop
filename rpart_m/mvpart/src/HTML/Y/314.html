@@ -12,16 +12,16 @@
 <span class='curline'><a href='../S/8.html#L12'>tdiffs</a>             12 mrt.c          </span>
 <span class='curline'><a href='../S/8.html#L29'>tdiffs</a>             29 mrt.c                  }</span>
 <span class='curline'><a href='../S/8.html#L30'>tdiffs</a>             30 mrt.c              diffs  = (double *)ALLOC(rp.num_y, sizeof(double));</span>
-<span class='curline'><a href='../S/8.html#L122'>tdiffs</a>            122 mrt.c              </span>
-<span class='curline'><a href='../S/8.html#L139'>tdiffs</a>            139 mrt.c              double left_wt, right_wt;</span>
-<span class='curline'><a href='../S/8.html#L140'>tdiffs</a>            140 mrt.c              int left_n, right_n;</span>
-<span class='curline'><a href='../S/8.html#L141'>tdiffs</a>            141 mrt.c              double best;</span>
-<span class='curline'><a href='../S/8.html#L223'>tdiffs</a>            223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L231'>tdiffs</a>            231 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L237'>tdiffs</a>            237 mrt.c              ** Insert gray code bit here</span>
-<span class='curline'><a href='../S/8.html#L238'>tdiffs</a>            238 mrt.c              */</span>
-<span class='curline'><a href='../S/8.html#L239'>tdiffs</a>            239 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L240'>tdiffs</a>            240 mrt.c          /*  if (numclass==2) graycode_init2(nclass, countn, rate);</span>
+<span class='curline'><a href='../S/8.html#L122'>tdiffs</a>            122 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
+<span class='curline'><a href='../S/8.html#L139'>tdiffs</a>            139 mrt.c              **  numerically stable.</span>
+<span class='curline'><a href='../S/8.html#L140'>tdiffs</a>            140 mrt.c              ** Also get the total n</span>
+<span class='curline'><a href='../S/8.html#L141'>tdiffs</a>            141 mrt.c              */</span>
+<span class='curline'><a href='../S/8.html#L223'>tdiffs</a>            223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L231'>tdiffs</a>            231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L237'>tdiffs</a>            237 mrt.c                      k = x[i] -1;</span>
+<span class='curline'><a href='../S/8.html#L238'>tdiffs</a>            238 mrt.c                  countn[k] ++;</span>
+<span class='curline'><a href='../S/8.html#L239'>tdiffs</a>            239 mrt.c                          countwt[k] += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L240'>tdiffs</a>            240 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
 </pre>
 </body>
 </html>

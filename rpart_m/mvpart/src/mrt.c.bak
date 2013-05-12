@@ -11,7 +11,7 @@
 #include "rpartproto.h"
 
 static double *mean, *grandmean, *wts, *diffs, *tdiffs;
-/*static **distMatrix; /*here, we use a matrix to store distance between examples*/
+static **distMatrix; /*here, we use a matrix to store distance between examples*/
 static int *tsplit, *countn, *countwt;
 
 
@@ -37,7 +37,22 @@ int mrtinit(int n, double *y[], int maxcat, char **error,
         *error = "Could not allocate memory in mrtinit";
         return(1);
         }
-  
+    if (rp.dissim==3) {
+      distMatrix = (double **)ALLOC(rp.num_y, sizeof(double *)); /*init the distance Matrix--ZhangYet*/
+      if (distMatrix == 0) {
+	*error = "Could not allocate memory in mrtinit while initing the distance matrix";
+	return(1);
+      }
+      for (i=0; i<n; i++) {
+	temp = 0.0;
+	for(j=0; j<n; j++) {  
+	  for (k=0; k<rp.num_y; k++) {
+	    temp += (y[i][k] - y[j][k]) *  (y[k][i] - y[k][j]); /*Here, we need to consider if it is need to multipy wt[i]. Anyway, do it later.*/
+	  }/*end of for k=0*/
+	  distMatrix[i][j] = sqrt(temp); /*compute the norm of two y variables.--ZhangYet*/
+	} /*end of for j=0*/
+      }/*end of for i=0*/
+    }/*end of if 'rp.dissim == 3'*/
     if (who==1 && maxcat >0) {
     graycode_init0(maxcat);
     tsplit= (int *) ALLOC(maxcat*2, sizeof(int));
@@ -73,21 +88,12 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
 ** move ss = 0 to total over all y vars -- gd.
 */
     for (i=0; i<n; i++) twt += wt[i];
-    temp = 0.0; /*ZhangYet*/
+    
     if(rp.dissim==3){
       /*The iteration beneatch computes sum_i sum_j ||y_i-y_j||^alpha --ZhangYet*/
-      for (i=0; i<n; i++) {
-	for (j=0; j<n; j++) {
-	  for (k = 0; k < rp.num_y; k++) {
-	    temp += y[i][k] - y[j][k];
-	    grandmean[k] += y[j][k]*wt[j];
-	    if (j == n-1) {
-	      grandmean[k] = grandmean[k] / twt; /*These two lines use to init grandmean. In fact it's useless.--ZhangYet */
-	      value[k] = grandmean[k];
-	    }
-	  }
-	  temp = sqrt(temp);
-	  ss += pow(temp, inx);
+      for(i=0; i<n; i++) {
+	for (j=0; j<n; j++){
+	  ss += pow(distMatrix[i][j], inx);
 	} /*end for j=0*/
       } /*end for i=0*/
     }else{
@@ -136,8 +142,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
     double temp = 0;
     int direction = LEFT;
     int where = 0;
-    int e_i, e_j, e_k; /*compute distance -- ZhangYet*/
-    double inx = rp.alpha2; /*compute distance --ZhangYet*/
+
     /*
     ** Compute the grand mean, which will be subtracted from all of the
     **  data elements "on the fly".  This makes the hand calculator formula
@@ -159,46 +164,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
     left_n = 0; left_wt = 0;
     best = 0;
 
-    if (rp.dissim == 3){
-      for (i=0; right_n>edge; i++){
-	temp = 0; sumdiffs_sq = 0; left_n++; right_n--;
-	left_wt += wt[i]; right_wt -= wt[i];
-	if (left_n < edge) break; /*if left_n < edge, no need to split --ZhangYet*/
-	right_sum = 0;
-	left_sum = 0;
-	/*start to compute left_sum and right_sum */
-	temp = 0.0;
-	for (e_i=0; e_i<left_n; e_i++) {
-	  for (e_j=0; e_j<left_n; e_j++) {
-	    for (e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);
-	    temp = sqrt(temp);
-	    diffs[e_k] = temp;
-	    tdiffs[e_k] += temp;
-	    left_sum += pow(temp, inx);
-	  }
-	} /*compute left_sum*/
-	temp = 0.0;
-	for(e_i=left_n; e_i<n; e_i++){
-	  for(e_j=left_n; e_j<n; e_j++){
-	    for(e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);
-	    temp = sqrt(temp);
-	    diffs[e_k] = temp;
-	    tdiffs[e_k] += temp;
-	    left_sum += pow(temp, inx);
-	  }
-	} /*compute right_sum*/
-	temp = left_sum / (2*left_wt) + right_sum / (2*right_wt);
-	if (temp > best) {
-	  best = temp;
-	  where = i;
-	  if (left_sum < right_sum )
-	    direction = LEFT;
-	  else 
-	    direction = RIGHT;
-	}
-      } /*end of for i=0;right_n>edge*/
-    } else {
-      for (i=0; right_n>edge; i++) {
+    for (i=0; right_n>edge; i++) {
         temp = 0; sumdiffs_sq = 0; left_n++;  right_n--;
         left_wt += wt[i]; right_wt -= wt[i];
 
@@ -228,7 +194,6 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
 
     }
 
-    }/*end of rp.dissim != 0 (else)*/
     *improve = best / myrisk;
     if (best>0) {   /* found something */
         csplit[0] = direction;
@@ -339,13 +304,17 @@ double mrtpred(double *y, double *yhat)
     double temp;
     temp = 0;
     if (rp.dissim==1) {
-    	for (j=0; j<rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);
+    for (j=0; j<rp.num_y; j++) temp += (y[j] - yhat[j])*(y[j] - yhat[j]);
     }
     else if (rp.dissim==2) {
-    	for (j=0; j<rp.num_y; j++) temp += fabs((y[j] - yhat[j]));
+    for (j=0; j<rp.num_y; j++) temp += fabs((y[j] - yhat[j]));
     }
-    else{
-      for (j=0; j<rp.num_y; j++) temp += y[j];/*a test*/
+    else { /*add this for myDist*/
+      for (j=0; j<rp.num_y; j++) {
+	for (i=0; i<rp.num_y; i++) {
+	  temp += pow(distMatrix[i][j], inx);
+	}
+      }
     }
     return(temp);
     }

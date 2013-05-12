@@ -148,39 +148,39 @@
 <span class='curline'><a href='../S/6.html#L61'>j</a>                  61 graycode.c             val[j+1] = val[j];</span>
 <span class='curline'><a href='../S/6.html#L63'>j</a>                  63 graycode.c             val[j+1] = temp;</span>
 <span class='curline'><a href='../S/6.html#L64'>j</a>                  64 graycode.c             gray[j+1] =i;</span>
-<span class='curline'><a href='../S/8.html#L57'>j</a>                  57 mrt.c              graycode_init0(maxcat);</span>
-<span class='curline'><a href='../S/8.html#L67'>j</a>                  67 mrt.c          /*  sums   = wts + maxcat;  */</span>
-<span class='curline'><a href='../S/8.html#L71'>j</a>                  71 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L72'>j</a>                  72 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L75'>j</a>                  75 mrt.c          */</span>
-<span class='curline'><a href='../S/8.html#L79'>j</a>                  79 mrt.c              int i,j;</span>
-<span class='curline'><a href='../S/8.html#L101'>j</a>                 101 mrt.c          	ssj = 0;</span>
-<span class='curline'><a href='../S/8.html#L121'>j</a>                 121 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L122'>j</a>                 122 mrt.c              </span>
-<span class='curline'><a href='../S/8.html#L123'>j</a>                 123 mrt.c              *risk = ss;</span>
-<span class='curline'><a href='../S/8.html#L124'>j</a>                 124 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L136'>j</a>                 136 mrt.c              int i,j,k;</span>
-<span class='curline'><a href='../S/8.html#L137'>j</a>                 137 mrt.c              double sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L138'>j</a>                 138 mrt.c              double left_sum, right_sum;</span>
-<span class='curline'><a href='../S/8.html#L139'>j</a>                 139 mrt.c              double left_wt, right_wt;</span>
-<span class='curline'><a href='../S/8.html#L140'>j</a>                 140 mrt.c              int left_n, right_n;</span>
-<span class='curline'><a href='../S/8.html#L141'>j</a>                 141 mrt.c              double best;</span>
-<span class='curline'><a href='../S/8.html#L172'>j</a>                 172 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>j</a>                 179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L183'>j</a>                 183 mrt.c                 if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L184'>j</a>                 184 mrt.c                 else if (rp.dissim==2) temp = 2.0*sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L223'>j</a>                 223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L231'>j</a>                 231 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L236'>j</a>                 236 mrt.c              /*</span>
-<span class='curline'><a href='../S/8.html#L237'>j</a>                 237 mrt.c              ** Insert gray code bit here</span>
-<span class='curline'><a href='../S/8.html#L238'>j</a>                 238 mrt.c              */</span>
-<span class='curline'><a href='../S/8.html#L239'>j</a>                 239 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L240'>j</a>                 240 mrt.c          /*  if (numclass==2) graycode_init2(nclass, countn, rate);</span>
-<span class='curline'><a href='../S/8.html#L247'>j</a>                 247 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L249'>j</a>                 249 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L266'>j</a>                 266 mrt.c                  for (j=0; j&lt;rp.num_y; j++) tdiffs[j] -= mean[i+nclass*j] * countwt[i];</span>
-<span class='curline'><a href='../S/8.html#L270'>j</a>                 270 mrt.c                  left_sum = 0; right_sum = 0; sumdiffs_sq = 0;</span>
-<span class='curline'><a href='../S/8.html#L273'>j</a>                 273 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L57'>j</a>                  57 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L67'>j</a>                  67 mrt.c              ss = 0;</span>
+<span class='curline'><a href='../S/8.html#L71'>j</a>                  71 mrt.c              </span>
+<span class='curline'><a href='../S/8.html#L72'>j</a>                  72 mrt.c          /*</span>
+<span class='curline'><a href='../S/8.html#L75'>j</a>                  75 mrt.c              for (i=0; i&lt;n; i++) twt += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L79'>j</a>                  79 mrt.c                for (i=0; i&lt;n; i++) {</span>
+<span class='curline'><a href='../S/8.html#L101'>j</a>                 101 mrt.c          	value[j] = grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L121'>j</a>                 121 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L122'>j</a>                 122 mrt.c          void mrt(int n,    double *y[],  FLOAT *x,     int nclass,</span>
+<span class='curline'><a href='../S/8.html#L123'>j</a>                 123 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L124'>j</a>                 124 mrt.c              {</span>
+<span class='curline'><a href='../S/8.html#L136'>j</a>                 136 mrt.c              /*</span>
+<span class='curline'><a href='../S/8.html#L137'>j</a>                 137 mrt.c              ** Compute the grand mean, which will be subtracted from all of the</span>
+<span class='curline'><a href='../S/8.html#L138'>j</a>                 138 mrt.c              **  data elements "on the fly".  This makes the hand calculator formula</span>
+<span class='curline'><a href='../S/8.html#L139'>j</a>                 139 mrt.c              **  numerically stable.</span>
+<span class='curline'><a href='../S/8.html#L140'>j</a>                 140 mrt.c              ** Also get the total n</span>
+<span class='curline'><a href='../S/8.html#L141'>j</a>                 141 mrt.c              */</span>
+<span class='curline'><a href='../S/8.html#L172'>j</a>                 172 mrt.c          	} /*compute left_sum*/</span>
+<span class='curline'><a href='../S/8.html#L179'>j</a>                 179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L183'>j</a>                 183 mrt.c          	  best = temp;</span>
+<span class='curline'><a href='../S/8.html#L184'>j</a>                 184 mrt.c          	  where = i;</span>
+<span class='curline'><a href='../S/8.html#L223'>j</a>                 223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L231'>j</a>                 231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L236'>j</a>                 236 mrt.c              for (i=0; i&lt;n; i++) {</span>
+<span class='curline'><a href='../S/8.html#L237'>j</a>                 237 mrt.c                      k = x[i] -1;</span>
+<span class='curline'><a href='../S/8.html#L238'>j</a>                 238 mrt.c                  countn[k] ++;</span>
+<span class='curline'><a href='../S/8.html#L239'>j</a>                 239 mrt.c                          countwt[k] += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L240'>j</a>                 240 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L247'>j</a>                 247 mrt.c          	} /*end of for i=0*/</span>
+<span class='curline'><a href='../S/8.html#L249'>j</a>                 249 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L266'>j</a>                 266 mrt.c          /*  if (numclass==2) graycode_init2(nclass, countn, rate);</span>
+<span class='curline'><a href='../S/8.html#L270'>j</a>                 270 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L273'>j</a>                 273 mrt.c          </span>
 <span class='curline'><a href='../S/26.html#L15'>j</a>                  15 mysort.c        int i, j, k;</span>
 <span class='curline'><a href='../S/26.html#L27'>j</a>                  27 mysort.c               j=i-1;</span>
 <span class='curline'><a href='../S/26.html#L29'>j</a>                  29 mysort.c               while (j&gt;=start &amp;&amp; (x[j]&gt;temp)) {</span>

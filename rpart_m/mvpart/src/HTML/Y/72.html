@@ -17,18 +17,18 @@
 <span class='curline'><a href='../S/12.html#L174'>dissim</a>            174 anova.c                else if (rp.dissim==2) temp = fabs(left_sum) + fabs(right_sum);</span>
 <span class='curline'><a href='../S/12.html#L200'>dissim</a>            200 anova.c            if (rp.dissim==1) temp = temp * temp;</span>
 <span class='curline'><a href='../S/12.html#L201'>dissim</a>            201 anova.c            else if (rp.dissim==2) temp = fabs(temp);</span>
-<span class='curline'><a href='../S/8.html#L76'>dissim</a>             76 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L77'>dissim</a>             77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L140'>dissim</a>            140 mrt.c              int left_n, right_n;</span>
-<span class='curline'><a href='../S/8.html#L141'>dissim</a>            141 mrt.c              double best;</span>
-<span class='curline'><a href='../S/8.html#L148'>dissim</a>            148 mrt.c              **  data elements "on the fly".  This makes the hand calculator formula</span>
-<span class='curline'><a href='../S/8.html#L149'>dissim</a>            149 mrt.c              **  numerically stable.</span>
-<span class='curline'><a href='../S/8.html#L239'>dissim</a>            239 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L240'>dissim</a>            240 mrt.c          /*  if (numclass==2) graycode_init2(nclass, countn, rate);</span>
-<span class='curline'><a href='../S/8.html#L242'>dissim</a>            242 mrt.c          **</span>
-<span class='curline'><a href='../S/8.html#L243'>dissim</a>            243 mrt.c          **     Just use graycode_init1 here -- gd</span>
-<span class='curline'><a href='../S/8.html#L269'>dissim</a>            269 mrt.c              if (left_n&gt;=edge  &amp;&amp;  right_n&gt;=edge) {</span>
-<span class='curline'><a href='../S/8.html#L272'>dissim</a>            272 mrt.c                      left_sum += tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L76'>dissim</a>             76 mrt.c              temp = 0.0; /*ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L77'>dissim</a>             77 mrt.c              if(rp.dissim==3){</span>
+<span class='curline'><a href='../S/8.html#L140'>dissim</a>            140 mrt.c              ** Also get the total n</span>
+<span class='curline'><a href='../S/8.html#L141'>dissim</a>            141 mrt.c              */</span>
+<span class='curline'><a href='../S/8.html#L148'>dissim</a>            148 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L149'>dissim</a>            149 mrt.c           	    grandmean[j] /= right_wt;</span>
+<span class='curline'><a href='../S/8.html#L239'>dissim</a>            239 mrt.c                          countwt[k] += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L240'>dissim</a>            240 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L242'>dissim</a>            242 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L243'>dissim</a>            243 mrt.c                  for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L269'>dissim</a>            269 mrt.c          **     Just use graycode_init1 here -- gd</span>
+<span class='curline'><a href='../S/8.html#L272'>dissim</a>            272 mrt.c              graycode_init1(nclass, countn);</span>
 <span class='curline'><a href='../S/38.html#L48'>dissim</a>             48 rpart.c                  int  dissim,   Sint *missmat, struct cptable *cptable,</span>
 <span class='curline'><a href='../S/38.html#L90'>dissim</a>             90 rpart.c            rp.dissim = dissim;</span>
 <span class='curline'><a href='../S/28.html#L57'>dissim</a>             57 rpart.h            int    *right;</span>

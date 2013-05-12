@@ -5,7 +5,7 @@
     all.leaves = FALSE, bars = TRUE, legend, bord = FALSE, 
     xadj = 1, yadj = 1, prn = FALSE, branch = 1, rsq = FALSE, 
     big.pts = FALSE, pca = FALSE, interact.pca = FALSE, 
-    wgt.ave.pca = FALSE, keep.y = TRUE, ...) 
+    wgt.ave.pca = FALSE, keep.y = TRUE, myAlpha=2.0, ...) 
 {
     call <- match.call()
 
@@ -36,7 +36,7 @@
         minsplit <- ceiling(log2(n))
         minbucket <- ceiling(minsplit/3)
     }
-    z <- rpart(form, data = data, dissim="myDist", ...)
+    z <- rpart(form, data = data, dissim="myDist",myAlpha=myAlpha, ...)
     if (all(z$where==1)) {
     cat("No splits possible -- try decreasing cp\n")
     return(z)

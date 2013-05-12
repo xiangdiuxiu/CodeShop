@@ -71,11 +71,11 @@
 <span class='curline'><a href='../S/6.html#L55'>k</a>                  55 graycode.c             gray[k++] =i;</span>
 <span class='curline'><a href='../S/6.html#L59'>k</a>                  59 graycode.c             for (j=i-1; j&gt;=k &amp;&amp; val[j]&gt;temp; j--) {</span>
 <span class='curline'><a href='../S/6.html#L67'>k</a>                  67 graycode.c         gsave = k-1;</span>
-<span class='curline'><a href='../S/8.html#L101'>k</a>                 101 mrt.c          	ssj = 0;</span>
-<span class='curline'><a href='../S/8.html#L176'>k</a>                 176 mrt.c                      else if (rp.dissim==2) sumdiffs_sq += fabs(tdiffs[j]);</span>
-<span class='curline'><a href='../S/8.html#L177'>k</a>                 177 mrt.c          	} /*end of j=0*/</span>
-<span class='curline'><a href='../S/8.html#L178'>k</a>                 178 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L179'>k</a>                 179 mrt.c                 left_sum  +=temp;</span>
+<span class='curline'><a href='../S/8.html#L101'>k</a>                 101 mrt.c          	value[j] = grandmean[j];</span>
+<span class='curline'><a href='../S/8.html#L176'>k</a>                 176 mrt.c          	    for(e_k=0; e_k&lt;rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);</span>
+<span class='curline'><a href='../S/8.html#L177'>k</a>                 177 mrt.c          	    temp = sqrt(temp);</span>
+<span class='curline'><a href='../S/8.html#L178'>k</a>                 178 mrt.c          	    left_sum += pow(temp, inx);</span>
+<span class='curline'><a href='../S/8.html#L179'>k</a>                 179 mrt.c          	  }</span>
 <span class='curline'><a href='../S/26.html#L15'>k</a>                  15 mysort.c        int i, j, k;</span>
 <span class='curline'><a href='../S/26.html#L46'>k</a>                  46 mysort.c           k = (start + stop)/2;</span>
 <span class='curline'><a href='../S/26.html#L48'>k</a>                  48 mysort.c           median = x[k];</span>

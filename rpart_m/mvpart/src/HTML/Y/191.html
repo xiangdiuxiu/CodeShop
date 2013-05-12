@@ -46,20 +46,20 @@
 <span class='curline'><a href='../S/7.html#L52'>nclass</a>             52 func_table.h   extern void poisson(  int n,    double *y[],     FLOAT *x,     int nclass, </span>
 <span class='curline'><a href='../S/7.html#L55'>nclass</a>             55 func_table.h   extern void gini(     int n,    double *y[],     FLOAT *x,     int nclass, </span>
 <span class='curline'><a href='../S/7.html#L58'>nclass</a>             58 func_table.h   extern void usersplit(int n,    double *y[],     FLOAT *x,     int nclass, </span>
-<span class='curline'><a href='../S/8.html#L98'>nclass</a>             98 mrt.c                } /*end for i=0*/</span>
-<span class='curline'><a href='../S/8.html#L127'>nclass</a>            127 mrt.c          ** The mrt splitting function.  Find that split point in x such that</span>
-<span class='curline'><a href='../S/8.html#L170'>nclass</a>            170 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L172'>nclass</a>            172 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>nclass</a>            179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L182'>nclass</a>            182 mrt.c                 if (x[i+1] != x[i] &amp;&amp;  left_n&gt;=edge) {</span>
-<span class='curline'><a href='../S/8.html#L184'>nclass</a>            184 mrt.c                 else if (rp.dissim==2) temp = 2.0*sumdiffs_sq;</span>
-<span class='curline'><a href='../S/8.html#L188'>nclass</a>            188 mrt.c                  where = i;</span>
-<span class='curline'><a href='../S/8.html#L211'>nclass</a>            211 mrt.c                      k = x[i] -1;</span>
-<span class='curline'><a href='../S/8.html#L213'>nclass</a>            213 mrt.c                          countwt[k] += wt[i];</span>
-<span class='curline'><a href='../S/8.html#L223'>nclass</a>            223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L231'>nclass</a>            231 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L247'>nclass</a>            247 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L249'>nclass</a>            249 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L98'>nclass</a>             98 mrt.c          	  if (rp.dissim==1) ssj += temp * temp * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L127'>nclass</a>            127 mrt.c              double left_sum, right_sum;</span>
+<span class='curline'><a href='../S/8.html#L170'>nclass</a>            170 mrt.c          	    left_sum += pow(temp, inx);</span>
+<span class='curline'><a href='../S/8.html#L172'>nclass</a>            172 mrt.c          	} /*compute left_sum*/</span>
+<span class='curline'><a href='../S/8.html#L179'>nclass</a>            179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L182'>nclass</a>            182 mrt.c          	if (temp &gt; best) {</span>
+<span class='curline'><a href='../S/8.html#L184'>nclass</a>            184 mrt.c          	  where = i;</span>
+<span class='curline'><a href='../S/8.html#L188'>nclass</a>            188 mrt.c          	    direction = RIGHT;</span>
+<span class='curline'><a href='../S/8.html#L211'>nclass</a>            211 mrt.c          	   if (temp &gt; best) {</span>
+<span class='curline'><a href='../S/8.html#L213'>nclass</a>            213 mrt.c                  where = i;</span>
+<span class='curline'><a href='../S/8.html#L223'>nclass</a>            223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L231'>nclass</a>            231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L247'>nclass</a>            247 mrt.c          	} /*end of for i=0*/</span>
+<span class='curline'><a href='../S/8.html#L249'>nclass</a>            249 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
 <span class='curline'><a href='../S/13.html#L159'>nclass</a>            159 poisson.c      void poisson(int n,       double **y,      FLOAT *x,     int nclass, </span>
 <span class='curline'><a href='../S/13.html#L198'>nclass</a>            198 poisson.c          if (nclass &gt;0) goto categorical;</span>
 <span class='curline'><a href='../S/13.html#L233'>nclass</a>            233 poisson.c          for (i=0; i&lt;nclass; i++) {</span>

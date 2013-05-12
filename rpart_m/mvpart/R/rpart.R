@@ -1,7 +1,7 @@
 "rpart" <-
 function (formula, data = NULL, weights, subset, na.action = na.rpart,
     method, dissim, model = FALSE, x = FALSE, y = TRUE, parms, control,
-    cost, ...)
+    cost, myAlpha=2.0,  ...)
 {
     call <- match.call()
     if (is.data.frame(model)) {
@@ -132,7 +132,7 @@ function (formula, data = NULL, weights, subset, na.action = na.rpart,
         else is.ordered(x)
     }
     isord <- unlist(lapply(m[attr(Terms, "term.labels")], tfun))
-    myAlpha <- 0.3 #the alpha we determinte --ZhangYet
+
     rpfit <- .C("s_to_rp", n = as.integer(nobs), nvarx = as.integer(nvar),
         ncat = as.integer(cats * (!isord)), method = as.integer(method.int),
         as.double(unlist(controls)), parms = as.double(unlist(init$parms)),

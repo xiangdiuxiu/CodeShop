@@ -75,30 +75,30 @@
 <span class='curline'><a href='../S/8.html#L24'>rp</a>                 24 mrt.c                int k;</span>
 <span class='curline'><a href='../S/8.html#L29'>rp</a>                 29 mrt.c                  }</span>
 <span class='curline'><a href='../S/8.html#L39'>rp</a>                 39 mrt.c                  }</span>
-<span class='curline'><a href='../S/8.html#L47'>rp</a>                 47 mrt.c          	temp = 0.0;</span>
-<span class='curline'><a href='../S/8.html#L67'>rp</a>                 67 mrt.c          /*  sums   = wts + maxcat;  */</span>
-<span class='curline'><a href='../S/8.html#L76'>rp</a>                 76 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L77'>rp</a>                 77 mrt.c          void mrtss(int n, double *y[],  double *value, double *risk, double *wt)</span>
-<span class='curline'><a href='../S/8.html#L121'>rp</a>                121 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L136'>rp</a>                136 mrt.c              int i,j,k;</span>
-<span class='curline'><a href='../S/8.html#L140'>rp</a>                140 mrt.c              int left_n, right_n;</span>
-<span class='curline'><a href='../S/8.html#L141'>rp</a>                141 mrt.c              double best;</span>
-<span class='curline'><a href='../S/8.html#L148'>rp</a>                148 mrt.c              **  data elements "on the fly".  This makes the hand calculator formula</span>
-<span class='curline'><a href='../S/8.html#L149'>rp</a>                149 mrt.c              **  numerically stable.</span>
-<span class='curline'><a href='../S/8.html#L172'>rp</a>                172 mrt.c                      diffs[j] = (y[i][j] - grandmean[j]) * wt[i];</span>
-<span class='curline'><a href='../S/8.html#L179'>rp</a>                179 mrt.c                 left_sum  +=temp;</span>
-<span class='curline'><a href='../S/8.html#L183'>rp</a>                183 mrt.c                 if (rp.dissim==1) temp = sumdiffs_sq/left_wt + sumdiffs_sq/right_wt;</span>
-<span class='curline'><a href='../S/8.html#L223'>rp</a>                223 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
-<span class='curline'><a href='../S/8.html#L231'>rp</a>                231 mrt.c              left_n = 0;  right_n = n;</span>
-<span class='curline'><a href='../S/8.html#L236'>rp</a>                236 mrt.c              /*</span>
-<span class='curline'><a href='../S/8.html#L239'>rp</a>                239 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L240'>rp</a>                240 mrt.c          /*  if (numclass==2) graycode_init2(nclass, countn, rate);</span>
-<span class='curline'><a href='../S/8.html#L242'>rp</a>                242 mrt.c          **</span>
-<span class='curline'><a href='../S/8.html#L243'>rp</a>                243 mrt.c          **     Just use graycode_init1 here -- gd</span>
-<span class='curline'><a href='../S/8.html#L269'>rp</a>                269 mrt.c              if (left_n&gt;=edge  &amp;&amp;  right_n&gt;=edge) {</span>
-<span class='curline'><a href='../S/8.html#L270'>rp</a>                270 mrt.c                  left_sum = 0; right_sum = 0; sumdiffs_sq = 0;</span>
-<span class='curline'><a href='../S/8.html#L272'>rp</a>                272 mrt.c                      left_sum += tdiffs[j];</span>
-<span class='curline'><a href='../S/8.html#L273'>rp</a>                273 mrt.c                      right_sum -= tdiffs[j];</span>
+<span class='curline'><a href='../S/8.html#L47'>rp</a>                 47 mrt.c                  if (countn==0 || mean==0 ) {</span>
+<span class='curline'><a href='../S/8.html#L67'>rp</a>                 67 mrt.c              ss = 0;</span>
+<span class='curline'><a href='../S/8.html#L76'>rp</a>                 76 mrt.c              temp = 0.0; /*ZhangYet*/</span>
+<span class='curline'><a href='../S/8.html#L77'>rp</a>                 77 mrt.c              if(rp.dissim==3){</span>
+<span class='curline'><a href='../S/8.html#L121'>rp</a>                121 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L136'>rp</a>                136 mrt.c              /*</span>
+<span class='curline'><a href='../S/8.html#L140'>rp</a>                140 mrt.c              ** Also get the total n</span>
+<span class='curline'><a href='../S/8.html#L141'>rp</a>                141 mrt.c              */</span>
+<span class='curline'><a href='../S/8.html#L148'>rp</a>                148 mrt.c          	    for (i=0; i&lt;n; i++) grandmean[j] += y[i][j] * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L149'>rp</a>                149 mrt.c           	    grandmean[j] /= right_wt;</span>
+<span class='curline'><a href='../S/8.html#L172'>rp</a>                172 mrt.c          	} /*compute left_sum*/</span>
+<span class='curline'><a href='../S/8.html#L179'>rp</a>                179 mrt.c          	  }</span>
+<span class='curline'><a href='../S/8.html#L183'>rp</a>                183 mrt.c          	  best = temp;</span>
+<span class='curline'><a href='../S/8.html#L223'>rp</a>                223 mrt.c              *improve = best / myrisk;</span>
+<span class='curline'><a href='../S/8.html#L231'>rp</a>                231 mrt.c              for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L236'>rp</a>                236 mrt.c              for (i=0; i&lt;n; i++) {</span>
+<span class='curline'><a href='../S/8.html#L239'>rp</a>                239 mrt.c                          countwt[k] += wt[i];</span>
+<span class='curline'><a href='../S/8.html#L240'>rp</a>                240 mrt.c                      for (j=0; j&lt;rp.num_y; j++) mean[k+nclass*j] += (y[i][j] - grandmean[j]) * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L242'>rp</a>                242 mrt.c          </span>
+<span class='curline'><a href='../S/8.html#L243'>rp</a>                243 mrt.c                  for (i=0; i&lt;nclass; i++) {</span>
+<span class='curline'><a href='../S/8.html#L269'>rp</a>                269 mrt.c          **     Just use graycode_init1 here -- gd</span>
+<span class='curline'><a href='../S/8.html#L270'>rp</a>                270 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L272'>rp</a>                272 mrt.c              graycode_init1(nclass, countn);</span>
+<span class='curline'><a href='../S/8.html#L273'>rp</a>                273 mrt.c          </span>
 <span class='curline'><a href='../S/17.html#L24'>rp</a>                 24 nodesplit.c        which = rp.which;</span>
 <span class='curline'><a href='../S/17.html#L25'>rp</a>                 25 nodesplit.c        sorts = rp.sorts;</span>
 <span class='curline'><a href='../S/17.html#L26'>rp</a>                 26 nodesplit.c        xdata = rp.xdata;</span>

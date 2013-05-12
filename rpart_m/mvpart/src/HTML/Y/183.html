@@ -72,17 +72,17 @@
 <span class='curline'><a href='../S/19.html#L180'>n</a>                 180 gini.c             for (i=0; i&lt;n; i++) {</span>
 <span class='curline'><a href='../S/19.html#L245'>n</a>                 245 gini.c             for (i=0; i&lt;n; i++) {</span>
 <span class='curline'><a href='../S/8.html#L16'>n</a>                  16 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L55'>n</a>                  55 mrt.c              }/*end of if 'rp.dissim == 3'*/</span>
-<span class='curline'><a href='../S/8.html#L65'>n</a>                  65 mrt.c                  }</span>
-<span class='curline'><a href='../S/8.html#L71'>n</a>                  71 mrt.c              }</span>
-<span class='curline'><a href='../S/8.html#L74'>n</a>                  74 mrt.c          ** The mrt evaluation function.  Return the mean and the ss.</span>
-<span class='curline'><a href='../S/8.html#L98'>n</a>                  98 mrt.c                } /*end for i=0*/</span>
-<span class='curline'><a href='../S/8.html#L118'>n</a>                 118 mrt.c          */</span>
-<span class='curline'><a href='../S/8.html#L120'>n</a>                 120 mrt.c                }/*end for j*/</span>
-<span class='curline'><a href='../S/8.html#L123'>n</a>                 123 mrt.c              *risk = ss;</span>
-<span class='curline'><a href='../S/8.html#L175'>n</a>                 175 mrt.c                      if (rp.dissim==1) sumdiffs_sq += tdiffs[j]*tdiffs[j];</span>
-<span class='curline'><a href='../S/8.html#L196'>n</a>                 196 mrt.c          </span>
-<span class='curline'><a href='../S/8.html#L199'>n</a>                 199 mrt.c                  csplit[0] = direction;</span>
+<span class='curline'><a href='../S/8.html#L55'>n</a>                  55 mrt.c              return(0);</span>
+<span class='curline'><a href='../S/8.html#L65'>n</a>                  65 mrt.c              double temp, twt;</span>
+<span class='curline'><a href='../S/8.html#L71'>n</a>                  71 mrt.c              </span>
+<span class='curline'><a href='../S/8.html#L74'>n</a>                  74 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L98'>n</a>                  98 mrt.c          	  if (rp.dissim==1) ssj += temp * temp * wt[i];</span>
+<span class='curline'><a href='../S/8.html#L118'>n</a>                 118 mrt.c          **  as possible.  It is not necessary to actually calculate the SS, the</span>
+<span class='curline'><a href='../S/8.html#L120'>n</a>                 120 mrt.c          */</span>
+<span class='curline'><a href='../S/8.html#L123'>n</a>                 123 mrt.c                 int edge, double *improve, FLOAT *split, int *csplit, double myrisk, double *wt)</span>
+<span class='curline'><a href='../S/8.html#L175'>n</a>                 175 mrt.c          	  for(e_j=left_n; e_j&lt;n; e_j++){</span>
+<span class='curline'><a href='../S/8.html#L196'>n</a>                 196 mrt.c                  for (j=0; j&lt;rp.num_y; j++) {</span>
+<span class='curline'><a href='../S/8.html#L199'>n</a>                 199 mrt.c                      tdiffs[j] += diffs[j];</span>
 <span class='curline'><a href='../S/17.html#L36'>n</a>                  36 nodesplit.c        for (i=0; i&lt;rp.n; i++) {</span>
 <span class='curline'><a href='../S/17.html#L48'>n</a>                  48 nodesplit.c        for (i=0; i&lt;rp.n; i++) {</span>
 <span class='curline'><a href='../S/17.html#L70'>n</a>                  70 nodesplit.c            for (i=0; i&lt;rp.n; i++) {</span>
