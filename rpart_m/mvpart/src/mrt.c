@@ -11,7 +11,6 @@
 #include "rpartproto.h"
 
 static double *mean, *grandmean, *wts, *diffs, *tdiffs;
-/*static **distMatrix; /*here, we use a matrix to store distance between examples*/
 static int *tsplit, *countn, *countwt;
 
 
@@ -79,7 +78,7 @@ void mrtss(int n, double *y[],  double *value, double *risk, double *wt)
       for (i=0; i<n; i++) {
 	for (j=0; j<n; j++) {
 	  for (k = 0; k < rp.num_y; k++) {
-	    temp += y[i][k] - y[j][k];
+	    temp += (y[i][k] - y[j][k])*(y[i][k] - y[j][k]);
 	    grandmean[k] += y[j][k]*wt[j];
 	    if (j == n-1) {
 	      grandmean[k] = grandmean[k] / twt; /*These two lines use to init grandmean. In fact it's useless.--ZhangYet */
@@ -170,7 +169,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
 	temp = 0.0;
 	for (e_i=0; e_i<left_n; e_i++) {
 	  for (e_j=0; e_j<left_n; e_j++) {
-	    for (e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);
+	    for (e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k])*(y[e_i][e_k] - y[e_j][e_k]);
 	    temp = sqrt(temp);
 	    diffs[e_k] = temp;
 	    tdiffs[e_k] += temp;
@@ -180,7 +179,7 @@ void mrt(int n,    double *y[],  FLOAT *x,     int nclass,
 	temp = 0.0;
 	for(e_i=left_n; e_i<n; e_i++){
 	  for(e_j=left_n; e_j<n; e_j++){
-	    for(e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k]);
+	    for(e_k=0; e_k<rp.num_y; e_k++) temp += (y[e_i][e_k] - y[e_j][e_k])*(y[e_i][e_k] - y[e_j][e_k]);
 	    temp = sqrt(temp);
 	    diffs[e_k] = temp;
 	    tdiffs[e_k] += temp;
